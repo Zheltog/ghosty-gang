@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://b82u3qdrltiae"]
+
+[ext_resource type="Script" uid="uid://bytkgf4aqq3ro" path="res://Scripts/UI/PointAndClickScenes/SceneObjectsManager.gd" id="1_77u46"]
+[ext_resource type="PackedScene" uid="uid://dvnnea2fw2ndt" path="res://Scenes/PointAndClick/SceneItemUI.tscn" id="2_vdgpi"]
+
+[node name="PointAndClickTest" type="Node2D" unique_id=1554175718]
+
+[node name="SceneObjectManager" type="Node2D" parent="." unique_id=246570464 node_paths=PackedStringArray("scene_items")]
+script = ExtResource("1_77u46")
+scene_items = [NodePath("SceneItemUi"), NodePath("SceneItemUi2")]
+
+[node name="SceneItemUi2" parent="SceneObjectManager" unique_id=1302362898 instance=ExtResource("2_vdgpi")]
+position = Vector2(1155, 439)
+scene_item_id = 1
+
+[node name="Sprite2D" parent="SceneObjectManager/SceneItemUi2" index="0" unique_id=651472278]
+self_modulate = Color(1, 0.45490196, 0.18039216, 1)
+scale = Vector2(4, 4)
+
+[node name="CollisionPolygon2D" parent="SceneObjectManager/SceneItemUi2/Area2D" parent_id_path=PackedInt32Array(1302362898, 1221597601) index="0" unique_id=159129361]
+scale = Vector2(4, 4)
+
+[node name="SceneItemUi" parent="SceneObjectManager" unique_id=807249126 instance=ExtResource("2_vdgpi")]
+position = Vector2(1039, 494)
+
+[editable path="SceneObjectManager/SceneItemUi2"]
