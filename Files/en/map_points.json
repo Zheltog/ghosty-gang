@@ -1,0 +1,12 @@
+{
+	"points": {
+		"bob": {
+			"name": "Bob",
+			"description": "Bob is Bob"
+		},
+		"alice": {
+			"name": "Alice",
+			"description": "Alice is Alice"
+		}
+	}
+}

@@ -3,6 +3,9 @@
 		"bob": {
 			"bob_smokes": "Bob smokes.",
 			"bob_spiders": "Bob likes spiders."
+		},
+		"alice": {
+			"alice_old": "Alice is old."
 		}
 	}
 }

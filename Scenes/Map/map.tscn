@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://mjecnayjd2mg"]
+
+[ext_resource type="Script" uid="uid://dxsif6dev5hws" path="res://Scripts/Map/MapPoint.gd" id="1_xtf6f"]
+[ext_resource type="PackedScene" uid="uid://bmul80wgr0s2g" path="res://Scenes/Map/map_point_card.tscn" id="3_03x5g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e4cce"]
+size = Vector2(100, 100)
+
+[node name="Map" type="CanvasLayer" unique_id=801823101]
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=129121323]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0.8627451, 1, 1, 1)
+
+[node name="Point0" type="Node2D" parent="." unique_id=929207230]
+position = Vector2(333, 222)
+script = ExtResource("1_xtf6f")
+id = "bob"
+
+[node name="ColorRect" type="ColorRect" parent="Point0" unique_id=1347688327]
+offset_right = 80.0
+offset_bottom = 80.0
+mouse_filter = 1
+color = Color(0.13725491, 1, 1, 1)
+
+[node name="Area2D" type="Area2D" parent="Point0" unique_id=193755817]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Point0/Area2D" unique_id=893058142]
+position = Vector2(40, 40)
+shape = SubResource("RectangleShape2D_e4cce")
+
+[node name="Point1" type="Node2D" parent="." unique_id=384153879]
+position = Vector2(222, 444)
+script = ExtResource("1_xtf6f")
+id = "alice"
+
+[node name="ColorRect" type="ColorRect" parent="Point1" unique_id=1602117991]
+offset_right = 80.0
+offset_bottom = 80.0
+mouse_filter = 1
+color = Color(0.13725491, 0.5019608, 1, 1)
+
+[node name="Area2D" type="Area2D" parent="Point1" unique_id=1320941157]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Point1/Area2D" unique_id=1623271017]
+position = Vector2(40, 40)
+shape = SubResource("RectangleShape2D_e4cce")
+
+[node name="MapPointCard" parent="." unique_id=1699784598 instance=ExtResource("3_03x5g")]
+offset_left = 555.0
+offset_top = 111.0
+offset_right = 555.0
+offset_bottom = 111.0

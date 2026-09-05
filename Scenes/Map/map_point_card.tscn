@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://bmul80wgr0s2g"]
+
+[ext_resource type="Script" uid="uid://cy1jyotohso15" path="res://Scripts/Map/MapPointCard.gd" id="1_ja64w"]
+
+[node name="MapPointCard" type="Control" unique_id=1699784598]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_ja64w")
+
+[node name="Base" type="ColorRect" parent="." unique_id=1014375890]
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 480.0
+color = Color(1, 1, 0.8627451, 1)
+
+[node name="NameLabel" type="Label" parent="Base" unique_id=1595100166]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -97.5
+offset_right = 97.5
+offset_bottom = 67.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 48
+text = "???"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DescriptionLabel" type="Label" parent="Base" unique_id=16745960]
+layout_mode = 1
+offset_left = 10.0
+offset_top = 67.0
+offset_right = 310.0
+offset_bottom = 202.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "???"
+
+[node name="ThesesLabel" type="Label" parent="Base" unique_id=884165165]
+layout_mode = 1
+offset_left = 10.0
+offset_top = 202.0
+offset_right = 310.0
+offset_bottom = 382.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "???"
+
+[node name="BackButton" type="Button" parent="Base" unique_id=509899401]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -66.0
+offset_right = 66.0
+offset_bottom = -10.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "<"
+
+[node name="GoButton" type="Button" parent="Base" unique_id=1213828909]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -66.0
+offset_top = -66.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "OK"

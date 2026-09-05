@@ -17,5 +17,9 @@ static func load() -> ThesisConfig:
 	#print("[ThesisConfigManager] Cached config has been updated successfully")
 	return _cached_config
 
+static func get_theses_by_group_known(group: String) -> Array:
+	var save = SaveManager.load()
+	return ThesisConfigManager.load().get_by_group_known(group, save.known_theses)
+
 static func _build_config_file_name(language: String) -> String:
 	return str(config_file_name_prefix, language, config_file_name_postfix)
