@@ -71,6 +71,8 @@ func _init_assignments(item_id: String, data: Dictionary) -> PackedStringArray:
 	]
 	if data.has("pickable"):
 		lines.append("\tpickable = %s" % _gdscript_literal(data["pickable"]))
+	if data.has("pickup_time"):
+		lines.append("\tpickup_time = %s" % _gdscript_literal(data["pickup_time"]))
 	if data.has("equiped_immediately"):
 		lines.append("\tequiped_immediately = %s" % _gdscript_literal(data["equiped_immediately"]))
 	if data.has("inventory_item") and str(data["inventory_item"]) != "":

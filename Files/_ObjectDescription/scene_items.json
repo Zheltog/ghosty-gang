@@ -7,6 +7,7 @@
 	},
 	"pepper" : {
 		"pickable" : true,
+		"pickup_time" : 2.0,
 		"equiped_immediately" : false,
 		"inventory_item" : "pepper"
 	}
