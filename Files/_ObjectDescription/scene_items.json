@@ -1,0 +1,14 @@
+{
+	"salt" : {
+		"pickable" : true,
+		"equiped_immediately" : false,
+		"inventory_item" : "salt",
+		"ink_story_view" : "EMPTY FOR NOW - WILL FILL LATER"
+	},
+	"pepper" : {
+		"pickable" : true,
+		"pickup_time" : 2.0,
+		"equiped_immediately" : false,
+		"inventory_item" : "pepper"
+	}
+}
