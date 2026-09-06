@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bytkgf4aqq3ro" path="res://Scripts/UI/PointAndClickScenes/SceneObjectsManager.gd" id="1_77u46"]
 [ext_resource type="PackedScene" uid="uid://dvnnea2fw2ndt" path="res://Scenes/PointAndClick/SceneItemUI.tscn" id="2_vdgpi"]
+[ext_resource type="PackedScene" uid="uid://17fxcbcv4a1n" path="res://Scenes/PointAndClick/InventoryUI/Inventory.tscn" id="3_ncwta"]
 
 [node name="PointAndClickTest" type="Node2D" unique_id=1554175718]
 
@@ -25,5 +26,9 @@ scale = Vector2(4, 4)
 
 [node name="CollisionPolygon2D" parent="SceneObjectManager/SceneItemUi2/Area2D" parent_id_path=PackedInt32Array(1302362898, 1221597601) index="0" unique_id=159129361]
 scale = Vector2(4, 4)
+
+[node name="Inventory" parent="." unique_id=1617643402 instance=ExtResource("3_ncwta")]
+offset_right = 1920.0
+offset_bottom = 1080.0
 
 [editable path="SceneObjectManager/SceneItemUi2"]

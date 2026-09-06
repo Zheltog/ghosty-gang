@@ -1,0 +1,8 @@
+{
+	"salt" : {
+		"equip_time" : 4.0
+	},
+	"pepper" : {
+		"equip_time" : 1.0
+	}
+}

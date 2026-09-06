@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://k5wkjjopjdi"]
+
+[ext_resource type="Script" uid="uid://bsvnbkxhpb7ho" path="res://Scripts/UI/PointAndClickScenes/InventoryItemUI.gd" id="2_pnx0w"]
+[ext_resource type="Texture2D" uid="uid://d0nohrlp5ulye" path="res://Assets/Sprites/InvenotyItems/salt.png" id="2_xnp35"]
+
+[node name="InventoryItemUI" type="Control" unique_id=443293946]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_pnx0w")
+
+[node name="Sprite" type="TextureRect" parent="." unique_id=699453235]
+layout_mode = 0
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("2_xnp35")
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=305336394]
+layout_mode = 0
+offset_left = 14.0
+offset_top = -25.0
+offset_right = 114.0
+offset_bottom = -5.0
+show_percentage = false
