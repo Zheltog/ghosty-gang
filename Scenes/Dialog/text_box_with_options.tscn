@@ -1,0 +1,162 @@
+[gd_scene format=3 uid="uid://1sve2gjsuyde"]
+
+[ext_resource type="Texture2D" uid="uid://dxriu4dshivda" path="res://Assets/Sprites/Test/textbox_shop_talk_0.png" id="1_7wur0"]
+[ext_resource type="Script" uid="uid://b0hsmfhmj5kmy" path="res://Scripts/Dialog/TextBoxWithOptions.gd" id="1_ntt56"]
+[ext_resource type="PackedScene" uid="uid://chii51pu3s0yv" path="res://Scenes/Dialog/option_button.tscn" id="2_04rbt"]
+
+[node name="TextBoxWithOptions" type="Control" unique_id=1501866700]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ntt56")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=64437177]
+layout_mode = 1
+offset_left = 356.0
+offset_top = 630.0
+offset_right = 2856.0
+offset_bottom = 1530.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_7wur0")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TextureRect" unique_id=595398217]
+layout_mode = 1
+offset_left = 300.0
+offset_top = 250.0
+offset_right = 2220.0
+offset_bottom = 610.0
+mouse_filter = 1
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 100
+text = "???"
+
+[node name="SingleOption" type="Control" parent="TextureRect" unique_id=1142005616]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="OptionButton" parent="TextureRect/SingleOption" unique_id=2047569396 instance=ExtResource("2_04rbt")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -120.0
+offset_right = -20.0
+offset_bottom = -120.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TwoOptions" type="Control" parent="TextureRect" unique_id=1525931489]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="OptionButtonFirst" parent="TextureRect/TwoOptions" unique_id=1606614392 instance=ExtResource("2_04rbt")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -270.0
+offset_top = -120.0
+offset_right = -270.0
+offset_bottom = -120.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OptionButtonSecond" parent="TextureRect/TwoOptions" unique_id=663470930 instance=ExtResource("2_04rbt")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 230.0
+offset_top = -120.0
+offset_right = 230.0
+offset_bottom = -120.0
+grow_horizontal = 2
+grow_vertical = 2
+id = 1
+
+[node name="ThreeOptions" type="Control" parent="TextureRect" unique_id=52314812]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="OptionButtonFirst" parent="TextureRect/ThreeOptions" unique_id=302946947 instance=ExtResource("2_04rbt")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -520.0
+offset_top = -120.0
+offset_right = -520.0
+offset_bottom = -120.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OptionButtonSecond" parent="TextureRect/ThreeOptions" unique_id=1771151150 instance=ExtResource("2_04rbt")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -120.0
+offset_right = -20.0
+offset_bottom = -120.0
+grow_horizontal = 2
+grow_vertical = 2
+id = 1
+
+[node name="OptionButtonThird" parent="TextureRect/ThreeOptions" unique_id=1585628446 instance=ExtResource("2_04rbt")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 480.0
+offset_top = -120.0
+offset_right = 480.0
+offset_bottom = -120.0
+grow_horizontal = 2
+grow_vertical = 2
+id = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=238234106]
