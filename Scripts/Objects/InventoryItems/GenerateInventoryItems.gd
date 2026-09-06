@@ -6,7 +6,7 @@ const JSON_PATH := "res://Files/_ObjectDescription/inventory_item.json"
 const GEN_DIR := "res://Scripts/Objects/InventoryItems/Gen"
 const GENERATOR_PATH := "res://Scripts/Objects/InventoryItems/InventoryItemGenerator.gd"
 const UI_GENERATOR_PATH := "res://Scripts/Objects/InventoryItems/InventoryItemUIGenerator.gd"
-const INVENTORY_ITEM_UI_UID := "uid://k5wkjjopjdi"
+const INVENTORY_ITEM_UI_UID := "uid://cboku8kabm86i"
 const SKIP_MARKER := "# SKIP GENERATION"
 
 func _run() -> void:
@@ -108,13 +108,14 @@ func _write_generator_script(ids: PackedStringArray) -> void:
 func _write_ui_generator_script() -> void:
 	var generated := "\n".join([
 		"class_name InventoryItemUIGenerator",
-		"extends Object",
+		"extends Node",
 		"",
 		"const INVENTORY_ITEM_UI = preload(\"%s\")" % INVENTORY_ITEM_UI_UID,
 		"",
 		"func generate(item : InventoryItemGenerator.INVENTORY_ITEM) -> InventoryItemUI:",
 		"\tvar item_ui = INVENTORY_ITEM_UI.instantiate() as InventoryItemUI",
 		"\titem_ui.inventory_item_id = item",
+		"\tsetup_item_ui(item_ui, load(item_ui.generate_texture_path()))",
 		"\treturn item_ui",
 	]) + "\n"
 	_write_generated(UI_GENERATOR_PATH, generated)

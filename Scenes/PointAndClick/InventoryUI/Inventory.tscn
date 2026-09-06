@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://17fxcbcv4a1n"]
 
 [ext_resource type="Script" uid="uid://bqfqdh5pakvhn" path="res://Scripts/UI/PointAndClickScenes/InventoryItemsHolder.gd" id="1_4l3tf"]
-[ext_resource type="PackedScene" uid="uid://k5wkjjopjdi" path="res://Scenes/PointAndClick/InventoryUI/InventoryItemUI.tscn" id="2_2m0xb"]
+[ext_resource type="Script" uid="uid://blgxau1j52ujt" path="res://Scripts/UI/PointAndClickScenes/InventoryManager.gd" id="1_gnvtc"]
+[ext_resource type="Texture2D" uid="uid://d0nohrlp5ulye" path="res://Assets/Sprites/InventoryItems/salt.png" id="1_qdcv2"]
+[ext_resource type="Script" uid="uid://bkim76a000ypi" path="res://Scripts/UI/PointAndClickScenes/InventoryItemPlacer.gd" id="2_qdcv2"]
 [ext_resource type="Texture2D" uid="uid://b5qfv1jbyhoob" path="res://Assets/Test/InventoryShowButton.tres" id="3_2m0xb"]
 [ext_resource type="Texture2D" uid="uid://bm04rhvd732q0" path="res://Assets/Test/InventoryHideButton.tres" id="3_t5a8b"]
 
@@ -21,8 +23,18 @@ anchor_bottom = 1.0
 grow_vertical = 0
 size_flags_horizontal = 4
 mouse_filter = 2
+script = ExtResource("1_gnvtc")
 
-[node name="InventoryHolder" type="Control" parent="." unique_id=334039717]
+[node name="EquippedItemDisplay" type="TextureRect" parent="." unique_id=139902013]
+layout_mode = 0
+offset_left = 188.00002
+offset_top = -367.0
+offset_right = 538.0
+offset_bottom = -17.0
+rotation = -0.15562621
+texture = ExtResource("1_qdcv2")
+
+[node name="InventoryHolder" type="Control" parent="." unique_id=334039717 node_paths=PackedStringArray("inventory")]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -32,7 +44,8 @@ offset_bottom = 40.0
 grow_vertical = 0
 mouse_filter = 2
 script = ExtResource("1_4l3tf")
-bring_up_diff = 295.0
+bring_up_y_diff = 295.0
+inventory = NodePath("..")
 
 [node name="InventoryBackground" type="TextureRect" parent="InventoryHolder" unique_id=452587128]
 layout_mode = 0
@@ -42,26 +55,12 @@ offset_right = 1909.0
 offset_bottom = -11.0
 texture = SubResource("GradientTexture2D_t5a8b")
 
-[node name="GridContainer" type="GridContainer" parent="InventoryHolder" unique_id=126769815]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 14.0
-offset_top = -328.0
-offset_right = 1895.0
-offset_bottom = -56.0
-grow_vertical = 0
-theme_override_constants/h_separation = 40
-theme_override_constants/v_separation = 150
-columns = 12
-
-[node name="InventoryItemUI" parent="InventoryHolder/GridContainer" unique_id=443293946 instance=ExtResource("2_2m0xb")]
-layout_mode = 2
-
-[node name="InventoryItemUI2" parent="InventoryHolder/GridContainer" unique_id=1871315186 instance=ExtResource("2_2m0xb")]
-layout_mode = 2
-inventory_item_id = 1
+[node name="ItemPlacer" type="Node2D" parent="InventoryHolder/InventoryBackground" unique_id=1773686217]
+position = Vector2(63, 71)
+script = ExtResource("2_qdcv2")
+num_columns = 12
+step_x = 100.0
+step_y = 100.0
 
 [node name="HideButton" type="TextureButton" parent="InventoryHolder" unique_id=647732782]
 layout_mode = 1

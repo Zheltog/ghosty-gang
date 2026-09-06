@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://7x4rx6y3jl12"
-path="res://.godot/imported/pepper.png-8f2f1bca59106dd15be0ce2b0d321728.ctex"
+uid="uid://ciy55xfkm7oys"
+path="res://.godot/imported/salt.png-8e5550b300c8cc42604c6293ce57cc64.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/InvenotyItems/pepper.png"
-dest_files=["res://.godot/imported/pepper.png-8f2f1bca59106dd15be0ce2b0d321728.ctex"]
+source_file="res://Assets/Sprites/EquipedInventoryItems/salt.png"
+dest_files=["res://.godot/imported/salt.png-8e5550b300c8cc42604c6293ce57cc64.ctex"]
 
 [params]
 

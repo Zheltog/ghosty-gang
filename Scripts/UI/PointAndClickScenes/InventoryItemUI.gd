@@ -1,8 +1,9 @@
 class_name InventoryItemUI
-extends Control
+extends Node2D
 
 @onready var progress_bar: ProgressBar = $ProgressBar
-@onready var sprite: TextureRect = $Sprite
+@onready var sprite: Sprite2D = $Sprite2D
+
 
 @export var inventory_item_id : InventoryItemGenerator.INVENTORY_ITEM
 var _inventory_item : InventoryItemBase
@@ -15,41 +16,41 @@ func set_holder(holder : InventoryItemsHolder) -> void:
 func generate_texture_path() -> String:
 	var item_name = InventoryItemGenerator.INVENTORY_ITEM.find_key(inventory_item_id)
 	if item_name == null:
-		printerr("item name not set wjen generating texture path")
+		printerr("item name not set when generating texture path")
 		return ""
-	return "res://Assets/Sprites/InvenotyItems/%s.png" % str(item_name).to_lower()
-	
+	return "res://Assets/Sprites/InventoryItems/%s.png" % str(item_name).to_lower()
+
+func generate_equiped_texture_path() -> String:
+	var item_name = InventoryItemGenerator.INVENTORY_ITEM.find_key(inventory_item_id)
+	if item_name == null:
+		printerr("item name not set when generating euiped texture path")
+		return ""
+	return "res://Assets/Sprites/EquipedInventoryItems/%s.png" % str(item_name).to_lower()
+
 func _ready() -> void:
 	sprite.texture = load(generate_texture_path())
-	sprite.mouse_entered.connect(_on_mouse_entered)
-	sprite.mouse_exited.connect(_on_mouse_exited)
 	_inventory_item = InventoryItemGenerator.generate(inventory_item_id)
 
 func _process(delta: float) -> void:
+	if _equiped():
+		return
 	if _highlited() and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		_equip_process += delta
 	else:
 		_equip_process = 0.0
 	
-	if _equip_process >= delta:
-		_holder.select_item(self)
+	if _equip_process >= _inventory_item.equip_time:
+		_holder.equip_item(self)
+		_equip_process = 0.0
 		
 	_update_progress_bar()
 
 func _update_progress_bar() -> void:
-	progress_bar.visible = _highlited()
+	progress_bar.visible = _highlited() && !_equiped()
 	progress_bar.value = progress_bar.max_value * _equip_process / _inventory_item.equip_time
 
 func _highlited() -> bool:
 	return _holder.highlighted_item() == self
 
-func _selected() -> bool:
-	return _holder.selected_item == self
-
-
-func _on_mouse_entered() -> void:
-	print(InventoryItemGenerator.INVENTORY_ITEM.find_key(inventory_item_id))
-	_holder.highlight_item(self)
-
-func _on_mouse_exited() -> void:
-	_holder.unhighlight_item(self)
+func _equiped() -> bool:
+	return _holder.inventory.equipped_item == self

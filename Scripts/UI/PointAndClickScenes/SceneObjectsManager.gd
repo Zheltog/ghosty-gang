@@ -1,41 +1,52 @@
 class_name SceneObjectsManager
-extends Node
+extends Node2D
 
 @export var scene_items : Array[SceneItemUI]
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	for item in scene_items:
 		item.set_scene_object_manager(self)
+
+func _physics_process(_delta : float) -> void:
+	_sync_hovered_items()
 
 func item_pressed(item : SceneItemUI) -> void:
 	if _highlighted_items.is_empty() or _highlighted_items[0] != item:
 		return
 	item.press_ui()
-		
-# используем массив из-за того, что объекты могут соприкасаться или лежать один в другом.
+
 # [0] — самый верхний спрайт под курсором (z_index, затем порядок в дереве).
 var _highlighted_items : Array[SceneItemUI]
-func highlight_item(item: SceneItemUI) -> void:
-	var insert_at := _highlighted_items.size()
-	for i in _highlighted_items.size():
-		if _is_in_front_of(item, _highlighted_items[i]):
-			insert_at = i
-			break
-	_highlighted_items.insert(insert_at, item)
-	update_mouse_cursor()
 
-func _is_in_front_of(a: SceneItemUI, b: SceneItemUI) -> bool:
-	if a.z_index != b.z_index:
-		return a.z_index > b.z_index
-	return a.is_greater_than(b)
+func _sync_hovered_items() -> void:
+	var hovered : Array[SceneItemUI] = []
+	for area in Area2DUtils.get_at_mouse(self):
+		var item := _scene_item_from_collider(area)
+		if item != null and not hovered.has(item):
+			hovered.append(item)
+	_set_hovered_items(hovered)
 
-func unhighlight_item(item: SceneItemUI) -> void:
-	for i in range(_highlighted_items.size()):
-		if _highlighted_items[i] == item:
-			_highlighted_items.remove_at(i)
-			break
-	update_mouse_cursor()
+func _scene_item_from_collider(collider : Object) -> SceneItemUI:
+	var node := collider as Node
+	while node:
+		if node is SceneItemUI and scene_items.has(node):
+			return node
+		node = node.get_parent()
+	return null
+
+func _set_hovered_items(hovered : Array[SceneItemUI]) -> void:
+	var previous_top : SceneItemUI = null
+	if not _highlighted_items.is_empty():
+		previous_top = _highlighted_items[0]
+	for item in _highlighted_items:
+		if not hovered.has(item):
+			item.release()
+	var hovered_top : SceneItemUI = null
+	if not hovered.is_empty():
+		hovered_top = hovered[0]
+	_highlighted_items = hovered
+	if previous_top != hovered_top:
+		update_mouse_cursor()
 
 func process_press_result(result : SceneItemPressResult) -> void:
 	#TODO:
