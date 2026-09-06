@@ -19,6 +19,9 @@ config/icon="res://icon.svg"
 MouseUi="*uid://jk4psmlp7wuh"
 InventoryItemUiGenerator="*uid://ekauefq2hmqp"
 DebugConsole="*res://Scripts/UI/DebugConsole.gd"
+CommonAudioProcessor="*uid://cultdttm03vyc"
+VoiceProcessor="*uid://fro3sxlg7lsi"
+AudioEventBus="*uid://x8u4ulln4cji"
 
 [display]
 

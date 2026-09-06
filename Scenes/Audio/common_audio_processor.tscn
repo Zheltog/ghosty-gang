@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cultdttm03vyc"]
+
+[ext_resource type="Script" uid="uid://3648rdpr8udw" path="res://Scripts/Audio/CommonAudioProcessor.gd" id="1_ewyyr"]
+[ext_resource type="Script" uid="uid://dhm8b3x0v62df" path="res://Scripts/Audio/TypedAudioStreamPlayer.gd" id="2_lnthb"]
+
+[node name="CommonAudioProcessor" type="Node" unique_id=2005029360]
+script = ExtResource("1_ewyyr")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=1576591800]
+script = ExtResource("2_lnthb")
+
+[node name="SoundPlayer" type="AudioStreamPlayer" parent="." unique_id=2035539597]
+script = ExtResource("2_lnthb")
