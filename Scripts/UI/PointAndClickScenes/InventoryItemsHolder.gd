@@ -4,7 +4,7 @@ extends Control
 @export var bring_up_y_diff : float = 280.0
 @export var inventory : Inventory
 
-@onready var item_placer: InventoryItemPLacer = $InventoryBackground/ItemPlacer
+@onready var item_placer: InventoryItemPlacer = $InventoryBackground/ItemPlacer
 @onready var hide_button: TextureButton = $HideButton
 @onready var show_button: TextureButton = $ShowButton
 

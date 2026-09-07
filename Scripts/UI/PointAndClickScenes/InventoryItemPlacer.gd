@@ -1,4 +1,4 @@
-class_name InventoryItemPLacer
+class_name InventoryItemPlacer
 extends Node2D
 
 @export_category("placement_settings")

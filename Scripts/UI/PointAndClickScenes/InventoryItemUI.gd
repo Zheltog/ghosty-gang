@@ -34,7 +34,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if _equiped():
 		return
-	if _highlited() and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+	if _highlighted() and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		_equip_process += delta
 	else:
 		_equip_process = 0.0
@@ -46,10 +46,10 @@ func _process(delta: float) -> void:
 	_update_progress_bar()
 
 func _update_progress_bar() -> void:
-	progress_bar.visible = _highlited() && !_equiped()
+	progress_bar.visible = _highlighted() && !_equiped()
 	progress_bar.value = progress_bar.max_value * _equip_process / _inventory_item.equip_time
 
-func _highlited() -> bool:
+func _highlighted() -> bool:
 	return _holder.highlighted_item() == self
 
 func _equiped() -> bool:

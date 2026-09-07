@@ -1,7 +1,7 @@
 class_name InventoryItemUIGenerator
 extends Node
 
-const INVENTORY_ITEM_UI = preload("uid://cboku8kabm86i")
+const INVENTORY_ITEM_UI = preload("res://Scenes/PointAndClick/InventoryUI/InventoryItemUI2D.tscn")
 
 func generate(item : InventoryItemGenerator.INVENTORY_ITEM) -> InventoryItemUI:
 	var item_ui = INVENTORY_ITEM_UI.instantiate() as InventoryItemUI
