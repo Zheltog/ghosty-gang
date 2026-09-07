@@ -33,8 +33,6 @@ func get_pickup_time() -> float:
 
 func _ready() -> void:
 	_scene_item = SceneItemGenerator.generate(scene_item_id)
-	_area_2d.mouse_entered.connect(_on_mouse_entered)
-	_area_2d.mouse_exited.connect(_on_mouse_exited)
 	_area_2d.input_event.connect(_on_input_event)
 	release()
 
@@ -72,14 +70,6 @@ func press_item() -> void:
 	#TODO: pass currently equiped item to press
 	var press_result = _scene_item.press()
 	_scene_object_manager.process_press_result(press_result)
-
-func _on_mouse_entered() -> void:
-	_scene_object_manager.highlight_item(self)
-
-func _on_mouse_exited() -> void:
-	if _pressed:
-		release()
-	_scene_object_manager.unhighlight_item(self)
 
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:

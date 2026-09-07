@@ -12,8 +12,9 @@ enum MOUSE_ICON {
 }
 
 func _ready() -> void:
+	pass
 	# TODO: move somewhere else?
-	set_mouse_icon(MOUSE_ICON.CURSOR)
+	#set_mouse_icon(MOUSE_ICON.CURSOR)
 
 func set_mouse_icon(icon : MOUSE_ICON) -> void:
 	match icon:
