@@ -6,7 +6,7 @@ const max_printing_id: int = 100
 
 @export var appear_anim_name: String = "appear"
 @export var disappear_anim_name: String = "disappear"
-@export var printing_speed: float = 60
+@export var printing_speed: float = 10
 @export var printing_delay_multiplier: float = 4
 @export var controller: DialogController
 
@@ -24,6 +24,7 @@ var _is_printing: bool
 var _seconds_before_next_symbol: float = -1
 var _showing_requested: bool
 var _saved_printing_id: int = 0
+var _current_speaker_name: String
 
 func _ready() -> void:
 	_anim_player.animation_finished.connect(_on_animation_finished)
@@ -57,7 +58,8 @@ func is_shown() -> bool:
 	return _is_shown
 
 # TODO: impl animations
-func _show_box(text: String, options: Array) -> void:
+func _show_box(text: String, options: Array, speaker_name: String = "") -> void:
+	_current_speaker_name = speaker_name
 	_hide_all_option_holders()
 	if _rect.is_visible():
 		if not _showing_requested:
@@ -72,7 +74,8 @@ func _show_box(text: String, options: Array) -> void:
 		_saved_options = options
 		_anim_player.play(appear_anim_name)
 
-func show_box_instantly(text: String, options: Array) -> void:
+func show_box_instantly(text: String, options: Array, speaker_name: String = "") -> void:
+	_current_speaker_name = speaker_name
 	if not _rect.is_visible():
 		_rect.show()
 	_hide_all_option_holders()
@@ -119,7 +122,7 @@ func _print_text(text: String) -> void:
 		if not _is_printing or _saved_printing_id != printing_id:
 			return
 		if !_is_space(char) && !_is_punctiation(char):
-			_play_print_sound()
+			AudioEventBus.play_speaker_voice_sound.emit(_current_speaker_name)
 		_label.text += char
 		previous_char = char
 	_is_printing = false
@@ -150,10 +153,6 @@ func _is_punctiation(char) -> bool:
 	
 func _is_space(char) -> bool:
 	return " \n\t".contains(char)
-	
-func _play_print_sound() -> void:
-	# TODO: impl
-	pass
 
 func _get_next_printing_id() -> int:
 	return 1 if _saved_printing_id == max_printing_id else _saved_printing_id + 1
