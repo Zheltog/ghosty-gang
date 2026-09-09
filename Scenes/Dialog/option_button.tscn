@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://chii51pu3s0yv"]
 
 [ext_resource type="Script" uid="uid://10uvy0ohsxt" path="res://Scripts/Dialog/BoxOptionButton.gd" id="1_3gu4u"]
-[ext_resource type="Texture2D" uid="uid://bmbkwbhrpxk0q" path="res://Assets/Sprites/Test/textbox_shop_options_0.png" id="1_rx727"]
+[ext_resource type="Texture2D" uid="uid://c3882btwumtng" path="res://Assets/Sprites/UI/Dialog/ResponceWindow.png" id="2_3gu4u"]
 
 [node name="OptionButton" type="Control" unique_id=2047569396]
 layout_mode = 3
@@ -15,23 +15,21 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -239.0
-offset_top = -106.0
-offset_right = 2261.0
-offset_bottom = 794.0
+offset_right = 2500.0
+offset_bottom = 900.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.2, 0.2)
-texture_normal = ExtResource("1_rx727")
+texture_normal = ExtResource("2_3gu4u")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="TextureButton" unique_id=1131825841]
 layout_mode = 1
-offset_left = 150.0
-offset_top = 260.0
-offset_right = 2350.0
-offset_bottom = 760.0
+offset_left = 10.0
+offset_top = 8.0
+offset_right = 370.0
+offset_bottom = 131.0
 mouse_filter = 1
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 300
+theme_override_colors/default_color = Color(0.69135684, 0.6913568, 0.69135684, 1)
+theme_override_font_sizes/normal_font_size = 40
 text = "???"
 horizontal_alignment = 1
+vertical_alignment = 1

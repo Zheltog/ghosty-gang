@@ -3,7 +3,8 @@ extends Object
 
 enum SCENE_ITEM {
 	SALT,
-	PEPPER
+	PEPPER,
+	DOOR
 }
 
 static func generate(item : SCENE_ITEM) -> SceneItemBase:
@@ -12,6 +13,8 @@ static func generate(item : SCENE_ITEM) -> SceneItemBase:
 			return SceneItemSalt.new()
 		SCENE_ITEM.PEPPER:
 			return SceneItemPepper.new()
+		SCENE_ITEM.DOOR:
+			return SceneItemDoor.new()
 	
 	printerr("GENERATED UNSOPORTED SCENE ITEM")
 	return SceneItemBase.new()

@@ -7,7 +7,8 @@ extends Node2D
 @onready var _box: TextBoxWithOptions = $TextBoxWithOptions
 
 func _ready() -> void:
-	try_next()
+	if story:
+		try_next()
 	VoiceProcessor.register_speaker("bob", 0.75, 1.25)
 
 func try_next() -> void:

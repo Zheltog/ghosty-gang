@@ -7,6 +7,10 @@
 		"alice": {
 			"name": "Алиса",
 			"description": "Алиса это Алиса"
+		},
+		"charlie": {
+			"name": "Чарли",
+			"description": "Дом Чарли"
 		}
 	}
 }

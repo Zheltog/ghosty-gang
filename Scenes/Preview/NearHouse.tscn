@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://bo7dlpyk6mf2s"]
+
+[ext_resource type="Script" uid="uid://bytkgf4aqq3ro" path="res://Scripts/UI/PointAndClickScenes/SceneObjectsManager.gd" id="1_manager"]
+[ext_resource type="Texture2D" uid="uid://x84iqtdk5ri1" path="res://Assets/Sprites/Test/PreviewScenes/CutsceneBoy/frame_1.png" id="1_ww0p3"]
+[ext_resource type="PackedScene" uid="uid://dvnnea2fw2ndt" path="res://Scenes/PointAndClick/SceneItemUI.tscn" id="2_item"]
+[ext_resource type="PackedScene" uid="uid://17fxcbcv4a1n" path="res://Scenes/PointAndClick/InventoryUI/Inventory.tscn" id="3_inv"]
+[ext_resource type="PackedScene" uid="uid://b3fjaokxpivbe" path="res://Scenes/Dialog/dialog_controller.tscn" id="4_dialog"]
+
+[sub_resource type="Resource" id="Resource_524g3"]
+metadata/__load_path__ = "res://Files/Test/ink_test.ink"
+
+[node name="NearHouse" type="Node2D" unique_id=939603869]
+
+[node name="Background" type="Sprite2D" parent="." unique_id=65330246]
+position = Vector2(960, 540)
+texture = ExtResource("1_ww0p3")
+
+[node name="SceneObjectManager" type="Node2D" parent="." unique_id=1327998566 node_paths=PackedStringArray("scene_items")]
+script = ExtResource("1_manager")
+scene_items = [null, null, NodePath("Door")]
+
+[node name="Door" parent="SceneObjectManager" unique_id=1505930702 instance=ExtResource("2_item")]
+position = Vector2(1439, 383)
+scale = Vector2(0.5, 1)
+scene_item_id = 2
+intercation_type = 0
+
+[node name="Inventory" parent="." unique_id=242525645 instance=ExtResource("3_inv")]
+anchors_preset = 15
+anchor_top = 0.0
+anchor_right = 1.0
+offset_top = 1080.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DialogController" parent="." unique_id=430537169 instance=ExtResource("4_dialog")]
+story = SubResource("Resource_524g3")

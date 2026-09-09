@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://bqfqdh5pakvhn" path="res://Scripts/UI/PointAndClickScenes/InventoryItemsHolder.gd" id="1_4l3tf"]
 [ext_resource type="Script" uid="uid://blgxau1j52ujt" path="res://Scripts/UI/PointAndClickScenes/InventoryManager.gd" id="1_gnvtc"]
-[ext_resource type="Texture2D" uid="uid://d0nohrlp5ulye" path="res://Assets/Sprites/InventoryItems/salt.png" id="1_qdcv2"]
 [ext_resource type="Script" uid="uid://bkim76a000ypi" path="res://Scripts/UI/PointAndClickScenes/InventoryItemPlacer.gd" id="2_qdcv2"]
 [ext_resource type="Texture2D" uid="uid://b5qfv1jbyhoob" path="res://Assets/Test/InventoryShowButton.tres" id="3_2m0xb"]
 [ext_resource type="Texture2D" uid="uid://bm04rhvd732q0" path="res://Assets/Test/InventoryHideButton.tres" id="3_t5a8b"]
@@ -32,7 +31,6 @@ offset_top = -367.0
 offset_right = 538.0
 offset_bottom = -17.0
 rotation = -0.15562621
-texture = ExtResource("1_qdcv2")
 
 [node name="InventoryHolder" type="Control" parent="." unique_id=334039717 node_paths=PackedStringArray("inventory")]
 layout_mode = 1
