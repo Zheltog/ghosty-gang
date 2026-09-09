@@ -10,5 +10,9 @@
 		"pickup_time" : 2.0,
 		"equiped_immediately" : false,
 		"inventory_item" : "pepper"
+	},
+	"door" : {
+		"pickable" : false,
+		"ink_story_view" : "res://Files/SceneDialogs/Exported/door_preview.json"
 	}
 }

@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://bovt5qtax712t"]
+
+[ext_resource type="Script" path="res://Scripts/Preview/CutsceneAdvance.gd" id="1_adv"]
+[ext_resource type="Texture2D" uid="uid://x84iqtdk5ri1" path="res://Assets/Sprites/Test/PreviewScenes/CutsceneBoy/frame_1.png" id="2_frame"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cutscene"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_frame")
+}],
+"loop": false,
+"name": &"cutscene",
+"speed": 1.0
+}]
+
+[node name="StartingCutscene2" type="Node2D"]
+script = ExtResource("1_adv")
+next_scene = 4
+advance_when_animation_finished = false
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(960, 540)
+modulate = Color(0.85, 0.85, 1, 1)
+sprite_frames = SubResource("SpriteFrames_cutscene")
+animation = &"cutscene"
+
+[node name="Hint" type="Label" parent="."]
+offset_left = 760.0
+offset_top = 1000.0
+offset_right = 1160.0
+offset_bottom = 1040.0
+theme_override_font_sizes/font_size = 24
+text = "Click to continue"
+horizontal_alignment = 1

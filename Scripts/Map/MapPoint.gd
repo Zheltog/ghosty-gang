@@ -3,6 +3,8 @@ class_name MapPoint
 extends Node
 
 @export var id: String
+## If not NONE, left-click changes to this scene instead of opening the map card.
+@export var target_scene: SceneLoader.SCENE = SceneLoader.SCENE.NONE
 
 var _card: MapPointCard
 
@@ -22,4 +24,8 @@ func _on_area_2d_mouse_exited() -> void:
 
 func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		_card.open(id)
+		if target_scene != SceneLoader.SCENE.NONE:
+			SceneLoader.change_scene(target_scene)
+			return
+		if _card:
+			_card.open(id)
