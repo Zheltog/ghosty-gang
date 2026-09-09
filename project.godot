@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="ghosty-gang"
+run/main_scene="uid://bpdslqciphv2s"
 config/features=PackedStringArray("4.7", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -22,6 +23,7 @@ DebugConsole="*res://Scripts/UI/DebugConsole.gd"
 CommonAudioProcessor="*uid://cultdttm03vyc"
 VoiceProcessor="*uid://fro3sxlg7lsi"
 AudioEventBus="*uid://x8u4ulln4cji"
+SceneLoader="*res://Scripts/SceneLoader.gd"
 
 [display]
 
