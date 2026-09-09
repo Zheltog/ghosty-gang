@@ -3,10 +3,14 @@
 [ext_resource type="Script" uid="uid://bjlfyul7j0fq8" path="res://Scripts/Dialog/DialogController.gd" id="1_bshvn"]
 [ext_resource type="Resource" uid="uid://dlv86a4qorq1n" path="res://Files/Test/ink_test.ink" id="2_kfsii"]
 [ext_resource type="PackedScene" uid="uid://1sve2gjsuyde" path="res://Scenes/Dialog/text_box_with_options.tscn" id="3_lu0oi"]
+[ext_resource type="PackedScene" uid="uid://kvbvxu0vbc8y" path="res://Scenes/Timer/timer.tscn" id="4_lu0oi"]
 
-[node name="DialogController" type="Node2D" unique_id=158973333]
+[node name="DialogController" type="Node2D" unique_id=158973333 node_paths=PackedStringArray("timer")]
 script = ExtResource("1_bshvn")
 story = ExtResource("2_kfsii")
+timer = NodePath("GameTimer")
 
 [node name="TextBoxWithOptions" parent="." unique_id=1501866700 node_paths=PackedStringArray("controller") instance=ExtResource("3_lu0oi")]
 controller = NodePath("..")
+
+[node name="GameTimer" parent="." unique_id=2126109467 instance=ExtResource("4_lu0oi")]
