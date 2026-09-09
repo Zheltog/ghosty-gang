@@ -13,6 +13,6 @@
 	},
 	"door" : {
 		"pickable" : false,
-		"ink_story_view" : "res://Files/SceneDialogs/Exported/door_preview.json"
+		"ink_story_view" : "res://Files/SceneDialogs/Ink/door_preview.ink"
 	}
 }

@@ -49,9 +49,15 @@ func _set_hovered_items(hovered : Array[SceneItemUI]) -> void:
 		update_mouse_cursor()
 
 func process_press_result(result : SceneItemPressResult) -> void:
-	#TODO:
-	print('pressed')
-	pass
+	match result.type:
+		SceneItemPressResult.TYPE.DIALOG:
+			var dialog := NodeUtils.get_child_of_type(get_tree().current_scene, DialogController) as DialogController
+			if dialog == null:
+				printerr("SceneObjectsManager: no DialogController in current scene")
+				return
+			dialog.start_story(str(result.data))
+		_:
+			pass
 
 func update_mouse_cursor() -> void:
 	if _highlighted_items.size() == 0:

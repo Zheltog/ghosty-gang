@@ -6,9 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://17fxcbcv4a1n" path="res://Scenes/PointAndClick/InventoryUI/Inventory.tscn" id="3_inv"]
 [ext_resource type="PackedScene" uid="uid://b3fjaokxpivbe" path="res://Scenes/Dialog/dialog_controller.tscn" id="4_dialog"]
 
-[sub_resource type="Resource" id="Resource_524g3"]
-metadata/__load_path__ = "res://Files/Test/ink_test.ink"
-
 [node name="NearHouse" type="Node2D" unique_id=939603869]
 
 [node name="Background" type="Sprite2D" parent="." unique_id=65330246]
@@ -17,7 +14,7 @@ texture = ExtResource("1_ww0p3")
 
 [node name="SceneObjectManager" type="Node2D" parent="." unique_id=1327998566 node_paths=PackedStringArray("scene_items")]
 script = ExtResource("1_manager")
-scene_items = [null, null, NodePath("Door")]
+scene_items = [NodePath("Door")]
 
 [node name="Door" parent="SceneObjectManager" unique_id=1505930702 instance=ExtResource("2_item")]
 position = Vector2(1439, 383)
@@ -35,4 +32,4 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="DialogController" parent="." unique_id=430537169 instance=ExtResource("4_dialog")]
-story = SubResource("Resource_524g3")
+story = null

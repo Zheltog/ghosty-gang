@@ -10,4 +10,8 @@ var inventory_item : InventoryItemGenerator.INVENTORY_ITEM
 var ink_story_view : String
 
 func press() -> SceneItemPressResult:
-	return SceneItemPressResult.new()
+	var result := SceneItemPressResult.new()
+	if not ink_story_view.is_empty() and ink_story_view.begins_with("res://"):
+		result.type = SceneItemPressResult.TYPE.DIALOG
+		result.data = ink_story_view
+	return result

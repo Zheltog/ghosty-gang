@@ -8,16 +8,25 @@ extends Node2D
 @onready var _box: TextBoxWithOptions = $TextBoxWithOptions
 
 func _ready() -> void:
+	VoiceProcessor.register_speaker("bob", 0.75, 1.25)
 	if story:
 		try_next()
-	VoiceProcessor.register_speaker("bob", 0.75, 1.25)
+
+func start_story(path: String) -> void:
+	var loaded := load(path)
+	if loaded == null or not (loaded is InkStory):
+		printerr("DialogController: failed to load InkStory at ", path)
+		return
+	story = loaded
+	story.ResetState()
+	try_next()
 
 func try_next() -> void:
-	if not story.GetCanContinue():
+	if story == null or not story.GetCanContinue():
 		return
 	var text: String = story.Continue()
 	_process_tags(story.GetCurrentTags())
-	_box.show_box_instantly(story.Continue(), story.GetCurrentChoices(), "bob")
+	_box.show_box_instantly(text, story.GetCurrentChoices(), "bob")
 
 func process_option_selected(id: int) -> void:
 	story.ChooseChoiceIndex(id)
