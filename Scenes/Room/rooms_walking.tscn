@@ -1,0 +1,94 @@
+[gd_scene format=3 uid="uid://cyeqqqa0cx4ps"]
+
+[ext_resource type="Texture2D" uid="uid://wfm3s16836j6" path="res://Assets/Sprites/Test/button_next.png" id="1_e6sun"]
+[ext_resource type="Script" uid="uid://det1mfxxk6tuy" path="res://Scripts/Room/RoomsWalking.gd" id="1_g6c6e"]
+[ext_resource type="Texture2D" uid="uid://quufhwnuf1ee" path="res://Assets/Sprites/Test/casino_slots.jpg" id="2_44fqw"]
+[ext_resource type="Texture2D" uid="uid://cwy2eot35t4b2" path="res://Assets/Sprites/Test/button_ok.png" id="4_v47tf"]
+[ext_resource type="Texture2D" uid="uid://boaa87svfbeew" path="res://Assets/Sprites/Test/button_close.png" id="5_qtjd5"]
+
+[node name="RoomsWalking" type="CanvasLayer" unique_id=1404456362]
+script = ExtResource("1_g6c6e")
+rooms = Array[Dictionary]([{
+"forward": "hall",
+"id": "entrance",
+"texture": "res://Assets/Sprites/Test/casino_entrance.jpg"
+}, {
+"back": "entrance",
+"id": "hall",
+"left": "slots",
+"texture": "res://Assets/Sprites/Test/casino_hall.jpg"
+}, {
+"back": "hall",
+"id": "slots",
+"texture": "res://Assets/Sprites/Test/casino_slots.jpg"
+}])
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=629743822]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_44fqw")
+
+[node name="Buttons" type="Control" parent="TextureRect" unique_id=1728956659]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+
+[node name="ButtonLeft" type="TextureButton" parent="TextureRect/Buttons" unique_id=441436506]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 100.0
+offset_top = -170.0
+offset_right = 170.0
+offset_bottom = -100.0
+grow_vertical = 0
+scale = Vector2(2, 2)
+texture_normal = ExtResource("1_e6sun")
+flip_h = true
+
+[node name="ButtonRight" type="TextureButton" parent="TextureRect/Buttons" unique_id=1748201808]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 380.0
+offset_top = -170.0
+offset_right = 450.0
+offset_bottom = -100.0
+grow_vertical = 0
+scale = Vector2(2, 2)
+texture_normal = ExtResource("1_e6sun")
+
+[node name="ButtonUp" type="TextureButton" parent="TextureRect/Buttons" unique_id=1224329741]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 240.0
+offset_top = -310.0
+offset_right = 310.0
+offset_bottom = -240.0
+grow_vertical = 0
+scale = Vector2(2, 2)
+texture_normal = ExtResource("4_v47tf")
+
+[node name="ButtonDown" type="TextureButton" parent="TextureRect/Buttons" unique_id=1876981344]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 240.0
+offset_top = -170.0
+offset_right = 310.0
+offset_bottom = -100.0
+grow_vertical = 0
+scale = Vector2(2, 2)
+texture_normal = ExtResource("5_qtjd5")
