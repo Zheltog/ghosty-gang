@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://c1c8x6nt115u7"]
+
+[ext_resource type="Texture2D" uid="uid://quufhwnuf1ee" path="res://Assets/Sprites/Test/casino_slots.jpg" id="1_bbrbm"]
+
+[node name="RoomCasinoSlots" type="Control" unique_id=1457250226]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1305645384]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_bbrbm")
