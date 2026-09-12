@@ -5,16 +5,16 @@ extends CanvasLayer
 # test
 @export var rooms: Array[Dictionary]
 
-@onready var _texture_rect: TextureRect = $TextureRect
-@onready var _buttons: Control = $TextureRect/Buttons
-@onready var _button_forward: TextureButton = $TextureRect/Buttons/ButtonUp
-@onready var _button_back: TextureButton = $TextureRect/Buttons/ButtonDown
-@onready var _button_left: TextureButton = $TextureRect/Buttons/ButtonLeft
-@onready var _button_right: TextureButton = $TextureRect/Buttons/ButtonRight
+@onready var _content: Control = $Content
+@onready var _buttons: Control = $Buttons
+@onready var _button_forward: TextureButton = $Buttons/ButtonUp
+@onready var _button_back: TextureButton = $Buttons/ButtonDown
+@onready var _button_left: TextureButton = $Buttons/ButtonLeft
+@onready var _button_right: TextureButton = $Buttons/ButtonRight
 
 var _current_room_id: String
 var _rooms: Dictionary
-var _texture_cache: Dictionary = {}
+var _content_children: Dictionary = {}
 
 func _ready() -> void:
 	_button_forward.pressed.connect(func(): _move_to(Direction.FORWARD))
@@ -43,7 +43,7 @@ func set_rooms(room_dictionaries: Array, initial_room_id: String) -> void:
 	if not _rooms.has(_current_room_id):
 		printerr("[RoomWalking] Initial room id is not specified in list")
 		return
-	_set_background(_rooms[_current_room_id].texture)
+	_set_content(_rooms[_current_room_id].content_scene_name)
 	_update_buttons()
 
 func _move_to(direction: Direction) -> void:
@@ -65,7 +65,7 @@ func _move_to(direction: Direction) -> void:
 		printerr("[RoomWalking] Unknown room ", next_room_id)
 		return
 	_current_room_id = next_room_id
-	_set_background(_rooms[_current_room_id].texture)
+	_set_content(_rooms[_current_room_id].content_scene_name)
 	_update_buttons()
 
 func _update_buttons() -> void:
@@ -92,15 +92,22 @@ func _update_buttons() -> void:
 	if is_right_id_provided and not _button_right.visible:
 		_button_right.show()
 
-func _set_background(texture_name: String) -> void:
-	if texture_name == null or texture_name == "":
-		printerr("[RoomWalking] No texture name provided")
+func _set_content(content_scene_name: String) -> void:
+	if content_scene_name == null or content_scene_name == "":
+		printerr("[RoomWalking] No content scene name provided")
 		return
-	if not _texture_cache.has(texture_name):
-		_texture_cache[texture_name] = load(texture_name)
-	if _texture_cache[texture_name] == null:
-		printerr("[RoomWalking] No texture found by name ", texture_name)
-		return
-	_texture_rect.texture = _texture_cache[texture_name]
+	if not _content_children.has(content_scene_name):
+		var content_scene = load(content_scene_name)
+		if content_scene == null:
+			printerr("[RoomWalking] No content scene found by name ", content_scene_name)
+			return
+		var content_instance = content_scene.instantiate()
+		_content.add_child(content_instance)
+		_content_children[content_scene_name] = content_instance
+	for child_name in _content_children.keys():
+		if child_name != content_scene_name and _content_children[child_name].visible:
+			_content_children[child_name].hide()
+		elif child_name == content_scene_name and not _content_children[child_name].visible:
+			_content_children[child_name].show()
 
 enum Direction { FORWARD, BACKWARD, LEFTWARD, RIGHTWARD }
