@@ -45,3 +45,48 @@ static func _sort_canvas_item(area : CanvasItem) -> CanvasItem:
 	if parent is CanvasItem:
 		return parent
 	return area
+
+## Builds CollisionPolygon2D children on [param area] from the opaque pixels of [param image]
+## (or [param sprite].texture). If [param area] is under [param sprite], polygons stay in
+## local sprite space (scale is inherited); otherwise polygons are multiplied by sprite.scale.
+static func setup_collision_from_sprite(sprite: Sprite2D, area: Area2D, image: Texture2D = null) -> void:
+	if image == null:
+		image = sprite.texture
+	if image == null:
+		printerr("Area2DUtils: no texture for collision setup")
+		return
+
+	var bitmap := BitMap.new()
+	var source_image := image.get_image()
+	if source_image == null:
+		printerr("Area2DUtils: could not read image pixels")
+		return
+	source_image = source_image.duplicate()
+	if source_image.is_compressed():
+		source_image.decompress()
+	bitmap.create_from_image_alpha(source_image)
+
+	var polygons = bitmap.opaque_to_polygons(Rect2(Vector2(0, 0), bitmap.get_size()))
+	# Sprite2D centers the texture at origin, but opaque_to_polygons returns
+	# coordinates in image space (top-left = 0,0). Shift to match the sprite.
+	var offset := -Vector2(bitmap.get_size()) / 2.0
+	if not sprite.centered:
+		offset = Vector2.ZERO
+	offset += sprite.offset
+
+	var apply_sprite_scale := not sprite.is_ancestor_of(area)
+
+	for child in area.get_children():
+		if child is CollisionPolygon2D:
+			child.free()
+
+	for polygon in polygons:
+		var shifted := PackedVector2Array()
+		for p in polygon:
+			var point: Vector2 = p + offset
+			if apply_sprite_scale:
+				point *= sprite.scale
+			shifted.append(point)
+		var collider := CollisionPolygon2D.new()
+		collider.polygon = shifted
+		area.add_child(collider)

@@ -1,32 +1,37 @@
 [gd_scene format=3 uid="uid://coqod58rqhc2u"]
 
 [ext_resource type="Script" uid="uid://bytkgf4aqq3ro" path="res://Scripts/UI/PointAndClickScenes/SceneObjectsManager.gd" id="1_manager"]
+[ext_resource type="Script" uid="uid://olybr00r1a5" path="res://Scripts/Scenes/HouseScenePreview.gd" id="1_r7y35"]
 [ext_resource type="PackedScene" uid="uid://dvnnea2fw2ndt" path="res://Scenes/PointAndClick/SceneItemUI.tscn" id="2_item"]
 [ext_resource type="PackedScene" uid="uid://17fxcbcv4a1n" path="res://Scenes/PointAndClick/InventoryUI/Inventory.tscn" id="3_inv"]
+[ext_resource type="Texture2D" uid="uid://7x4rx6y3jl12" path="res://Assets/Sprites/InventoryItems/pepper.png" id="4_a8kwb"]
 [ext_resource type="PackedScene" uid="uid://b3fjaokxpivbe" path="res://Scenes/Dialog/dialog_controller.tscn" id="4_dialog"]
+[ext_resource type="PackedScene" uid="uid://bv2qa0siqvvee" path="res://Scenes/Dialog/AnimatedDialogueActor.tscn" id="5_ghost"]
 
 [node name="InsideHouse" type="Node2D" unique_id=1084163573]
+script = ExtResource("1_r7y35")
+ink_dialog_appear_path = "res://Files/SceneDialogs/Ink/inside_house.ink"
 
-[node name="SceneObjectManager" type="Node2D" parent="." unique_id=16884544 node_paths=PackedStringArray("scene_items")]
+[node name="SceneObjectManager" type="Node2D" parent="." unique_id=16884544 node_paths=PackedStringArray("scene_items", "inventory")]
 script = ExtResource("1_manager")
-scene_items = [NodePath("SceneItemUi"), NodePath("SceneItemUi2")]
+scene_items = [NodePath("Bottle"), NodePath("Pepper")]
+inventory = NodePath("../Inventory")
 
-[node name="SceneItemUi" parent="SceneObjectManager" unique_id=1800578913 instance=ExtResource("2_item")]
-position = Vector2(912, 680)
-intercation_type = 0
-
-[node name="SceneItemUi2" parent="SceneObjectManager" unique_id=69890520 instance=ExtResource("2_item")]
-position = Vector2(1155, 439)
+[node name="Bottle" parent="SceneObjectManager" unique_id=1800578913 instance=ExtResource("2_item")]
+position = Vector2(272, 475)
 scene_item_id = 1
 trigger_type = 0
 intercation_type = 1
 
-[node name="Sprite2D" parent="SceneObjectManager/SceneItemUi2" index="0" unique_id=651472278]
-self_modulate = Color(1, 0.45490196, 0.18039216, 1)
-scale = Vector2(4, 4)
+[node name="Pepper" parent="SceneObjectManager" unique_id=598298150 instance=ExtResource("2_item")]
+position = Vector2(1787, 159)
+texture = ExtResource("4_a8kwb")
+scene_item_id = 2
+intercation_type = 0
 
-[node name="CollisionPolygon2D" parent="SceneObjectManager/SceneItemUi2/Area2D" parent_id_path=PackedInt32Array(69890520, 1221597601) index="0" unique_id=159129361]
-scale = Vector2(4, 4)
+[node name="Ghost" parent="." unique_id=992294175 instance=ExtResource("5_ghost")]
+visible = false
+position = Vector2(657, 400)
 
 [node name="Inventory" parent="." unique_id=1450084800 instance=ExtResource("3_inv")]
 anchors_preset = 15
@@ -37,7 +42,6 @@ offset_bottom = 1080.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="DialogController" parent="." unique_id=872390542 instance=ExtResource("4_dialog")]
+[node name="DialogController" parent="." unique_id=872390542 node_paths=PackedStringArray("dialogue_actor") instance=ExtResource("4_dialog")]
 story = null
-
-[editable path="SceneObjectManager/SceneItemUi2"]
+dialogue_actor = NodePath("../Ghost/DialogueActor")

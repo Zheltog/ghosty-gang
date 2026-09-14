@@ -1,5 +1,5 @@
 class_name SceneItemUI
-extends Node2D
+extends Sprite2D
 
 enum TRIGGER_TYPE {
 	HOLD,
@@ -33,8 +33,17 @@ func get_pickup_time() -> float:
 
 func _ready() -> void:
 	_scene_item = SceneItemGenerator.generate(scene_item_id)
+	_scene_item.ready(self)
+	tree_exiting.connect(_on_tree_exiting, CONNECT_ONE_SHOT)
+	Area2DUtils.setup_collision_from_sprite(self, _area_2d)
 	_area_2d.input_event.connect(_on_input_event)
 	release()
+
+func _on_tree_exiting() -> void:
+	if _scene_item == null:
+		return
+	InkFunctions.unsubscribe(_scene_item)
+	_scene_item = null
 
 var _pressed : bool = false
 

@@ -4,30 +4,26 @@
 [ext_resource type="PackedScene" uid="uid://dvnnea2fw2ndt" path="res://Scenes/PointAndClick/SceneItemUI.tscn" id="2_vdgpi"]
 [ext_resource type="PackedScene" uid="uid://17fxcbcv4a1n" path="res://Scenes/PointAndClick/InventoryUI/Inventory.tscn" id="3_ncwta"]
 
-[node name="PointAndClickTest" type="Node2D" unique_id=1554175718]
+[node name="PointAndClickTest" type="Node2D"]
 
-[node name="SceneObjectManager" type="Node2D" parent="." unique_id=246570464 node_paths=PackedStringArray("scene_items")]
+[node name="SceneObjectManager" type="Node2D" parent="." node_paths=PackedStringArray("scene_items", "inventory")]
 script = ExtResource("1_77u46")
 scene_items = [NodePath("SceneItemUi"), NodePath("SceneItemUi2")]
+inventory = NodePath("../Inventory")
 
-[node name="SceneItemUi" parent="SceneObjectManager" unique_id=807249126 instance=ExtResource("2_vdgpi")]
+[node name="SceneItemUi" parent="SceneObjectManager" instance=ExtResource("2_vdgpi")]
 position = Vector2(912, 680)
 intercation_type = 0
 
-[node name="SceneItemUi2" parent="SceneObjectManager" unique_id=1302362898 instance=ExtResource("2_vdgpi")]
+[node name="SceneItemUi2" parent="SceneObjectManager" instance=ExtResource("2_vdgpi")]
 position = Vector2(1155, 439)
+scale = Vector2(4, 4)
+self_modulate = Color(1, 0.45490196, 0.18039216, 1)
 scene_item_id = 1
 trigger_type = 0
 intercation_type = 1
 
-[node name="Sprite2D" parent="SceneObjectManager/SceneItemUi2" index="0" unique_id=651472278]
-self_modulate = Color(1, 0.45490196, 0.18039216, 1)
-scale = Vector2(4, 4)
-
-[node name="CollisionPolygon2D" parent="SceneObjectManager/SceneItemUi2/Area2D" parent_id_path=PackedInt32Array(1302362898, 1221597601) index="0" unique_id=159129361]
-scale = Vector2(4, 4)
-
-[node name="Inventory" parent="." unique_id=1617643402 instance=ExtResource("3_ncwta")]
+[node name="Inventory" parent="." instance=ExtResource("3_ncwta")]
 anchors_preset = 15
 anchor_top = 0.0
 anchor_right = 1.0
@@ -35,5 +31,3 @@ offset_top = 1080.0
 offset_bottom = 1080.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[editable path="SceneObjectManager/SceneItemUi2"]

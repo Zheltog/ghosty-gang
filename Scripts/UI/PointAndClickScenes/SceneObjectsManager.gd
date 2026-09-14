@@ -2,8 +2,10 @@ class_name SceneObjectsManager
 extends Node2D
 
 @export var scene_items : Array[SceneItemUI]
+@export var inventory : Inventory
 
 func _ready() -> void:
+	InkFunctions.subscribe(self)
 	for item in scene_items:
 		item.set_scene_object_manager(self)
 
@@ -36,9 +38,11 @@ func _scene_item_from_collider(collider : Object) -> SceneItemUI:
 
 func _set_hovered_items(hovered : Array[SceneItemUI]) -> void:
 	var previous_top : SceneItemUI = null
-	if not _highlighted_items.is_empty():
+	if not _highlighted_items.is_empty() and is_instance_valid(_highlighted_items[0]):
 		previous_top = _highlighted_items[0]
 	for item in _highlighted_items:
+		if not is_instance_valid(item):
+			continue
 		if not hovered.has(item):
 			item.release()
 	var hovered_top : SceneItemUI = null
@@ -56,8 +60,22 @@ func process_press_result(result : SceneItemPressResult) -> void:
 				printerr("SceneObjectsManager: no DialogController in current scene")
 				return
 			dialog.start_story(str(result.data))
+		SceneItemPressResult.TYPE.ADD_ITEM:
+			_process_add_item(result.data)
 		_:
 			pass
+
+func _process_add_item(data: Variant) -> void:
+	if inventory == null:
+		printerr("SceneObjectsManager: no Inventory assigned")
+		return
+	if typeof(data) != TYPE_DICTIONARY:
+		printerr("SceneObjectsManager: ADD_ITEM data must be a Dictionary")
+		return
+	var item_id: InventoryItemGenerator.INVENTORY_ITEM = data["item"]
+	var item_ui := inventory.add_item(item_id)
+	if data.get("equiped_immediately", false):
+		inventory.equip_item(item_ui)
 
 func update_mouse_cursor() -> void:
 	if _highlighted_items.size() == 0:

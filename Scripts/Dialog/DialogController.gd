@@ -9,6 +9,8 @@ extends Node2D
 
 func _ready() -> void:
 	VoiceProcessor.register_speaker("bob", 0.75, 1.25)
+	InkFunctions.subscribe(self)
+	InkFunctions.bind_story(story)
 	if story:
 		try_next()
 
@@ -19,6 +21,7 @@ func start_story(path: String) -> void:
 		return
 	story = loaded
 	story.ResetState()
+	InkFunctions.bind_story(story)
 	try_next()
 
 func try_next() -> void:

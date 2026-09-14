@@ -79,6 +79,8 @@ func _init_assignments(item_id: String, data: Dictionary) -> PackedStringArray:
 		lines.append("\tinventory_item = InventoryItemGenerator.INVENTORY_ITEM.%s" % _to_enum_name(str(data["inventory_item"])))
 	if data.has("ink_story_view") and str(data["ink_story_view"]) != "":
 		lines.append("\tink_story_view = %s" % _gdscript_literal(data["ink_story_view"]))
+	if data.has("disappear_after_pickup"):
+		lines.append("\tdisappear_after_pickup = %s" % _gdscript_literal(data["disappear_after_pickup"]))
 	return lines
 
 

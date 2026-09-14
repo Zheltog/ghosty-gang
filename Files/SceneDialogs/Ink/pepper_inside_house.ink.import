@@ -1,0 +1,16 @@
+[remap]
+
+importer="ink"
+type="Resource"
+uid="uid://dlwhd6vxms7h1"
+path="res://.godot/imported/pepper_inside_house.ink-04fdb3f4d13e6f4348fa04b192320a42.res"
+
+[deps]
+
+source_file="res://Files/SceneDialogs/Ink/pepper_inside_house.ink"
+dest_files=["res://.godot/imported/pepper_inside_house.ink-04fdb3f4d13e6f4348fa04b192320a42.res"]
+
+[params]
+
+is_main_file=true
+compress=true

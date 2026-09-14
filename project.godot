@@ -24,6 +24,7 @@ CommonAudioProcessor="*uid://cultdttm03vyc"
 VoiceProcessor="*uid://fro3sxlg7lsi"
 AudioEventBus="*uid://x8u4ulln4cji"
 SceneLoader="*res://Scripts/SceneLoader.gd"
+InkFunctions="*res://Scripts/Dialog/InkFunctions.gd"
 
 [display]
 

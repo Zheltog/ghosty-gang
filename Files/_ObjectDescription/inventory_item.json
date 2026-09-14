@@ -4,5 +4,8 @@
 	},
 	"pepper" : {
 		"equip_time" : 1.0
+	},
+	"bottle" : {
+		"equip_time" : 1.0
 	}
 }

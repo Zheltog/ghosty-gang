@@ -7,3 +7,6 @@ func _init() -> void:
 	ink_story_view = "res://Files/SceneDialogs/Ink/door_preview.ink"
 
 # SKIP GENERATION
+
+func enter_house() -> void:
+	SceneLoader.change_scene(SceneLoader.SCENE.INSIDE_HOUSE)
