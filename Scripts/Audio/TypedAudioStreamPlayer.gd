@@ -8,6 +8,7 @@ const _default_volume_changing_speed: float = 0.5
 @export var type: AudioStreamPlayerType
 
 var _resource_name: String
+var _tag: String
 var _adjustment_mode: AdjustmentMode
 var _dynamicAdjustmentState: DynamicAdjustmentState
 var _saved_volume: float
@@ -49,8 +50,9 @@ func _process_adjustment_by_speed(delta: float) -> void:
 			_saved_callback.call()
 		_dynamicAdjustmentState = DynamicAdjustmentState.None
 
-func play_resource(resource_name: String, resource_stream: AudioStream) -> void:
+func play_resource(resource_name: String, resource_stream: AudioStream, tag: String) -> void:
 	_resource_name = resource_name
+	_tag = tag
 	stream = resource_stream
 	play()
 
@@ -85,11 +87,15 @@ func _set_changing_values(adjustment_mode: AdjustmentMode, adjustment_value: flo
 
 func _get_max_volume() -> float:
 	var relative_volume = CommonAudioProcessor.relative_volumes.get(_resource_name, 100)
+	var tag_volume = CommonAudioProcessor.tag_volumes.get(_tag, 100) \
+		if _tag != null and _tag != "" else 100
 	match type:
 		AudioStreamPlayerType.Music:
-			return (relative_volume / 100) * (CommonAudioProcessor.music_volume / 100)
+			return (relative_volume as float / 100) * (tag_volume as float / 100) * \
+				(CommonAudioProcessor.music_volume as float / 100)
 		AudioStreamPlayerType.Sound:
-			return (relative_volume / 100) * (CommonAudioProcessor.sound_volume / 100)
+			return (relative_volume as float / 100) * (tag_volume as float / 100) * \
+				(CommonAudioProcessor.sound_volume as float / 100)
 		_:
 			printerr("[TypedAudioStreamPlayer] Unknown type: ", type)
 			return -1
