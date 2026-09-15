@@ -7,9 +7,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_house"]
 size = Vector2(128, 128)
 
-[node name="Map" type="CanvasLayer"]
+[node name="Map" type="CanvasLayer" unique_id=2071899162]
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1693257586]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -18,7 +18,7 @@ grow_vertical = 2
 mouse_filter = 1
 color = Color(0.55, 0.72, 0.45, 1)
 
-[node name="Title" type="Label" parent="."]
+[node name="Title" type="Label" parent="." unique_id=772424262]
 offset_left = 40.0
 offset_top = 24.0
 offset_right = 440.0
@@ -26,52 +26,51 @@ offset_bottom = 80.0
 theme_override_font_sizes/font_size = 40
 text = "Map"
 
-[node name="HouseBob" type="Node2D" parent="."]
+[node name="HouseBob" type="Node2D" parent="." unique_id=737649732]
 position = Vector2(480, 360)
 script = ExtResource("1_mappoint")
 id = "bob"
-target_scene = 5
 
-[node name="Sprite2D" type="Sprite2D" parent="HouseBob"]
+[node name="Sprite2D" type="Sprite2D" parent="HouseBob" unique_id=68655989]
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("3_icon")
 
-[node name="Area2D" type="Area2D" parent="HouseBob"]
+[node name="Area2D" type="Area2D" parent="HouseBob" unique_id=1968049598]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HouseBob/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HouseBob/Area2D" unique_id=458335110]
 shape = SubResource("RectangleShape2D_house")
 
-[node name="HouseAlice" type="Node2D" parent="."]
+[node name="HouseAlice" type="Node2D" parent="." unique_id=1150071690]
 position = Vector2(960, 520)
 script = ExtResource("1_mappoint")
 id = "alice"
 target_scene = 5
 
-[node name="Sprite2D" type="Sprite2D" parent="HouseAlice"]
+[node name="Sprite2D" type="Sprite2D" parent="HouseAlice" unique_id=888179541]
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("3_icon")
 
-[node name="Area2D" type="Area2D" parent="HouseAlice"]
+[node name="Area2D" type="Area2D" parent="HouseAlice" unique_id=544666407]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HouseAlice/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HouseAlice/Area2D" unique_id=163763132]
 shape = SubResource("RectangleShape2D_house")
 
-[node name="HouseCharlie" type="Node2D" parent="."]
+[node name="HouseCharlie" type="Node2D" parent="." unique_id=935716080]
 position = Vector2(1440, 400)
 script = ExtResource("1_mappoint")
 id = "charlie"
 target_scene = 5
 
-[node name="Sprite2D" type="Sprite2D" parent="HouseCharlie"]
+[node name="Sprite2D" type="Sprite2D" parent="HouseCharlie" unique_id=1774404197]
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("3_icon")
 
-[node name="Area2D" type="Area2D" parent="HouseCharlie"]
+[node name="Area2D" type="Area2D" parent="HouseCharlie" unique_id=403816823]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HouseCharlie/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HouseCharlie/Area2D" unique_id=164045332]
 shape = SubResource("RectangleShape2D_house")
 
-[node name="MapPointCard" parent="." instance=ExtResource("2_card")]
+[node name="MapPointCard" parent="." unique_id=1064397260 instance=ExtResource("2_card")]
 offset_left = 555.0
 offset_top = 111.0
 offset_right = 555.0

@@ -11,12 +11,24 @@ const timeout_tag: String = "timeout"
 @onready var _box: TextBoxWithOptions = $TextBoxWithOptions
 
 func _ready() -> void:
+	VoiceProcessor.register_speaker("bob", 0.75, 1.25)
+	InkFunctions.subscribe(self)
+	InkFunctions.bind_story(story)
 	if story:
 		try_next()
-	VoiceProcessor.register_speaker("bob", 0.75, 1.25)
+
+func start_story(path: String) -> void:
+	var loaded := load(path)
+	if loaded == null or not (loaded is InkStory):
+		printerr("DialogController: failed to load InkStory at ", path)
+		return
+	story = loaded
+	story.ResetState()
+	InkFunctions.bind_story(story)
+	try_next()
 
 func try_next() -> void:
-	if not story.GetCanContinue():
+	if story == null or not story.GetCanContinue():
 		return
 	var text: String = story.Continue()
 	_process_tags(story.GetCurrentTags())

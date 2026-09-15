@@ -1,0 +1,16 @@
+[remap]
+
+importer="ink"
+type="Resource"
+uid="uid://cv80t6lxd3euu"
+path="res://.godot/imported/inside_house.ink-12290a03ed37090fd77a9739e069d729.res"
+
+[deps]
+
+source_file="res://Files/SceneDialogs/Ink/inside_house.ink"
+dest_files=["res://.godot/imported/inside_house.ink-12290a03ed37090fd77a9739e069d729.res"]
+
+[params]
+
+is_main_file=true
+compress=true

@@ -3,6 +3,7 @@ extends Object
 
 enum SCENE_ITEM {
 	SALT,
+	BOTTLE,
 	PEPPER,
 	DOOR
 }
@@ -11,6 +12,8 @@ static func generate(item : SCENE_ITEM) -> SceneItemBase:
 	match item:
 		SCENE_ITEM.SALT:
 			return SceneItemSalt.new()
+		SCENE_ITEM.BOTTLE:
+			return SceneItemBottle.new()
 		SCENE_ITEM.PEPPER:
 			return SceneItemPepper.new()
 		SCENE_ITEM.DOOR:
