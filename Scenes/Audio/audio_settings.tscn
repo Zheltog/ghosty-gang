@@ -1,0 +1,146 @@
+[gd_scene format=3 uid="uid://ck23l7eyah3c0"]
+
+[ext_resource type="Script" uid="uid://blp7kjbftq6fe" path="res://Scripts/Audio/AudioSettings.gd" id="1_fioho"]
+
+[node name="AudioSettings" type="CanvasLayer" unique_id=417918344]
+script = ExtResource("1_fioho")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1828763394]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1254902, 0.5019608, 0.1254902, 0.5019608)
+
+[node name="MusicLabel" type="Label" parent="." unique_id=373355888]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 128.0
+offset_top = -34.5
+offset_right = 299.0
+offset_bottom = 34.5
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "MUSIC:"
+
+[node name="SoundsTotalLabel" type="Label" parent="." unique_id=1443208665]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 128.0
+offset_top = 65.5
+offset_right = 549.0
+offset_bottom = 134.5
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "SOUNDS (TOTAL):"
+
+[node name="SoundsVoicesLabel" type="Label" parent="." unique_id=1402730457]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 128.0
+offset_top = 165.5
+offset_right = 549.0
+offset_bottom = 234.5
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "VOICES:"
+
+[node name="MusicHSlider" type="HSlider" parent="." unique_id=1742378297]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 600.0
+offset_top = -8.0
+offset_right = 900.0
+offset_bottom = 8.0
+grow_vertical = 2
+scale = Vector2(2, 2)
+
+[node name="SoundsTotalHSlider" type="HSlider" parent="." unique_id=477006750]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 600.0
+offset_top = 92.0
+offset_right = 900.0
+offset_bottom = 108.0
+grow_vertical = 2
+scale = Vector2(2, 2)
+
+[node name="SoundsVoicesHSlider" type="HSlider" parent="." unique_id=1026697427]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 600.0
+offset_top = 192.0
+offset_right = 900.0
+offset_bottom = 208.0
+grow_vertical = 2
+scale = Vector2(2, 2)
+
+[node name="ResetButton" type="Button" parent="." unique_id=2026571843]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 128.0
+offset_top = -184.0
+offset_right = 394.0
+offset_bottom = -100.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 55
+text = "RESET"
+
+[node name="OkButton" type="Button" parent="." unique_id=1762916958]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 428.0
+offset_top = -184.0
+offset_right = 694.0
+offset_bottom = -100.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 55
+text = "OK"
+
+[node name="MusicPercentLabel" type="Label" parent="." unique_id=1030945196]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 1228.0
+offset_top = -34.5
+offset_right = 1399.0
+offset_bottom = 34.5
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "XXX%"
+horizontal_alignment = 2
+
+[node name="SoundsTotalPercentLabel" type="Label" parent="." unique_id=18741021]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 1228.0
+offset_top = 65.5
+offset_right = 1399.0
+offset_bottom = 134.5
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "XXX%"
+horizontal_alignment = 2
+
+[node name="SoundsVoicesPercentLabel" type="Label" parent="." unique_id=1946867291]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 1228.0
+offset_top = 165.5
+offset_right = 1399.0
+offset_bottom = 234.5
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "XXX%"
+horizontal_alignment = 2
