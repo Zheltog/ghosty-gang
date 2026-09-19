@@ -27,4 +27,8 @@ func _play_speaker_voice_sound(speaker_name: String) -> void:
 		if _voice_sound_resource_name != null and _voice_sound_resource_name != "" \
 		else default_voice_sound_resource_name
 	var pitch = _pitches[speaker_name]
-	CommonAudioProcessor.process_sound_random_pitch(resource_name, pitch.x, pitch.y)
+	var command = AudioSoundRandomPitchCommand.new()
+	command.resource_name = resource_name
+	command.pitch_from = pitch.x
+	command.pitch_to = pitch.y
+	CommonAudioProcessor.process_sound_random_pitch(command)

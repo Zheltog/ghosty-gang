@@ -2,8 +2,11 @@ class_name DialogController
 
 extends Node2D
 
+const timeout_tag: String = "timeout"
+
 @export var story: InkStory
 @export var dialogue_actor: DialogueActor
+@export var timer: GameTimer
 
 @onready var _box: TextBoxWithOptions = $TextBoxWithOptions
 
@@ -60,6 +63,7 @@ func _process_tags(tags: Array[String]) -> void:
 	var parsed_tags := InkTagParser.parse(tags)
 	_process_animation_tag(parsed_tags)
 	_process_position_tag(parsed_tags)
+	_process_timeout_tag(parsed_tags)
 
 func _process_animation_tag(tags: Dictionary) -> void:
 	if dialogue_actor == null:
@@ -72,3 +76,19 @@ func _process_position_tag(tags: Dictionary) -> void:
 	if not tags.has("pos"):
 		return
 	set_box_position(str(tags["pos"]))
+  
+func _process_timeout_tag(tags: Dictionary) -> void:
+	if timer == null:
+		return
+	var timeout_value_str = tags.get(timeout_tag, null)
+	if timeout_value_str == null:
+		return
+	var timeout_value = float(timeout_value_str)
+	if timeout_value == 0:
+		timer.reset()
+		return
+	var choices = story.GetCurrentChoices()
+	if choices.size() == 0:
+		timer.start(timeout_value, func(): print("TIMER TIMED OUT"))
+	else:
+		timer.start(timeout_value, func(): process_option_selected(0))

@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://kvbvxu0vbc8y"]
+
+[ext_resource type="Script" uid="uid://bajiei4xtm2bl" path="res://Scripts/Timer/GameTimer.gd" id="1_sau1q"]
+
+[node name="GameTimer" type="Control" unique_id=2126109467]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sau1q")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=847459589]
+layout_mode = 1
+offset_right = 128.0
+offset_bottom = 69.0
+color = Color(0.1638613, 0.16386127, 0.16386127, 1)
+
+[node name="Label" type="Label" parent="." unique_id=1084926927]
+layout_mode = 1
+offset_right = 128.0
+offset_bottom = 69.0
+theme_override_font_sizes/font_size = 50
+text = "--:--"
+
+[node name="Timer" type="Timer" parent="." unique_id=67729571]
+one_shot = true
