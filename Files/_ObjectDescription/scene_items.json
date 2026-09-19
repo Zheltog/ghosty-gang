@@ -18,5 +18,13 @@
 	"door" : {
 		"pickable" : false,
 		"ink_story_view" : "res://Files/SceneDialogs/Ink/door_preview.ink"
+	},
+	"to_kitchen" : {
+		"pickable" : false,
+		"room_exit" : "kitchen"
+	},
+	"to_living_room" : {
+		"pickable" : false,
+		"room_exit" : "living_room"
 	}
 }

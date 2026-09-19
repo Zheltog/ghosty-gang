@@ -6,12 +6,21 @@
 [ext_resource type="PackedScene" uid="uid://17fxcbcv4a1n" path="res://Scenes/PointAndClick/InventoryUI/Inventory.tscn" id="3_inv"]
 [ext_resource type="PackedScene" uid="uid://b3fjaokxpivbe" path="res://Scenes/Dialog/dialog_controller.tscn" id="4_dialog"]
 [ext_resource type="Texture2D" uid="uid://ccta4jievbuav" path="res://icon.svg" id="4_ugc5w"]
+[ext_resource type="Script" uid="uid://b036r1bbtl2ug" path="res://Scripts/UI/PointAndClickScenes/SceneParallaxController.gd" id="5_parallax"]
+[ext_resource type="Script" uid="uid://8p77bw84c7bp" path="res://Scripts/UI/PointAndClickScenes/Components/ParallaxComponent.gd" id="6_parobj"]
 
 [node name="NearHouse" type="Node2D" unique_id=939603869]
 
 [node name="Background" type="Sprite2D" parent="." unique_id=65330246]
 position = Vector2(960, 540)
 texture = ExtResource("1_ww0p3")
+
+[node name="ParallaxComponent" type="Node" parent="Background" unique_id=58043161]
+script = ExtResource("6_parobj")
+camera_distance = 12.0
+
+[node name="SceneParallax" type="Node" parent="." unique_id=171393968]
+script = ExtResource("5_parallax")
 
 [node name="SceneObjectManager" type="Node2D" parent="." unique_id=1327998566 node_paths=PackedStringArray("scene_items", "inventory")]
 script = ExtResource("1_manager")
@@ -24,6 +33,10 @@ scale = Vector2(0.5, 1)
 texture = ExtResource("4_ugc5w")
 scene_item_id = 3
 intercation_type = 0
+
+[node name="ParallaxComponent" type="Node" parent="SceneObjectManager/Door" unique_id=748612452]
+script = ExtResource("6_parobj")
+camera_distance = 6.0
 
 [node name="Inventory" parent="." unique_id=242525645 instance=ExtResource("3_inv")]
 anchors_preset = 15

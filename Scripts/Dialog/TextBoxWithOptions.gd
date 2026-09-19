@@ -3,6 +3,25 @@ class_name TextBoxWithOptions
 extends Control
 
 const max_printing_id: int = 100
+const BOX_MARGIN: float = 98.0
+const DEFAULT_BOX_SIZE := Vector2(840, 504)
+const DEFAULT_BOX_POSITION := "top_right"
+
+const _POSITION_ALIGN := {
+	"top_left": Vector2(0.0, 0.0),
+	"top": Vector2(0.5, 0.0),
+	"top_center": Vector2(0.5, 0.0),
+	"top_right": Vector2(1.0, 0.0),
+	"left": Vector2(0.0, 0.5),
+	"center_left": Vector2(0.0, 0.5),
+	"center": Vector2(0.5, 0.5),
+	"right": Vector2(1.0, 0.5),
+	"center_right": Vector2(1.0, 0.5),
+	"bottom_left": Vector2(0.0, 1.0),
+	"bottom": Vector2(0.5, 1.0),
+	"bottom_center": Vector2(0.5, 1.0),
+	"bottom_right": Vector2(1.0, 1.0),
+}
 
 @export var appear_anim_name: String = "appear"
 @export var disappear_anim_name: String = "disappear"
@@ -25,6 +44,8 @@ var _seconds_before_next_symbol: float = -1
 var _showing_requested: bool
 var _saved_printing_id: int = 0
 var _current_speaker_name: String
+var _box_position: String = DEFAULT_BOX_POSITION
+var _box_size := DEFAULT_BOX_SIZE
 
 func _ready() -> void:
 	_anim_player.animation_finished.connect(_on_animation_finished)
@@ -35,7 +56,20 @@ func _ready() -> void:
 	_option_holders[3] = $TextureRect/ThreeOptions
 	_init_options()
 	_hide_all_option_holders()
+	_capture_box_size()
+	_apply_box_position()
 	_rect.hide()
+
+func set_box_position(position_id: String) -> void:
+	var normalized := _normalize_position_id(position_id)
+	if not _POSITION_ALIGN.has(normalized):
+		printerr("TextBoxWithOptions: unknown box position '%s'" % position_id)
+		return
+	if _box_position == normalized:
+		return
+	_box_position = normalized
+	if is_node_ready():
+		_apply_box_position()
 
 func _init_options() -> void:
 	for holder_value in _option_holders.values():
@@ -156,3 +190,23 @@ func _is_space(char) -> bool:
 
 func _get_next_printing_id() -> int:
 	return 1 if _saved_printing_id == max_printing_id else _saved_printing_id + 1
+
+func _normalize_position_id(position_id: String) -> String:
+	return position_id.strip_edges().to_lower().replace("-", "_").replace(" ", "_")
+
+func _capture_box_size() -> void:
+	var size := Vector2(_rect.offset_right - _rect.offset_left, _rect.offset_bottom - _rect.offset_top)
+	if size.x > 1.0 and size.y > 1.0:
+		_box_size = size
+
+func _apply_box_position() -> void:
+	var align: Vector2 = _POSITION_ALIGN.get(_box_position, _POSITION_ALIGN[DEFAULT_BOX_POSITION])
+	var viewport_size := get_viewport_rect().size
+	if viewport_size.x <= 0.0 or viewport_size.y <= 0.0:
+		viewport_size = Vector2(1920, 1080)
+	var left := lerpf(BOX_MARGIN, viewport_size.x - BOX_MARGIN - _box_size.x, align.x)
+	var top := lerpf(BOX_MARGIN, viewport_size.y - BOX_MARGIN - _box_size.y, align.y)
+	_rect.offset_left = left
+	_rect.offset_top = top
+	_rect.offset_right = left + _box_size.x
+	_rect.offset_bottom = top + _box_size.y

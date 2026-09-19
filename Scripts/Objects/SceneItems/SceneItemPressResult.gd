@@ -4,6 +4,7 @@ extends Object
 enum TYPE {
 	DIALOG,
 	ADD_ITEM,
+	CHANGE_ROOM,
 	NONE
 }
 var data

@@ -31,7 +31,7 @@ func _sync_hovered_items() -> void:
 func _scene_item_from_collider(collider : Object) -> SceneItemUI:
 	var node := collider as Node
 	while node:
-		if node is SceneItemUI and scene_items.has(node):
+		if node is SceneItemUI and scene_items.has(node) and node.is_visible_in_tree():
 			return node
 		node = node.get_parent()
 	return null
@@ -59,11 +59,21 @@ func process_press_result(result : SceneItemPressResult) -> void:
 			if dialog == null:
 				printerr("SceneObjectsManager: no DialogController in current scene")
 				return
-			dialog.start_story(str(result.data))
+			if dialog.load_story(str(result.data)):
+				dialog.start_story()
+		SceneItemPressResult.TYPE.CHANGE_ROOM:
+			_process_change_room(result.data)
 		SceneItemPressResult.TYPE.ADD_ITEM:
 			_process_add_item(result.data)
 		_:
 			pass
+
+func _process_change_room(data: Variant) -> void:
+	var house := get_tree().current_scene as HouseScenePreview
+	if house == null:
+		printerr("SceneObjectsManager: current scene cannot change rooms")
+		return
+	house.change_room(str(data))
 
 func _process_add_item(data: Variant) -> void:
 	if inventory == null:
