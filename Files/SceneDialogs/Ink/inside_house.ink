@@ -1,4 +1,4 @@
-There's someone in the house...
+There's someone in the house... # pos:top_right
 Hello! Didn't mean to startle you. # anim:wave
 
 + [Wave back]

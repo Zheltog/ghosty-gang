@@ -6,6 +6,7 @@ This pepper is kinda wierd...
 == touch ==
 * [Touch it]
 	~ godot("HouseScenePreview", "ghost_appear")
+	There's someone in the house...
 	-> END
 + [I better not]
 	-> END
