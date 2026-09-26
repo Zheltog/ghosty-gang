@@ -14,21 +14,33 @@ enum EVENT {
 @onready var hint_rect: TextureRect = $HintRect
 @onready var hint_label: Label = $HintRect/HintLabel
 
-@onready var equipped_item_display: TextureRect = $EquippedItemDisplay
+@onready var equipped_item_anchor: Node2D = $EquippedItemDisplay
 @onready var inventory_holder: InventoryItemsHolder = $InventoryHolder
 
 var equipped_item : InventoryItemUI
+var _equipped_item_ui: EquippedItemUI
 
 func _ready() -> void:
-	equipped_item_display.texture = null
 	InkFunctions.subscribe(self)
 	update_hint()
+
+func _unhandled_input(event: InputEvent) -> void:
+	if equipped_item == null or not event is InputEventKey:
+		return
+	var key_event := event as InputEventKey
+	if not key_event.pressed or key_event.echo:
+		return
+	var action := OS.get_keycode_string(key_event.keycode).to_lower()
+	if not equipped_item.get_actions().has(action):
+		return
+	equipped_item.take_action(action)
+	get_viewport().set_input_as_handled()
 
 func unequip_item() -> void:
 	if equipped_item == null:
 		return
 	var item_id := equipped_item.inventory_item_id
-	equipped_item_display.texture = null
+	_clear_equipped_item_ui()
 	equipped_item = null
 	notify_dialog_event(EVENT.UNEQUIP, item_id)
 	update_hint()
@@ -50,10 +62,25 @@ func equip_item(item_ui : InventoryItemUI) -> void:
 		return
 	if equipped_item != null:
 		unequip_item()
-	equipped_item_display.texture = load(item_ui.generate_equiped_texture_path())
+	_equipped_item_ui = EquippedItemUIGenerator.generate(item_ui.inventory_item_id)
+	equipped_item_anchor.add_child(_equipped_item_ui)
 	equipped_item = item_ui
 	notify_dialog_event(EVENT.EQUIP, item_ui.inventory_item_id)
 	update_hint()
+
+func set_ui_animation(animation: String) -> void:
+	if _equipped_item_ui:
+		_equipped_item_ui.set_ui_animation(animation)
+
+func play_ui_animations_once(animation: String) -> void:
+	if _equipped_item_ui:
+		_equipped_item_ui.play_ui_animations_once(animation)
+
+func _clear_equipped_item_ui() -> void:
+	if _equipped_item_ui == null:
+		return
+	_equipped_item_ui.queue_free()
+	_equipped_item_ui = null
 
 func notify_dialog_event(event: EVENT, item_id: InventoryItemGenerator.INVENTORY_ITEM) -> void:
 	if dialog_controller:

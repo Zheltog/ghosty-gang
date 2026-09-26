@@ -12,3 +12,11 @@ var actions : Dictionary = {}
 
 func take_action(action : String) -> void:
 	return
+
+func set_ui_animation(animation: String) -> void:
+	if _item_ui:
+		_item_ui.set_ui_animation(animation)
+
+func play_ui_animations_once(animation: String) -> void:
+	if _item_ui:
+		_item_ui.play_ui_animations_once(animation)

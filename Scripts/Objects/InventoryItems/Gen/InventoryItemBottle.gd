@@ -7,3 +7,7 @@ func _init() -> void:
 	actions = {"e":{"name":"drink","name_rus":"выпить"}}
 
 # SKIP GENERATION
+
+func take_action(action : String) -> void:
+	if action == "e":
+		play_ui_animations_once("drink")

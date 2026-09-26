@@ -42,13 +42,9 @@ D: перелистнуть вправо"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="EquippedItemDisplay" type="TextureRect" parent="." unique_id=139902013]
-layout_mode = 0
-offset_left = 188.00002
-offset_top = -367.0
-offset_right = 538.0
-offset_bottom = -17.0
-rotation = -0.15562621
+[node name="EquippedItemDisplay" type="Node2D" parent="." unique_id=859788734]
+position = Vector2(530.00006, -117)
+rotation = -0.15317237
 
 [node name="InventoryHolder" type="Control" parent="." unique_id=334039717 node_paths=PackedStringArray("inventory")]
 layout_mode = 1

@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://Scripts/UI/PointAndClickScenes/EquippedItemUI.gd" id="1_equipped"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_empty"]
+
+[node name="EquippedItemUI" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_empty")
+script = ExtResource("1_equipped")
