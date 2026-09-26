@@ -74,6 +74,11 @@ func _init_assignments(item_id: String, data: Dictionary) -> PackedStringArray:
 	]
 	if data.has("equip_time"):
 		lines.append("\tequip_time = %s" % _gdscript_literal(data["equip_time"]))
+	if data.has("actions"):
+		if typeof(data["actions"]) != TYPE_DICTIONARY:
+			printerr("GenerateInventoryItems: '", item_id, "' actions must be a Dictionary")
+		else:
+			lines.append("\tactions = %s" % _gdscript_literal(data["actions"]))
 	return lines
 
 

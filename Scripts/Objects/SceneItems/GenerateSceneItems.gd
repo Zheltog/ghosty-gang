@@ -83,19 +83,57 @@ func _init_assignments(item_id: String, data: Dictionary) -> PackedStringArray:
 		lines.append("\troom_exit = %s" % _gdscript_literal(data["room_exit"]))
 	if data.has("disappear_after_pickup"):
 		lines.append("\tdisappear_after_pickup = %s" % _gdscript_literal(data["disappear_after_pickup"]))
+	lines.append_array(_interaction_overload_assignments(item_id, data))
 	return lines
 
 
+func _interaction_overload_assignments(item_id: String, data: Dictionary) -> PackedStringArray:
+	if not data.has("interaction_type_overload"):
+		return PackedStringArray()
+	var overload: Variant = data["interaction_type_overload"]
+	if typeof(overload) != TYPE_DICTIONARY:
+		printerr("GenerateSceneItems: '", item_id, "' interaction_type_overload must be a Dictionary")
+		return PackedStringArray()
+	var lines: PackedStringArray = []
+	for key in overload:
+		var type_enum := _to_interaction_type_enum(str(overload[key]))
+		if type_enum.is_empty():
+			printerr("GenerateSceneItems: '", item_id, "' unknown interaction_type '", overload[key], "'")
+			continue
+		lines.append(
+			"\tinteraction_type_overload[InventoryItemGenerator.INVENTORY_ITEM.%s] = SceneItemUI.INTERACTION_TYPE.%s"
+			% [_to_enum_name(str(key)), type_enum]
+		)
+	return lines
+
+
+func _to_interaction_type_enum(value: String) -> String:
+	match value.strip_edges().to_upper():
+		"LOOK":
+			return "LOOK"
+		"TAKE":
+			return "TAKE"
+		"NONE":
+			return "NONE"
+		_:
+			return ""
+
+
 func _write_generator_script(ids: PackedStringArray) -> void:
+	var enum_ids: PackedStringArray = ids.duplicate()
+	if not _has_enum_name(enum_ids, "NONE"):
+		enum_ids.append("none")
 	var enum_lines: PackedStringArray = []
 	var match_lines: PackedStringArray = []
-	for i in ids.size():
-		var enum_name := _to_enum_name(ids[i])
-		var class_name_str := "SceneItem" + _to_pascal_case(ids[i])
-		var comma := "," if i < ids.size() - 1 else ""
+	for i in enum_ids.size():
+		var enum_name := _to_enum_name(enum_ids[i])
+		var comma := "," if i < enum_ids.size() - 1 else ""
 		enum_lines.append("\t%s%s" % [enum_name, comma])
 		match_lines.append("\t\tSCENE_ITEM.%s:" % enum_name)
-		match_lines.append("\t\t\treturn %s.new()" % class_name_str)
+		if enum_name == "NONE":
+			match_lines.append("\t\t\treturn SceneItemBase.new()")
+		else:
+			match_lines.append("\t\t\treturn %s.new()" % ("SceneItem" + _to_pascal_case(enum_ids[i])))
 	var generated := "\n".join([
 		"class_name SceneItemGenerator",
 		"extends Object",
@@ -138,6 +176,13 @@ func _read_custom_tail(path: String) -> String:
 	if idx < 0:
 		return ""
 	return content.substr(idx + SKIP_MARKER.length())
+
+
+func _has_enum_name(ids: PackedStringArray, enum_name: String) -> bool:
+	for id in ids:
+		if _to_enum_name(id) == enum_name:
+			return true
+	return false
 
 
 func _to_enum_name(id: String) -> String:

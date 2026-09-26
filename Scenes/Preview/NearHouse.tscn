@@ -38,7 +38,7 @@ intercation_type = 0
 script = ExtResource("6_parobj")
 camera_distance = 6.0
 
-[node name="Inventory" parent="." unique_id=242525645 instance=ExtResource("3_inv")]
+[node name="Inventory" parent="." unique_id=242525645 instance=ExtResource("3_inv") node_paths=PackedStringArray("dialog_controller")]
 anchors_preset = 15
 anchor_top = 0.0
 anchor_right = 1.0
@@ -46,6 +46,7 @@ offset_top = 1080.0
 offset_bottom = 1080.0
 grow_horizontal = 2
 grow_vertical = 2
+dialog_controller = NodePath("../DialogController")
 
 [node name="DialogController" parent="." unique_id=430537169 instance=ExtResource("4_dialog")]
 story = null

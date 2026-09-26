@@ -7,7 +7,8 @@ enum SCENE_ITEM {
 	PEPPER,
 	DOOR,
 	TO_KITCHEN,
-	TO_LIVING_ROOM
+	TO_LIVING_ROOM,
+	NONE
 }
 
 static func generate(item : SCENE_ITEM) -> SceneItemBase:
@@ -24,6 +25,8 @@ static func generate(item : SCENE_ITEM) -> SceneItemBase:
 			return SceneItemToKitchen.new()
 		SCENE_ITEM.TO_LIVING_ROOM:
 			return SceneItemToLivingRoom.new()
+		SCENE_ITEM.NONE:
+			return SceneItemBase.new()
 	
 	printerr("GENERATED UNSOPORTED SCENE ITEM")
 	return SceneItemBase.new()

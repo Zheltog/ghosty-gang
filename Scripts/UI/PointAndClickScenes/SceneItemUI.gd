@@ -32,9 +32,10 @@ func get_pickup_time() -> float:
 	return _scene_item.pickup_time
 
 func _ready() -> void:
-	_scene_item = SceneItemGenerator.generate(scene_item_id)
-	_scene_item.ready(self)
-	tree_exiting.connect(_on_tree_exiting, CONNECT_ONE_SHOT)
+	if scene_item_id != SceneItemGenerator.SCENE_ITEM.NONE:
+		_scene_item = SceneItemGenerator.generate(scene_item_id)
+		_scene_item.ready(self)
+		tree_exiting.connect(_on_tree_exiting, CONNECT_ONE_SHOT)
 	Area2DUtils.setup_collision_from_sprite(self, _area_2d)
 	_area_2d.input_event.connect(_on_input_event)
 	release()
@@ -76,9 +77,26 @@ func release() -> void:
 	set_process(false)
 
 func press_item() -> void:
-	#TODO: pass currently equiped item to press
-	var press_result = _scene_item.press()
+	if _scene_item == null:
+		return
+	var press_result = _scene_item.press(_get_equipped_item())
 	_scene_object_manager.process_press_result(press_result)
+
+func get_effective_interaction_type() -> INTERACTION_TYPE:
+	if _scene_item == null:
+		return intercation_type
+	var overload = _scene_item.get_interaction_overload(_get_equipped_item())
+	if overload == null:
+		return intercation_type
+	return overload
+
+func _get_equipped_item() -> InventoryItemUI:
+	if _scene_object_manager == null or _scene_object_manager.inventory == null:
+		return null
+	var equipped := _scene_object_manager.inventory.equipped_item
+	if equipped != null and not is_instance_valid(equipped):
+		return null
+	return equipped
 
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:

@@ -2,6 +2,7 @@ class_name TextBoxWithOptions
 
 extends Control
 
+const OPTIONS_MARKER := "%%"
 const max_printing_id: int = 100
 const BOX_MARGIN: float = 98.0
 const DEFAULT_BOX_SIZE := Vector2(840, 504)
@@ -46,6 +47,9 @@ var _saved_printing_id: int = 0
 var _current_speaker_name: String
 var _box_position: String = DEFAULT_BOX_POSITION
 var _box_size := DEFAULT_BOX_SIZE
+var _pending_options: Array = []
+var _options_at: int = -1
+var _options_revealed: bool = false
 
 func _ready() -> void:
 	_anim_player.animation_finished.connect(_on_animation_finished)
@@ -91,6 +95,19 @@ func _on_texture_rect_gui_input(event: InputEvent) -> void:
 func is_shown() -> bool:
 	return _is_shown
 
+func is_printing() -> bool:
+	return _is_printing
+
+func interrupt_printing() -> void:
+	_is_printing = false
+
+func skip_printing() -> void:
+	if not _is_printing:
+		return
+	_label.text = _full_text
+	_is_printing = false
+	_try_reveal_options()
+
 # TODO: impl animations
 func _show_box(text: String, options: Array, speaker_name: String = "") -> void:
 	_current_speaker_name = speaker_name
@@ -125,14 +142,21 @@ func hide_box_instantly() -> void:
 	_hide_all_option_holders()
 	_do_hide()
 
-func _do_show(text: String, options: Array[InkChoice]) -> void:
+func _do_show(text: String, options: Array) -> void:
 	_label.text = ""
 	if _seconds_before_next_symbol < 0:
 		_seconds_before_next_symbol = 1 / printing_speed
 	_is_printing = true
 	_is_shown = true
-	await _print_text(text)
-	_show_options(options)
+	_pending_options = options
+	var marker_at := text.find(OPTIONS_MARKER)
+	_options_at = marker_at
+	_options_revealed = false
+	var display_text := text.replace(OPTIONS_MARKER, "")
+	var finished := await _print_text(display_text)
+	if not finished:
+		return
+	_try_reveal_options()
 
 func _on_animation_finished(anim_name: StringName) -> void:
 	if anim_name == appear_anim_name:
@@ -145,23 +169,36 @@ func _do_hide() -> void:
 	_rect.hide()
 	_is_shown = false
 
-func _print_text(text: String) -> void:
+func _print_text(text: String) -> bool:
 	_full_text = text
 	var previous_char = ''
 	var printing_id = _get_next_printing_id()
 	_saved_printing_id = printing_id
+	_try_reveal_options()
 	for char in _full_text:
 		await get_tree().create_timer(_get_char_delay(previous_char, char)).timeout
-		# TODO: should be able to print full text instantly?
 		if not _is_printing or _saved_printing_id != printing_id:
-			return
+			return false
 		if !_is_space(char) && !_is_punctiation(char):
 			AudioEventBus.play_speaker_voice_sound.emit(_current_speaker_name)
 		_label.text += char
 		previous_char = char
+		_try_reveal_options()
 	_is_printing = false
+	return true
 
-func _show_options(options: Array[InkChoice]):
+func _try_reveal_options() -> void:
+	if _options_revealed:
+		return
+	if _options_at >= 0 and _label.text.length() < _options_at:
+		return
+	if _options_at < 0 and _is_printing:
+		return
+	_options_revealed = true
+	_show_options(_pending_options)
+	controller.start_option_timeout()
+
+func _show_options(options: Array):
 	_are_options_shown = true
 	var options_size = options.size()
 	var target_holder
@@ -173,7 +210,9 @@ func _show_options(options: Array[InkChoice]):
 	if target_holder != null:
 		for option_button in target_holder.get_children():
 			var option = options[i]
-			(option_button as BoxOptionButton).set_text(option.GetText())
+			var button := option_button as BoxOptionButton
+			button.set_text(option.GetText())
+			button.id = option.GetIndex()
 			i += 1
 
 func _get_char_delay(previous_char, next_char) -> float:

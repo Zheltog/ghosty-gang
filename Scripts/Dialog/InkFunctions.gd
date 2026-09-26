@@ -36,13 +36,13 @@ func bind_story(story: InkStory) -> void:
 	story.BindExternalFunction("godot_2", Callable(self, "_ink_godot_2"))
 
 func _ink_godot(target_class: String, method: String) -> Variant:
-	return _invoke(target_class, method, [])
+	return await _invoke(target_class, method, [])
 
 func _ink_godot_1(target_class: String, method: String, arg) -> Variant:
-	return _invoke(target_class, method, [arg])
+	return await _invoke(target_class, method, [arg])
 
 func _ink_godot_2(target_class: String, method: String, arg0, arg1) -> Variant:
-	return _invoke(target_class, method, [arg0, arg1])
+	return await _invoke(target_class, method, [arg0, arg1])
 
 func _invoke(target_class: String, method: String, args: Array) -> Variant:
 	var target: Object = _targets.get(StringName(target_class))

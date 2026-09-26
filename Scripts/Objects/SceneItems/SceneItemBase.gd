@@ -10,9 +10,11 @@ var inventory_item : InventoryItemGenerator.INVENTORY_ITEM
 var ink_story_view : String
 var disappear_after_pickup : bool = false
 var room_exit : String = ""
+var interaction_type_overload: Dictionary = {}
 var _host: Node
 
-func press() -> SceneItemPressResult:
+@warning_ignore("unused_parameter")
+func press(equipped_item: InventoryItemUI = null) -> SceneItemPressResult:
 	var result := SceneItemPressResult.new()
 	if not room_exit.is_empty():
 		result.type = SceneItemPressResult.TYPE.CHANGE_ROOM
@@ -29,6 +31,13 @@ func press() -> SceneItemPressResult:
 		if disappear_after_pickup:
 			disappear()
 	return result
+
+func get_interaction_overload(equipped_item: InventoryItemUI) -> Variant:
+	if equipped_item == null:
+		return null
+	if not interaction_type_overload.has(equipped_item.inventory_item_id):
+		return null
+	return interaction_type_overload[equipped_item.inventory_item_id]
 
 func ready(host: Node = null) -> void:
 	_host = host

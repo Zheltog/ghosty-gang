@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://cboku8kabm86i"]
 
 [ext_resource type="Script" uid="uid://bsvnbkxhpb7ho" path="res://Scripts/UI/PointAndClickScenes/InventoryItemUI.gd" id="1_h5vwa"]
-[ext_resource type="Texture2D" uid="uid://d0nohrlp5ulye" path="res://Assets/Sprites/InventoryItems/salt.png" id="2_tdnja"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tdnja"]
 
 [node name="InventoryItemUI" type="Node2D" unique_id=1981325752]
 script = ExtResource("1_h5vwa")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1905027742]
-scale = Vector2(0.4, 0.4)
-texture = ExtResource("2_tdnja")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1543386916]
+sprite_frames = SubResource("SpriteFrames_tdnja")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=137682298]
 

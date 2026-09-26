@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://mt1xmuy8xhd5"]
+
+[ext_resource type="PackedScene" uid="uid://dvnnea2fw2ndt" path="res://Scenes/PointAndClick/SceneItemUI.tscn" id="1_base"]
+[ext_resource type="Script" uid="uid://bsceneuidoor001" path="res://Scripts/UI/PointAndClickScenes/SceneUIDoor.gd" id="2_script"]
+
+[node name="SceneUiDoor" instance=ExtResource("1_base")]
+script = ExtResource("2_script")

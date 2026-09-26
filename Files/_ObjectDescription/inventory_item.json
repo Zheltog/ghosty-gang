@@ -6,6 +6,12 @@
 		"equip_time" : 1.0
 	},
 	"bottle" : {
-		"equip_time" : 1.0
+		"equip_time" : 1.0,
+		"actions" : {
+			"e" : {
+				"name" : "drink",
+				"name_rus" : "выпить"
+				}
+			}
 	}
 }

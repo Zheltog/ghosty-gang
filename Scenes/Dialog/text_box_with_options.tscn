@@ -11,6 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_ntt56")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=64437177]
@@ -27,7 +28,7 @@ offset_left = 137.0
 offset_top = 45.0
 offset_right = 798.0
 offset_bottom = 445.0
-mouse_filter = 1
+mouse_filter = 2
 theme_override_colors/default_color = Color(0.8203659, 0.82036585, 0.8203658, 1)
 theme_override_font_sizes/normal_font_size = 40
 text = "???"
@@ -45,6 +46,7 @@ offset_right = -125.0
 offset_bottom = 134.0
 grow_horizontal = 2
 grow_vertical = 0
+mouse_filter = 2
 
 [node name="OptionButton" parent="TextureRect/SingleOption" unique_id=2047569396 instance=ExtResource("2_04rbt")]
 layout_mode = 1
