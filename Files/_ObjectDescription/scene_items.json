@@ -15,16 +15,18 @@
 		"pickable" : false,
 		"ink_story_view" : "res://Files/SceneDialogs/Ink/pepper_inside_house.ink"
 	},
-	"door" : {
+	"glass_eye" : {
+		"pickable" : false,
+		"ink_story_view" : "res://Files/SceneDialogs/Ink/Preview/glass_eye.ink",
+		"interaction_type_overload" : {
+			"flashlight" : "look"
+		}
+	},
+	"house_door" : {
 		"pickable" : false,
 		"ink_story_view" : "res://Files/SceneDialogs/Ink/door_preview.ink"
 	},
-	"to_kitchen" : {
-		"pickable" : false,
-		"room_exit" : "kitchen"
-	},
-	"to_living_room" : {
-		"pickable" : false,
-		"room_exit" : "living_room"
+	"door" : {
+		"pickable" : false
 	}
 }

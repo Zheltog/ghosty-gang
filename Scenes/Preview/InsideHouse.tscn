@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" uid="uid://bytkgf4aqq3ro" path="res://Scripts/UI/PointAndClickScenes/SceneObjectsManager.gd" id="1_manager"]
 [ext_resource type="Script" uid="uid://olybr00r1a5" path="res://Scripts/Scenes/HouseScenePreview.gd" id="1_r7y35"]
+[ext_resource type="PackedScene" uid="uid://mt1xmuy8xhd5" path="res://Scenes/PointAndClick/SceneUIDoor.tscn" id="2_door"]
 [ext_resource type="PackedScene" uid="uid://dvnnea2fw2ndt" path="res://Scenes/PointAndClick/SceneItemUI.tscn" id="2_item"]
 [ext_resource type="PackedScene" uid="uid://17fxcbcv4a1n" path="res://Scenes/PointAndClick/InventoryUI/Inventory.tscn" id="3_inv"]
 [ext_resource type="Texture2D" uid="uid://7x4rx6y3jl12" path="res://Assets/Sprites/InventoryItems/pepper.png" id="4_a8kwb"]
 [ext_resource type="PackedScene" uid="uid://b3fjaokxpivbe" path="res://Scenes/Dialog/dialog_controller.tscn" id="4_dialog"]
 [ext_resource type="Texture2D" uid="uid://c1ksxd4wl1b7v" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/Tumba.png" id="5_cmr44"]
-[ext_resource type="PackedScene" uid="uid://bv2qa0siqvvee" path="res://Scenes/Dialog/AnimatedDialogueActor.tscn" id="5_ghost"]
 [ext_resource type="Texture2D" uid="uid://tepur0keg34o" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/Sofa.png" id="6_a71pi"]
 [ext_resource type="Texture2D" uid="uid://d1kaj1oa2nrcl" path="res://Assets/Sprites/Test/PreviewScenes/Backgrounds/InsideKitchen.png" id="6_kitchen"]
 [ext_resource type="Texture2D" uid="uid://c5ggbthdlfqae" path="res://Assets/Sprites/Test/PreviewScenes/Backgrounds/InsideLivingRoom.png" id="7_living"]
@@ -18,127 +18,205 @@
 [ext_resource type="Script" uid="uid://8p77bw84c7bp" path="res://Scripts/UI/PointAndClickScenes/Components/ParallaxComponent.gd" id="10_parobj"]
 [ext_resource type="Texture2D" uid="uid://d11hsa31tp65f" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/Door.png" id="11_a71pi"]
 [ext_resource type="Texture2D" uid="uid://b7ci058vs4djr" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/Table.png" id="11_if3oh"]
+[ext_resource type="Script" uid="uid://bgebmjt4oem53" path="res://Scripts/Room/RoomBase.gd" id="12_room"]
+[ext_resource type="Texture2D" uid="uid://bqn8gn4wknuq7" path="res://Assets/Sprites/Test/PreviewScenes/Backgrounds/InsidePreroom.png" id="16_if3oh"]
+[ext_resource type="Texture2D" uid="uid://fm1if2rdci0l" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/Preroom/BathroomDoor.png" id="17_fcff3"]
+[ext_resource type="Texture2D" uid="uid://sfbkpkm3fp3s" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/Preroom/Coat.png" id="18_3mlep"]
 
 [node name="InsideHouse" type="Node2D" unique_id=1084163573]
 script = ExtResource("1_r7y35")
 ink_dialog_appear_path = "res://Files/SceneDialogs/Ink/inside_house.ink"
 
-[node name="LivingRoom" type="Node2D" parent="." unique_id=1900112235]
+[node name="Rooms" type="Node2D" parent="." unique_id=1900112300]
 
-[node name="Background" type="Sprite2D" parent="LivingRoom" unique_id=2145012301]
+[node name="LivingRoom" type="Node2D" parent="Rooms" unique_id=1900112235]
+visible = false
+script = ExtResource("12_room")
+room_name = "living_room"
+
+[node name="Background" type="Sprite2D" parent="Rooms/LivingRoom" unique_id=2145012301]
 position = Vector2(960, 540)
 texture = ExtResource("7_living")
 
-[node name="ParallaxComponent" type="Node" parent="LivingRoom/Background" unique_id=2145012302]
+[node name="ParallaxComponent" type="Node" parent="Rooms/LivingRoom/Background" unique_id=2145012302]
 script = ExtResource("10_parobj")
 camera_distance = 100.0
 
-[node name="Tumba" type="Sprite2D" parent="LivingRoom" unique_id=1166452971]
+[node name="Tumba" type="Sprite2D" parent="Rooms/LivingRoom" unique_id=1166452971]
 position = Vector2(237, 840)
 texture = ExtResource("5_cmr44")
 
-[node name="ParallaxComponent" type="Node" parent="LivingRoom/Tumba" unique_id=1367325546]
+[node name="ParallaxComponent" type="Node" parent="Rooms/LivingRoom/Tumba" unique_id=1367325546]
 script = ExtResource("10_parobj")
 camera_distance = 120.0
 
-[node name="Sofa" type="Sprite2D" parent="LivingRoom" unique_id=850566100]
+[node name="Sofa" type="Sprite2D" parent="Rooms/LivingRoom" unique_id=850566100]
 position = Vector2(1325, 537)
 texture = ExtResource("6_a71pi")
 
-[node name="ParallaxComponent" type="Node" parent="LivingRoom/Sofa" unique_id=1771551325]
+[node name="ParallaxComponent" type="Node" parent="Rooms/LivingRoom/Sofa" unique_id=1771551325]
 script = ExtResource("10_parobj")
 camera_distance = 110.0
 
-[node name="ToKitchen" parent="LivingRoom" unique_id=1422088194 instance=ExtResource("2_item")]
+[node name="ToKitchen" parent="Rooms/LivingRoom" unique_id=1422088194 instance=ExtResource("2_door")]
 position = Vector2(526, 430)
 texture = ExtResource("11_a71pi")
-scene_item_id = 4
+target_room = "kitchen"
+scene_item_id = 6
 intercation_type = 0
 
-[node name="ParallaxComponent" type="Node" parent="LivingRoom/ToKitchen" unique_id=2145012307]
+[node name="ParallaxComponent" type="Node" parent="Rooms/LivingRoom/ToKitchen" unique_id=2145012307]
 script = ExtResource("10_parobj")
 camera_distance = 100.0
 
-[node name="Kitchen" type="Node2D" parent="." unique_id=1900112234]
+[node name="Kitchen" type="Node2D" parent="Rooms" unique_id=1900112234]
 visible = false
+script = ExtResource("12_room")
+room_name = "kitchen"
 
-[node name="Background" type="Sprite2D" parent="Kitchen" unique_id=2145012310]
+[node name="Background" type="Sprite2D" parent="Rooms/Kitchen" unique_id=2145012310]
 position = Vector2(960, 540)
 texture = ExtResource("6_kitchen")
 
-[node name="ParallaxComponent" type="Node" parent="Kitchen/Background" unique_id=2145012311]
+[node name="ParallaxComponent" type="Node" parent="Rooms/Kitchen/Background" unique_id=2145012311]
 script = ExtResource("10_parobj")
 camera_distance = 100.0
 
-[node name="Carpet" type="Sprite2D" parent="Kitchen" unique_id=761985698]
+[node name="Carpet" type="Sprite2D" parent="Rooms/Kitchen" unique_id=761985698]
 position = Vector2(297, 848)
 texture = ExtResource("9_fifyc")
 
-[node name="ParallaxComponent" type="Node" parent="Kitchen/Carpet" unique_id=1217083918]
+[node name="ParallaxComponent" type="Node" parent="Rooms/Kitchen/Carpet" unique_id=1217083918]
 script = ExtResource("10_parobj")
 camera_distance = 125.0
 
-[node name="Chair" type="Sprite2D" parent="Kitchen" unique_id=1742978604]
+[node name="Chair" type="Sprite2D" parent="Rooms/Kitchen" unique_id=1742978604]
 position = Vector2(1382, 290)
 texture = ExtResource("10_dg8yx")
 
-[node name="ParallaxComponent" type="Node" parent="Kitchen/Chair" unique_id=1529131872]
+[node name="ParallaxComponent" type="Node" parent="Rooms/Kitchen/Chair" unique_id=1529131872]
 script = ExtResource("10_parobj")
 camera_distance = 110.0
 
-[node name="Table" type="Sprite2D" parent="Kitchen" unique_id=1369783213]
+[node name="Table" type="Sprite2D" parent="Rooms/Kitchen" unique_id=1369783213]
 position = Vector2(1037, 723)
 texture = ExtResource("11_if3oh")
 
-[node name="ParallaxComponent" type="Node" parent="Kitchen/Table" unique_id=1671419775]
+[node name="ParallaxComponent" type="Node" parent="Rooms/Kitchen/Table" unique_id=1671419775]
 script = ExtResource("10_parobj")
 camera_distance = 120.0
 
-[node name="Bottle" parent="Kitchen" unique_id=1800578913 instance=ExtResource("2_item")]
+[node name="Bottle" parent="Rooms/Kitchen" unique_id=1800578913 instance=ExtResource("2_item")]
 position = Vector2(272, 475)
 scene_item_id = 1
 trigger_type = 0
 intercation_type = 1
 
-[node name="ParallaxComponent" type="Node" parent="Kitchen/Bottle" unique_id=2145012304]
+[node name="ParallaxComponent" type="Node" parent="Rooms/Kitchen/Bottle" unique_id=2145012304]
 script = ExtResource("10_parobj")
 camera_distance = 110.0
 
-[node name="Pepper" parent="Kitchen" unique_id=598298150 instance=ExtResource("2_item")]
+[node name="Pepper" parent="Rooms/Kitchen" unique_id=598298150 instance=ExtResource("2_item")]
 position = Vector2(1787, 159)
 texture = ExtResource("4_a8kwb")
 scene_item_id = 2
 intercation_type = 0
 
-[node name="ParallaxComponent" type="Node" parent="Kitchen/Pepper" unique_id=2145012305]
+[node name="ParallaxComponent" type="Node" parent="Rooms/Kitchen/Pepper" unique_id=2145012305]
 script = ExtResource("10_parobj")
 camera_distance = 110.0
 
-[node name="ToLivingRoom" parent="Kitchen" unique_id=1422088193 instance=ExtResource("2_item")]
+[node name="ToLivingRoom" parent="Rooms/Kitchen" unique_id=1422088193 instance=ExtResource("2_door")]
 position = Vector2(79, 530)
 scale = Vector2(2, 2)
 texture = ExtResource("10_a71pi")
-scene_item_id = 5
+target_room = "living_room"
+scene_item_id = 6
 intercation_type = 0
 
-[node name="ParallaxComponent" type="Node" parent="Kitchen/ToLivingRoom" unique_id=2145012306]
+[node name="ParallaxComponent" type="Node" parent="Rooms/Kitchen/ToLivingRoom" unique_id=2145012306]
 script = ExtResource("10_parobj")
 camera_distance = 20.0
 
-[node name="Ghost" parent="Kitchen" unique_id=992294175 instance=ExtResource("5_ghost")]
-visible = false
-position = Vector2(657, 400)
+[node name="Preroom" type="Node2D" parent="Rooms" unique_id=1089732691]
+script = ExtResource("12_room")
+room_name = "preroom"
 
-[node name="ParallaxComponent" type="Node" parent="Kitchen/Ghost" unique_id=2145012308]
+[node name="Background" type="Sprite2D" parent="Rooms/Preroom" unique_id=1142675827]
+position = Vector2(960, 540)
+texture = ExtResource("16_if3oh")
+
+[node name="ParallaxComponent" type="Node" parent="Rooms/Preroom/Background" unique_id=244016716]
 script = ExtResource("10_parobj")
-camera_distance = 120.0
+camera_distance = 100.0
+
+[node name="ToBathroom" parent="Rooms/Preroom" unique_id=1295991586 instance=ExtResource("2_door")]
+position = Vector2(958, 539)
+texture = ExtResource("17_fcff3")
+target_room = "bathroom"
+scene_item_id = 6
+intercation_type = 0
+
+[node name="ParallaxComponent" type="Node" parent="Rooms/Preroom/ToBathroom" unique_id=841166043]
+script = ExtResource("10_parobj")
+camera_distance = 100.0
+
+[node name="Coat" type="Sprite2D" parent="Rooms/Preroom" unique_id=1631873478]
+position = Vector2(968, 518)
+texture = ExtResource("18_3mlep")
+
+[node name="ParallaxComponent" type="Node" parent="Rooms/Preroom/Coat" unique_id=796818496]
+script = ExtResource("10_parobj")
+camera_distance = 110.0
+
+[node name="ToLivingRoom" parent="Rooms/Preroom" unique_id=1760226341 instance=ExtResource("2_door")]
+position = Vector2(1000, 299)
+rotation = 3.1415927
+scale = Vector2(2, 2)
+texture = ExtResource("10_a71pi")
+target_room = "living_room"
+scene_item_id = 6
+intercation_type = 0
+
+[node name="ParallaxComponent" type="Node" parent="Rooms/Preroom/ToLivingRoom" unique_id=695641629]
+script = ExtResource("10_parobj")
+camera_distance = 110.0
+
+[node name="Bathroom" type="Node2D" parent="Rooms" unique_id=844400792]
+visible = false
+script = ExtResource("12_room")
+room_name = "bathroom"
+
+[node name="Background" type="Sprite2D" parent="Rooms/Bathroom" unique_id=2060802693]
+position = Vector2(960, 540)
+texture = ExtResource("7_living")
+
+[node name="ParallaxComponent" type="Node" parent="Rooms/Bathroom/Background" unique_id=1501714846]
+script = ExtResource("10_parobj")
+camera_distance = 100.0
+
+[node name="Storage" type="Node2D" parent="Rooms" unique_id=2005596028]
+visible = false
+script = ExtResource("12_room")
+room_name = "storage"
+
+[node name="Background" type="Sprite2D" parent="Rooms/Storage" unique_id=1597905437]
+position = Vector2(960, 540)
+texture = ExtResource("7_living")
+
+[node name="ParallaxComponent" type="Node" parent="Rooms/Storage/Background" unique_id=1493908703]
+script = ExtResource("10_parobj")
+camera_distance = 100.0
 
 [node name="SceneObjectManager" type="Node2D" parent="." unique_id=16884544 node_paths=PackedStringArray("scene_items", "inventory")]
 script = ExtResource("1_manager")
-scene_items = [NodePath("../Kitchen/Bottle"), NodePath("../Kitchen/Pepper"), NodePath("../Kitchen/ToLivingRoom"), NodePath("../LivingRoom/ToKitchen")]
+scene_items = [NodePath("../Rooms/Kitchen/Bottle"), NodePath("../Rooms/Kitchen/Pepper"), NodePath("../Rooms/Kitchen/ToLivingRoom"), NodePath("../Rooms/LivingRoom/ToKitchen")]
 inventory = NodePath("../Inventory")
 
-[node name="Inventory" parent="." unique_id=1450084800 instance=ExtResource("3_inv")]
+[node name="Characters" type="Node2D" parent="." unique_id=1949332713]
+
+[node name="Inventory" parent="." unique_id=1450084800 node_paths=PackedStringArray("dialog_controller") instance=ExtResource("3_inv")]
+visible = false
 anchors_preset = 15
 anchor_top = 0.0
 anchor_right = 1.0
@@ -146,10 +224,12 @@ offset_top = 1080.0
 offset_bottom = 1080.0
 grow_horizontal = 2
 grow_vertical = 2
+dialog_controller = NodePath("../DialogController")
 
 [node name="DialogController" parent="." unique_id=872390542 node_paths=PackedStringArray("dialogue_actor") instance=ExtResource("4_dialog")]
+visible = false
 story = null
-dialogue_actor = NodePath("../Kitchen/Ghost/DialogueActor")
+dialogue_actor = NodePath("")
 
 [node name="SceneParallax" type="Node" parent="." unique_id=2145012303]
 script = ExtResource("9_parallax")

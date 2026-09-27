@@ -10,6 +10,10 @@ const timeout_tag: String = "timeout"
 
 @onready var _box: TextBoxWithOptions = $TextBoxWithOptions
 
+var _skippable_default: bool = true
+var _current_line_skippable: bool = true
+var _current_choices: Array = []
+
 func _ready() -> void:
 	VoiceProcessor.register_speaker("bob", 0.75, 1.25)
 	InkFunctions.subscribe(self)
@@ -24,6 +28,7 @@ func load_story(path: String) -> bool:
 	story = loaded
 	story.ResetState()
 	InkFunctions.bind_story(story)
+	_reset_skip_state()
 	return true
 
 func start_story(path: String = "") -> void:
@@ -35,42 +40,111 @@ func start_story(path: String = "") -> void:
 		return
 	story.ResetState()
 	InkFunctions.bind_story(story)
-	_present_line(true)
+	_reset_skip_state()
+	_present_line()
 
 func try_next() -> void:
-	_present_line(false)
+	if _box.is_printing():
+		if _current_line_skippable:
+			_box.skip_printing()
+		return
+	_present_line()
 
 func process_option_selected(id: int) -> void:
+	if story == null:
+		return
+	_box.interrupt_printing()
 	story.ChooseChoiceIndex(id)
-	try_next()
+	_present_line()
+
+func try_inventory_choice(event: Inventory.EVENT, item_id: InventoryItemGenerator.INVENTORY_ITEM) -> bool:
+	if story == null:
+		return false
+	var item_name = InventoryItemGenerator.INVENTORY_ITEM.find_key(item_id)
+	if item_name == null:
+		return false
+	var item_token := str(item_name).to_lower()
+	for choice in _current_choices:
+		if _choice_matches_inventory(choice, event, item_token):
+			process_option_selected(choice.GetIndex())
+			return true
+	return false
+
+func try_action(action_name: String) -> bool:
+	if story == null:
+		return false
+	var action_token := action_name.strip_edges().to_lower()
+	if action_token.is_empty():
+		return false
+	for choice in _current_choices:
+		if _choice_matches_action(choice, action_token):
+			process_option_selected(choice.GetIndex())
+			return true
+	return false
 
 func set_box_position(position_id: String) -> void:
 	_box.set_box_position(position_id)
 
-func _present_line(force_show: bool) -> void:
+func start_option_timeout() -> void:
+	if timer == null:
+		return
+	_process_timeout_tag(InkTagParser.parse(story.GetCurrentTags()))
+
+func _present_line() -> void:
 	if story == null:
 		return
-	if not story.GetCanContinue():
-		if force_show:
+	if timer:
+		timer.reset()
+	# Skips empty lines. Specifically needed for dialog to properly end
+	while story.GetCanContinue():
+		var text: Variant = story.Continue()
+		_current_choices = story.GetCurrentChoices()
+		if text != null and not str(text).strip_edges().is_empty():
 			_process_tags(story.GetCurrentTags())
-			_box.show_box_instantly(story.GetCurrentText(), story.GetCurrentChoices(), "bob")
-		return
-	var text: String = story.Continue()
-	_process_tags(story.GetCurrentTags())
-	_box.show_box_instantly(text, story.GetCurrentChoices(), "bob")
+			_box.show_box_instantly(str(text), _visible_choices(_current_choices), "bob")
+			return
+	_current_choices = story.GetCurrentChoices()
+	if _current_choices.is_empty():
+		_box.hide_box_instantly()
 
 func _process_tags(tags: Array[String]) -> void:
 	var parsed_tags := InkTagParser.parse(tags)
 	_process_animation_tag(parsed_tags)
 	_process_position_tag(parsed_tags)
-	_process_timeout_tag(parsed_tags)
+	_process_skip_tags(parsed_tags)
+
+func _reset_skip_state() -> void:
+	_skippable_default = true
+	_current_line_skippable = true
+	_current_choices = []
+
+func _process_skip_tags(tags: Dictionary) -> void:
+	_current_line_skippable = _skippable_default
+	if tags.has("skip_default"):
+		_skippable_default = _parse_bool_tag(tags["skip_default"], _skippable_default)
+		_current_line_skippable = _skippable_default
+	if tags.has("skippable"):
+		_current_line_skippable = _parse_bool_tag(tags["skippable"], _current_line_skippable)
+
+func _parse_bool_tag(value: Variant, fallback: bool) -> bool:
+	var normalized := str(value).strip_edges().to_lower()
+	if normalized.is_empty():
+		return true
+	match normalized:
+		"true", "1", "yes", "on":
+			return true
+		"false", "0", "no", "off":
+			return false
+		_:
+			printerr("DialogController: unknown bool tag value '%s'" % value)
+			return fallback
 
 func _process_animation_tag(tags: Dictionary) -> void:
-	if dialogue_actor == null:
-		return
-
 	var animation_name := StringName(tags.get("anim", ""))
-	dialogue_actor.play_dialogue_animation(animation_name)
+	if tags.has("anim") and HouseSceneBase.current_house_scene:
+		HouseSceneBase.current_house_scene.set_characters_emotion(str(animation_name))
+	if dialogue_actor:
+		dialogue_actor.play_dialogue_animation(animation_name)
 
 func _process_position_tag(tags: Dictionary) -> void:
 	if not tags.has("pos"):
@@ -87,8 +161,70 @@ func _process_timeout_tag(tags: Dictionary) -> void:
 	if timeout_value == 0:
 		timer.reset()
 		return
-	var choices = story.GetCurrentChoices()
-	if choices.size() == 0:
-		timer.start(timeout_value, func(): print("TIMER TIMED OUT"))
-	else:
-		timer.start(timeout_value, func(): process_option_selected(0))
+	var visible := _visible_choices(_current_choices)
+	if visible.is_empty():
+		return
+	timer.start(timeout_value, func(): process_option_selected(visible[0].GetIndex()))
+
+func _visible_choices(choices: Array) -> Array:
+	var visible: Array = []
+	for choice in choices:
+		if choice == null or _is_hidden_inventory_choice(choice):
+			continue
+		visible.append(choice)
+	return visible
+
+func _is_hidden_inventory_choice(choice) -> bool:
+	return not _parse_choice_token(choice.GetText()).is_empty()
+
+func _choice_matches_inventory(choice, event: Inventory.EVENT, item_name: String) -> bool:
+	if _inventory_token_matches(_parse_choice_token(choice.GetText()), event, item_name):
+		return true
+	var tags = choice.GetTags()
+	if tags == null:
+		return false
+	for tag in tags:
+		if _inventory_token_matches(_parse_choice_token(str(tag)), event, item_name):
+			return true
+	return false
+
+func _choice_matches_action(choice, action_name: String) -> bool:
+	if _action_token_matches(_parse_choice_token(choice.GetText()), action_name):
+		return true
+	var tags = choice.GetTags()
+	if tags == null:
+		return false
+	for tag in tags:
+		if _action_token_matches(_parse_choice_token(str(tag)), action_name):
+			return true
+	return false
+
+func _inventory_token_matches(parsed: Dictionary, event: Inventory.EVENT, item_name: String) -> bool:
+	if parsed.is_empty() or parsed.get("kind") != "inventory":
+		return false
+	if parsed.event != event:
+		return false
+	if str(parsed.item).is_empty():
+		return true
+	return parsed.item == item_name
+
+func _action_token_matches(parsed: Dictionary, action_name: String) -> bool:
+	return parsed.get("kind") == "action" and parsed.get("action") == action_name
+
+func _parse_choice_token(text: String) -> Dictionary:
+	var normalized := text.strip_edges().to_lower()
+	if normalized == "unequip" or normalized == "uneqip":
+		return {"kind": "inventory", "event": Inventory.EVENT.UNEQUIP, "item": ""}
+	var separator := normalized.find(":")
+	if separator <= 0:
+		return {}
+	var prefix := normalized.substr(0, separator)
+	var value := normalized.substr(separator + 1)
+	if value.is_empty() or value.contains(" "):
+		return {}
+	if prefix == "action":
+		return {"kind": "action", "action": value}
+	var event_key := prefix.to_upper()
+	if not Inventory.EVENT.keys().has(event_key):
+		return {}
+	return {"kind": "inventory", "event": Inventory.EVENT[event_key], "item": value}

@@ -19,6 +19,7 @@ func item_pressed(item : SceneItemUI) -> void:
 
 # [0] — самый верхний спрайт под курсором (z_index, затем порядок в дереве).
 var _highlighted_items : Array[SceneItemUI]
+var _last_equipped_item : InventoryItemUI
 
 func _sync_hovered_items() -> void:
 	var hovered : Array[SceneItemUI] = []
@@ -49,7 +50,11 @@ func _set_hovered_items(hovered : Array[SceneItemUI]) -> void:
 	if not hovered.is_empty():
 		hovered_top = hovered[0]
 	_highlighted_items = hovered
-	if previous_top != hovered_top:
+	var equipped: InventoryItemUI = null
+	if inventory != null and is_instance_valid(inventory.equipped_item):
+		equipped = inventory.equipped_item
+	if previous_top != hovered_top or equipped != _last_equipped_item:
+		_last_equipped_item = equipped
 		update_mouse_cursor()
 
 func process_press_result(result : SceneItemPressResult) -> void:
@@ -69,11 +74,11 @@ func process_press_result(result : SceneItemPressResult) -> void:
 			pass
 
 func _process_change_room(data: Variant) -> void:
-	var house := get_tree().current_scene as HouseScenePreview
+	var house := get_tree().current_scene as HouseSceneBase
 	if house == null:
 		printerr("SceneObjectsManager: current scene cannot change rooms")
 		return
-	house.change_room(str(data))
+	house.load_room(str(data))
 
 func _process_add_item(data: Variant) -> void:
 	if inventory == null:
@@ -91,7 +96,7 @@ func update_mouse_cursor() -> void:
 	if _highlighted_items.size() == 0:
 		MouseUi.set_mouse_icon(MouseUI.MOUSE_ICON.CURSOR)
 	else:
-		MouseUi.set_mouse_icon(get_mouse_icon_by_intercation_type(_highlighted_items[0].intercation_type))
+		MouseUi.set_mouse_icon(get_mouse_icon_by_intercation_type(_highlighted_items[0].get_effective_interaction_type()))
 
 func get_mouse_icon_by_intercation_type(intercation : SceneItemUI.INTERACTION_TYPE) -> MouseUI.MOUSE_ICON:
 	match intercation:

@@ -70,6 +70,10 @@ func equip_item(item : InventoryItemUI) -> void:
 	inventory.equip_item(item)
 	bring_down()
 
+func unequip_item() -> void:
+	selected_item = null
+	inventory.unequip_item()
+
 var _up = true
 
 func bring_up() -> void:

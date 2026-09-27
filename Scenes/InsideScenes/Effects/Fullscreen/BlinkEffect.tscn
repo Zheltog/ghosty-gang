@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cpbq7gwkc2yl2"]
+
+[node name="BlinkEffect" type="CanvasLayer" unique_id=926561454]
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=25772336]
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0, 0, 0, 1)

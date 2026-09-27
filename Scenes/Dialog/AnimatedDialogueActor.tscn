@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://animateddialogact1"]
+[gd_scene format=3 uid="uid://bv2qa0siqvvee"]
 
 [ext_resource type="Script" uid="uid://bhaqm2essxb6x" path="res://Scripts/Dialog/DialogueActor.gd" id="1_actor"]
 [ext_resource type="Texture2D" uid="uid://ccta4jievbuav" path="res://icon.svg" id="2_icon"]
