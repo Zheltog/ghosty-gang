@@ -26,6 +26,7 @@ AudioEventBus="*uid://x8u4ulln4cji"
 SceneLoader="*res://Scripts/SceneLoader.gd"
 InkFunctions="*res://Scripts/Dialog/InkFunctions.gd"
 StateManager="*res://Scripts/StateManager.gd"
+InkVariableStore="*res://Scripts/Dialog/InkVariableStore.gd"
 
 [display]
 

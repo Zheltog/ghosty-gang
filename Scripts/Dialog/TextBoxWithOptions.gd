@@ -26,7 +26,7 @@ const _POSITION_ALIGN := {
 
 @export var appear_anim_name: String = "appear"
 @export var disappear_anim_name: String = "disappear"
-@export var printing_speed: float = 10
+@export var printing_speed: float = INF
 @export var printing_delay_multiplier: float = 4
 @export var controller: DialogController
 
@@ -145,7 +145,10 @@ func hide_box_instantly() -> void:
 func _do_show(text: String, options: Array) -> void:
 	_label.text = ""
 	if _seconds_before_next_symbol < 0:
-		_seconds_before_next_symbol = 1 / printing_speed
+		if printing_speed <= 0.0 or not is_finite(printing_speed):
+			_seconds_before_next_symbol = 0.0
+		else:
+			_seconds_before_next_symbol = 1.0 / printing_speed
 	_is_printing = true
 	_is_shown = true
 	_pending_options = options
@@ -174,6 +177,11 @@ func _print_text(text: String) -> bool:
 	var previous_char = ''
 	var printing_id = _get_next_printing_id()
 	_saved_printing_id = printing_id
+	if _seconds_before_next_symbol <= 0.0:
+		_label.text = _full_text
+		_is_printing = false
+		_try_reveal_options()
+		return true
 	_try_reveal_options()
 	for char in _full_text:
 		await get_tree().create_timer(_get_char_delay(previous_char, char)).timeout
