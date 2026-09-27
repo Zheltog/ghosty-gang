@@ -5,7 +5,6 @@ extends Node2D
 const timeout_tag: String = "timeout"
 
 @export var story: InkStory
-@export var dialogue_actor: DialogueActor
 @export var timer: GameTimer
 
 @onready var _box: TextBoxWithOptions = $TextBoxWithOptions
@@ -143,8 +142,6 @@ func _process_animation_tag(tags: Dictionary) -> void:
 	var animation_name := StringName(tags.get("anim", ""))
 	if tags.has("anim") and HouseSceneBase.current_house_scene:
 		HouseSceneBase.current_house_scene.set_characters_emotion(str(animation_name))
-	if dialogue_actor:
-		dialogue_actor.play_dialogue_animation(animation_name)
 
 func _process_position_tag(tags: Dictionary) -> void:
 	if not tags.has("pos"):

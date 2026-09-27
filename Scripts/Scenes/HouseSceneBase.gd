@@ -36,7 +36,7 @@ func load_room(room_name: String) -> void:
 func refresh_characters() -> void:
 	for character in characters:
 		if character:
-			character.refresh()
+			character.refresh(true)
 
 func set_characters_emotion(emotion: String) -> void:
 	for character in characters:
