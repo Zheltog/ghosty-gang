@@ -105,21 +105,21 @@ func _present_line() -> void:
 	while story.GetCanContinue():
 		var text: Variant = story.Continue()
 		_current_choices = story.GetCurrentChoices()
-		var visible := _visible_choices(_current_choices)
+		var visible_choices := _visible_choices(_current_choices)
 		var line := "" if text == null else str(text).strip_edges()
-		if line.is_empty() and visible.is_empty():
+		if line.is_empty() and visible_choices.is_empty():
 			continue
 		_process_tags(story.GetCurrentTags())
 		var display := line if not line.is_empty() else str(story.GetCurrentText())
-		_box.show_box_instantly(display, visible, "bob")
+		_box.show_box_instantly(display, visible_choices, "bob")
 		if not story.GetCanContinue() and _current_choices.is_empty():
 			InkVariableStore.capture(story, _story_path)
 		return
 	_current_choices = story.GetCurrentChoices()
-	var visible_at_end := _visible_choices(_current_choices)
-	if not visible_at_end.is_empty():
+	var visible_choices_at_end := _visible_choices(_current_choices)
+	if not visible_choices_at_end.is_empty():
 		_process_tags(story.GetCurrentTags())
-		_box.show_box_instantly(str(story.GetCurrentText()), visible_at_end, "bob")
+		_box.show_box_instantly(str(story.GetCurrentText()), visible_choices_at_end, "bob")
 		return
 	InkVariableStore.capture(story, _story_path)
 	_box.hide_box_instantly()
