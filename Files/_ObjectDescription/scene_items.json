@@ -34,5 +34,21 @@
 	},
 	"door" : {
 		"pickable" : false
+	},
+	"book_1" : {
+		"pickable" : false,
+		"ink_story_view" : "res://Files/SceneDialogs/Ink/book_1.ink"
+	},
+	"book_2" : {
+		"pickable" : false,
+		"ink_story_view" : "res://Files/SceneDialogs/Ink/book_2.ink"
+	},
+	"book_key" : {
+		"pickable" : false,
+		"ink_story_view" : "res://Files/SceneDialogs/Ink/book_key.ink"
+	},
+	"tumba" : {
+		"pickable" : false,
+		"ink_story_view" : "res://Files/SceneDialogs/Ink/tumba.ink"
 	}
 }

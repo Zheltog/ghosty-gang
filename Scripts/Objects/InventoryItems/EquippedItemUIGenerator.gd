@@ -16,6 +16,8 @@ static func generate(item : InventoryItemGenerator.INVENTORY_ITEM) -> EquippedIt
 			_setup_passport(ui)
 		InventoryItemGenerator.INVENTORY_ITEM.FLASHLIGHT:
 			_setup_flashlight(ui)
+		InventoryItemGenerator.INVENTORY_ITEM.PHOTO:
+			_setup_photo(ui)
 	return ui
 
 static func _setup_salt(ui: EquippedItemUI) -> void:
@@ -59,6 +61,11 @@ static func _setup_flashlight(ui: EquippedItemUI) -> void:
 	frames.add_frame("default", preload("res://Assets/Sprites/EquipedInventoryItems/flashlight.png"))
 	frames.add_animation("on")
 	frames.add_frame("on", preload("res://Assets/Sprites/EquipedInventoryItems/flashlight_on_0.png"))
+	ui.sprite_frames = frames
+	ui.play("default")
+static func _setup_photo(ui: EquippedItemUI) -> void:
+	var frames := SpriteFrames.new()
+	frames.add_animation("default")
 	ui.sprite_frames = frames
 	ui.play("default")
 

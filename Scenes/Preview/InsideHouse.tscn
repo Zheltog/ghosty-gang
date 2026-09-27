@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://bqn8gn4wknuq7" path="res://Assets/Sprites/Test/PreviewScenes/Backgrounds/InsidePreroom.png" id="16_if3oh"]
 [ext_resource type="Texture2D" uid="uid://fm1if2rdci0l" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/Preroom/BathroomDoor.png" id="17_fcff3"]
 [ext_resource type="Texture2D" uid="uid://sfbkpkm3fp3s" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/Preroom/Coat.png" id="18_3mlep"]
+[ext_resource type="Script" uid="uid://d37oapbkld1pk" path="res://Scripts/UI/PointAndClickScenes/SceneUIDoor.gd" id="20_8cn5p"]
 [ext_resource type="Texture2D" uid="uid://cxinskm6h1adp" path="res://Assets/Sprites/Characters/Engineer/Shounen A/boy a_casual_normal.png" id="20_k7bhf"]
 [ext_resource type="Script" uid="uid://ct24630qdy5qa" path="res://Scripts/Characters/SceneCharacter.gd" id="20_pvt63"]
 [ext_resource type="Texture2D" uid="uid://12de7dw7k8ai" path="res://Assets/Sprites/Characters/Engineer/Shounen A/boy a_casual_nervous.png" id="21_xjebt"]
@@ -111,7 +112,6 @@ characters = [NodePath("Characters/Engineer")]
 [node name="Rooms" type="Node2D" parent="." unique_id=1900112300]
 
 [node name="LivingRoom" type="Node2D" parent="Rooms" unique_id=1900112235]
-visible = false
 script = ExtResource("12_room")
 room_name = "living_room"
 
@@ -131,15 +131,14 @@ texture = ExtResource("31_lr_room")
 script = ExtResource("10_parobj")
 camera_distance = 100.0
 
-[node name="ToLivingRoomToExit" parent="Rooms/LivingRoom" unique_id=-1294967277 instance=ExtResource("2_door")]
-visible = false
+[node name="ToStorage" parent="Rooms/LivingRoom" unique_id=-1294967277 instance=ExtResource("2_door")]
 position = Vector2(1678, 440)
 texture = ExtResource("38_lr_secret")
 target_room = "living_room_to_exit"
 scene_item_id = 6
 intercation_type = 0
 
-[node name="ParallaxComponent" type="Node" parent="Rooms/LivingRoom/ToLivingRoomToExit" unique_id=-1294967276]
+[node name="ParallaxComponent" type="Node" parent="Rooms/LivingRoom/ToStorage" unique_id=-1294967276]
 script = ExtResource("10_parobj")
 camera_distance = 100.0
 
@@ -151,49 +150,57 @@ texture = ExtResource("32_lr_shelfs")
 script = ExtResource("10_parobj")
 camera_distance = 105.0
 
-[node name="BookIgo" type="Sprite2D" parent="Rooms/LivingRoom" unique_id=-1294967289]
+[node name="BookIgo" parent="Rooms/LivingRoom" unique_id=-1294967289 instance=ExtResource("2_item")]
 position = Vector2(1805, 426)
 texture = ExtResource("39_lr_igo")
+scene_item_id = 7
+intercation_type = 0
 
 [node name="ParallaxComponent" type="Node" parent="Rooms/LivingRoom/BookIgo" unique_id=-1294967288]
 script = ExtResource("10_parobj")
 camera_distance = 108.0
 
-[node name="BookManga" type="Sprite2D" parent="Rooms/LivingRoom" unique_id=-1294967287]
+[node name="BookManga" parent="Rooms/LivingRoom" unique_id=-1294967287 instance=ExtResource("2_item")]
 position = Vector2(1598, 286)
 texture = ExtResource("40_lr_manga")
+scene_item_id = 8
+intercation_type = 0
 
 [node name="ParallaxComponent" type="Node" parent="Rooms/LivingRoom/BookManga" unique_id=-1294967286]
 script = ExtResource("10_parobj")
 camera_distance = 108.0
 
-[node name="BookMorozov" type="Sprite2D" parent="Rooms/LivingRoom" unique_id=-1294967285]
+[node name="BookMorozov" parent="Rooms/LivingRoom" unique_id=-1294967285 instance=ExtResource("2_item")]
 position = Vector2(1618, 604)
 texture = ExtResource("41_lr_morozov")
+scene_item_id = 9
+intercation_type = 0
 
 [node name="ParallaxComponent" type="Node" parent="Rooms/LivingRoom/BookMorozov" unique_id=-1294967284]
 script = ExtResource("10_parobj")
 camera_distance = 108.0
 
 [node name="Table" type="Sprite2D" parent="Rooms/LivingRoom" unique_id=-1294967283]
-position = Vector2(220, 814)
+position = Vector2(313.5, 817)
 texture = ExtResource("34_lr_table")
 
 [node name="ParallaxComponent" type="Node" parent="Rooms/LivingRoom/Table" unique_id=-1294967282]
 script = ExtResource("10_parobj")
-camera_distance = 120.0
+camera_distance = 105.0
 
 [node name="Chair" type="Sprite2D" parent="Rooms/LivingRoom" unique_id=-1294967281]
-position = Vector2(458, 806)
+position = Vector2(551.5, 809)
 texture = ExtResource("35_lr_chair")
 
 [node name="ParallaxComponent" type="Node" parent="Rooms/LivingRoom/Chair" unique_id=-1294967280]
 script = ExtResource("10_parobj")
-camera_distance = 115.0
+camera_distance = 105.0
 
-[node name="Tumba" type="Sprite2D" parent="Rooms/LivingRoom" unique_id=-1294967279]
+[node name="Tumba" parent="Rooms/LivingRoom" unique_id=-1294967279 instance=ExtResource("2_item")]
 position = Vector2(1842, 946)
 texture = ExtResource("36_lr_tumba")
+scene_item_id = 10
+intercation_type = 0
 
 [node name="ParallaxComponent" type="Node" parent="Rooms/LivingRoom/Tumba" unique_id=-1294967278]
 script = ExtResource("10_parobj")
@@ -227,6 +234,17 @@ camera_distance = 115.0
 
 [node name="from#living_room" type="Node2D" parent="Rooms/LivingRoom/Engineer placements" unique_id=2035456481]
 
+[node name="ToLivingRoomToExit" parent="Rooms/LivingRoom" unique_id=2015736750 instance=ExtResource("2_door")]
+position = Vector2(268, 270)
+texture = ExtResource("10_a71pi")
+target_room = "living_room_to_exit"
+scene_item_id = 6
+intercation_type = 0
+
+[node name="ParallaxComponent" type="Node" parent="Rooms/LivingRoom/ToLivingRoomToExit" unique_id=426732625]
+script = ExtResource("10_parobj")
+camera_distance = 100.0
+
 [node name="LivingRoomToExit" type="Node2D" parent="Rooms" unique_id=-1194967295]
 visible = false
 script = ExtResource("12_room")
@@ -251,6 +269,12 @@ camera_distance = 100.0
 [node name="Bed" type="Sprite2D" parent="Rooms/LivingRoomToExit" unique_id=-1194967290]
 position = Vector2(283, 715)
 texture = ExtResource("52_lte_bed")
+script = ExtResource("20_8cn5p")
+target_room = "under_bed"
+scene_item_id = 7
+intercation_type = 0
+
+[node name="Area2D" type="Area2D" parent="Rooms/LivingRoomToExit/Bed" unique_id=674466857]
 
 [node name="ParallaxComponent" type="Node" parent="Rooms/LivingRoomToExit/Bed" unique_id=-1194967289]
 script = ExtResource("10_parobj")
@@ -281,14 +305,26 @@ texture = ExtResource("55_lte_tumba")
 script = ExtResource("10_parobj")
 camera_distance = 120.0
 
-[node name="ToExitFromStorage" parent="Rooms/LivingRoomToExit" unique_id=-1194967282 instance=ExtResource("2_door")]
+[node name="ToPreroom" parent="Rooms/LivingRoomToExit" unique_id=-1194967282 instance=ExtResource("2_door")]
 position = Vector2(1166, 558)
 texture = ExtResource("56_lte_door")
-target_room = "exit_from_storage"
+target_room = "preroom"
 scene_item_id = 6
 intercation_type = 0
 
-[node name="ParallaxComponent" type="Node" parent="Rooms/LivingRoomToExit/ToExitFromStorage" unique_id=-1194967281]
+[node name="ParallaxComponent" type="Node" parent="Rooms/LivingRoomToExit/ToPreroom" unique_id=-1194967281]
+script = ExtResource("10_parobj")
+camera_distance = 100.0
+
+[node name="ToLivingRoom" parent="Rooms/LivingRoomToExit" unique_id=409050916 instance=ExtResource("2_door")]
+position = Vector2(88, 444)
+scale = Vector2(2, 2)
+texture = ExtResource("10_a71pi")
+target_room = "living_room"
+scene_item_id = 6
+intercation_type = 0
+
+[node name="ParallaxComponent" type="Node" parent="Rooms/LivingRoomToExit/ToLivingRoom" unique_id=1069572054]
 script = ExtResource("10_parobj")
 camera_distance = 100.0
 
@@ -319,7 +355,7 @@ texture = ExtResource("62_efs_bed")
 
 [node name="ParallaxComponent" type="Node" parent="Rooms/ExitFromStorage/Bed" unique_id=-1094967289]
 script = ExtResource("10_parobj")
-camera_distance = 120.0
+camera_distance = 90.0
 
 [node name="Tumba" type="Sprite2D" parent="Rooms/ExitFromStorage" unique_id=-1094967288]
 position = Vector2(779, 670)
@@ -327,7 +363,7 @@ texture = ExtResource("63_efs_tumba")
 
 [node name="ParallaxComponent" type="Node" parent="Rooms/ExitFromStorage/Tumba" unique_id=-1094967287]
 script = ExtResource("10_parobj")
-camera_distance = 120.0
+camera_distance = 95.0
 
 [node name="ToLivingRoomToExit" parent="Rooms/ExitFromStorage" unique_id=-1094967284 instance=ExtResource("2_door")]
 position = Vector2(965, 467)
@@ -548,6 +584,7 @@ script = ExtResource("10_parobj")
 camera_distance = 100.0
 
 [node name="Kitchen" type="Node2D" parent="Rooms" unique_id=1900112234]
+visible = false
 script = ExtResource("12_room")
 room_name = "kitchen"
 
@@ -568,12 +605,12 @@ script = ExtResource("10_parobj")
 camera_distance = 105.0
 
 [node name="Carpet" type="Sprite2D" parent="Rooms/Kitchen" unique_id=761985698]
-position = Vector2(297, 848)
+position = Vector2(522, 897)
 texture = ExtResource("9_fifyc")
 
 [node name="ParallaxComponent" type="Node" parent="Rooms/Kitchen/Carpet" unique_id=1217083918]
 script = ExtResource("10_parobj")
-camera_distance = 125.0
+camera_distance = 115.0
 
 [node name="Fridge" type="Sprite2D" parent="Rooms/Kitchen" unique_id=-694967293]
 position = Vector2(1839, 444)
@@ -628,7 +665,7 @@ script = ExtResource("10_parobj")
 camera_distance = 110.0
 
 [node name="ToLivingRoom" parent="Rooms/Kitchen" unique_id=1422088193 instance=ExtResource("2_door")]
-position = Vector2(120, 530)
+position = Vector2(157, 562)
 texture = ExtResource("84_k_door")
 target_room = "living_room"
 scene_item_id = 6
@@ -636,11 +673,11 @@ intercation_type = 0
 
 [node name="ParallaxComponent" type="Node" parent="Rooms/Kitchen/ToLivingRoom" unique_id=2145012306]
 script = ExtResource("10_parobj")
-camera_distance = 20.0
+camera_distance = 100.0
 
 [node name="SceneObjectManager" type="Node2D" parent="." unique_id=16884544 node_paths=PackedStringArray("scene_items", "inventory")]
 script = ExtResource("1_manager")
-scene_items = [NodePath("../Rooms/Kitchen/Bottle"), NodePath("../Rooms/Kitchen/Pepper"), NodePath("../Rooms/Kitchen/ToLivingRoom"), NodePath("../Rooms/LivingRoom/ToKitchen"), NodePath("../Rooms/LivingRoom/ToLivingRoomToExit"), NodePath("../Rooms/LivingRoom/ToUnderBed"), NodePath("../Rooms/LivingRoomToExit/ToExitFromStorage"), NodePath(""), NodePath("../Rooms/ExitFromStorage/ToLivingRoomToExit"), NodePath("../Rooms/ExitFromStorage/ToStorage"), NodePath("../Rooms/UnderBed/ToLivingRoom"), NodePath("../Rooms/Preroom/ToBathroom"), NodePath("../Rooms/Preroom/ToLivingRoom"), NodePath("../Rooms/Bathroom/ToPreroom"), NodePath("../Rooms/Storage/ToExitFromStorage")]
+scene_items = [NodePath("../Rooms/Kitchen/Bottle"), NodePath("../Rooms/Kitchen/Pepper"), NodePath("../Rooms/Kitchen/ToLivingRoom"), NodePath("../Rooms/LivingRoom/ToKitchen"), NodePath("../Rooms/LivingRoom/ToStorage"), NodePath("../Rooms/LivingRoom/ToUnderBed"), NodePath("../Rooms/LivingRoomToExit/ToPreroom"), null, NodePath("../Rooms/ExitFromStorage/ToLivingRoomToExit"), NodePath("../Rooms/ExitFromStorage/ToStorage"), NodePath("../Rooms/UnderBed/ToLivingRoom"), NodePath("../Rooms/Preroom/ToBathroom"), NodePath("../Rooms/Preroom/ToLivingRoom"), NodePath("../Rooms/Bathroom/ToPreroom"), NodePath("../Rooms/Storage/ToExitFromStorage")]
 inventory = NodePath("../Inventory")
 
 [node name="Characters" type="Node2D" parent="." unique_id=1949332713]

@@ -9,6 +9,10 @@ enum SCENE_ITEM {
 	GLASS_EYE,
 	HOUSE_DOOR,
 	DOOR,
+	BOOK_1,
+	BOOK_2,
+	BOOK_KEY,
+	TUMBA,
 	NONE
 }
 
@@ -28,6 +32,14 @@ static func generate(item : SCENE_ITEM) -> SceneItemBase:
 			return SceneItemHouseDoor.new()
 		SCENE_ITEM.DOOR:
 			return SceneItemDoor.new()
+		SCENE_ITEM.BOOK_1:
+			return SceneItemBook1.new()
+		SCENE_ITEM.BOOK_2:
+			return SceneItemBook2.new()
+		SCENE_ITEM.BOOK_KEY:
+			return SceneItemBookKey.new()
+		SCENE_ITEM.TUMBA:
+			return SceneItemTumba.new()
 		SCENE_ITEM.NONE:
 			return SceneItemBase.new()
 	
