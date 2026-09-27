@@ -17,12 +17,19 @@ func load_room(room_name: String) -> void:
 		scene_object_manager.update_mouse_cursor()
 
 func engineer_appear() -> void:
+	if characters.is_empty() or characters[0] == null:
+		printerr("HouseScenePreview: no engineer character configured")
+		return
 	var engineer := characters[0]
+	var characters_root := engineer.get_parent()
+	if characters_root:
+		characters_root.visible = true
 	engineer.set_location("preroom")
 
 func ghost_appear() -> void:
 	if ghost:
 		ghost.show()
+	engineer_appear()
 	if ink_dialog_appear_path.is_empty():
 		printerr("HouseScenePreview: ink_dialog_appear_path is empty")
 		return

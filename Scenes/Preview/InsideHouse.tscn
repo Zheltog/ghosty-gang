@@ -692,6 +692,7 @@ animation = &"relaxed"
 frame_progress = 0.6919273
 script = ExtResource("20_pvt63")
 sprite = NodePath(".")
+character_name = "engineer"
 after_emotion = {
 "cleaning": "_prev_",
 "idle": "idle",

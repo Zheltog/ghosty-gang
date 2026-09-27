@@ -38,6 +38,24 @@ func refresh_characters() -> void:
 		if character:
 			character.refresh(true)
 
+func find_character(name: String) -> SceneCharacter:
+	var needle := name.strip_edges().to_lower()
+	if needle.is_empty():
+		return null
+	for character in characters:
+		if character == null:
+			continue
+		if character.character_name.strip_edges().to_lower() == needle:
+			return character
+	return null
+
+func set_character_emotion(name: String, emotion: String) -> void:
+	var character := find_character(name)
+	if character == null:
+		printerr("HouseSceneBase: no character named '%s'" % name)
+		return
+	character.set_emotion(emotion)
+
 func set_characters_emotion(emotion: String) -> void:
 	for character in characters:
 		if character:

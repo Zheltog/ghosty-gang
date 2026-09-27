@@ -7,7 +7,7 @@ VAR has_poison = false
 -> who
 
 === who ===
-    %%Кто здесь? # anim:surprised # skippable:false # skip_default:false # timeout:4
+    %%Кто здесь? # char_default:engineer # anim:shocked # skippable:false # skip_default:false # timeout:4
 + [Промолчать]
 	-> after_who
 + [Здравствуйте! Дверь была не заперта.]

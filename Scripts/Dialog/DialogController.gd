@@ -11,11 +11,12 @@ const timeout_tag: String = "timeout"
 
 var _skippable_default: bool = true
 var _current_line_skippable: bool = true
+var _character_default: String = ""
+var _current_line_character: String = ""
 var _current_choices: Array = []
 var _story_path: String = ""
 
 func _ready() -> void:
-	VoiceProcessor.register_speaker("bob", 0.75, 1.25)
 	InkFunctions.subscribe(self)
 	if story:
 		_story_path = story.resource_path
@@ -111,7 +112,7 @@ func _present_line() -> void:
 			continue
 		_process_tags(story.GetCurrentTags())
 		var display := line if not line.is_empty() else str(story.GetCurrentText())
-		_box.show_box_instantly(display, visible_choices, "bob")
+		_box.show_box_instantly(display, visible_choices, _speaker_for_current_line())
 		if not story.GetCanContinue() and _current_choices.is_empty():
 			InkVariableStore.capture(story, _story_path)
 		return
@@ -119,13 +120,14 @@ func _present_line() -> void:
 	var visible_choices_at_end := _visible_choices(_current_choices)
 	if not visible_choices_at_end.is_empty():
 		_process_tags(story.GetCurrentTags())
-		_box.show_box_instantly(str(story.GetCurrentText()), visible_choices_at_end, "bob")
+		_box.show_box_instantly(str(story.GetCurrentText()), visible_choices_at_end, _speaker_for_current_line())
 		return
 	InkVariableStore.capture(story, _story_path)
 	_box.hide_box_instantly()
 
 func _process_tags(tags: Array[String]) -> void:
 	var parsed_tags := InkTagParser.parse(tags)
+	_process_char_tags(parsed_tags)
 	_process_animation_tag(parsed_tags)
 	_process_position_tag(parsed_tags)
 	_process_skip_tags(parsed_tags)
@@ -133,6 +135,8 @@ func _process_tags(tags: Array[String]) -> void:
 func _reset_skip_state() -> void:
 	_skippable_default = true
 	_current_line_skippable = true
+	_character_default = ""
+	_current_line_character = ""
 	_current_choices = []
 
 func _process_skip_tags(tags: Dictionary) -> void:
@@ -142,6 +146,25 @@ func _process_skip_tags(tags: Dictionary) -> void:
 		_current_line_skippable = _skippable_default
 	if tags.has("skippable"):
 		_current_line_skippable = _parse_bool_tag(tags["skippable"], _current_line_skippable)
+
+func _process_char_tags(tags: Dictionary) -> void:
+	_current_line_character = _character_default
+	if tags.has("char_default"):
+		_character_default = str(tags["char_default"]).strip_edges()
+		_current_line_character = _character_default
+	if tags.has("char"):
+		_current_line_character = str(tags["char"]).strip_edges()
+
+func _speaker_for_current_line() -> String:
+	if _current_line_character.is_empty():
+		return ""
+	var house := HouseSceneBase.current_house_scene
+	if house == null:
+		return ""
+	var character := house.find_character(_current_line_character)
+	if character == null or not character.has_voice:
+		return ""
+	return character.character_name
 
 func _parse_bool_tag(value: Variant, fallback: bool) -> bool:
 	var normalized := str(value).strip_edges().to_lower()
@@ -157,9 +180,16 @@ func _parse_bool_tag(value: Variant, fallback: bool) -> bool:
 			return fallback
 
 func _process_animation_tag(tags: Dictionary) -> void:
-	var animation_name := StringName(tags.get("anim", ""))
-	if tags.has("anim") and HouseSceneBase.current_house_scene:
-		HouseSceneBase.current_house_scene.set_characters_emotion(str(animation_name))
+	if not tags.has("anim"):
+		return
+	var animation_name := str(tags.get("anim", ""))
+	if _current_line_character.is_empty():
+		printerr("DialogController: # anim without current character")
+		return
+	var house := HouseSceneBase.current_house_scene
+	if house == null:
+		return
+	house.set_character_emotion(_current_line_character, animation_name)
 
 func _process_position_tag(tags: Dictionary) -> void:
 	if not tags.has("pos"):
