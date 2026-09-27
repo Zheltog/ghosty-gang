@@ -6,6 +6,11 @@ extends Node2D
 
 func _ready() -> void:
 	InkFunctions.subscribe(self)
+	scene_items.clear()
+	var root := get_tree().current_scene
+	if root:
+		for node in root.find_children("*", "SceneItemUI", true, false):
+			scene_items.append(node)
 	for item in scene_items:
 		item.set_scene_object_manager(self)
 
