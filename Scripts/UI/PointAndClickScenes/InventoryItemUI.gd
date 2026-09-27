@@ -31,19 +31,12 @@ func generate_equiped_texture_path() -> String:
 func get_actions() -> Dictionary:
 	return _inventory_item.actions
 
-func take_action(action: String) -> void:
-	_inventory_item.take_action(action)
-
-func set_ui_animation(animation: String) -> void:
-	_holder.inventory.set_ui_animation(animation)
-
-func play_ui_animations_once(animation: String) -> void:
-	_holder.inventory.play_ui_animations_once(animation)
+func take_action(action: String, equipped_item_ui : EquippedItemUI) -> void:
+	_inventory_item.take_action(action, equipped_item_ui)
 
 func _ready() -> void:
 	sprite.texture = load(generate_texture_path())
 	_inventory_item = InventoryItemGenerator.generate(inventory_item_id)
-	_inventory_item.set_item_ui(self)
 
 func _process(delta: float) -> void:
 	if not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):

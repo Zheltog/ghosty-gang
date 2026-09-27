@@ -14,8 +14,21 @@
 			}
 		}
 	},
+	"passport" : {
+		"equip_time" : 1.0,
+		"actions" : {
+			"a" : {
+				"name" : "previous page",
+				"name_rus" : "перелистнуть назад"
+			},
+			"d" : {
+				"name" : "next page",
+				"name_rus" : "перелистнуть вперед"
+			}
+		}
+	},
 	"flashlight" : {
-		"equip_time" : 2.0,
+		"equip_time" : 1.0,
 		"actions" : {
 			"e" : {
 				"name" : "switch on/off",

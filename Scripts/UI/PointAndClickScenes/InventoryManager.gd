@@ -33,7 +33,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	var action := OS.get_keycode_string(key_event.keycode).to_lower()
 	if not equipped_item.get_actions().has(action):
 		return
-	equipped_item.take_action(action)
+	equipped_item.take_action(action, _equipped_item_ui)
 	get_viewport().set_input_as_handled()
 
 func unequip_item() -> void:
@@ -67,14 +67,6 @@ func equip_item(item_ui : InventoryItemUI) -> void:
 	equipped_item = item_ui
 	notify_dialog_event(EVENT.EQUIP, item_ui.inventory_item_id)
 	update_hint()
-
-func set_ui_animation(animation: String) -> void:
-	if _equipped_item_ui:
-		_equipped_item_ui.set_ui_animation(animation)
-
-func play_ui_animations_once(animation: String) -> void:
-	if _equipped_item_ui:
-		_equipped_item_ui.play_ui_animations_once(animation)
 
 func _clear_equipped_item_ui() -> void:
 	if _equipped_item_ui == null:

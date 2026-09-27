@@ -8,6 +8,6 @@ func _init() -> void:
 
 # SKIP GENERATION
 
-func take_action(action : String) -> void:
+func take_action(action : String, equipped_item_ui : EquippedItemUI) -> void:
 	if action == "e":
-		play_ui_animations_once("drink")
+		equipped_item_ui.play_ui_animations_once("drink")

@@ -5,6 +5,7 @@ enum INVENTORY_ITEM {
 	SALT,
 	PEPPER,
 	BOTTLE,
+	PASSPORT,
 	FLASHLIGHT
 }
 
@@ -16,6 +17,8 @@ static func generate(item : INVENTORY_ITEM) -> InventoryItemBase:
 			return InventoryItemPepper.new()
 		INVENTORY_ITEM.BOTTLE:
 			return InventoryItemBottle.new()
+		INVENTORY_ITEM.PASSPORT:
+			return InventoryItemPassport.new()
 		INVENTORY_ITEM.FLASHLIGHT:
 			return InventoryItemFlashlight.new()
 	

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2xilp8hdaog7"
-path="res://.godot/imported/passport_page_3.png-7b5da20d571ef111ce182647727da5eb.ctex"
+uid="uid://byqn7hsumeayl"
+path="res://.godot/imported/passport_page2_0.png-6795b8df92a73ce335346766633f7519.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/EquipedInventoryItems/passport_page_3.png"
-dest_files=["res://.godot/imported/passport_page_3.png-7b5da20d571ef111ce182647727da5eb.ctex"]
+source_file="res://Assets/Sprites/EquipedInventoryItems/passport_page2_0.png"
+dest_files=["res://.godot/imported/passport_page2_0.png-6795b8df92a73ce335346766633f7519.ctex"]
 
 [params]
 

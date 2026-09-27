@@ -43,7 +43,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="EquippedItemDisplay" type="Node2D" parent="." unique_id=859788734]
-position = Vector2(530.00006, -117)
+position = Vector2(515.00006, -215)
 rotation = -0.15317237
 
 [node name="InventoryHolder" type="Control" parent="." unique_id=334039717 node_paths=PackedStringArray("inventory")]

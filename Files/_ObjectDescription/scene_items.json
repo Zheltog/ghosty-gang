@@ -15,6 +15,12 @@
 		"pickable" : false,
 		"ink_story_view" : "res://Files/SceneDialogs/Ink/pepper_inside_house.ink"
 	},
+	"passport" : {
+		"pickable" : true,
+		"inventory_item" : "passport",
+		"equiped_immediately" : false,
+		"disappear_after_pickup" : true
+	},
 	"glass_eye" : {
 		"pickable" : false,
 		"ink_story_view" : "res://Files/SceneDialogs/Ink/Preview/glass_eye.ink",
