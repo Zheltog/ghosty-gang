@@ -70,12 +70,11 @@ animations = [{
 [node name="InsideHouse" type="Node2D" unique_id=1084163573 node_paths=PackedStringArray("characters")]
 script = ExtResource("1_r7y35")
 ink_dialog_appear_path = "res://Files/SceneDialogs/Ink/inside_house.ink"
-characters = [NodePath("SceneObjectManager/Engineer")]
+characters = [NodePath("Characters/Engineer")]
 
 [node name="Rooms" type="Node2D" parent="." unique_id=1900112300]
 
 [node name="LivingRoom" type="Node2D" parent="Rooms" unique_id=1900112235]
-visible = false
 script = ExtResource("12_room")
 room_name = "living_room"
 
@@ -165,7 +164,6 @@ script = ExtResource("10_parobj")
 camera_distance = 110.0
 
 [node name="Bathroom" type="Node2D" parent="Rooms" unique_id=844400792]
-visible = false
 script = ExtResource("12_room")
 room_name = "bathroom"
 
@@ -178,20 +176,17 @@ script = ExtResource("10_parobj")
 camera_distance = 100.0
 
 [node name="Storage" type="Node2D" parent="Rooms" unique_id=2005596028]
-visible = false
 script = ExtResource("12_room")
 room_name = "storage"
 
 [node name="Background" type="Sprite2D" parent="Rooms/Storage" unique_id=1597905437]
 position = Vector2(960, 540)
-texture = ExtResource("7_living")
 
 [node name="ParallaxComponent" type="Node" parent="Rooms/Storage/Background" unique_id=1493908703]
 script = ExtResource("10_parobj")
 camera_distance = 100.0
 
 [node name="Kitchen" type="Node2D" parent="Rooms" unique_id=1900112234]
-visible = false
 script = ExtResource("12_room")
 room_name = "kitchen"
 
@@ -264,7 +259,9 @@ script = ExtResource("1_manager")
 scene_items = [NodePath("../Rooms/Kitchen/Bottle"), NodePath("../Rooms/Kitchen/Pepper"), NodePath("../Rooms/Kitchen/ToLivingRoom"), NodePath("../Rooms/LivingRoom/ToKitchen"), NodePath("../Rooms/Preroom/ToBathroom"), NodePath("../Rooms/Preroom/ToLivingRoom")]
 inventory = NodePath("../Inventory")
 
-[node name="Engineer" type="AnimatedSprite2D" parent="SceneObjectManager" unique_id=718858753 node_paths=PackedStringArray("sprite")]
+[node name="Characters" type="Node2D" parent="." unique_id=1949332713]
+
+[node name="Engineer" type="AnimatedSprite2D" parent="Characters" unique_id=718858753 node_paths=PackedStringArray("sprite")]
 position = Vector2(802.99994, 382.99997)
 scale = Vector2(0.15, 0.15)
 sprite_frames = SubResource("SpriteFrames_280bj")
@@ -281,11 +278,9 @@ after_emotion = {
 "shocked": "nervous"
 }
 
-[node name="ParallaxComponent" type="Node" parent="SceneObjectManager/Engineer" unique_id=970396288]
+[node name="ParallaxComponent" type="Node" parent="Characters/Engineer" unique_id=970396288]
 script = ExtResource("10_parobj")
 camera_distance = 110.0
-
-[node name="Characters" type="Node2D" parent="." unique_id=1949332713]
 
 [node name="Inventory" parent="." unique_id=1450084800 node_paths=PackedStringArray("dialog_controller") instance=ExtResource("3_inv")]
 anchors_preset = 15
