@@ -1,11 +1,20 @@
+# load: suspicion
+# save: suspicion
 EXTERNAL godot(target_class, method)
 
-This pepper is kinda wierd...
--> touch
+VAR suspicion = 0
+
+This pepper is kinda wierd... {suspicion > 0: It feels more suspicious than last time.} -> touch
 
 == touch ==
 * [Touch it]
-	~ godot("HouseScenePreview", "ghost_appear")
+	~ suspicion += 1
+	{ suspicion >= 2:
+		~ godot("HouseScenePreview", "ghost_appear")
+		There's someone in the house...
+	- else:
+		Nothing happens... but it feels wrong.
+	}
 	-> END
 + [I better not]
 	-> END
