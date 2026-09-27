@@ -12,6 +12,8 @@ static func generate(item : InventoryItemGenerator.INVENTORY_ITEM) -> EquippedIt
 			_setup_pepper(ui)
 		InventoryItemGenerator.INVENTORY_ITEM.BOTTLE:
 			_setup_bottle(ui)
+		InventoryItemGenerator.INVENTORY_ITEM.FLASHLIGHT:
+			_setup_flashlight(ui)
 	return ui
 
 static func _setup_salt(ui: EquippedItemUI) -> void:
@@ -35,6 +37,11 @@ static func _setup_bottle(ui: EquippedItemUI) -> void:
 	frames.add_frame("drink", preload("res://Assets/Sprites/EquipedInventoryItems/bottle_drink_1.png"))
 	frames.add_frame("drink", preload("res://Assets/Sprites/EquipedInventoryItems/bottle_drink_2.png"))
 	frames.add_frame("drink", preload("res://Assets/Sprites/EquipedInventoryItems/bottle_drink_3.png"))
+	ui.sprite_frames = frames
+	ui.play("default")
+static func _setup_flashlight(ui: EquippedItemUI) -> void:
+	var frames := SpriteFrames.new()
+	frames.add_animation("default")
 	ui.sprite_frames = frames
 	ui.play("default")
 

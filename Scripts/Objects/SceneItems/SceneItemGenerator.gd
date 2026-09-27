@@ -5,9 +5,9 @@ enum SCENE_ITEM {
 	SALT,
 	BOTTLE,
 	PEPPER,
+	GLASS_EYE,
+	HOUSE_DOOR,
 	DOOR,
-	TO_KITCHEN,
-	TO_LIVING_ROOM,
 	NONE
 }
 
@@ -19,12 +19,12 @@ static func generate(item : SCENE_ITEM) -> SceneItemBase:
 			return SceneItemBottle.new()
 		SCENE_ITEM.PEPPER:
 			return SceneItemPepper.new()
+		SCENE_ITEM.GLASS_EYE:
+			return SceneItemGlassEye.new()
+		SCENE_ITEM.HOUSE_DOOR:
+			return SceneItemHouseDoor.new()
 		SCENE_ITEM.DOOR:
 			return SceneItemDoor.new()
-		SCENE_ITEM.TO_KITCHEN:
-			return SceneItemToKitchen.new()
-		SCENE_ITEM.TO_LIVING_ROOM:
-			return SceneItemToLivingRoom.new()
 		SCENE_ITEM.NONE:
 			return SceneItemBase.new()
 	

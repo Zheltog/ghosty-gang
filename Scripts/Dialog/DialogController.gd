@@ -140,11 +140,11 @@ func _parse_bool_tag(value: Variant, fallback: bool) -> bool:
 			return fallback
 
 func _process_animation_tag(tags: Dictionary) -> void:
-	if dialogue_actor == null:
-		return
-
 	var animation_name := StringName(tags.get("anim", ""))
-	dialogue_actor.play_dialogue_animation(animation_name)
+	if tags.has("anim") and HouseSceneBase.current_house_scene:
+		HouseSceneBase.current_house_scene.set_characters_emotion(str(animation_name))
+	if dialogue_actor:
+		dialogue_actor.play_dialogue_animation(animation_name)
 
 func _process_position_tag(tags: Dictionary) -> void:
 	if not tags.has("pos"):

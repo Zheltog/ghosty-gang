@@ -4,7 +4,8 @@ extends Object
 enum INVENTORY_ITEM {
 	SALT,
 	PEPPER,
-	BOTTLE
+	BOTTLE,
+	FLASHLIGHT
 }
 
 static func generate(item : INVENTORY_ITEM) -> InventoryItemBase:
@@ -15,6 +16,8 @@ static func generate(item : INVENTORY_ITEM) -> InventoryItemBase:
 			return InventoryItemPepper.new()
 		INVENTORY_ITEM.BOTTLE:
 			return InventoryItemBottle.new()
+		INVENTORY_ITEM.FLASHLIGHT:
+			return InventoryItemFlashlight.new()
 	
 	printerr("GENERATED UNSOPORTED INVENTORY ITEM")
 	return InventoryItemBase.new()

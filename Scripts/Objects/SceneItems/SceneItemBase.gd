@@ -9,17 +9,13 @@ var inventory_item : InventoryItemGenerator.INVENTORY_ITEM
 # path to json with ink story, which happens if you press look at the object
 var ink_story_view : String
 var disappear_after_pickup : bool = false
-var room_exit : String = ""
 var interaction_type_overload: Dictionary = {}
 var _host: Node
 
 @warning_ignore("unused_parameter")
 func press(equipped_item: InventoryItemUI = null) -> SceneItemPressResult:
 	var result := SceneItemPressResult.new()
-	if not room_exit.is_empty():
-		result.type = SceneItemPressResult.TYPE.CHANGE_ROOM
-		result.data = room_exit
-	elif not ink_story_view.is_empty() and ink_story_view.begins_with("res://"):
+	if not ink_story_view.is_empty() and ink_story_view.begins_with("res://"):
 		result.type = SceneItemPressResult.TYPE.DIALOG
 		result.data = ink_story_view
 	elif pickable:
