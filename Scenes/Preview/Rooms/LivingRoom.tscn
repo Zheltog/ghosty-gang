@@ -1,24 +1,24 @@
 [gd_scene format=3 uid="uid://c8livroom0a1b"]
 
-[ext_resource type="Script" uid="uid://bgebmjt4oem53" path="res://Scripts/Room/RoomBase.gd" id="12_room"]
-[ext_resource type="Texture2D" uid="uid://b22om8056hmsj" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/LivingRoom/Background.PNG" id="30_lr_bg"]
-[ext_resource type="Script" uid="uid://8p77bw84c7bp" path="res://Scripts/UI/PointAndClickScenes/Components/ParallaxComponent.gd" id="10_parobj"]
-[ext_resource type="Texture2D" uid="uid://bqhkqedeovhyq" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/LivingRoom/ROOM.PNG" id="31_lr_room"]
 [ext_resource type="PackedScene" uid="uid://mt1xmuy8xhd5" path="res://Scenes/PointAndClick/SceneUIDoor.tscn" id="2_door"]
-[ext_resource type="Texture2D" uid="uid://d2vq8s60l74ri" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/LivingRoom/SECRET DOOR.PNG" id="38_lr_secret"]
-[ext_resource type="Texture2D" uid="uid://bc54v724hmtw1" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/LivingRoom/SHELFS.PNG" id="32_lr_shelfs"]
 [ext_resource type="PackedScene" uid="uid://dvnnea2fw2ndt" path="res://Scenes/PointAndClick/SceneItemUI.tscn" id="2_item"]
-[ext_resource type="Texture2D" uid="uid://baam1bktpe4on" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/LivingRoom/BOOK IGO.PNG" id="39_lr_igo"]
-[ext_resource type="Texture2D" uid="uid://c0bbfg0g2i166" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/LivingRoom/BOOK MANGA.PNG" id="40_lr_manga"]
-[ext_resource type="Texture2D" uid="uid://cxf15hao7r2y8" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/LivingRoom/BOOK MOROZOV Merged.PNG" id="41_lr_morozov"]
+[ext_resource type="Texture2D" uid="uid://dadq1xc3xcndr" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/MoveBack.png" id="10_a71pi"]
+[ext_resource type="Script" uid="uid://8p77bw84c7bp" path="res://Scripts/UI/PointAndClickScenes/Components/ParallaxComponent.gd" id="10_parobj"]
+[ext_resource type="Script" uid="uid://bgebmjt4oem53" path="res://Scripts/Room/RoomBase.gd" id="12_room"]
+[ext_resource type="Script" uid="uid://c8bookshelf01" path="res://Scripts/UI/PointAndClickScenes/CustomBookshelfSceneItemUI.gd" id="13_shelf"]
+[ext_resource type="Script" uid="uid://c8bookscene01" path="res://Scripts/UI/PointAndClickScenes/CustomBookSceneItemUI.gd" id="14_book"]
+[ext_resource type="Texture2D" uid="uid://b22om8056hmsj" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/LivingRoom/Background.PNG" id="30_lr_bg"]
+[ext_resource type="Texture2D" uid="uid://bqhkqedeovhyq" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/LivingRoom/ROOM.PNG" id="31_lr_room"]
+[ext_resource type="Texture2D" uid="uid://bc54v724hmtw1" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/LivingRoom/SHELFS.PNG" id="32_lr_shelfs"]
+[ext_resource type="Texture2D" uid="uid://hhdv7pg8eo0s" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/LivingRoom/BED.PNG" id="33_lr_bed"]
 [ext_resource type="Texture2D" uid="uid://dwkpvh67pcyy4" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/LivingRoom/TABLE.PNG" id="34_lr_table"]
 [ext_resource type="Texture2D" uid="uid://bm32no0fm88nq" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/LivingRoom/CHAIR.PNG" id="35_lr_chair"]
 [ext_resource type="Texture2D" uid="uid://c6wr0oguvdxi3" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/LivingRoom/TUMBA.PNG" id="36_lr_tumba"]
 [ext_resource type="Texture2D" uid="uid://cebnt76swstxo" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/LivingRoom/DOOR.PNG" id="37_lr_door"]
-[ext_resource type="Texture2D" uid="uid://hhdv7pg8eo0s" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/LivingRoom/BED.PNG" id="33_lr_bed"]
-[ext_resource type="Texture2D" uid="uid://dadq1xc3xcndr" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/MoveBack.png" id="10_a71pi"]
-[ext_resource type="Script" uid="uid://c8bookshelf01" path="res://Scripts/UI/PointAndClickScenes/CustomBookshelfSceneItemUI.gd" id="13_shelf"]
-[ext_resource type="Script" uid="uid://c8bookscene01" path="res://Scripts/UI/PointAndClickScenes/CustomBookSceneItemUI.gd" id="14_book"]
+[ext_resource type="Texture2D" uid="uid://d2vq8s60l74ri" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/LivingRoom/SECRET DOOR.PNG" id="38_lr_secret"]
+[ext_resource type="Texture2D" uid="uid://baam1bktpe4on" path="res://Assets/Sprites/InventoryItems/book_1.png" id="39_lr_igo"]
+[ext_resource type="Texture2D" uid="uid://c0bbfg0g2i166" path="res://Assets/Sprites/InventoryItems/book_2.png" id="40_lr_manga"]
+[ext_resource type="Texture2D" uid="uid://cxf15hao7r2y8" path="res://Assets/Sprites/InventoryItems/book_key.png" id="41_lr_morozov"]
 
 [node name="LivingRoom" type="Node2D" unique_id=1900112235]
 script = ExtResource("12_room")
@@ -60,12 +60,13 @@ script = ExtResource("13_shelf")
 script = ExtResource("10_parobj")
 camera_distance = 105.0
 
-[node name="Area2D" type="Area2D" parent="Shelfs"]
+[node name="Area2D" type="Area2D" parent="Shelfs" unique_id=892618669]
 
 [node name="BookIgo" parent="Shelfs" unique_id=-1294967289 instance=ExtResource("2_item")]
 position = Vector2(279, -48)
 texture = ExtResource("39_lr_igo")
 script = ExtResource("14_book")
+inventory_item = 6
 scene_item_id = 7
 intercation_type = 0
 
@@ -77,6 +78,7 @@ camera_distance = 3.0
 position = Vector2(72, -188)
 texture = ExtResource("40_lr_manga")
 script = ExtResource("14_book")
+inventory_item = 7
 scene_item_id = 8
 intercation_type = 0
 
@@ -88,6 +90,7 @@ camera_distance = 3.0
 position = Vector2(92, 130)
 texture = ExtResource("41_lr_morozov")
 script = ExtResource("14_book")
+inventory_item = 8
 scene_item_id = 9
 intercation_type = 0
 
@@ -154,5 +157,5 @@ intercation_type = 0
 script = ExtResource("10_parobj")
 camera_distance = 100.0
 
-[node name="Character" type="AnimatedSprite2D" parent="."]
+[node name="Character" type="AnimatedSprite2D" parent="." unique_id=1489842618]
 position = Vector2(960, 540)

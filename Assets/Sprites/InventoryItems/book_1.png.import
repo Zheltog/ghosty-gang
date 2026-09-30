@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://baam1bktpe4on"
-path="res://.godot/imported/BOOK IGO.PNG-b78e26e9ef59faa8c5d7b26b27cba4fd.ctex"
+path="res://.godot/imported/book_1.png-1db5b74c450a76f29b33fb66c43ace9c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Test/PreviewScenes/Rooms/LivingRoom/BOOK IGO.PNG"
-dest_files=["res://.godot/imported/BOOK IGO.PNG-b78e26e9ef59faa8c5d7b26b27cba4fd.ctex"]
+source_file="res://Assets/Sprites/InventoryItems/book_1.png"
+dest_files=["res://.godot/imported/book_1.png-1db5b74c450a76f29b33fb66c43ace9c.ctex"]
 
 [params]
 

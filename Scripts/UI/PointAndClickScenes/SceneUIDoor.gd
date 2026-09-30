@@ -12,7 +12,15 @@ func press_item() -> void:
 	if house == null:
 		printerr("SceneUIDoor: current scene is not HouseSceneBase")
 		return
+	if house.movement_locked:
+		return
 	if target_room.is_empty():
 		printerr("SceneUIDoor: target_room is empty")
 		return
 	house.load_room(target_room)
+
+func get_effective_interaction_type() -> INTERACTION_TYPE:
+	var house := get_tree().current_scene as HouseSceneBase
+	if house and house.movement_locked:
+		return INTERACTION_TYPE.NONE
+	return super.get_effective_interaction_type()

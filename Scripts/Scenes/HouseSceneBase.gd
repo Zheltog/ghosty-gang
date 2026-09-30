@@ -9,6 +9,7 @@ const ROOMS_NODE_NAME := "Rooms"
 @export var room_scenes: Array[PackedScene] = []
 
 var current_room: String = ""
+var movement_locked: bool = false
 
 func _ready() -> void:
 	current_house_scene = self
@@ -38,6 +39,12 @@ func _collect_room_dependents() -> void:
 			node.collect_scene_items()
 		for child in node.get_children():
 			pending.append(child)
+
+func set_movement_locked(locked: bool) -> void:
+	movement_locked = locked
+	var manager := NodeUtils.get_child_of_type(self, SceneObjectsManager) as SceneObjectsManager
+	if manager:
+		manager.update_mouse_cursor()
 
 func load_room(room_name: String) -> void:
 	var rooms := get_node_or_null(ROOMS_NODE_NAME)

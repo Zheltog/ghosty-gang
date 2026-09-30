@@ -2,6 +2,7 @@ class_name CustomBookSceneItemUI
 extends CustomSceneItemUIBase
 
 @export var books_parent: Node2D
+@export var inventory_item: InventoryItemGenerator.INVENTORY_ITEM
 
 func _ready() -> void:
 	super._ready()
@@ -32,26 +33,17 @@ func _restore_other_books() -> void:
 
 func _add_to_inventory() -> void:
 	var inventory := _inventory()
-	var item_id: Variant = _inventory_item_id()
-	if inventory == null or item_id == null or inventory.has_item(item_id):
+	if inventory == null or inventory.has_item(inventory_item):
 		return
-	inventory.add_item(item_id)
+	inventory.add_item(inventory_item)
 
 func remove_from_inventory() -> void:
 	var inventory := _inventory()
-	var item_id: Variant = _inventory_item_id()
-	if inventory == null or item_id == null:
+	if inventory == null:
 		return
-	inventory.remove_item(item_id)
+	inventory.remove_item(inventory_item)
 
 func _inventory() -> Inventory:
 	if _scene_object_manager == null:
 		return null
 	return _scene_object_manager.inventory
-
-func _inventory_item_id() -> Variant:
-	var key := SceneItemGenerator.SCENE_ITEM.find_key(scene_item_id) as String
-	if key == null or not InventoryItemGenerator.INVENTORY_ITEM.has(key):
-		printerr("CustomBookSceneItemUI: no inventory item for scene item ", scene_item_id)
-		return null
-	return InventoryItemGenerator.INVENTORY_ITEM[key]

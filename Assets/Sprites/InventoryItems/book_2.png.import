@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxf15hao7r2y8"
-path="res://.godot/imported/BOOK MOROZOV Merged.PNG-a3d4db19099cba2487713b48f3464dc0.ctex"
+uid="uid://c0bbfg0g2i166"
+path="res://.godot/imported/book_2.png-97112e1ff08dd89900b580d959351fb3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Test/PreviewScenes/Rooms/LivingRoom/BOOK MOROZOV Merged.PNG"
-dest_files=["res://.godot/imported/BOOK MOROZOV Merged.PNG-a3d4db19099cba2487713b48f3464dc0.ctex"]
+source_file="res://Assets/Sprites/InventoryItems/book_2.png"
+dest_files=["res://.godot/imported/book_2.png-97112e1ff08dd89900b580d959351fb3.ctex"]
 
 [params]
 
