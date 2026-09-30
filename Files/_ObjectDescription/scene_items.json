@@ -3,13 +3,13 @@
 		"pickable" : true,
 		"equiped_immediately" : false,
 		"inventory_item" : "salt",
-		"disappear_after_pickup" : true
+		"after_pickup" : "disappear"
 	},
 	"bottle" : {
 		"pickable" : true,
 		"equiped_immediately" : false,
 		"inventory_item" : "bottle",
-		"disappear_after_pickup" : true
+		"after_pickup" : "disappear"
 	},
 	"pepper" : {
 		"pickable" : false,
@@ -19,7 +19,7 @@
 		"pickable" : true,
 		"inventory_item" : "passport",
 		"equiped_immediately" : false,
-		"disappear_after_pickup" : true
+		"after_pickup" : "disappear"
 	},
 	"glass_eye" : {
 		"pickable" : false,

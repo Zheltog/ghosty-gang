@@ -2,6 +2,7 @@ class_name EquippedItemUI
 extends AnimatedSprite2D
 
 var _play_once := false
+var inventory_item: InventoryItemBase
 
 func _ready() -> void:
 	animation_finished.connect(_on_animation_finished)
@@ -16,6 +17,10 @@ func play_ui_animations_once(animation: String) -> void:
 	_play_once = true
 	sprite_frames.set_animation_loop_mode(animation, SpriteFrames.LOOP_NONE)
 	play(animation)
+
+func _process(delta: float) -> void:
+	if inventory_item:
+		inventory_item.process_equipped(delta, self)
 
 func _on_animation_finished() -> void:
 	if not _play_once:

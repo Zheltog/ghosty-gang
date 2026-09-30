@@ -4,7 +4,7 @@ EXTERNAL godot(target_class, method)
 
 == options ==
 + [Взять]
-	~ godot("SceneItemBook1", "disappear")
+	~ godot("SceneItemBook1", "hide_self")
 	-> END
 + [Оставить]
 	-> END

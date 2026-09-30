@@ -30,6 +30,26 @@ func add_item(item_id : InventoryItemGenerator.INVENTORY_ITEM) -> InventoryItemU
 	item_placer.add_item(item_ui)
 	return item_ui
 
+func has_item(item_id : InventoryItemGenerator.INVENTORY_ITEM) -> bool:
+	for item in item_placer.items:
+		if item.inventory_item_id == item_id:
+			return true
+	return false
+
+func remove_item(item_id : InventoryItemGenerator.INVENTORY_ITEM) -> void:
+	var found : InventoryItemUI = null
+	for item in item_placer.items:
+		if item.inventory_item_id == item_id:
+			found = item
+			break
+	if found == null:
+		return
+	if inventory.equipped_item == found:
+		inventory.unequip_item()
+	item_placer.remove_item(found)
+	item_placer.place_items()
+	found.queue_free()
+
 func add_item_by_name(item_name : String) -> InventoryItemUI:
 	var key := item_name.strip_edges().to_upper()
 	if not InventoryItemGenerator.INVENTORY_ITEM.keys().has(key):

@@ -38,5 +38,14 @@
 	},
 	"photo" : {
 		"equip_time" : 1.0
+	},
+	"book_1" : {
+		"equip_time" : 1.0
+	},
+	"book_2" : {
+		"equip_time" : 1.0
+	},
+	"book_key" : {
+		"equip_time" : 1.0
 	}
 }

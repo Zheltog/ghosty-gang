@@ -18,6 +18,12 @@ static func generate(item : InventoryItemGenerator.INVENTORY_ITEM) -> EquippedIt
 			_setup_flashlight(ui)
 		InventoryItemGenerator.INVENTORY_ITEM.PHOTO:
 			_setup_photo(ui)
+		InventoryItemGenerator.INVENTORY_ITEM.BOOK_1:
+			_setup_book_1(ui)
+		InventoryItemGenerator.INVENTORY_ITEM.BOOK_2:
+			_setup_book_2(ui)
+		InventoryItemGenerator.INVENTORY_ITEM.BOOK_KEY:
+			_setup_book_key(ui)
 	return ui
 
 static func _setup_salt(ui: EquippedItemUI) -> void:
@@ -64,6 +70,21 @@ static func _setup_flashlight(ui: EquippedItemUI) -> void:
 	ui.sprite_frames = frames
 	ui.play("default")
 static func _setup_photo(ui: EquippedItemUI) -> void:
+	var frames := SpriteFrames.new()
+	frames.add_animation("default")
+	ui.sprite_frames = frames
+	ui.play("default")
+static func _setup_book_1(ui: EquippedItemUI) -> void:
+	var frames := SpriteFrames.new()
+	frames.add_animation("default")
+	ui.sprite_frames = frames
+	ui.play("default")
+static func _setup_book_2(ui: EquippedItemUI) -> void:
+	var frames := SpriteFrames.new()
+	frames.add_animation("default")
+	ui.sprite_frames = frames
+	ui.play("default")
+static func _setup_book_key(ui: EquippedItemUI) -> void:
 	var frames := SpriteFrames.new()
 	frames.add_animation("default")
 	ui.sprite_frames = frames

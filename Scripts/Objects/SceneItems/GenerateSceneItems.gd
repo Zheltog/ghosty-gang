@@ -79,8 +79,12 @@ func _init_assignments(item_id: String, data: Dictionary) -> PackedStringArray:
 		lines.append("\tinventory_item = InventoryItemGenerator.INVENTORY_ITEM.%s" % _to_enum_name(str(data["inventory_item"])))
 	if data.has("ink_story_view") and str(data["ink_story_view"]) != "":
 		lines.append("\tink_story_view = %s" % _gdscript_literal(data["ink_story_view"]))
-	if data.has("disappear_after_pickup"):
-		lines.append("\tdisappear_after_pickup = %s" % _gdscript_literal(data["disappear_after_pickup"]))
+	if data.has("after_pickup"):
+		var after_pickup := _to_after_pickup_enum(str(data["after_pickup"]))
+		if after_pickup.is_empty():
+			printerr("GenerateSceneItems: '", item_id, "' unknown after_pickup '", data["after_pickup"], "'")
+		else:
+			lines.append("\tafter_pickup = SceneItemBase.AFTER_PICKUP.%s" % after_pickup)
 	lines.append_array(_interaction_overload_assignments(item_id, data))
 	return lines
 
@@ -103,6 +107,18 @@ func _interaction_overload_assignments(item_id: String, data: Dictionary) -> Pac
 			% [_to_enum_name(str(key)), type_enum]
 		)
 	return lines
+
+
+func _to_after_pickup_enum(value: String) -> String:
+	match value.strip_edges().to_lower():
+		"disappear":
+			return "DISAPPEAR"
+		"hide":
+			return "HIDE"
+		"nothing":
+			return "NOTHING"
+		_:
+			return ""
 
 
 func _to_interaction_type_enum(value: String) -> String:

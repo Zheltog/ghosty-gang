@@ -31,6 +31,9 @@ func generate_equiped_texture_path() -> String:
 func get_actions() -> Dictionary:
 	return _inventory_item.actions
 
+func get_inventory_item() -> InventoryItemBase:
+	return _inventory_item
+
 func take_action(action: String, equipped_item_ui : EquippedItemUI) -> void:
 	_inventory_item.take_action(action, equipped_item_ui)
 

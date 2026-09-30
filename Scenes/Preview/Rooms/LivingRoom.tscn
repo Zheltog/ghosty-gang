@@ -17,6 +17,8 @@
 [ext_resource type="Texture2D" uid="uid://cebnt76swstxo" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/LivingRoom/DOOR.PNG" id="37_lr_door"]
 [ext_resource type="Texture2D" uid="uid://hhdv7pg8eo0s" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/LivingRoom/BED.PNG" id="33_lr_bed"]
 [ext_resource type="Texture2D" uid="uid://dadq1xc3xcndr" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/MoveBack.png" id="10_a71pi"]
+[ext_resource type="Script" uid="uid://c8bookshelf01" path="res://Scripts/UI/PointAndClickScenes/CustomBookshelfSceneItemUI.gd" id="13_shelf"]
+[ext_resource type="Script" uid="uid://c8bookscene01" path="res://Scripts/UI/PointAndClickScenes/CustomBookSceneItemUI.gd" id="14_book"]
 
 [node name="LivingRoom" type="Node2D" unique_id=1900112235]
 script = ExtResource("12_room")
@@ -52,40 +54,46 @@ camera_distance = 100.0
 [node name="Shelfs" type="Sprite2D" parent="." unique_id=-1294967293]
 position = Vector2(1526, 474)
 texture = ExtResource("32_lr_shelfs")
+script = ExtResource("13_shelf")
 
 [node name="ParallaxComponent" type="Node" parent="Shelfs" unique_id=-1294967292]
 script = ExtResource("10_parobj")
 camera_distance = 105.0
 
-[node name="BookIgo" parent="." unique_id=-1294967289 instance=ExtResource("2_item")]
-position = Vector2(1805, 426)
+[node name="Area2D" type="Area2D" parent="Shelfs"]
+
+[node name="BookIgo" parent="Shelfs" unique_id=-1294967289 instance=ExtResource("2_item")]
+position = Vector2(279, -48)
 texture = ExtResource("39_lr_igo")
+script = ExtResource("14_book")
 scene_item_id = 7
 intercation_type = 0
 
-[node name="ParallaxComponent" type="Node" parent="BookIgo" unique_id=-1294967288]
+[node name="ParallaxComponent" type="Node" parent="Shelfs/BookIgo" unique_id=-1294967288]
 script = ExtResource("10_parobj")
-camera_distance = 108.0
+camera_distance = 3.0
 
-[node name="BookManga" parent="." unique_id=-1294967287 instance=ExtResource("2_item")]
-position = Vector2(1598, 286)
+[node name="BookManga" parent="Shelfs" unique_id=-1294967287 instance=ExtResource("2_item")]
+position = Vector2(72, -188)
 texture = ExtResource("40_lr_manga")
+script = ExtResource("14_book")
 scene_item_id = 8
 intercation_type = 0
 
-[node name="ParallaxComponent" type="Node" parent="BookManga" unique_id=-1294967286]
+[node name="ParallaxComponent" type="Node" parent="Shelfs/BookManga" unique_id=-1294967286]
 script = ExtResource("10_parobj")
-camera_distance = 108.0
+camera_distance = 3.0
 
-[node name="BookMorozov" parent="." unique_id=-1294967285 instance=ExtResource("2_item")]
-position = Vector2(1618, 604)
+[node name="BookMorozov" parent="Shelfs" unique_id=-1294967285 instance=ExtResource("2_item")]
+position = Vector2(92, 130)
 texture = ExtResource("41_lr_morozov")
+script = ExtResource("14_book")
 scene_item_id = 9
 intercation_type = 0
 
-[node name="ParallaxComponent" type="Node" parent="BookMorozov" unique_id=-1294967284]
+[node name="ParallaxComponent" type="Node" parent="Shelfs/BookMorozov" unique_id=-1294967284]
 script = ExtResource("10_parobj")
-camera_distance = 108.0
+camera_distance = 3.0
 
 [node name="Table" type="Sprite2D" parent="." unique_id=-1294967283]
 position = Vector2(313.5, 817)

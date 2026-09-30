@@ -57,12 +57,19 @@ func add_item(item_id: InventoryItemGenerator.INVENTORY_ITEM) -> InventoryItemUI
 	notify_dialog_event(EVENT.PICKUP, item_id)
 	return item_ui
 
+func has_item(item_id: InventoryItemGenerator.INVENTORY_ITEM) -> bool:
+	return inventory_holder.has_item(item_id)
+
+func remove_item(item_id: InventoryItemGenerator.INVENTORY_ITEM) -> void:
+	inventory_holder.remove_item(item_id)
+
 func equip_item(item_ui : InventoryItemUI) -> void:
 	if equipped_item == item_ui:
 		return
 	if equipped_item != null:
 		unequip_item()
 	_equipped_item_ui = EquippedItemUIGenerator.generate(item_ui.inventory_item_id)
+	_equipped_item_ui.inventory_item = item_ui.get_inventory_item()
 	equipped_item_anchor.add_child(_equipped_item_ui)
 	equipped_item = item_ui
 	notify_dialog_event(EVENT.EQUIP, item_ui.inventory_item_id)

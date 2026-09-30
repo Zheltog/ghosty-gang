@@ -6,6 +6,6 @@ func _init() -> void:
 	pickable = true
 	equiped_immediately = false
 	inventory_item = InventoryItemGenerator.INVENTORY_ITEM.SALT
-	disappear_after_pickup = true
+	after_pickup = SceneItemBase.AFTER_PICKUP.DISAPPEAR
 
 # SKIP GENERATION

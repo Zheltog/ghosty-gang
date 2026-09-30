@@ -9,6 +9,7 @@ extends HouseSceneBase
 var ghost: Node2D
 
 func _ready() -> void:
+	StateManager.clear_state()
 	super._ready()
 	ghost = get_node_or_null("Rooms/Kitchen/Ghost") as Node2D
 	load_room("preroom")

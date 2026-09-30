@@ -76,6 +76,9 @@ func release() -> void:
 		_pickup_progress = 0.0
 	set_process(false)
 
+func hide_self() -> void:
+	hide()
+
 func press_item() -> void:
 	if _scene_item == null:
 		return

@@ -1,6 +1,12 @@
 class_name SceneItemBase
 extends RefCounted
 
+enum AFTER_PICKUP {
+	DISAPPEAR,
+	HIDE,
+	NOTHING,
+}
+
 var item : SceneItemGenerator.SCENE_ITEM
 
 var pickable : bool = false
@@ -8,9 +14,9 @@ var equiped_immediately : bool = false
 var inventory_item : InventoryItemGenerator.INVENTORY_ITEM
 # path to json with ink story, which happens if you press look at the object
 var ink_story_view : String
-var disappear_after_pickup : bool = false
+var after_pickup: AFTER_PICKUP = AFTER_PICKUP.NOTHING
 var interaction_type_overload: Dictionary = {}
-var _host: Node
+var _host: SceneItemUI
 
 @warning_ignore("unused_parameter")
 func press(equipped_item: InventoryItemUI = null) -> SceneItemPressResult:
@@ -24,8 +30,11 @@ func press(equipped_item: InventoryItemUI = null) -> SceneItemPressResult:
 			"item": inventory_item,
 			"equiped_immediately": equiped_immediately,
 		}
-		if disappear_after_pickup:
-			disappear()
+		match after_pickup:
+			AFTER_PICKUP.DISAPPEAR:
+				disappear()
+			AFTER_PICKUP.HIDE:
+				hide_self()
 	return result
 
 func get_interaction_overload(equipped_item: InventoryItemUI) -> Variant:
@@ -35,9 +44,13 @@ func get_interaction_overload(equipped_item: InventoryItemUI) -> Variant:
 		return null
 	return interaction_type_overload[equipped_item.inventory_item_id]
 
-func ready(host: Node = null) -> void:
+func ready(host: SceneItemUI = null) -> void:
 	_host = host
 	InkFunctions.subscribe(self)
+
+func hide_self() -> void:
+	if _host:
+		_host.hide_self()
 
 func disappear() -> void:
 	if _host:
