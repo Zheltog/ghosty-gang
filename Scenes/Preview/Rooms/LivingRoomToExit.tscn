@@ -1,0 +1,100 @@
+[gd_scene format=3 uid="uid://c8livexit0a1b"]
+
+[ext_resource type="Script" uid="uid://bgebmjt4oem53" path="res://Scripts/Room/RoomBase.gd" id="12_room"]
+[ext_resource type="Texture2D" uid="uid://bp5ajnexf8idg" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/LivingRoomToExit/Background.PNG" id="50_lte_bg"]
+[ext_resource type="Script" uid="uid://8p77bw84c7bp" path="res://Scripts/UI/PointAndClickScenes/Components/ParallaxComponent.gd" id="10_parobj"]
+[ext_resource type="Texture2D" uid="uid://cq314bqm5t00y" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/LivingRoomToExit/SIDE_TO_DOOR_BG.PNG" id="51_lte_side"]
+[ext_resource type="Texture2D" uid="uid://drlfwgriejbl4" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/LivingRoomToExit/BED.PNG" id="52_lte_bed"]
+[ext_resource type="Script" uid="uid://d37oapbkld1pk" path="res://Scripts/UI/PointAndClickScenes/SceneUIDoor.gd" id="20_8cn5p"]
+[ext_resource type="Texture2D" uid="uid://b22he5b4jmeas" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/LivingRoomToExit/TABLE.PNG" id="53_lte_table"]
+[ext_resource type="Texture2D" uid="uid://bfbve6aoyda6m" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/LivingRoomToExit/CHAIR.PNG" id="54_lte_chair"]
+[ext_resource type="Texture2D" uid="uid://b3y7bsctj4ntb" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/LivingRoomToExit/TUMBA.PNG" id="55_lte_tumba"]
+[ext_resource type="PackedScene" uid="uid://mt1xmuy8xhd5" path="res://Scenes/PointAndClick/SceneUIDoor.tscn" id="2_door"]
+[ext_resource type="Texture2D" uid="uid://b5l1souun2pfr" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/LivingRoomToExit/DOOR.PNG" id="56_lte_door"]
+[ext_resource type="Texture2D" uid="uid://dadq1xc3xcndr" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/MoveBack.png" id="10_a71pi"]
+
+[node name="LivingRoomToExit" type="Node2D" unique_id=-1194967295]
+visible = false
+script = ExtResource("12_room")
+room_name = "living_room_to_exit"
+
+[node name="Background" type="Sprite2D" parent="." unique_id=-1194967294]
+position = Vector2(960, 540)
+texture = ExtResource("50_lte_bg")
+
+[node name="ParallaxComponent" type="Node" parent="Background" unique_id=-1194967293]
+script = ExtResource("10_parobj")
+camera_distance = 100.0
+
+[node name="SideToDoorBg" type="Sprite2D" parent="." unique_id=-1194967292]
+position = Vector2(1265, 519)
+texture = ExtResource("51_lte_side")
+
+[node name="ParallaxComponent" type="Node" parent="SideToDoorBg" unique_id=-1194967291]
+script = ExtResource("10_parobj")
+camera_distance = 100.0
+
+[node name="Bed" type="Sprite2D" parent="." unique_id=-1194967290]
+position = Vector2(283, 715)
+texture = ExtResource("52_lte_bed")
+script = ExtResource("20_8cn5p")
+target_room = "under_bed"
+scene_item_id = 7
+intercation_type = 0
+
+[node name="Area2D" type="Area2D" parent="Bed" unique_id=674466857]
+
+[node name="ParallaxComponent" type="Node" parent="Bed" unique_id=-1194967289]
+script = ExtResource("10_parobj")
+camera_distance = 115.0
+
+[node name="Table" type="Sprite2D" parent="." unique_id=-1194967288]
+position = Vector2(1587.9999, 929)
+scale = Vector2(1.0210727, 1)
+texture = ExtResource("53_lte_table")
+
+[node name="ParallaxComponent" type="Node" parent="Table" unique_id=-1194967287]
+script = ExtResource("10_parobj")
+camera_distance = 120.0
+
+[node name="Chair" type="Sprite2D" parent="." unique_id=-1194967286]
+position = Vector2(1176, 859)
+texture = ExtResource("54_lte_chair")
+
+[node name="ParallaxComponent" type="Node" parent="Chair" unique_id=-1194967285]
+script = ExtResource("10_parobj")
+camera_distance = 115.0
+
+[node name="Tumba" type="Sprite2D" parent="." unique_id=-1194967284]
+position = Vector2(3, 958)
+texture = ExtResource("55_lte_tumba")
+
+[node name="ParallaxComponent" type="Node" parent="Tumba" unique_id=-1194967283]
+script = ExtResource("10_parobj")
+camera_distance = 120.0
+
+[node name="ToPreroom" parent="." unique_id=-1194967282 instance=ExtResource("2_door")]
+position = Vector2(1166, 558)
+texture = ExtResource("56_lte_door")
+target_room = "preroom"
+scene_item_id = 6
+intercation_type = 0
+
+[node name="ParallaxComponent" type="Node" parent="ToPreroom" unique_id=-1194967281]
+script = ExtResource("10_parobj")
+camera_distance = 100.0
+
+[node name="ToLivingRoom" parent="." unique_id=409050916 instance=ExtResource("2_door")]
+position = Vector2(88, 444)
+scale = Vector2(2, 2)
+texture = ExtResource("10_a71pi")
+target_room = "living_room"
+scene_item_id = 6
+intercation_type = 0
+
+[node name="ParallaxComponent" type="Node" parent="ToLivingRoom" unique_id=1069572054]
+script = ExtResource("10_parobj")
+camera_distance = 100.0
+
+[node name="Character" type="AnimatedSprite2D" parent="."]
+position = Vector2(960, 540)

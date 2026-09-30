@@ -1,0 +1,110 @@
+[gd_scene format=3 uid="uid://c8kitchen00a1"]
+
+[ext_resource type="Script" uid="uid://bgebmjt4oem53" path="res://Scripts/Room/RoomBase.gd" id="12_room"]
+[ext_resource type="Texture2D" uid="uid://d1kaj1oa2nrcl" path="res://Assets/Sprites/Test/PreviewScenes/Backgrounds/InsideKitchen.png" id="6_kitchen"]
+[ext_resource type="Script" uid="uid://8p77bw84c7bp" path="res://Scripts/UI/PointAndClickScenes/Components/ParallaxComponent.gd" id="10_parobj"]
+[ext_resource type="Texture2D" uid="uid://csag4s2sp1hen" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/Kitchen/Kneeting.png" id="81_k_kneet"]
+[ext_resource type="Texture2D" uid="uid://dkg4fyroraf2x" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/Carpet.png" id="9_fifyc"]
+[ext_resource type="Texture2D" uid="uid://clq0i68aqcyim" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/Kitchen/Fridge.png" id="82_k_fridge"]
+[ext_resource type="Texture2D" uid="uid://b2ch0uh0m1hly" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/Chair.png" id="10_dg8yx"]
+[ext_resource type="Texture2D" uid="uid://dcka82ffj5x77" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/Kitchen/Table.png" id="80_k_table"]
+[ext_resource type="Texture2D" uid="uid://dw8l1n4trcpk3" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/Kitchen/Plate.png" id="83_k_plate"]
+[ext_resource type="PackedScene" uid="uid://dvnnea2fw2ndt" path="res://Scenes/PointAndClick/SceneItemUI.tscn" id="2_item"]
+[ext_resource type="Texture2D" uid="uid://7x4rx6y3jl12" path="res://Assets/Sprites/InventoryItems/pepper.png" id="4_a8kwb"]
+[ext_resource type="PackedScene" uid="uid://mt1xmuy8xhd5" path="res://Scenes/PointAndClick/SceneUIDoor.tscn" id="2_door"]
+[ext_resource type="Texture2D" uid="uid://dealr40062x5q" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/Kitchen/Door.png" id="84_k_door"]
+
+[node name="Kitchen" type="Node2D" unique_id=1900112234]
+visible = false
+script = ExtResource("12_room")
+room_name = "kitchen"
+
+[node name="Background" type="Sprite2D" parent="." unique_id=2145012310]
+position = Vector2(960, 540)
+texture = ExtResource("6_kitchen")
+
+[node name="ParallaxComponent" type="Node" parent="Background" unique_id=2145012311]
+script = ExtResource("10_parobj")
+camera_distance = 100.0
+
+[node name="Kneeting" type="Sprite2D" parent="." unique_id=-694967295]
+position = Vector2(932, 543)
+texture = ExtResource("81_k_kneet")
+
+[node name="ParallaxComponent" type="Node" parent="Kneeting" unique_id=-694967294]
+script = ExtResource("10_parobj")
+camera_distance = 105.0
+
+[node name="Carpet" type="Sprite2D" parent="." unique_id=761985698]
+position = Vector2(522, 897)
+texture = ExtResource("9_fifyc")
+
+[node name="ParallaxComponent" type="Node" parent="Carpet" unique_id=1217083918]
+script = ExtResource("10_parobj")
+camera_distance = 115.0
+
+[node name="Fridge" type="Sprite2D" parent="." unique_id=-694967293]
+position = Vector2(1839, 444)
+texture = ExtResource("82_k_fridge")
+
+[node name="ParallaxComponent" type="Node" parent="Fridge" unique_id=-694967292]
+script = ExtResource("10_parobj")
+camera_distance = 110.0
+
+[node name="Chair" type="Sprite2D" parent="." unique_id=1742978604]
+position = Vector2(1332, 668)
+texture = ExtResource("10_dg8yx")
+
+[node name="ParallaxComponent" type="Node" parent="Chair" unique_id=1529131872]
+script = ExtResource("10_parobj")
+camera_distance = 110.0
+
+[node name="Table" type="Sprite2D" parent="." unique_id=1369783213]
+position = Vector2(979, 543)
+texture = ExtResource("80_k_table")
+
+[node name="ParallaxComponent" type="Node" parent="Table" unique_id=1671419775]
+script = ExtResource("10_parobj")
+camera_distance = 120.0
+
+[node name="Plate" type="Sprite2D" parent="." unique_id=-694967291]
+position = Vector2(622, 456)
+texture = ExtResource("83_k_plate")
+
+[node name="ParallaxComponent" type="Node" parent="Plate" unique_id=-694967290]
+script = ExtResource("10_parobj")
+camera_distance = 122.0
+
+[node name="Bottle" parent="." unique_id=1800578913 instance=ExtResource("2_item")]
+position = Vector2(1059, 909)
+scene_item_id = 1
+trigger_type = 0
+intercation_type = 1
+
+[node name="ParallaxComponent" type="Node" parent="Bottle" unique_id=2145012304]
+script = ExtResource("10_parobj")
+camera_distance = 110.0
+
+[node name="Pepper" parent="." unique_id=598298150 instance=ExtResource("2_item")]
+position = Vector2(1562, 818)
+texture = ExtResource("4_a8kwb")
+scene_item_id = 2
+intercation_type = 0
+
+[node name="ParallaxComponent" type="Node" parent="Pepper" unique_id=2145012305]
+script = ExtResource("10_parobj")
+camera_distance = 110.0
+
+[node name="ToLivingRoom" parent="." unique_id=1422088193 instance=ExtResource("2_door")]
+position = Vector2(157, 562)
+texture = ExtResource("84_k_door")
+target_room = "living_room"
+scene_item_id = 6
+intercation_type = 0
+
+[node name="ParallaxComponent" type="Node" parent="ToLivingRoom" unique_id=2145012306]
+script = ExtResource("10_parobj")
+camera_distance = 100.0
+
+[node name="Character" type="AnimatedSprite2D" parent="."]
+position = Vector2(960, 540)

@@ -2,13 +2,15 @@ class_name HouseScenePreview
 extends HouseSceneBase
 
 @onready var dialog_controller: DialogController = $DialogController
-@onready var ghost: Node2D = get_node_or_null("Rooms/Kitchen/Ghost") as Node2D
 @onready var scene_object_manager: SceneObjectsManager = $SceneObjectManager
 
 @export var ink_dialog_appear_path : String
 
+var ghost: Node2D
+
 func _ready() -> void:
 	super._ready()
+	ghost = get_node_or_null("Rooms/Kitchen/Ghost") as Node2D
 	load_room("preroom")
 
 func load_room(room_name: String) -> void:

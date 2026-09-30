@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://c8exitstor0a1"]
+
+[ext_resource type="PackedScene" uid="uid://mt1xmuy8xhd5" path="res://Scenes/PointAndClick/SceneUIDoor.tscn" id="2_door"]
+[ext_resource type="Texture2D" uid="uid://dadq1xc3xcndr" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/MoveBack.png" id="10_a71pi"]
+[ext_resource type="Script" uid="uid://8p77bw84c7bp" path="res://Scripts/UI/PointAndClickScenes/Components/ParallaxComponent.gd" id="10_parobj"]
+[ext_resource type="Script" uid="uid://bgebmjt4oem53" path="res://Scripts/Room/RoomBase.gd" id="12_room"]
+[ext_resource type="Texture2D" uid="uid://cm6hmkggdoijp" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/ExitFromStorage/Background.PNG" id="60_efs_bg"]
+[ext_resource type="Texture2D" uid="uid://dftajtlfc4vkb" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/ExitFromStorage/Paint Layer 1.PNG" id="61_efs_paint"]
+[ext_resource type="Texture2D" uid="uid://ct3may4t1acha" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/ExitFromStorage/BED.PNG" id="62_efs_bed"]
+[ext_resource type="Texture2D" uid="uid://cu3nc1tofqpqu" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/ExitFromStorage/TUMBA.PNG" id="63_efs_tumba"]
+[ext_resource type="Texture2D" uid="uid://cndctonh6yagt" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/ExitFromStorage/EXIT.PNG" id="64_efs_exit"]
+[ext_resource type="Texture2D" uid="uid://ddbf7gc1pgs43" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/ExitFromStorage/EXIT LOCKED.PNG" id="65_efs_locked"]
+
+[node name="ExitFromStorage" type="Node2D" unique_id=-1094967295]
+visible = false
+script = ExtResource("12_room")
+room_name = "exit_from_storage"
+
+[node name="Background" type="Sprite2D" parent="." unique_id=-1094967294]
+position = Vector2(960, 540)
+texture = ExtResource("60_efs_bg")
+
+[node name="ParallaxComponent" type="Node" parent="Background" unique_id=-1094967293]
+script = ExtResource("10_parobj")
+camera_distance = 100.0
+
+[node name="PaintLayer" type="Sprite2D" parent="." unique_id=-1094967292]
+position = Vector2(960, 540)
+texture = ExtResource("61_efs_paint")
+
+[node name="ParallaxComponent" type="Node" parent="PaintLayer" unique_id=-1094967291]
+script = ExtResource("10_parobj")
+camera_distance = 105.0
+
+[node name="Bed" type="Sprite2D" parent="." unique_id=-1094967290]
+position = Vector2(964, 618)
+texture = ExtResource("62_efs_bed")
+
+[node name="ParallaxComponent" type="Node" parent="Bed" unique_id=-1094967289]
+script = ExtResource("10_parobj")
+camera_distance = 90.0
+
+[node name="Tumba" type="Sprite2D" parent="." unique_id=-1094967288]
+position = Vector2(779, 670)
+texture = ExtResource("63_efs_tumba")
+
+[node name="ParallaxComponent" type="Node" parent="Tumba" unique_id=-1094967287]
+script = ExtResource("10_parobj")
+camera_distance = 95.0
+
+[node name="ToLivingRoomToExit" parent="." unique_id=-1094967284 instance=ExtResource("2_door")]
+position = Vector2(965, 467)
+texture = ExtResource("64_efs_exit")
+target_room = "living_room_to_exit"
+scene_item_id = 6
+intercation_type = 0
+
+[node name="ParallaxComponent" type="Node" parent="ToLivingRoomToExit" unique_id=-1094967283]
+script = ExtResource("10_parobj")
+camera_distance = 100.0
+
+[node name="ExitLocked" type="Sprite2D" parent="." unique_id=-1094967286]
+visible = false
+position = Vector2(966, 470)
+texture = ExtResource("65_efs_locked")
+
+[node name="ParallaxComponent" type="Node" parent="ExitLocked" unique_id=-1094967285]
+script = ExtResource("10_parobj")
+camera_distance = 100.0
+
+[node name="ToStorage" parent="." unique_id=-1094967282 instance=ExtResource("2_door")]
+position = Vector2(80, 80)
+scale = Vector2(2, 2)
+texture = ExtResource("10_a71pi")
+target_room = "storage"
+scene_item_id = 6
+intercation_type = 0
+
+[node name="ParallaxComponent" type="Node" parent="ToStorage" unique_id=-1094967281]
+script = ExtResource("10_parobj")
+camera_distance = 100.0
+
+[node name="Character" type="AnimatedSprite2D" parent="." unique_id=847728140]
+position = Vector2(960, 540)

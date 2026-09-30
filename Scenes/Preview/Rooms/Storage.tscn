@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://c8storage00a1"]
+
+[ext_resource type="Script" uid="uid://bgebmjt4oem53" path="res://Scripts/Room/RoomBase.gd" id="12_room"]
+[ext_resource type="Texture2D" uid="uid://d005w884r03n8" path="res://Assets/Sprites/Test/PreviewScenes/Backgrounds/InsideStorage.png" id="24_storbg"]
+[ext_resource type="Script" uid="uid://8p77bw84c7bp" path="res://Scripts/UI/PointAndClickScenes/Components/ParallaxComponent.gd" id="10_parobj"]
+[ext_resource type="Texture2D" uid="uid://gygidwrc4ns0" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/Storage/Shelf.png" id="100_s_shelf"]
+[ext_resource type="Texture2D" uid="uid://cfoc1q22eb4sk" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/Storage/Chair.png" id="101_s_chair"]
+[ext_resource type="Texture2D" uid="uid://bdjo3yg8dgam5" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/Storage/Passport.png" id="102_s_pass"]
+
+[ext_resource type="PackedScene" uid="uid://mt1xmuy8xhd5" path="res://Scenes/PointAndClick/SceneUIDoor.tscn" id="2_door"]
+[ext_resource type="Texture2D" uid="uid://dadq1xc3xcndr" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/MoveBack.png" id="10_a71pi"]
+
+[node name="Storage" type="Node2D" unique_id=2005596028]
+visible = false
+script = ExtResource("12_room")
+room_name = "storage"
+
+[node name="Background" type="Sprite2D" parent="." unique_id=1597905437]
+position = Vector2(960, 540)
+texture = ExtResource("24_storbg")
+
+[node name="ParallaxComponent" type="Node" parent="Background" unique_id=1493908703]
+script = ExtResource("10_parobj")
+camera_distance = 100.0
+
+[node name="Shelf" type="Sprite2D" parent="." unique_id=-794967295]
+position = Vector2(261, 481)
+texture = ExtResource("100_s_shelf")
+
+[node name="ParallaxComponent" type="Node" parent="Shelf" unique_id=-794967294]
+script = ExtResource("10_parobj")
+camera_distance = 110.0
+
+[node name="Chair" type="Sprite2D" parent="." unique_id=-794967293]
+position = Vector2(950, 691)
+texture = ExtResource("101_s_chair")
+
+[node name="ParallaxComponent" type="Node" parent="Chair" unique_id=-794967292]
+script = ExtResource("10_parobj")
+camera_distance = 115.0
+
+[node name="Passport" type="Sprite2D" parent="." unique_id=-794967291]
+position = Vector2(295, 484)
+texture = ExtResource("102_s_pass")
+
+[node name="ParallaxComponent" type="Node" parent="Passport" unique_id=-794967290]
+script = ExtResource("10_parobj")
+camera_distance = 112.0
+
+[node name="ToExitFromStorage" parent="." unique_id=-794967289 instance=ExtResource("2_door")]
+position = Vector2(80, 80)
+scale = Vector2(2, 2)
+texture = ExtResource("10_a71pi")
+target_room = "exit_from_storage"
+scene_item_id = 6
+intercation_type = 0
+
+[node name="ParallaxComponent" type="Node" parent="ToExitFromStorage" unique_id=-794967288]
+script = ExtResource("10_parobj")
+camera_distance = 100.0
+
+[node name="Character" type="AnimatedSprite2D" parent="."]
+position = Vector2(960, 540)

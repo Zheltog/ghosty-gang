@@ -9,7 +9,14 @@ var _mouse: Vector2 = Vector2.ZERO
 var _components: Array[ParallaxComponent] = []
 
 func _ready() -> void:
-	var stack: Array[Node] = [get_parent()]
+	collect()
+
+func collect() -> void:
+	_components.clear()
+	var root := get_parent()
+	if root == null:
+		return
+	var stack: Array[Node] = [root]
 	while not stack.is_empty():
 		var node: Node = stack.pop_back()
 		if node is ParallaxComponent:

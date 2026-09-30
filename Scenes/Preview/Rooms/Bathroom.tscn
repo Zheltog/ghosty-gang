@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://c8bathroom0a1"]
+
+[ext_resource type="PackedScene" uid="uid://mt1xmuy8xhd5" path="res://Scenes/PointAndClick/SceneUIDoor.tscn" id="2_door"]
+[ext_resource type="Texture2D" uid="uid://dadq1xc3xcndr" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/MoveBack.png" id="10_a71pi"]
+[ext_resource type="Script" uid="uid://8p77bw84c7bp" path="res://Scripts/UI/PointAndClickScenes/Components/ParallaxComponent.gd" id="10_parobj"]
+[ext_resource type="Script" uid="uid://bgebmjt4oem53" path="res://Scripts/Room/RoomBase.gd" id="12_room"]
+[ext_resource type="Texture2D" uid="uid://blo7kd8booo51" path="res://Assets/Sprites/Test/PreviewScenes/Backgrounds/InsideBathroom.png" id="23_bathbg"]
+[ext_resource type="Texture2D" uid="uid://dbf0d2v76273k" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/Bathroom/Bath.png" id="90_b_bath"]
+[ext_resource type="Texture2D" uid="uid://bekrlcfujd2wk" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/Bathroom/tumba.png" id="91_b_tumba"]
+[ext_resource type="Texture2D" uid="uid://bvvvlpwdhio26" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/Bathroom/flashlight.png" id="92_b_flash"]
+
+[node name="Bathroom" type="Node2D" unique_id=844400792]
+visible = false
+script = ExtResource("12_room")
+room_name = "bathroom"
+
+[node name="Background" type="Sprite2D" parent="." unique_id=2060802693]
+position = Vector2(960, 540)
+texture = ExtResource("23_bathbg")
+
+[node name="ParallaxComponent" type="Node" parent="Background" unique_id=1501714846]
+script = ExtResource("10_parobj")
+camera_distance = 100.0
+
+[node name="Bath" type="Sprite2D" parent="." unique_id=-894967295]
+position = Vector2(960, 540)
+texture = ExtResource("90_b_bath")
+
+[node name="ParallaxComponent" type="Node" parent="Bath" unique_id=-894967294]
+script = ExtResource("10_parobj")
+camera_distance = 110.0
+
+[node name="Tumba" type="Sprite2D" parent="." unique_id=-894967293]
+position = Vector2(394, 767)
+texture = ExtResource("91_b_tumba")
+
+[node name="ParallaxComponent" type="Node" parent="Tumba" unique_id=-894967292]
+script = ExtResource("10_parobj")
+camera_distance = 115.0
+
+[node name="Flashlight" type="Sprite2D" parent="." unique_id=-894967291]
+position = Vector2(365, 601)
+texture = ExtResource("92_b_flash")
+
+[node name="ParallaxComponent" type="Node" parent="Flashlight" unique_id=-894967290]
+script = ExtResource("10_parobj")
+camera_distance = 118.0
+
+[node name="ToPreroom" parent="." unique_id=-894967289 instance=ExtResource("2_door")]
+position = Vector2(80, 80)
+scale = Vector2(2, 2)
+texture = ExtResource("10_a71pi")
+target_room = "preroom"
+scene_item_id = 6
+intercation_type = 0
+
+[node name="ParallaxComponent" type="Node" parent="ToPreroom" unique_id=-894967288]
+script = ExtResource("10_parobj")
+camera_distance = 100.0
+
+[node name="Character" type="AnimatedSprite2D" parent="." unique_id=1984494638]
+position = Vector2(960, 540)
