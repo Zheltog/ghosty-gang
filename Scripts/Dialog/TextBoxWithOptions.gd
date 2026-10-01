@@ -4,26 +4,10 @@ extends Control
 
 const OPTIONS_MARKER := "%%"
 const max_printing_id: int = 100
-const BOX_MARGIN: float = 98.0
-const DEFAULT_BOX_SIZE := Vector2(840, 504)
-const DEFAULT_BOX_POSITION := "top_right"
 
-const _POSITION_ALIGN := {
-	"top_left": Vector2(0.0, 0.0),
-	"top": Vector2(0.5, 0.0),
-	"top_center": Vector2(0.5, 0.0),
-	"top_right": Vector2(1.0, 0.0),
-	"left": Vector2(0.0, 0.5),
-	"center_left": Vector2(0.0, 0.5),
-	"center": Vector2(0.5, 0.5),
-	"right": Vector2(1.0, 0.5),
-	"center_right": Vector2(1.0, 0.5),
-	"bottom_left": Vector2(0.0, 1.0),
-	"bottom": Vector2(0.5, 1.0),
-	"bottom_center": Vector2(0.5, 1.0),
-	"bottom_right": Vector2(1.0, 1.0),
-}
+signal line_finished
 
+@export var window_name: String = ""
 @export var appear_anim_name: String = "appear"
 @export var disappear_anim_name: String = "disappear"
 @export var printing_speed: float = INF
@@ -45,40 +29,38 @@ var _seconds_before_next_symbol: float = -1
 var _showing_requested: bool
 var _saved_printing_id: int = 0
 var _current_speaker_name: String
-var _box_position: String = DEFAULT_BOX_POSITION
-var _box_size := DEFAULT_BOX_SIZE
 var _pending_options: Array = []
 var _options_at: int = -1
 var _options_revealed: bool = false
+var _instant_line: bool = false
 
 func _ready() -> void:
 	_anim_player.animation_finished.connect(_on_animation_finished)
 	_rect.gui_input.connect(_on_texture_rect_gui_input)
 	_label.text = ""
-	_option_holders[1] = $TextureRect/SingleOption
-	_option_holders[2] = $TextureRect/TwoOptions
-	_option_holders[3] = $TextureRect/ThreeOptions
+	_assign_option_holder(1, "TextureRect/SingleOption")
+	_assign_option_holder(2, "TextureRect/TwoOptions")
+	_assign_option_holder(3, "TextureRect/ThreeOptions")
 	_init_options()
 	_hide_all_option_holders()
-	_capture_box_size()
-	_apply_box_position()
 	_rect.hide()
 
-func set_box_position(position_id: String) -> void:
-	var normalized := _normalize_position_id(position_id)
-	if not _POSITION_ALIGN.has(normalized):
-		printerr("TextBoxWithOptions: unknown box position '%s'" % position_id)
-		return
-	if _box_position == normalized:
-		return
-	_box_position = normalized
-	if is_node_ready():
-		_apply_box_position()
+## Ink name for this window. Uses `window_name` when set, otherwise the node name.
+func resolved_window_name() -> String:
+	var raw := window_name.strip_edges()
+	if raw.is_empty():
+		raw = String(name)
+	return DialogState.normalize_window_name(raw)
+
+func _assign_option_holder(count: int, path: String) -> void:
+	if has_node(path):
+		_option_holders[count] = get_node(path)
 
 func _init_options() -> void:
+	var manager := get_parent() as DialogWindowManager
 	for holder_value in _option_holders.values():
 		for option_button in holder_value.get_children():
-			(option_button as BoxOptionButton).set_dialog_controller(controller)
+			(option_button as BoxOptionButton).set_window_manager(manager)
 
 func _hide_all_option_holders() -> void:
 	if not _are_options_shown:
@@ -90,13 +72,18 @@ func _hide_all_option_holders() -> void:
 
 func _on_texture_rect_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		controller.try_next()
+		var manager := get_parent() as DialogWindowManager
+		if manager:
+			manager.handle_click()
 
 func is_shown() -> bool:
 	return _is_shown
 
 func is_printing() -> bool:
 	return _is_printing
+
+func has_options() -> bool:
+	return not _pending_options.is_empty()
 
 func interrupt_printing() -> void:
 	_is_printing = false
@@ -107,6 +94,7 @@ func skip_printing() -> void:
 	_label.text = _full_text
 	_is_printing = false
 	_try_reveal_options()
+	line_finished.emit()
 
 # TODO: impl animations
 func _show_box(text: String, options: Array, speaker_name: String = "") -> void:
@@ -125,7 +113,8 @@ func _show_box(text: String, options: Array, speaker_name: String = "") -> void:
 		_saved_options = options
 		_anim_player.play(appear_anim_name)
 
-func show_box_instantly(text: String, options: Array, speaker_name: String = "") -> void:
+func show_box_instantly(text: String, options: Array, speaker_name: String = "", instant: bool = false) -> void:
+	_instant_line = instant
 	_current_speaker_name = speaker_name
 	if not _rect.is_visible():
 		_rect.show()
@@ -144,11 +133,10 @@ func hide_box_instantly() -> void:
 
 func _do_show(text: String, options: Array) -> void:
 	_label.text = ""
-	if _seconds_before_next_symbol < 0:
-		if printing_speed <= 0.0 or not is_finite(printing_speed):
-			_seconds_before_next_symbol = 0.0
-		else:
-			_seconds_before_next_symbol = 1.0 / printing_speed
+	if _instant_line or printing_speed <= 0.0 or not is_finite(printing_speed):
+		_seconds_before_next_symbol = 0.0
+	else:
+		_seconds_before_next_symbol = 1.0 / printing_speed
 	_is_printing = true
 	_is_shown = true
 	_pending_options = options
@@ -160,6 +148,7 @@ func _do_show(text: String, options: Array) -> void:
 	if not finished:
 		return
 	_try_reveal_options()
+	line_finished.emit()
 
 func _on_animation_finished(anim_name: StringName) -> void:
 	if anim_name == appear_anim_name:
@@ -213,6 +202,8 @@ func _show_options(options: Array):
 	for holder_key in _option_holders.keys():
 		if holder_key == options_size and not _option_holders[holder_key].is_visible():
 			target_holder = _option_holders[holder_key]
+			for option_button in target_holder.get_children():
+				(option_button as BoxOptionButton).reset_visual()
 			target_holder.show()
 	var i = 0
 	if target_holder != null:
@@ -222,6 +213,25 @@ func _show_options(options: Array):
 			button.set_text(option.GetText())
 			button.id = option.GetIndex()
 			i += 1
+
+func hide_other_options(selected: BoxOptionButton) -> void:
+	for holder in _option_holders.values():
+		if not holder.visible:
+			continue
+		for child in holder.get_children():
+			if selected != null and child == selected:
+				continue
+			child.hide()
+
+func find_option_button(choice_id: int) -> BoxOptionButton:
+	for holder in _option_holders.values():
+		if not holder.visible:
+			continue
+		for child in holder.get_children():
+			var button := child as BoxOptionButton
+			if button and button.id == choice_id:
+				return button
+	return null
 
 func _get_char_delay(previous_char, next_char) -> float:
 	if (_is_punctiation(previous_char) and _is_space(next_char)) or next_char == '\n':
@@ -237,23 +247,3 @@ func _is_space(char) -> bool:
 
 func _get_next_printing_id() -> int:
 	return 1 if _saved_printing_id == max_printing_id else _saved_printing_id + 1
-
-func _normalize_position_id(position_id: String) -> String:
-	return position_id.strip_edges().to_lower().replace("-", "_").replace(" ", "_")
-
-func _capture_box_size() -> void:
-	var size := Vector2(_rect.offset_right - _rect.offset_left, _rect.offset_bottom - _rect.offset_top)
-	if size.x > 1.0 and size.y > 1.0:
-		_box_size = size
-
-func _apply_box_position() -> void:
-	var align: Vector2 = _POSITION_ALIGN.get(_box_position, _POSITION_ALIGN[DEFAULT_BOX_POSITION])
-	var viewport_size := get_viewport_rect().size
-	if viewport_size.x <= 0.0 or viewport_size.y <= 0.0:
-		viewport_size = Vector2(1920, 1080)
-	var left := lerpf(BOX_MARGIN, viewport_size.x - BOX_MARGIN - _box_size.x, align.x)
-	var top := lerpf(BOX_MARGIN, viewport_size.y - BOX_MARGIN - _box_size.y, align.y)
-	_rect.offset_left = left
-	_rect.offset_top = top
-	_rect.offset_right = left + _box_size.x
-	_rect.offset_bottom = top + _box_size.y

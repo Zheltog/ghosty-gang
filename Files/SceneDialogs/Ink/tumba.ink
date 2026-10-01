@@ -1,6 +1,7 @@
 EXTERNAL godot_1(target_class, method, arg)
 
-В тумбе лежит фотография. -> options
+В тумбе лежит фотография. # window:default
+-> options
 
 == options ==
 + [Взять]

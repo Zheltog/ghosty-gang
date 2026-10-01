@@ -1,9 +1,9 @@
 -> start
 
 === start ===
-Привет! Я машу рукой. # anim:wave # pos:top_right
+Привет! Я машу рукой. # anim:wave
 У этой строки тега нет — должна остаться idle.
-Ого, вот это поворот! # anim:surprised # pos:bottom_left
+Ого, вот это поворот! # anim:surprised
 Такой анимации не существует — ждём предупреждение и откат на idle. # anim:jump_over_the_moon
 + [Помахать ещё раз]
 	Машу снова. # anim:wave
@@ -16,5 +16,5 @@
 	-> ending
 
 === ending ===
-Тест закончен. # anim:idle # pos:top_right
+Тест закончен. # anim:idle
 -> END

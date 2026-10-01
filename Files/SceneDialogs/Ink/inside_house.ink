@@ -7,10 +7,12 @@ VAR has_poison = false
 -> who
 
 === who ===
-    %%Кто здесь? # anim:surprised # skippable:false # skip_default:false # timeout:4
+    %%Кто здесь? # window:default # anim:surprised # skippable:false # skip_default:false # timeout:4
 + [Промолчать]
+	Промолчать. # response
 	-> after_who
 + [Здравствуйте! Дверь была не заперта.]
+	Здравствуйте! Дверь была не заперта. # response
 	-> after_who
 + [equip:gun]
 	-> gun -> invite
@@ -20,12 +22,14 @@ VAR has_poison = false
 	-> key_pulled -> who
 
 === after_who ===
-А это вы. # anim:relaxed
+А это вы. # window:default # anim:relaxed
 А ордер на обыск у вас есть? # timeout:4
 + [Промолчать]
 	~ suspicion += 1
+	Промолчать. # response
 	-> joke
 + [Не совсем...]
+	Не совсем... # response
 	-> joke
 + [equip:gun]
 	-> gun -> invite
@@ -35,13 +39,13 @@ VAR has_poison = false
 	-> key_pulled -> after_who
 
 === joke ===
-Я шучу, не переживайте. Это ваша работа. У нас в N отродясь проблем с домушниками не было, вот двери и не закрываем.
+Я шучу, не переживайте. Это ваша работа. У нас в N отродясь проблем с домушниками не было, вот двери и не закрываем. # window:default
 Вы, хочется верить, тоже меня грабить не собираетесь.
 -> after_joke
 
 === after_joke ===
 {cabinet_open:
-	Инженер подходит к открытому шкафу и закрывает его.
+	Инженер подходит к открытому шкафу и закрывает его. # window:default
 	-> ask_key
 }
 -> tidy
@@ -50,11 +54,12 @@ VAR has_poison = false
 {key_resolved:
 	-> tidy
 }
-Ключ у вас? # timeout:8
+Ключ у вас? # window:default # timeout:8
 + [Нет.]
 	~ suspicion += 1
 	~ key_resolved = true
-	Значит опять попал в постиранное. Ну ничего, найдется.
+	Нет. # response
+	Значит опять попал в постиранное. Ну ничего, найдется. # window:default
 	-> tidy
 + [equip:key]
 	-> key_pulled -> tidy
@@ -64,13 +69,14 @@ VAR has_poison = false
 	-> passport -> ask_key
 
 === tidy ===
-Инженер проходит по комнате и расставляет вещи на места.
+Инженер проходит по комнате и расставляет вещи на места. # window:default
 ~ has_poison = true
 -> invite
 
 === invite ===
-Полагаю, у вас есть ко мне вопросы — пойдемте на кухню. Я на все отвечу.
+Полагаю, у вас есть ко мне вопросы — пойдемте на кухню. Я на все отвечу. # window:default
 + [Хорошо.]
+	Хорошо. # response
 	-> END
 + [equip:gun]
 	-> gun -> invite
@@ -83,14 +89,16 @@ VAR has_poison = false
 {key_resolved:
 	->->
 }
-Вернете?
+Вернете? # window:default
 + [Отдать ключ]
 	~ key_resolved = true
-	Инженер задвигает шкаф и закрывает его.
+	Отдать ключ. # response
+	Инженер задвигает шкаф и закрывает его. # window:default
 	->->
 + [Пока нет.]
 	~ suspicion += 1
-	Инженер приподнимает бровь, затем кривовато улыбается.
+	Пока нет. # response
+	Инженер приподнимает бровь, затем кривовато улыбается. # window:default
 	Материалы дела?
 	->->
 + [equip:gun]
@@ -102,19 +110,22 @@ VAR has_poison = false
 {suspicion < 10: 
     ~suspicion += 10
 }
-%%Что это значит?! Прошу вас, опустите оружие. # anim:shocked
+%%Что это значит?! Прошу вас, опустите оружие. # window:default # anim:shocked
 + [unequip:gun]
 	-> gun_holster
 + [action:shoot]
 	-> gun_shoot
 * [Я нашел этот пистолет в вашей кладовке.]
+	Я нашел этот пистолет в вашей кладовке. # response
 	-> gun_storage
 * [Что ты сделал с мальчиком?]
+	Что ты сделал с мальчиком? # response
     -> gun_boy
 
 = gun_storage
-	Все верно, это мой пистолет — у меня есть на него лицензия.
+	Все верно, это мой пистолет — у меня есть на него лицензия. # window:default
 	+ [Зачем вам лицензия на огнестрел?]
+		Зачем вам лицензия на огнестрел? # response
 		-> gun_license
 	+ [unequip:gun]
 		-> gun_holster
@@ -122,7 +133,7 @@ VAR has_poison = false
 		-> gun_shoot
 		
 = gun_license
-    Я получил её в 91 году. Как и многие мои знакомые тогда.
+    Я получил её в 91 году. Как и многие мои знакомые тогда. # window:default
 	Это ведь не преступление хранить у себя оружие для самообороны.
 	+ [unequip:gun]
 		-> gun_holster
@@ -130,7 +141,7 @@ VAR has_poison = false
 		-> gun_shoot
 
 = gun_boy
-	Что? С мальчиком? Ничего я с ним не делал.
+	Что? С мальчиком? Ничего я с ним не делал. # window:default
 	Если я арестован, то прошу, давайте делать все по закону. Я с радостью на все отвечу, только уберите оружие.
 	+ [unequip:gun]
 		-> gun_holster
@@ -138,7 +149,7 @@ VAR has_poison = false
 		-> gun_shoot
 
 = gun_holster
-Прошу вас, давайте не будем так больше... #anim:relaxed
+Прошу вас, давайте не будем так больше... # window:default #anim:relaxed
 ->->
 
 = gun_shoot
@@ -147,6 +158,6 @@ VAR has_poison = false
 
 === passport ===
 ~ suspicion += 3
-Вижу, вы все-таки успели покопаться в моих вещах.
+Вижу, вы все-таки успели покопаться в моих вещах. # window:default
 Эти документы выданы мне партией. Они поддельные, но государственные. Пойдемте на кухню, я отвечу на все по порядку.
 ->->

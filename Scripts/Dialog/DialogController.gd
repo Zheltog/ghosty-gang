@@ -2,19 +2,18 @@ class_name DialogController
 
 extends Node2D
 
-const timeout_tag: String = "timeout"
-
 @export var story: InkStory
 @export var timer: GameTimer
+@export var response_continue_delay: float = 0.75
 
-@onready var _box: TextBoxWithOptions = $TextBoxWithOptions
+@onready var _windows: DialogWindowManager = $DialogWindowManager
 
-var _skippable_default: bool = true
-var _current_line_skippable: bool = true
+var _state := DialogState.new()
 var _current_choices: Array = []
 var _story_path: String = ""
 
 func _ready() -> void:
+	_windows.setup(self, _state)
 	VoiceProcessor.register_speaker("bob", 0.75, 1.25)
 	InkFunctions.subscribe(self)
 	if story:
@@ -30,7 +29,7 @@ func load_story(path: String) -> bool:
 	_story_path = path
 	story.ResetState()
 	InkFunctions.bind_story(story)
-	_reset_skip_state()
+	_state.reset()
 	return true
 
 func start_story(path: String = "") -> void:
@@ -46,20 +45,23 @@ func start_story(path: String = "") -> void:
 	story.ResetState()
 	InkFunctions.bind_story(story)
 	InkVariableStore.apply(story, _story_path)
-	_reset_skip_state()
+	_state.reset()
+	_windows.reset()
 	_present_line()
 
-func try_next() -> void:
-	if _box.is_printing():
-		if _current_line_skippable:
-			_box.skip_printing()
-		return
+func proceed() -> void:
 	_present_line()
 
-func process_option_selected(id: int) -> void:
+func process_option_selected(id: int, box: BoxOptionButton = null) -> void:
 	if story == null:
 		return
-	_box.interrupt_printing()
+	if timer:
+		timer.reset()
+	if box == null:
+		box = _windows.find_option_button(id)
+	await _windows.confirm_option(box)
+	if story == null:
+		return
 	story.ChooseChoiceIndex(id)
 	_present_line()
 
@@ -88,17 +90,21 @@ func try_action(action_name: String) -> bool:
 			return true
 	return false
 
-func set_box_position(position_id: String) -> void:
-	_box.set_box_position(position_id)
-
 func start_option_timeout() -> void:
-	if timer == null:
+	if timer == null or _state.timeout_seconds < 0.0:
 		return
-	_process_timeout_tag(InkTagParser.parse(story.GetCurrentTags()))
+	if _state.timeout_seconds == 0.0:
+		timer.reset()
+		return
+	var visible := _visible_choices(_current_choices)
+	if visible.is_empty():
+		return
+	timer.start(_state.timeout_seconds, func(): process_option_selected(visible[0].GetIndex()))
 
 func _present_line() -> void:
 	if story == null:
 		return
+	_state.begin_line()
 	if timer:
 		timer.reset()
 	# Skips empty lines. Specifically needed for dialog to properly end
@@ -109,77 +115,23 @@ func _present_line() -> void:
 		var line := "" if text == null else str(text).strip_edges()
 		if line.is_empty() and visible_choices.is_empty():
 			continue
-		_process_tags(story.GetCurrentTags())
-		var display := line if not line.is_empty() else str(story.GetCurrentText())
-		_box.show_box_instantly(display, visible_choices, "bob")
+		_show_current_line(line if not line.is_empty() else str(story.GetCurrentText()), visible_choices)
 		if not story.GetCanContinue() and _current_choices.is_empty():
 			InkVariableStore.capture(story, _story_path)
 		return
 	_current_choices = story.GetCurrentChoices()
 	var visible_choices_at_end := _visible_choices(_current_choices)
 	if not visible_choices_at_end.is_empty():
-		_process_tags(story.GetCurrentTags())
-		_box.show_box_instantly(str(story.GetCurrentText()), visible_choices_at_end, "bob")
+		_show_current_line(str(story.GetCurrentText()), visible_choices_at_end)
 		return
 	InkVariableStore.capture(story, _story_path)
-	_box.hide_box_instantly()
+	_windows.close()
 
-func _process_tags(tags: Array[String]) -> void:
-	var parsed_tags := InkTagParser.parse(tags)
-	_process_animation_tag(parsed_tags)
-	_process_position_tag(parsed_tags)
-	_process_skip_tags(parsed_tags)
-
-func _reset_skip_state() -> void:
-	_skippable_default = true
-	_current_line_skippable = true
-	_current_choices = []
-
-func _process_skip_tags(tags: Dictionary) -> void:
-	_current_line_skippable = _skippable_default
-	if tags.has("skip_default"):
-		_skippable_default = _parse_bool_tag(tags["skip_default"], _skippable_default)
-		_current_line_skippable = _skippable_default
-	if tags.has("skippable"):
-		_current_line_skippable = _parse_bool_tag(tags["skippable"], _current_line_skippable)
-
-func _parse_bool_tag(value: Variant, fallback: bool) -> bool:
-	var normalized := str(value).strip_edges().to_lower()
-	if normalized.is_empty():
-		return true
-	match normalized:
-		"true", "1", "yes", "on":
-			return true
-		"false", "0", "no", "off":
-			return false
-		_:
-			printerr("DialogController: unknown bool tag value '%s'" % value)
-			return fallback
-
-func _process_animation_tag(tags: Dictionary) -> void:
-	var animation_name := StringName(tags.get("anim", ""))
-	if tags.has("anim") and HouseSceneBase.current_house_scene:
-		HouseSceneBase.current_house_scene.set_characters_emotion(str(animation_name))
-
-func _process_position_tag(tags: Dictionary) -> void:
-	if not tags.has("pos"):
-		return
-	set_box_position(str(tags["pos"]))
-  
-func _process_timeout_tag(tags: Dictionary) -> void:
-	if timer == null:
-		return
-	var timeout_value_str = tags.get(timeout_tag, null)
-	if timeout_value_str == null:
-		return
-	var timeout_value = float(timeout_value_str)
-	if timeout_value == 0:
-		timer.reset()
-		return
-	var visible := _visible_choices(_current_choices)
-	if visible.is_empty():
-		return
-	timer.start(timeout_value, func(): process_option_selected(visible[0].GetIndex()))
+func _show_current_line(text: String, choices: Array) -> void:
+	_state.apply(story.GetCurrentTags())
+	if _state.has_animation and HouseSceneBase.current_house_scene:
+		HouseSceneBase.current_house_scene.set_characters_emotion(_state.animation_name)
+	_windows.display(text, choices)
 
 func _visible_choices(choices: Array) -> Array:
 	var visible: Array = []

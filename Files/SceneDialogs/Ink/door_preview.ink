@@ -5,7 +5,7 @@ EXTERNAL godot_2(target_class, method, arg0, arg1)
 VAR knocked = false
 VAR went_inside = false
 
-There's a wooden door...
+There's a wooden door... # window:default
 -> fork
 
 == fork ==

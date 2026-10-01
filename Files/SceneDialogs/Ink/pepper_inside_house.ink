@@ -4,7 +4,8 @@ EXTERNAL godot(target_class, method)
 
 VAR suspicion = 0
 
-This pepper is kinda wierd... {suspicion > 0: It feels more suspicious than last time.} -> touch
+This pepper is kinda wierd... {suspicion > 0: It feels more suspicious than last time.} # window:default
+-> touch
 
 == touch ==
 * [Touch it]

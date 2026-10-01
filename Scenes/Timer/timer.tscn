@@ -1,6 +1,21 @@
 [gd_scene format=3 uid="uid://kvbvxu0vbc8y"]
 
 [ext_resource type="Script" uid="uid://bajiei4xtm2bl" path="res://Scripts/Timer/GameTimer.gd" id="1_sau1q"]
+[ext_resource type="Shader" uid="uid://b1s8dsdrxe5ro" path="res://Scripts/Shaders/timer.gdshader" id="2_kxbxo"]
+[ext_resource type="Texture2D" uid="uid://bjpmwbfx40kt5" path="res://Assets/Test/WhiteButton.tres" id="3_n0f1i"]
+
+[sub_resource type="Gradient" id="Gradient_c27xf"]
+offsets = PackedFloat32Array(0, 0.2591623, 0.44371727, 1)
+colors = PackedColorArray(1, 0, 0, 1, 1, 0, 0, 1, 1, 0.6614388, 0.63371634, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_gb5nr"]
+gradient = SubResource("Gradient_c27xf")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v8nni"]
+shader = ExtResource("2_kxbxo")
+shader_parameter/progress = 0.0
+shader_parameter/background_color = Color(0.24705882, 0.24705882, 0.24705882, 0)
+shader_parameter/color_gradient = SubResource("GradientTexture1D_gb5nr")
 
 [node name="GameTimer" type="Control" unique_id=2126109467]
 layout_mode = 3
@@ -11,18 +26,22 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_sau1q")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=847459589]
-layout_mode = 1
-offset_right = 128.0
-offset_bottom = 69.0
-color = Color(0.1638613, 0.16386127, 0.16386127, 1)
+[node name="Bar" type="TextureRect" parent="." unique_id=996230743]
+material = SubResource("ShaderMaterial_v8nni")
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 80.0
+texture = ExtResource("3_n0f1i")
 
 [node name="Label" type="Label" parent="." unique_id=1084926927]
 layout_mode = 1
-offset_right = 128.0
-offset_bottom = 69.0
+offset_right = 320.0
+offset_bottom = 80.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 50
 text = "--:--"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Timer" type="Timer" parent="." unique_id=67729571]
 one_shot = true

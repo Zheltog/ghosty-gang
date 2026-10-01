@@ -3,7 +3,7 @@
 Put tags on a line after the text. Several tags can sit on the same line.
 
 ```ink
-Hello. # anim:wave # pos:top_right # skippable:false
+Hello. # anim:wave # window:speech_left # skippable:false
 ```
 
 Keys are case-insensitive. Bool values: `true` / `false`, `1` / `0`, `yes` / `no`, `on` / `off`. A tag with no value counts as `true`.
@@ -13,16 +13,37 @@ Keys are case-insensitive. Bool values: `true` / `false`, `1` / `0`, `yes` / `no
 | Tag | Example | What it does |
 |---|---|---|
 | `anim` | `# anim:wave` | Play this animation on the dialogue actor. If the tag is missing or empty, the actor falls back to its default (`idle`). |
-| `pos` | `# pos:top_right` | Move the text box. |
+| `window` | `# window:speech_left` | Open this dialog window. It stays until another `window` tag. An unknown name uses `default`. |
+| `instant` | `# instant` | This line only. Show the whole line at once. Without it, the line uses the window's printing speed. |
+| `response` | `# response` | Show this line in the `player_phrase` window. The following lines stay on the window `# window` last selected. |
 | `timeout` | `# timeout:7` | Start a timer (seconds) when visible choices appear. Time-out picks the first one. `# timeout:0` clears the timer. |
-| `skippable` | `# skippable:false` | This line only. If `true`, click fills the remaining typewriter text. Does not advance the story. |
+| `skippable` | `# skippable:false` | This line only. If `true` (the default), a click fills the rest of the line, then another click continues. If `false`, a click does nothing: after the line finishes, the story continues on its own. The wait is `response_continue_delay` on DialogController. A line that still has choices waits for a button or its timeout instead. |
 | `skip_default` | `# skip_default:false` | Sets skippable for this line and every line after, until another `skip_default`. A per-line `skippable` still overrides it. New stories start with skippable on. |
 
-### `pos` values
+### `window` values
 
-`top_left`, `top` / `top_center`, `top_right`, `left` / `center_left`, `center`, `right` / `center_right`, `bottom_left`, `bottom` / `bottom_center`, `bottom_right`.
+Each `TextBoxWithOptions` under `DialogController` is one window. Its name is the `window_name` property, or the node name when that property is empty. The window named `default` is the fallback.
 
-Hyphens and spaces are fine (`top-right`, `top right`).
+```ink
+Кто здесь? # window:thought_left
+Это всё ещё мысль.
+Это я. # window:speech_self
+Слышу тебя. # window:speech_left
+И снова обычное окно. # window:default
+```
+
+Hyphens and spaces match the same window (`speech-left`, `speech left`). A name that is not in the scene opens `default`. `# window:default` returns to the fallback window.
+
+`# window:default` selects the default window and keeps it until another `# window` tag. `# response` shows that line in `player_phrase` and does not change the window used after it. A line with both shows the response in `player_phrase` and remembers the `# window` value for the next line. Whether the line then waits for a click or continues on its own follows `skippable`.
+
+```ink
+* [Про мальчика.]
+    Про мальчика. # response
+    -> boy
+* [Пока хватит.]
+    Пока хватит. # response # instant
+    -> closing
+```
 
 ## Choice tags
 

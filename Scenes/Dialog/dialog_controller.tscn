@@ -4,13 +4,28 @@
 [ext_resource type="Resource" uid="uid://dlv86a4qorq1n" path="res://Files/Test/ink_test.ink" id="2_kfsii"]
 [ext_resource type="PackedScene" uid="uid://1sve2gjsuyde" path="res://Scenes/Dialog/text_box_with_options.tscn" id="3_lu0oi"]
 [ext_resource type="PackedScene" uid="uid://kvbvxu0vbc8y" path="res://Scenes/Timer/timer.tscn" id="4_lu0oi"]
+[ext_resource type="Script" uid="uid://2n72i8ghh744" path="res://Scripts/Dialog/DialogWindowManager.gd" id="5_windows"]
 
 [node name="DialogController" type="Node2D" unique_id=158973333 node_paths=PackedStringArray("timer")]
 script = ExtResource("1_bshvn")
 story = ExtResource("2_kfsii")
 timer = NodePath("GameTimer")
 
-[node name="TextBoxWithOptions" parent="." unique_id=1501866700 node_paths=PackedStringArray("controller") instance=ExtResource("3_lu0oi")]
-controller = NodePath("..")
+[node name="DialogWindowManager" type="Node" parent="." unique_id=884120331]
+script = ExtResource("5_windows")
+
+[node name="default" parent="DialogWindowManager" unique_id=2135543664 node_paths=PackedStringArray("controller") instance=ExtResource("3_lu0oi")]
+window_name = "default"
+printing_speed = 40.0
+controller = NodePath("../..")
+
+[node name="player_phrase" parent="DialogWindowManager" unique_id=884120332 node_paths=PackedStringArray("controller") instance=ExtResource("3_lu0oi")]
+offset_left = -535.0
+offset_top = 291.0
+offset_right = -535.0
+offset_bottom = 291.0
+window_name = "player_phrase"
+printing_speed = 40.0
+controller = NodePath("../..")
 
 [node name="GameTimer" parent="." unique_id=2126109467 instance=ExtResource("4_lu0oi")]

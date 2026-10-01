@@ -2,31 +2,38 @@ class_name GameTimer
 
 extends Control
 
+@onready var _bar: TextureRect = $Bar
 @onready var _label: Label = $Label
 @onready var _timer: Timer = $Timer
 
 var _last_time_displayed: int = 0
+var _start_seconds : float = 0.0
+
 
 func _process(delta: float) -> void:
-	if (_timer.time_left as int) != _last_time_displayed:
-		_display_remaining_time()
+	_display_remaining_time()
 
 func start(seconds: float, callback: Callable) -> void:
+	_start_seconds = seconds
 	_timer.start(seconds)
 	_timer.timeout.connect(callback)
+	show()
 
 func reset() -> void:
 	_timer.stop()
 	_last_time_displayed = 0
 	_label.text = "--:--"
+	hide()
 
 func is_ticking() -> bool:
 	return _timer.time_left != 0
 
 func _display_remaining_time() -> void:
 	var time_left_int = _timer.time_left as int
+	var time_left = _timer.time_left
 	if time_left_int == 0:
 		_label.text = "00:00"
+		(_bar.material as ShaderMaterial).set_shader_parameter("progress", 0.0)
 		return
 	var remaining_seconds = time_left_int
 	var remaining_minutes = remaining_seconds / 60
@@ -37,4 +44,5 @@ func _display_remaining_time() -> void:
 	var minutes_representation = str(remaining_minutes) if remaining_minutes >= 10 else str("0", remaining_minutes)
 	var seconds_representation = str(remaining_seconds) if remaining_seconds >= 10 else str("0", remaining_seconds)
 	_label.text = str(minutes_representation, ":", seconds_representation)
+	(_bar.material as ShaderMaterial).set_shader_parameter("progress", time_left / _start_seconds)
 	_last_time_displayed = time_left_int
