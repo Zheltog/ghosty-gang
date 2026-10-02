@@ -26,7 +26,7 @@ func item_pressed(item : SceneItemUI) -> void:
 		return
 	item.press_ui()
 
-# [0] — самый верхний спрайт под курсором (z_index, затем порядок в дереве).
+# [0] — самый верхний спрайт под курсором (видимость, z_index, затем порядок в дереве).
 var _highlighted_items : Array[SceneItemUI]
 var _last_equipped_item : InventoryItemUI
 

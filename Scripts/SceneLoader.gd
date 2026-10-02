@@ -19,6 +19,28 @@ var _near_house: PackedScene = preload("res://Scenes/Preview/NearHouse.tscn")
 var _inside_house: PackedScene = preload("res://Scenes/Preview/InsideHouse.tscn")
 var _cutscene_boy_death: PackedScene = preload("res://Scenes/Preview/CutsceneBoyDeath.tscn")
 
+func start_day(day_number: int, scene: SCENE) -> void:
+	SaveManager.begin_day(day_number)
+	change_scene(scene)
+
+func continue_saved_game() -> bool:
+	if not SaveManager.load_checkpoint():
+		printerr("SceneLoader: no day checkpoint")
+		return false
+	var scene := _scene_for_day(SaveManager.day)
+	if scene == SCENE.NONE:
+		printerr("SceneLoader: no entry scene for day ", SaveManager.day)
+		return false
+	change_scene(scene)
+	return true
+
+func _scene_for_day(day_number: int) -> SCENE:
+	match day_number:
+		1:
+			return SCENE.MAP
+		_:
+			return SCENE.NONE
+
 func change_scene(scene: SCENE) -> void:
 	var packed: PackedScene = null
 	match scene:

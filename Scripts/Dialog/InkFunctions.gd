@@ -36,13 +36,21 @@ func bind_story(story: InkStory) -> void:
 	story.BindExternalFunction("godot_2", Callable(self, "_ink_godot_2"))
 
 func _ink_godot(target_class: String, method: String) -> Variant:
-	return await _invoke(target_class, method, [])
+	return _ink_value(_invoke(target_class, method, []))
 
 func _ink_godot_1(target_class: String, method: String, arg) -> Variant:
-	return await _invoke(target_class, method, [arg])
+	return _ink_value(_invoke(target_class, method, [arg]))
 
 func _ink_godot_2(target_class: String, method: String, arg0, arg1) -> Variant:
-	return await _invoke(target_class, method, [arg0, arg1])
+	return _ink_value(_invoke(target_class, method, [arg0, arg1]))
+
+# Ink can only take null, bool, int, float, or string back from an external call.
+func _ink_value(value: Variant) -> Variant:
+	match typeof(value):
+		TYPE_NIL, TYPE_BOOL, TYPE_INT, TYPE_FLOAT, TYPE_STRING:
+			return value
+		_:
+			return null
 
 func _invoke(target_class: String, method: String, args: Array) -> Variant:
 	var target: Object = _targets.get(StringName(target_class))

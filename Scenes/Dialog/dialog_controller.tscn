@@ -15,11 +15,13 @@ timer = NodePath("GameTimer")
 script = ExtResource("5_windows")
 
 [node name="default" parent="DialogWindowManager" unique_id=2135543664 node_paths=PackedStringArray("controller") instance=ExtResource("3_lu0oi")]
+z_index = 3
 window_name = "default"
 printing_speed = 40.0
 controller = NodePath("../..")
 
 [node name="player_phrase" parent="DialogWindowManager" unique_id=884120332 node_paths=PackedStringArray("controller") instance=ExtResource("3_lu0oi")]
+z_index = 3
 offset_left = -535.0
 offset_top = 291.0
 offset_right = -535.0
@@ -29,3 +31,4 @@ printing_speed = 40.0
 controller = NodePath("../..")
 
 [node name="GameTimer" parent="." unique_id=2126109467 instance=ExtResource("4_lu0oi")]
+z_index = 3

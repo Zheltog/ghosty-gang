@@ -18,6 +18,7 @@ animations = [{
 script = ExtResource("1_adv")
 next_scene = 4
 advance_when_animation_finished = false
+day_number = 1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1049904349]
 self_modulate = Color(1, 0.2627451, 1, 1)

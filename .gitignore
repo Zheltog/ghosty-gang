@@ -1,3 +1,6 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
+
+# Day checkpoint written next to the project while running from the editor.
+/save.v1.data

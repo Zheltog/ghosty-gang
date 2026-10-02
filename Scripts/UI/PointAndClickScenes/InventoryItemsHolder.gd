@@ -23,8 +23,14 @@ func _ready() -> void:
 			item_placer.items.append(child)
 			child.set_holder(self)
 	item_placer.place_items()
+	for item_id in SaveManager.item_ids():
+		_create_item(item_id)
 
 func add_item(item_id : InventoryItemGenerator.INVENTORY_ITEM) -> InventoryItemUI:
+	SaveManager.remember_item(item_id)
+	return _create_item(item_id)
+
+func _create_item(item_id : InventoryItemGenerator.INVENTORY_ITEM) -> InventoryItemUI:
 	var item_ui = InventoryItemUiGenerator.generate(item_id)
 	item_ui.set_holder(self)
 	item_placer.add_item(item_ui)
@@ -46,6 +52,7 @@ func remove_item(item_id : InventoryItemGenerator.INVENTORY_ITEM) -> void:
 		return
 	if inventory.equipped_item == found:
 		inventory.unequip_item()
+	SaveManager.forget_item(item_id)
 	item_placer.remove_item(found)
 	item_placer.place_items()
 	found.queue_free()
@@ -60,7 +67,7 @@ func add_item_by_name(item_name : String) -> InventoryItemUI:
 func _physics_process(_delta : float) -> void:
 	_sync_hovered_items()
 
-# [0] — самый верхний спрайт под курсором (z_index, затем порядок в дереве).
+# [0] — самый верхний спрайт под курсором (видимость, z_index, затем порядок в дереве).
 func highlighted_item() -> InventoryItemUI:
 	if _highlighted_items.size() > 0:
 		return _highlighted_items[0]

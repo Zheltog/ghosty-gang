@@ -36,6 +36,10 @@ static func _query_at_mouse(from : CanvasItem) -> Array[Area2D]:
 static func _is_in_front_of(a : CanvasItem, b : CanvasItem) -> bool:
 	var a_sort := _sort_canvas_item(a)
 	var b_sort := _sort_canvas_item(b)
+	var a_visible := a_sort.is_visible_in_tree()
+	var b_visible := b_sort.is_visible_in_tree()
+	if a_visible != b_visible:
+		return a_visible
 	if a_sort.z_index != b_sort.z_index:
 		return a_sort.z_index > b_sort.z_index
 	return a_sort.is_greater_than(b_sort)

@@ -3,6 +3,8 @@ extends Node2D
 @export var next_scene: SceneLoader.SCENE = SceneLoader.SCENE.NONE
 @export var advance_on_click: bool = true
 @export var advance_when_animation_finished: bool = true
+## When set, the day checkpoint is written before the scene changes. Dialog start does not save.
+@export var day_number: int = 0
 
 @onready var _animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
@@ -23,5 +25,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _advance() -> void:
 	if next_scene == SceneLoader.SCENE.NONE:
+		return
+	if day_number > 0:
+		SceneLoader.start_day(day_number, next_scene)
 		return
 	SceneLoader.change_scene(next_scene)

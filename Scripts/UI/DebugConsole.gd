@@ -49,6 +49,16 @@ func _run_command(text : String) -> void:
 	if parts.is_empty():
 		return
 	var command := str(parts[0]).to_lower()
+	if command == "day":
+		if parts.size() < 2 or not str(parts[1]).is_valid_int():
+			printerr("Usage: day <number>")
+			return
+		SaveManager.begin_day(int(parts[1]))
+		print("Saved day ", int(parts[1]))
+		return
+	if command == "load":
+		SceneLoader.continue_saved_game()
+		return
 	if command == "add":
 		if parts.size() < 2:
 			printerr("Usage: add <item_name>")
