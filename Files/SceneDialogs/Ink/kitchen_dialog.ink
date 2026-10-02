@@ -5,7 +5,7 @@ VAR suspicion = 0
 -> kitchen
 
 === kitchen ===
-%%Что бы вы хотели узнать? # window:default # timeout:0
+%%Что бы вы хотели узнать? # window:default # char_default:engineer # timeout:0
 * [Про мальчика.]
 	-> boy -> kitchen
 * [Про работу в НИИ.]

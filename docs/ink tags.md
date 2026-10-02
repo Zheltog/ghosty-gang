@@ -12,7 +12,9 @@ Keys are case-insensitive. Bool values: `true` / `false`, `1` / `0`, `yes` / `no
 
 | Tag | Example | What it does |
 |---|---|---|
-| `anim` | `# anim:wave` | Play this animation on the dialogue actor. If the tag is missing or empty, the actor falls back to its default (`idle`). |
+| `anim` | `# anim:wave` | Play this animation on the current character. With no current character, the tag warns and does nothing. |
+| `char` | `# char:engineer` | This line only. Speak and animate as this character. The name matches `character_name` on the scene character. |
+| `char_default` | `# char_default:engineer` | Sets the character for this line and every line after, until another `char_default`. A per-line `char` still overrides it. New stories start with no character. |
 | `window` | `# window:speech_left` | Open this dialog window. It stays until another `window` tag. An unknown name uses `default`. |
 | `instant` | `# instant` | This line only. Show the whole line at once. Without it, the line uses the window's printing speed. |
 | `response` | `# response` | Show this line in the `player_phrase` window. The following lines stay on the window `# window` last selected. |

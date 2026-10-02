@@ -11,10 +11,14 @@ var response: bool = false
 var window_name: String = ""
 var has_animation: bool = false
 var animation_name: String = ""
+var character_default: String = ""
+var character_name: String = ""
+var speaker_name: String = ""
 var timeout_seconds: float = -1.0
 
 func reset() -> void:
 	skippable_default = true
+	character_default = ""
 	begin_line()
 
 func begin_line() -> void:
@@ -24,6 +28,8 @@ func begin_line() -> void:
 	window_name = ""
 	has_animation = false
 	animation_name = ""
+	character_name = character_default
+	speaker_name = ""
 	timeout_seconds = -1.0
 
 func apply(tags: Array[String]) -> void:
@@ -40,6 +46,11 @@ func apply(tags: Array[String]) -> void:
 		window_name = normalize_window_name(str(parsed["window"]))
 		if window_name.is_empty():
 			window_name = "default"
+	if parsed.has("char_default"):
+		character_default = str(parsed["char_default"]).strip_edges()
+		character_name = character_default
+	if parsed.has("char"):
+		character_name = str(parsed["char"]).strip_edges()
 	if parsed.has("anim"):
 		has_animation = true
 		animation_name = str(parsed["anim"])

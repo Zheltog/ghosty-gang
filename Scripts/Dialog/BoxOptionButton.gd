@@ -6,6 +6,7 @@ const SELECTED_MODULATE := Color(2.5, 2.5, 2.5, 1.0)
 const SELECT_DURATION := 0.15
 
 @export var id: int
+const highlight_speed : float = 6.0
 
 @onready var _animation_player: AnimationPlayer = $AnimationPlayer
 @onready var _label: RichTextLabel = $TextureButton/RichTextLabel
@@ -18,9 +19,9 @@ var highlight : float = 0.0
 
 func _process(delta: float) -> void:
 	if in_focus:
-		highlight += delta * 3.0
+		highlight += delta * highlight_speed
 	else:
-		highlight -= delta * 3.0
+		highlight -= delta * highlight_speed
 	highlight = clamp(highlight, 0.0, 1.0)
 	_button.set_instance_shader_parameter("line_color", Color(highlight, highlight, highlight, 1.0))
 

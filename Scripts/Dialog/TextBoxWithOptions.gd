@@ -169,6 +169,7 @@ func _print_text(text: String) -> bool:
 	if _seconds_before_next_symbol <= 0.0:
 		_label.text = _full_text
 		_is_printing = false
+		_play_voice_blip()
 		_try_reveal_options()
 		return true
 	_try_reveal_options()
@@ -177,7 +178,7 @@ func _print_text(text: String) -> bool:
 		if not _is_printing or _saved_printing_id != printing_id:
 			return false
 		if !_is_space(char) && !_is_punctiation(char):
-			AudioEventBus.play_speaker_voice_sound.emit(_current_speaker_name)
+			_play_voice_blip()
 		_label.text += char
 		previous_char = char
 		_try_reveal_options()
@@ -238,6 +239,11 @@ func _get_char_delay(previous_char, next_char) -> float:
 		return _seconds_before_next_symbol * printing_delay_multiplier
 	else:
 		return _seconds_before_next_symbol;
+
+func _play_voice_blip() -> void:
+	if _current_speaker_name.is_empty():
+		return
+	AudioEventBus.play_speaker_voice_sound.emit(_current_speaker_name)
 
 func _is_punctiation(char) -> bool:
 	return ".,?!:;-()\"\"".contains(char)

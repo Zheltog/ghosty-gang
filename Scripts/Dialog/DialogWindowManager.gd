@@ -39,7 +39,8 @@ func display(text: String, choices: Array) -> void:
 		printerr("DialogWindowManager: no dialog window available")
 		return
 	var instant := _state != null and _state.instant
-	_active_box.show_box_instantly(text, choices, "bob", instant)
+	var speaker := "" if _state == null else _state.speaker_name
+	_active_box.show_box_instantly(text, choices, speaker, instant)
 
 func reset() -> void:
 	_cancel_delay()

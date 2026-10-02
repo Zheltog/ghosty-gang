@@ -14,7 +14,6 @@ var _story_path: String = ""
 
 func _ready() -> void:
 	_windows.setup(self, _state)
-	VoiceProcessor.register_speaker("bob", 0.75, 1.25)
 	InkFunctions.subscribe(self)
 	if story:
 		_story_path = story.resource_path
@@ -129,9 +128,31 @@ func _present_line() -> void:
 
 func _show_current_line(text: String, choices: Array) -> void:
 	_state.apply(story.GetCurrentTags())
-	if _state.has_animation and HouseSceneBase.current_house_scene:
-		HouseSceneBase.current_house_scene.set_characters_emotion(_state.animation_name)
+	_state.speaker_name = _speaker_for_current_line()
+	_apply_character_animation()
 	_windows.display(text, choices)
+
+func _speaker_for_current_line() -> String:
+	if _state.character_name.is_empty():
+		return ""
+	var house := HouseSceneBase.current_house_scene
+	if house == null:
+		return ""
+	var character := house.find_character(_state.character_name)
+	if character == null or not character.has_voice:
+		return ""
+	return character.character_name
+
+func _apply_character_animation() -> void:
+	if not _state.has_animation:
+		return
+	if _state.character_name.is_empty():
+		printerr("DialogController: # anim without current character")
+		return
+	var house := HouseSceneBase.current_house_scene
+	if house == null:
+		return
+	house.set_character_emotion(_state.character_name, _state.animation_name)
 
 func _visible_choices(choices: Array) -> Array:
 	var visible: Array = []
