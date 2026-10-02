@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bqn8gn4wknuq7" path="res://Assets/Sprites/Test/PreviewScenes/Backgrounds/InsidePreroom.png" id="16_if3oh"]
 [ext_resource type="Script" uid="uid://8p77bw84c7bp" path="res://Scripts/UI/PointAndClickScenes/Components/ParallaxComponent.gd" id="10_parobj"]
 [ext_resource type="PackedScene" uid="uid://mt1xmuy8xhd5" path="res://Scenes/PointAndClick/SceneUIDoor.tscn" id="2_door"]
+[ext_resource type="PackedScene" uid="uid://dvnnea2fw2ndt" path="res://Scenes/PointAndClick/SceneItemUI.tscn" id="2_item"]
 [ext_resource type="Texture2D" uid="uid://fm1if2rdci0l" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/Preroom/BathroomDoor.png" id="17_fcff3"]
 [ext_resource type="Texture2D" uid="uid://sfbkpkm3fp3s" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/Preroom/Coat.png" id="18_3mlep"]
 [ext_resource type="Texture2D" uid="uid://dadq1xc3xcndr" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/MoveBack.png" id="10_a71pi"]
@@ -32,9 +33,11 @@ intercation_type = 0
 script = ExtResource("10_parobj")
 camera_distance = 100.0
 
-[node name="Coat" type="Sprite2D" parent="." unique_id=1631873478]
+[node name="Coat" parent="." unique_id=1631873478 instance=ExtResource("2_item")]
 position = Vector2(968, 518)
 texture = ExtResource("18_3mlep")
+scene_item_id = 13
+intercation_type = 0
 
 [node name="ParallaxComponent" type="Node" parent="Coat" unique_id=796818496]
 script = ExtResource("10_parobj")

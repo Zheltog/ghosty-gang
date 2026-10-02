@@ -47,5 +47,8 @@
 	},
 	"book_key" : {
 		"equip_time" : 1.0
+	},
+	"key_bookshelf" : {
+		"equip_time" : 1.0
 	}
 }

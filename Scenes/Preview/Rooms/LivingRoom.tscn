@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://baam1bktpe4on" path="res://Assets/Sprites/InventoryItems/book_1.png" id="39_lr_igo"]
 [ext_resource type="Texture2D" uid="uid://c0bbfg0g2i166" path="res://Assets/Sprites/InventoryItems/book_2.png" id="40_lr_manga"]
 [ext_resource type="Texture2D" uid="uid://cxf15hao7r2y8" path="res://Assets/Sprites/InventoryItems/book_key.png" id="41_lr_morozov"]
+[ext_resource type="Texture2D" uid="uid://daa2vnd05nopl" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/LivingRoom/keyhole.png" id="42_lr_keyhole"]
 
 [node name="LivingRoom" type="Node2D" unique_id=1900112235]
 script = ExtResource("12_room")
@@ -60,6 +61,28 @@ script = ExtResource("13_shelf")
 script = ExtResource("10_parobj")
 camera_distance = 105.0
 
+[node name="Keyhole" parent="Shelfs" unique_id=1294967301 instance=ExtResource("2_item")]
+position = Vector2(47, 117)
+texture = ExtResource("42_lr_keyhole")
+scene_item_id = 11
+intercation_type = 0
+
+[node name="ParallaxComponent" type="Node" parent="Shelfs/Keyhole" unique_id=1294967302]
+script = ExtResource("10_parobj")
+camera_distance = 3.0
+
+[node name="BookMorozov" parent="Shelfs" unique_id=-1294967285 instance=ExtResource("2_item")]
+position = Vector2(92, 130)
+texture = ExtResource("41_lr_morozov")
+script = ExtResource("14_book")
+inventory_item = 8
+scene_item_id = 9
+intercation_type = 0
+
+[node name="ParallaxComponent" type="Node" parent="Shelfs/BookMorozov" unique_id=-1294967284]
+script = ExtResource("10_parobj")
+camera_distance = 3.0
+
 [node name="Area2D" type="Area2D" parent="Shelfs" unique_id=892618669]
 
 [node name="BookIgo" parent="Shelfs" unique_id=-1294967289 instance=ExtResource("2_item")]
@@ -83,18 +106,6 @@ scene_item_id = 8
 intercation_type = 0
 
 [node name="ParallaxComponent" type="Node" parent="Shelfs/BookManga" unique_id=-1294967286]
-script = ExtResource("10_parobj")
-camera_distance = 3.0
-
-[node name="BookMorozov" parent="Shelfs" unique_id=-1294967285 instance=ExtResource("2_item")]
-position = Vector2(92, 130)
-texture = ExtResource("41_lr_morozov")
-script = ExtResource("14_book")
-inventory_item = 8
-scene_item_id = 9
-intercation_type = 0
-
-[node name="ParallaxComponent" type="Node" parent="Shelfs/BookMorozov" unique_id=-1294967284]
 script = ExtResource("10_parobj")
 camera_distance = 3.0
 

@@ -24,8 +24,10 @@
 	"glass_eye" : {
 		"pickable" : false,
 		"ink_story_view" : "res://Files/SceneDialogs/Ink/Preview/glass_eye.ink",
-		"interaction_type_overload" : {
-			"flashlight" : "look"
+		"interaction_overload" : {
+			"flashlight" : {
+				"interaction_type" : "look"
+			}
 		}
 	},
 	"house_door" : {
@@ -50,5 +52,27 @@
 	"tumba" : {
 		"pickable" : false,
 		"ink_story_view" : "res://Files/SceneDialogs/Ink/tumba.ink"
+	},
+	"keyhole" : {
+		"pickable" : false,
+		"ink_story_view" : "res://Files/SceneDialogs/Ink/keyhole.ink",
+		"interaction_type" : "look",
+		"interaction_overload" : {
+			"key_bookshelf" : {
+				"interaction_type" : "take",
+				"ink_story_view" : "res://Files/SceneDialogs/Ink/keyhole_unlock.ink"
+			}
+		}
+	},
+	"flashlight" : {
+		"pickable" : true,
+		"equiped_immediately" : false,
+		"inventory_item" : "flashlight",
+		"after_pickup" : "disappear"
+	},
+	"coat" : {
+		"pickable" : false,
+		"ink_story_view" : "res://Files/SceneDialogs/Ink/coat.ink",
+		"interaction_type" : "look"
 	}
 }

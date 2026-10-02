@@ -1,0 +1,16 @@
+[remap]
+
+importer="ink"
+type="Resource"
+uid="uid://bvly65bc6or65"
+path="res://.godot/imported/coat.ink-4cb26e9539e2db1b936a53aef8fc7c8c.res"
+
+[deps]
+
+source_file="res://Files/SceneDialogs/Ink/coat.ink"
+dest_files=["res://.godot/imported/coat.ink-4cb26e9539e2db1b936a53aef8fc7c8c.res"]
+
+[params]
+
+is_main_file=true
+compress=true

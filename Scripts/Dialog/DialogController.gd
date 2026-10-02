@@ -109,7 +109,7 @@ func _present_line() -> void:
 	# Skips empty lines. Specifically needed for dialog to properly end
 	while story.GetCanContinue():
 		var text: Variant = story.Continue()
-		_current_choices = story.GetCurrentChoices()
+		_current_choices = _read_choices()
 		var visible_choices := _visible_choices(_current_choices)
 		var line := "" if text == null else str(text).strip_edges()
 		if line.is_empty() and visible_choices.is_empty():
@@ -118,7 +118,7 @@ func _present_line() -> void:
 		if not story.GetCanContinue() and _current_choices.is_empty():
 			InkVariableStore.capture(story, _story_path)
 		return
-	_current_choices = story.GetCurrentChoices()
+	_current_choices = _read_choices()
 	var visible_choices_at_end := _visible_choices(_current_choices)
 	if not visible_choices_at_end.is_empty():
 		_show_current_line(str(story.GetCurrentText()), visible_choices_at_end)
@@ -153,6 +153,10 @@ func _apply_character_animation() -> void:
 	if house == null:
 		return
 	house.set_character_emotion(_state.character_name, _state.animation_name)
+
+func _read_choices() -> Array:
+	var choices = story.GetCurrentChoices()
+	return [] if choices == null else choices
 
 func _visible_choices(choices: Array) -> Array:
 	var visible: Array = []

@@ -10,7 +10,8 @@ enum INVENTORY_ITEM {
 	PHOTO,
 	BOOK_1,
 	BOOK_2,
-	BOOK_KEY
+	BOOK_KEY,
+	KEY_BOOKSHELF
 }
 
 static func generate(item : INVENTORY_ITEM) -> InventoryItemBase:
@@ -33,6 +34,8 @@ static func generate(item : INVENTORY_ITEM) -> InventoryItemBase:
 			return InventoryItemBook2.new()
 		INVENTORY_ITEM.BOOK_KEY:
 			return InventoryItemBookKey.new()
+		INVENTORY_ITEM.KEY_BOOKSHELF:
+			return InventoryItemKeyBookshelf.new()
 	
 	printerr("GENERATED UNSOPORTED INVENTORY ITEM")
 	return InventoryItemBase.new()

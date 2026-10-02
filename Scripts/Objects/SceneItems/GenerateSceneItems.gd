@@ -79,6 +79,12 @@ func _init_assignments(item_id: String, data: Dictionary) -> PackedStringArray:
 		lines.append("\tinventory_item = InventoryItemGenerator.INVENTORY_ITEM.%s" % _to_enum_name(str(data["inventory_item"])))
 	if data.has("ink_story_view") and str(data["ink_story_view"]) != "":
 		lines.append("\tink_story_view = %s" % _gdscript_literal(data["ink_story_view"]))
+	if data.has("interaction_type"):
+		var interaction_type := _to_interaction_type_enum(str(data["interaction_type"]))
+		if interaction_type.is_empty():
+			printerr("GenerateSceneItems: '", item_id, "' unknown interaction_type '", data["interaction_type"], "'")
+		else:
+			lines.append("\tinteraction_type = SceneItemUI.INTERACTION_TYPE.%s" % interaction_type)
 	if data.has("after_pickup"):
 		var after_pickup := _to_after_pickup_enum(str(data["after_pickup"]))
 		if after_pickup.is_empty():
@@ -90,23 +96,51 @@ func _init_assignments(item_id: String, data: Dictionary) -> PackedStringArray:
 
 
 func _interaction_overload_assignments(item_id: String, data: Dictionary) -> PackedStringArray:
-	if not data.has("interaction_type_overload"):
+	if not data.has("interaction_overload"):
 		return PackedStringArray()
-	var overload: Variant = data["interaction_type_overload"]
+	var overload: Variant = data["interaction_overload"]
 	if typeof(overload) != TYPE_DICTIONARY:
-		printerr("GenerateSceneItems: '", item_id, "' interaction_type_overload must be a Dictionary")
+		printerr("GenerateSceneItems: '", item_id, "' interaction_overload must be a Dictionary")
 		return PackedStringArray()
 	var lines: PackedStringArray = []
-	for key in overload:
-		var type_enum := _to_interaction_type_enum(str(overload[key]))
-		if type_enum.is_empty():
-			printerr("GenerateSceneItems: '", item_id, "' unknown interaction_type '", overload[key], "'")
+	for equipped_id in overload:
+		var patch: Variant = overload[equipped_id]
+		if typeof(patch) != TYPE_DICTIONARY:
+			printerr("GenerateSceneItems: '", item_id, "' overload for '", equipped_id, "' must be a Dictionary")
+			continue
+		var fields: PackedStringArray = []
+		for property in patch:
+			var literal := _overload_value_literal(item_id, str(property), patch[property])
+			if literal.is_empty():
+				continue
+			fields.append("\"%s\": %s" % [str(property), literal])
+		if fields.is_empty():
 			continue
 		lines.append(
-			"\tinteraction_type_overload[InventoryItemGenerator.INVENTORY_ITEM.%s] = SceneItemUI.INTERACTION_TYPE.%s"
-			% [_to_enum_name(str(key)), type_enum]
+			"\tinteraction_overload[InventoryItemGenerator.INVENTORY_ITEM.%s] = {%s}"
+			% [_to_enum_name(str(equipped_id)), ", ".join(fields)]
 		)
 	return lines
+
+
+func _overload_value_literal(item_id: String, property: String, value: Variant) -> String:
+	match property:
+		"inventory_item":
+			return "InventoryItemGenerator.INVENTORY_ITEM.%s" % _to_enum_name(str(value))
+		"after_pickup":
+			var after_pickup := _to_after_pickup_enum(str(value))
+			if after_pickup.is_empty():
+				printerr("GenerateSceneItems: '", item_id, "' unknown after_pickup '", value, "'")
+				return ""
+			return "SceneItemBase.AFTER_PICKUP.%s" % after_pickup
+		"interaction_type":
+			var interaction_type := _to_interaction_type_enum(str(value))
+			if interaction_type.is_empty():
+				printerr("GenerateSceneItems: '", item_id, "' unknown interaction_type '", value, "'")
+				return ""
+			return "SceneItemUI.INTERACTION_TYPE.%s" % interaction_type
+		_:
+			return _gdscript_literal(value)
 
 
 func _to_after_pickup_enum(value: String) -> String:

@@ -1,0 +1,16 @@
+[remap]
+
+importer="ink"
+type="Resource"
+uid="uid://daktc2vi4dhok"
+path="res://.godot/imported/day1_shop.ink-358f39950ef78fe451e614aefcb2dbab.res"
+
+[deps]
+
+source_file="res://Files/SceneDialogs/Ink/day1_shop.ink"
+dest_files=["res://.godot/imported/day1_shop.ink-358f39950ef78fe451e614aefcb2dbab.res"]
+
+[params]
+
+is_main_file=true
+compress=true

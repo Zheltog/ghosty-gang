@@ -24,6 +24,8 @@ static func generate(item : InventoryItemGenerator.INVENTORY_ITEM) -> EquippedIt
 			_setup_book_2(ui)
 		InventoryItemGenerator.INVENTORY_ITEM.BOOK_KEY:
 			_setup_book_key(ui)
+		InventoryItemGenerator.INVENTORY_ITEM.KEY_BOOKSHELF:
+			_setup_key_bookshelf(ui)
 	return ui
 
 static func _setup_salt(ui: EquippedItemUI) -> void:
@@ -87,6 +89,12 @@ static func _setup_book_2(ui: EquippedItemUI) -> void:
 static func _setup_book_key(ui: EquippedItemUI) -> void:
 	var frames := SpriteFrames.new()
 	frames.add_animation("default")
+	ui.sprite_frames = frames
+	ui.play("default")
+static func _setup_key_bookshelf(ui: EquippedItemUI) -> void:
+	var frames := SpriteFrames.new()
+	frames.add_animation("default")
+	frames.add_frame("default", preload("res://Assets/Sprites/EquipedInventoryItems/key_bookshelf.png"))
 	ui.sprite_frames = frames
 	ui.play("default")
 

@@ -1,0 +1,16 @@
+[remap]
+
+importer="ink"
+type="Resource"
+uid="uid://t7c1x0hif74h"
+path="res://.godot/imported/keyhole_unlock.ink-4cdf3e3066e6b3607fa671188777f39d.res"
+
+[deps]
+
+source_file="res://Files/SceneDialogs/Ink/keyhole_unlock.ink"
+dest_files=["res://.godot/imported/keyhole_unlock.ink-4cdf3e3066e6b3607fa671188777f39d.res"]
+
+[params]
+
+is_main_file=true
+compress=true

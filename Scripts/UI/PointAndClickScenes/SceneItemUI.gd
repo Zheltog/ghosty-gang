@@ -88,10 +88,10 @@ func press_item() -> void:
 func get_effective_interaction_type() -> INTERACTION_TYPE:
 	if _scene_item == null:
 		return intercation_type
-	var overload = _scene_item.get_interaction_overload(_get_equipped_item())
-	if overload == null:
+	_scene_item.apply_equipped(_get_equipped_item())
+	if _scene_item.interaction_type == null:
 		return intercation_type
-	return overload
+	return _scene_item.interaction_type
 
 func _get_equipped_item() -> InventoryItemUI:
 	if _scene_object_manager == null or _scene_object_manager.inventory == null:

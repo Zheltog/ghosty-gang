@@ -1,0 +1,16 @@
+[remap]
+
+importer="ink"
+type="Resource"
+uid="uid://bponmjl05b8rb"
+path="res://.godot/imported/day1_stop.ink-28599883ae2ae688a8309cdb532dc6ca.res"
+
+[deps]
+
+source_file="res://Files/SceneDialogs/Ink/day1_stop.ink"
+dest_files=["res://.godot/imported/day1_stop.ink-28599883ae2ae688a8309cdb532dc6ca.res"]
+
+[params]
+
+is_main_file=true
+compress=true

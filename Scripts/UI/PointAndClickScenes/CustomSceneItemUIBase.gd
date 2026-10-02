@@ -6,5 +6,4 @@ func press_item() -> void:
 	pass
 	
 func get_effective_interaction_type() -> INTERACTION_TYPE:
-	# custom logic here
-	return intercation_type
+	return super.get_effective_interaction_type()

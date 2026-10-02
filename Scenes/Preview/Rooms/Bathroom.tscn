@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c8bathroom0a1"]
 
 [ext_resource type="PackedScene" uid="uid://mt1xmuy8xhd5" path="res://Scenes/PointAndClick/SceneUIDoor.tscn" id="2_door"]
+[ext_resource type="PackedScene" uid="uid://dvnnea2fw2ndt" path="res://Scenes/PointAndClick/SceneItemUI.tscn" id="2_item"]
 [ext_resource type="Texture2D" uid="uid://dadq1xc3xcndr" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/MoveBack.png" id="10_a71pi"]
 [ext_resource type="Script" uid="uid://8p77bw84c7bp" path="res://Scripts/UI/PointAndClickScenes/Components/ParallaxComponent.gd" id="10_parobj"]
 [ext_resource type="Script" uid="uid://bgebmjt4oem53" path="res://Scripts/Room/RoomBase.gd" id="12_room"]
@@ -38,9 +39,11 @@ texture = ExtResource("91_b_tumba")
 script = ExtResource("10_parobj")
 camera_distance = 115.0
 
-[node name="Flashlight" type="Sprite2D" parent="." unique_id=-894967291]
+[node name="Flashlight" parent="." unique_id=-894967291 instance=ExtResource("2_item")]
 position = Vector2(365, 601)
 texture = ExtResource("92_b_flash")
+scene_item_id = 12
+intercation_type = 1
 
 [node name="ParallaxComponent" type="Node" parent="Flashlight" unique_id=-894967290]
 script = ExtResource("10_parobj")

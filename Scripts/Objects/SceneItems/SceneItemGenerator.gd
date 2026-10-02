@@ -13,6 +13,9 @@ enum SCENE_ITEM {
 	BOOK_2,
 	BOOK_KEY,
 	TUMBA,
+	KEYHOLE,
+	FLASHLIGHT,
+	COAT,
 	NONE
 }
 
@@ -40,6 +43,12 @@ static func generate(item : SCENE_ITEM) -> SceneItemBase:
 			return SceneItemBookKey.new()
 		SCENE_ITEM.TUMBA:
 			return SceneItemTumba.new()
+		SCENE_ITEM.KEYHOLE:
+			return SceneItemKeyhole.new()
+		SCENE_ITEM.FLASHLIGHT:
+			return SceneItemFlashlight.new()
+		SCENE_ITEM.COAT:
+			return SceneItemCoat.new()
 		SCENE_ITEM.NONE:
 			return SceneItemBase.new()
 	
