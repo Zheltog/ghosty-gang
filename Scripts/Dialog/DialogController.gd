@@ -14,6 +14,7 @@ var _state := DialogState.new()
 var _current_choices: Array = []
 var _story_path: String = ""
 var _story_finished := false
+static var dialog_active := false
 var _present_characters: Array[String] = []
 
 func _ready() -> void:
@@ -44,6 +45,7 @@ func start_story(path: String = "") -> void:
 		return
 	visible = true
 	_story_finished = false
+	dialog_active = true
 	_present_characters.clear()
 	_apply_presence()
 	if _story_path.is_empty():
@@ -136,9 +138,13 @@ func _present_line() -> void:
 		return
 	_finish_story()
 
+static func is_dialog_active() -> bool:
+	return dialog_active
+
 func _finish_story() -> void:
 	InkVariableStore.capture(story, _story_path)
 	_windows.close()
+	dialog_active = false
 	if _story_finished:
 		return
 	_story_finished = true

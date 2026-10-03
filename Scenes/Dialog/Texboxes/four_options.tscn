@@ -1,43 +1,199 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://chmobrytma4ib"]
 
-[ext_resource type="PackedScene" uid="uid://1sve2gjsuyde" path="res://Scenes/Dialog/text_box_with_options.tscn" id="1_box"]
+[ext_resource type="Script" uid="uid://b0hsmfhmj5kmy" path="res://Scripts/Dialog/TextBoxWithOptions.gd" id="1_script"]
 [ext_resource type="PackedScene" uid="uid://chii51pu3s0yv" path="res://Scenes/Dialog/option_button.tscn" id="2_option"]
+[ext_resource type="Texture2D" uid="uid://bd1t7aiqce5ul" path="res://Assets/Sprites/UI/Dialog/DialogWindow.png" id="3_window"]
 
-[node name="four_options" instance=ExtResource("1_box")]
+[node name="four_options" type="Control" unique_id=1076315529]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_script")
 window_name = "four_options"
 printing_speed = 40.0
 
-[node name="TextureRect" parent="." index="0"]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1962298505]
 self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+offset_left = 549.0
+offset_top = 344.0
+offset_right = 1389.0
+offset_bottom = 964.0
+texture = ExtResource("3_window")
 
-[node name="RichTextLabel" parent="TextureRect" index="1"]
+[node name="CharacterName" type="Label" parent="TextureRect" unique_id=1952870740]
 visible = false
+layout_mode = 1
+offset_left = 67.0
+offset_top = 4.0
+offset_right = 728.0
+offset_bottom = 60.0
+theme_override_colors/font_color = Color(0.93, 0.88, 0.78, 1)
+theme_override_font_sizes/font_size = 36
+vertical_alignment = 2
 
-[node name="SingleOption" parent="TextureRect" index="2"]
+[node name="RichTextLabel" type="RichTextLabel" parent="TextureRect" unique_id=224711974]
 visible = false
+layout_mode = 1
+offset_left = 81.0
+offset_top = 92.0
+offset_right = 766.0
+offset_bottom = 531.0
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.8203659, 0.82036585, 0.8203658, 1)
+theme_override_font_sizes/normal_font_size = 40
+text = "???"
 
-[node name="TwoOptions" parent="TextureRect" index="3"]
-visible = false
-
-[node name="ThreeOptions" parent="TextureRect" index="4"]
-visible = false
-
-[node name="FourOptions" type="Control" parent="TextureRect"]
+[node name="SingleOption" type="Control" parent="TextureRect" unique_id=1153166969]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -165.0
-offset_top = 94.0
-offset_right = -125.0
-offset_bottom = 134.0
+offset_left = -181.0
+offset_top = -409.0
+offset_right = -141.0
+offset_bottom = -369.0
 grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2
 
-[node name="OptionButtonFirst" parent="TextureRect/FourOptions" instance=ExtResource("2_option")]
+[node name="OptionButton" parent="TextureRect/SingleOption" unique_id=273396052 instance=ExtResource("2_option")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -120.0
+offset_right = -20.0
+offset_bottom = -120.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TwoOptions" type="Control" parent="TextureRect" unique_id=1973028574]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -190.0
+offset_top = -437.0
+offset_right = -150.0
+offset_bottom = -397.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="OptionButtonFirst" parent="TextureRect/TwoOptions" unique_id=527046762 instance=ExtResource("2_option")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -201.0
+offset_top = -120.0
+offset_right = -201.0
+offset_bottom = -120.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OptionButtonSecond" parent="TextureRect/TwoOptions" unique_id=500754257 instance=ExtResource("2_option")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 186.0
+offset_top = -117.0
+offset_right = 186.0
+offset_bottom = -117.0
+grow_horizontal = 2
+grow_vertical = 2
+id = 1
+
+[node name="ThreeOptions" type="Control" parent="TextureRect" unique_id=21862491]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -181.0
+offset_top = -495.0
+offset_right = -141.0
+offset_bottom = -455.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="OptionButtonFirst" parent="TextureRect/ThreeOptions" unique_id=601342021 instance=ExtResource("2_option")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -209.0
+offset_top = -120.0
+offset_right = -209.0
+offset_bottom = -120.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OptionButtonSecond" parent="TextureRect/ThreeOptions" unique_id=1236137143 instance=ExtResource("2_option")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 183.0
+offset_top = -120.0
+offset_right = 183.0
+offset_bottom = -120.0
+grow_horizontal = 2
+grow_vertical = 2
+id = 1
+
+[node name="OptionButtonThird" parent="TextureRect/ThreeOptions" unique_id=271450254 instance=ExtResource("2_option")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 4.0
+offset_top = 34.0
+offset_right = 4.0
+offset_bottom = 34.0
+grow_horizontal = 2
+grow_vertical = 2
+id = 2
+
+[node name="FourOptions" type="Control" parent="TextureRect" unique_id=1066006323]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -180.0
+offset_top = -362.0
+offset_right = -140.0
+offset_bottom = -322.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="OptionButtonFirst" parent="TextureRect/FourOptions" unique_id=1610761183 instance=ExtResource("2_option")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -51,7 +207,7 @@ offset_bottom = -260.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="OptionButtonSecond" parent="TextureRect/FourOptions" instance=ExtResource("2_option")]
+[node name="OptionButtonSecond" parent="TextureRect/FourOptions" unique_id=412307422 instance=ExtResource("2_option")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -66,7 +222,7 @@ grow_horizontal = 2
 grow_vertical = 2
 id = 1
 
-[node name="OptionButtonThird" parent="TextureRect/FourOptions" instance=ExtResource("2_option")]
+[node name="OptionButtonThird" parent="TextureRect/FourOptions" unique_id=1419996373 instance=ExtResource("2_option")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -81,7 +237,7 @@ grow_horizontal = 2
 grow_vertical = 2
 id = 2
 
-[node name="OptionButtonFourth" parent="TextureRect/FourOptions" instance=ExtResource("2_option")]
+[node name="OptionButtonFourth" parent="TextureRect/FourOptions" unique_id=1015430005 instance=ExtResource("2_option")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -95,3 +251,5 @@ offset_bottom = -100.0
 grow_horizontal = 2
 grow_vertical = 2
 id = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=945356795]

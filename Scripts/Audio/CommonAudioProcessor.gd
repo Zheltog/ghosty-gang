@@ -2,6 +2,7 @@ extends Node
 
 const default_music_volume: int = 100
 const default_sound_volume: int = 100
+const MUSIC_FADE_SECONDS := 4.0
 
 const _sound_players_pool_size: int = 10
 
@@ -16,6 +17,9 @@ static var tag_volumes: Dictionary = {}
 var _sound_players_pool: Array[TypedAudioStreamPlayer] = []
 var _looped_sound_players: Dictionary = {}
 var _resource_cache: Dictionary = {}
+var _music_resource := ""
+var _music_after_fade := ""
+var _fading_out := false
 
 func _ready() -> void:
 	for i in range(_sound_players_pool_size):
@@ -31,6 +35,49 @@ func process_sound_volume_changed() -> void:
 	_default_sound_player.adjust_volume_instant()
 	for i in range(_sound_players_pool_size):
 		_sound_players_pool[i].adjust_volume_instant()
+
+func transition_music(resource_name: String) -> void:
+	if _fading_out:
+		_music_after_fade = resource_name
+		return
+	if resource_name == _music_resource and _music_player.playing:
+		return
+	if _music_player.playing:
+		_music_after_fade = resource_name
+		_fading_out = true
+		_music_player.adjust_volume_falling(
+			TypedAudioStreamPlayer.AdjustmentMode.BY_TIME,
+			MUSIC_FADE_SECONDS,
+			_on_music_faded_out
+		)
+		return
+	_fade_in_music(resource_name)
+
+func _on_music_faded_out() -> void:
+	_music_player.stop()
+	_music_resource = ""
+	_fading_out = false
+	var next := _music_after_fade
+	_music_after_fade = ""
+	_fade_in_music(next)
+
+func _fade_in_music(resource_name: String) -> void:
+	if resource_name.is_empty():
+		return
+	var stream := _get_cached_stream(resource_name)
+	if stream == null:
+		return
+	if stream is AudioStreamMP3:
+		stream.loop = true
+	elif stream is AudioStreamWAV:
+		stream.loop_mode = AudioStreamWAV.LOOP_FORWARD
+	_music_resource = resource_name
+	_music_player.volume_linear = 0
+	_music_player.play_resource(resource_name, stream, "")
+	_music_player.adjust_volume_rising(
+		TypedAudioStreamPlayer.AdjustmentMode.BY_TIME,
+		MUSIC_FADE_SECONDS
+	)
 
 func process_music(command: AudioMusicCommand) -> void:
 	_process_context(_music_player, command.instant, command.post_action, command.resource_name, \
@@ -77,6 +124,11 @@ func process_sound_looped(command: AudioSoundLoopedCoomand) -> void:
 		return
 	var sound_player = _pick_sound_player()
 	_reset_player_pitch(sound_player)
+	var stream := _get_cached_stream(resource_name)
+	if stream is AudioStreamMP3:
+		stream.loop = true
+	elif stream is AudioStreamWAV:
+		stream.loop_mode = AudioStreamWAV.LOOP_FORWARD
 	_looped_sound_players[resource_name] = sound_player
 	_process_resource(sound_player, resource_name, command.instant, command.adjustment_mode, \
 		command.adjustment_value, command.relative_volume, command.tag)

@@ -1,15 +1,15 @@
 class_name InventoryItemFlashlight
 extends InventoryItemBase
 
-const SOUND_ON := "res://Assets/Audio/Sounds/flashlight_on.mp3"
-const SOUND_OFF := "res://Assets/Audio/Sounds/flashlight_off.mp3"
-
 func _init() -> void:
 	item = InventoryItemGenerator.INVENTORY_ITEM.FLASHLIGHT
 	equip_time = 1.0
 	actions = {"e":{"name":"switch on/off","name_rus":"включить/выключить"}}
 
 # SKIP GENERATION
+
+const SOUND_ON = "res://Assets/Audio/Sounds/flashlight_on.mp3"
+const SOUND_OFF = "res://Assets/Audio/Sounds/flashlight_off.mp3"
 
 func take_action(action : String, _equipped_item_ui : EquippedItemUI) -> void:
 	if action == "e":

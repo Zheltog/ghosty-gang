@@ -1,32 +1,27 @@
 [gd_scene format=3 uid="uid://s218cktv50w5"]
 
-[ext_resource type="PackedScene" uid="uid://dvnnea2fw2ndt" path="res://Scenes/PointAndClick/SceneItemUI.tscn" id="2_item"]
 [ext_resource type="PackedScene" uid="uid://mt1xmuy8xhd5" path="res://Scenes/PointAndClick/SceneUIDoor.tscn" id="2_door"]
+[ext_resource type="PackedScene" uid="uid://dvnnea2fw2ndt" path="res://Scenes/PointAndClick/SceneItemUI.tscn" id="2_item"]
 [ext_resource type="Texture2D" uid="uid://dadq1xc3xcndr" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/MoveBack.png" id="10_back"]
 [ext_resource type="Script" uid="uid://8p77bw84c7bp" path="res://Scripts/UI/PointAndClickScenes/Components/ParallaxComponent.gd" id="10_parobj"]
+[ext_resource type="Script" uid="uid://d37oapbkld1pk" path="res://Scripts/UI/PointAndClickScenes/SceneUIDoor.gd" id="11_saou5"]
 [ext_resource type="Script" uid="uid://bgebmjt4oem53" path="res://Scripts/Room/RoomBase.gd" id="12_room"]
 [ext_resource type="Script" uid="uid://c8bookshelf01" path="res://Scripts/UI/PointAndClickScenes/CustomBookshelfSceneItemUI.gd" id="13_shelf"]
-[ext_resource type="Script" uid="uid://c8bookscene01" path="res://Scripts/UI/PointAndClickScenes/CustomBookSceneItemUI.gd" id="14_book"]
 [ext_resource type="Texture2D" uid="uid://fhx12i7wwmur" path="res://Assets/Sprites/Backgrounds/bookcase_1_normal.png" id="30_bg"]
-[ext_resource type="Material" path="res://Scripts/Shaders/darkness_material.tres" id="30_mat"]
 [ext_resource type="Script" uid="uid://3yscu2its1" path="res://Scenes/Test/Dron/DarknessEffect.gd" id="30_dark"]
-[ext_resource type="Texture2D" uid="uid://bc54v724hmtw1" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/LivingRoom/SHELFS.PNG" id="32_shelfs"]
-[ext_resource type="Texture2D" uid="uid://baam1bktpe4on" path="res://Assets/Sprites/InventoryItems/book_1.png" id="39_igo"]
-[ext_resource type="Texture2D" uid="uid://c0bbfg0g2i166" path="res://Assets/Sprites/InventoryItems/book_2.png" id="40_manga"]
-[ext_resource type="Texture2D" uid="uid://cxf15hao7r2y8" path="res://Assets/Sprites/InventoryItems/book_key.png" id="41_morozov"]
+[ext_resource type="Material" uid="uid://cettvgv7o7kmc" path="res://Scripts/Shaders/darkness_material.tres" id="30_mat"]
 [ext_resource type="Texture2D" uid="uid://daa2vnd05nopl" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/LivingRoom/keyhole.png" id="42_keyhole"]
 
 [node name="Bookshelf" type="Node2D" unique_id=1900112500]
-visible = false
 script = ExtResource("12_room")
 room_name = "bookshelf"
 
 [node name="Background" type="Sprite2D" parent="." unique_id=1900112501]
 material = ExtResource("30_mat")
+instance_shader_parameters/lighted_index = 4
 position = Vector2(960, 540)
 texture = ExtResource("30_bg")
 script = ExtResource("30_dark")
-instance_shader_parameters/lighted_index = 4
 
 [node name="ParallaxComponent" type="Node" parent="Background" unique_id=1900112502]
 script = ExtResource("10_parobj")
@@ -34,8 +29,9 @@ camera_distance = 100.0
 
 [node name="Shelfs" type="Sprite2D" parent="." unique_id=1900112503]
 position = Vector2(960, 500)
-texture = ExtResource("32_shelfs")
 script = ExtResource("13_shelf")
+scene_item_id = 14
+intercation_type = 0
 
 [node name="ParallaxComponent" type="Node" parent="Shelfs" unique_id=1900112504]
 script = ExtResource("10_parobj")
@@ -43,49 +39,21 @@ camera_distance = 105.0
 
 [node name="Area2D" type="Area2D" parent="Shelfs" unique_id=1900112505]
 
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Shelfs/Area2D" unique_id=969607680]
+polygon = PackedVector2Array(-760, -332, 746, -320, 602, 673, -608, 684)
+
+[node name="Area2DAfterMove" type="Area2D" parent="Shelfs" unique_id=1217627506]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Shelfs/Area2DAfterMove" unique_id=1900515235]
+polygon = PackedVector2Array(-1065, -338, 159, -338, 134, 677, -1060, 684)
+
 [node name="Keyhole" parent="Shelfs" unique_id=1900112506 instance=ExtResource("2_item")]
 position = Vector2(47, 117)
 texture = ExtResource("42_keyhole")
-scene_item_id = 11
+scene_item_id = 6
 intercation_type = 0
 
 [node name="ParallaxComponent" type="Node" parent="Shelfs/Keyhole" unique_id=1900112507]
-script = ExtResource("10_parobj")
-camera_distance = 3.0
-
-[node name="BookMorozov" parent="Shelfs" unique_id=1900112508 instance=ExtResource("2_item")]
-position = Vector2(92, 130)
-texture = ExtResource("41_morozov")
-script = ExtResource("14_book")
-inventory_item = 8
-scene_item_id = 9
-intercation_type = 0
-
-[node name="ParallaxComponent" type="Node" parent="Shelfs/BookMorozov" unique_id=1900112509]
-script = ExtResource("10_parobj")
-camera_distance = 3.0
-
-[node name="BookIgo" parent="Shelfs" unique_id=1900112510 instance=ExtResource("2_item")]
-position = Vector2(279, -48)
-texture = ExtResource("39_igo")
-script = ExtResource("14_book")
-inventory_item = 6
-scene_item_id = 7
-intercation_type = 0
-
-[node name="ParallaxComponent" type="Node" parent="Shelfs/BookIgo" unique_id=1900112511]
-script = ExtResource("10_parobj")
-camera_distance = 3.0
-
-[node name="BookManga" parent="Shelfs" unique_id=1900112512 instance=ExtResource("2_item")]
-position = Vector2(72, -188)
-texture = ExtResource("40_manga")
-script = ExtResource("14_book")
-inventory_item = 7
-scene_item_id = 8
-intercation_type = 0
-
-[node name="ParallaxComponent" type="Node" parent="Shelfs/BookManga" unique_id=1900112513]
 script = ExtResource("10_parobj")
 camera_distance = 3.0
 
@@ -98,6 +66,24 @@ scene_item_id = 6
 intercation_type = 0
 
 [node name="ParallaxComponent" type="Node" parent="ToLivingRoom" unique_id=1900112515]
+script = ExtResource("10_parobj")
+camera_distance = 100.0
+
+[node name="ToStorage" type="Sprite2D" parent="." unique_id=1904725459]
+position = Vector2(80, 80)
+scale = Vector2(2, 2)
+script = ExtResource("11_saou5")
+target_room = "storage"
+scene_item_id = 14
+intercation_type = 2
+
+[node name="Area2D" type="Area2D" parent="ToStorage" unique_id=874107418]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ToStorage/Area2D" unique_id=1881239196]
+position = Vector2(702.5, 111.5)
+polygon = PackedVector2Array(-1.5, 1, -42, 391, -192.5, 392.5, -183, 1)
+
+[node name="ParallaxComponent" type="Node" parent="ToStorage" unique_id=1669934405]
 script = ExtResource("10_parobj")
 camera_distance = 100.0
 

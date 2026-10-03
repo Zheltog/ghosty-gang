@@ -37,6 +37,9 @@ var _hotel_foyer: PackedScene = preload("res://Scenes/Preview/HotelFoyer.tscn")
 var _hotel_interview: PackedScene = preload("res://Scenes/Preview/HotelInterview.tscn")
 var _day1_shop: PackedScene = preload("res://Scenes/Preview/Day1Shop.tscn")
 
+const INTRO_MUSIC := "res://Assets/Audio/Music/intro.mp3"
+const DAY_MUSIC := "res://Assets/Audio/Music/День.mp3"
+
 func start_day(day_number: int, scene: SCENE) -> void:
 	SaveManager.begin_day(day_number)
 	change_scene(scene)
@@ -80,6 +83,18 @@ func scene_from_exit(exit_name: String) -> SCENE:
 		_:
 			return SCENE.NONE
 
+func play_menu_music() -> void:
+	CommonAudioProcessor.transition_music(INTRO_MUSIC)
+
+func _music_for(scene: SCENE) -> String:
+	match scene:
+		SCENE.STARTING_MENU:
+			return INTRO_MUSIC
+		SCENE.STARTING_CUTSCENE_1, SCENE.STARTING_CUTSCENE_2, SCENE.PROLOGUE_BUS:
+			return ""
+		_:
+			return DAY_MUSIC
+
 func change_scene(scene: SCENE) -> void:
 	var packed: PackedScene = null
 	match scene:
@@ -121,4 +136,5 @@ func change_scene(scene: SCENE) -> void:
 		_:
 			printerr("SceneLoader: unsupported scene ", scene)
 			return
+	CommonAudioProcessor.transition_music(_music_for(scene))
 	get_tree().change_scene_to_packed(packed)

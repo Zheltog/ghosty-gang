@@ -39,6 +39,8 @@ func _ready() -> void:
 	_anim_player.animation_finished.connect(_on_animation_finished)
 	_rect.gui_input.connect(_on_texture_rect_gui_input)
 	_label.text = ""
+	_rect.mouse_filter = Control.MOUSE_FILTER_STOP
+	_rect.add_to_group(Area2DUtils.MOUSE_BLOCK_GROUP)
 	_assign_option_holder(1, "TextureRect/SingleOption")
 	_assign_option_holder(2, "TextureRect/TwoOptions")
 	_assign_option_holder(3, "TextureRect/ThreeOptions")
@@ -167,6 +169,8 @@ func _do_hide() -> void:
 
 func _set_character_name(character_tag: String) -> void:
 	var shown := CharacterNames.display_name(character_tag)
+	if !_character_name:
+		return
 	_character_name.text = shown
 	_character_name.visible = not shown.is_empty()
 

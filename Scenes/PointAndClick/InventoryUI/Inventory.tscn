@@ -3,17 +3,10 @@
 [ext_resource type="Script" uid="uid://bqfqdh5pakvhn" path="res://Scripts/UI/PointAndClickScenes/InventoryItemsHolder.gd" id="1_4l3tf"]
 [ext_resource type="Script" uid="uid://blgxau1j52ujt" path="res://Scripts/UI/PointAndClickScenes/InventoryManager.gd" id="1_gnvtc"]
 [ext_resource type="Script" uid="uid://bkim76a000ypi" path="res://Scripts/UI/PointAndClickScenes/InventoryItemPlacer.gd" id="2_qdcv2"]
+[ext_resource type="Texture2D" uid="uid://bd1t7aiqce5ul" path="res://Assets/Sprites/UI/Dialog/DialogWindow.png" id="2_tnygb"]
 [ext_resource type="Texture2D" uid="uid://b5qfv1jbyhoob" path="res://Assets/Test/InventoryShowButton.tres" id="3_2m0xb"]
 [ext_resource type="Texture2D" uid="uid://d043vkrtn7s6g" path="res://Assets/Sprites/UI/InventoryBar.png" id="3_gnvtc"]
 [ext_resource type="Texture2D" uid="uid://bm04rhvd732q0" path="res://Assets/Test/InventoryHideButton.tres" id="3_t5a8b"]
-
-[sub_resource type="Gradient" id="Gradient_gnvtc"]
-colors = PackedColorArray(0, 0, 0, 1, 0.27509058, 0.27509058, 0.27509055, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_v8nni"]
-gradient = SubResource("Gradient_gnvtc")
-width = 240
-height = 120
 
 [node name="Inventory" type="Control" unique_id=1617643402]
 layout_mode = 3
@@ -27,24 +20,27 @@ script = ExtResource("1_gnvtc")
 
 [node name="HintRect" type="TextureRect" parent="." unique_id=957362580]
 layout_mode = 0
-offset_left = 9.0
-offset_top = -209.0
-offset_right = 249.0
-offset_bottom = -89.0
-texture = SubResource("GradientTexture2D_v8nni")
+offset_left = -5.0000005
+offset_top = -572.0
+offset_right = 815.0
+offset_bottom = 48.0
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_tnygb")
 
 [node name="HintLabel" type="Label" parent="HintRect" unique_id=90476242]
 layout_mode = 0
-offset_right = 240.0
-offset_bottom = 120.0
+offset_left = 60.000004
+offset_top = 72.50015
+offset_right = 344.0
+offset_bottom = 260.50015
+scale = Vector2(2.5, 2.5)
 text = "A: перелистнуть влево
 D: перелистнуть вправо"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="EquippedItemDisplay" type="Node2D" parent="." unique_id=859788734]
-position = Vector2(515.00006, -215)
-rotation = -0.15317237
+position = Vector2(400, -400)
 
 [node name="InventoryHolder" type="Control" parent="." unique_id=334039717 node_paths=PackedStringArray("inventory")]
 layout_mode = 1

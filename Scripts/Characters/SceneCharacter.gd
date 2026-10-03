@@ -47,7 +47,8 @@ func refresh(save_progress : bool) -> void:
 		change_current_animation(anim)
 	else:
 		sprite.play(anim)
-	sprite.show()
+	if sprite != self:
+		sprite.show()
 
 func change_current_animation(anim : String) -> void:
 	var current_frame = sprite.get_frame()

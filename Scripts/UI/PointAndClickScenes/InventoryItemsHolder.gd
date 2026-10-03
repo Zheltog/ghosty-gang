@@ -9,6 +9,8 @@ extends Control
 @onready var show_button: TextureButton = $ShowButton
 
 var _highlighted_items : Array[InventoryItemUI]
+var _cursor_item : InventoryItemUI
+var _cursor_equipped : InventoryItemUI
 var processing_item : InventoryItemUI
 var selected_item : InventoryItemUI
 
@@ -80,6 +82,32 @@ func _sync_hovered_items() -> void:
 		if item != null and not hovered.has(item):
 			hovered.append(item)
 	_highlighted_items = hovered
+	_update_mouse_cursor()
+
+func _update_mouse_cursor() -> void:
+	var item := highlighted_item()
+	var equipped : InventoryItemUI = null
+	if inventory != null:
+		equipped = inventory.equipped_item
+	if item == _cursor_item and equipped == _cursor_equipped:
+		return
+	_cursor_item = item
+	_cursor_equipped = equipped
+	if item == null:
+		_restore_scene_cursor()
+		return
+	if equipped == item:
+		MouseUi.set_mouse_icon(MouseUI.MOUSE_ICON.IN)
+	else:
+		MouseUi.set_mouse_icon(MouseUI.MOUSE_ICON.OUT)
+
+func _restore_scene_cursor() -> void:
+	var scene := get_tree().current_scene
+	if scene == null:
+		return
+	var manager := NodeUtils.get_child_of_type(scene, SceneObjectsManager) as SceneObjectsManager
+	if manager:
+		manager.update_mouse_cursor()
 
 func _inventory_item_from_collider(collider : Object) -> InventoryItemUI:
 	var node := collider as Node

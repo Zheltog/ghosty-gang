@@ -4,6 +4,7 @@ extends Control
 @onready var _options_button: TextureButton = $OptionsButton
 
 func _ready() -> void:
+	SceneLoader.play_menu_music()
 	_play_button.pressed.connect(_on_play_pressed)
 	_options_button.pressed.connect(_on_options_pressed)
 	if SaveManager.has_checkpoint():

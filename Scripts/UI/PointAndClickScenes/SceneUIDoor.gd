@@ -5,6 +5,7 @@ extends SceneItemUI
 
 func _ready() -> void:
 	scene_item_id = SceneItemGenerator.SCENE_ITEM.NONE
+	intercation_type = INTERACTION_TYPE.MOVE
 	super._ready()
 
 func press_item() -> void:
@@ -23,4 +24,4 @@ func get_effective_interaction_type() -> INTERACTION_TYPE:
 	var house := get_tree().current_scene as HouseSceneBase
 	if house and house.movement_locked:
 		return INTERACTION_TYPE.NONE
-	return super.get_effective_interaction_type()
+	return INTERACTION_TYPE.MOVE

@@ -3,47 +3,79 @@ extends CustomSceneItemUIBase
 
 const STATE_KEY_TURNED := "key_turned"
 const STATE_OPEN := "bookshelf_open"
+const MOVED_BACKGROUND := preload("res://Assets/Sprites/Backgrounds/bookcase_2_normal.png")
+const MOVED_LIGHT_INDEX := 5
 
-@export var open_offset: Vector2 = Vector2(-640, 0)
-@export var move_duration: float = 0.45
-
-var _closed_position: Vector2
-var _moving := false
+var _closed_background: Texture2D
+var _closed_light_index := 4
 
 func _ready() -> void:
 	scene_item_id = SceneItemGenerator.SCENE_ITEM.NONE
 	super._ready()
 	InkFunctions.subscribe(self)
-	_closed_position = position
-	if bool(StateManager.get_state(STATE_OPEN, false)):
-		_set_rest(_closed_position + open_offset)
+	var background := _background()
+	if background != null:
+		_closed_background = background.texture
+		var index: Variant = background.get_instance_shader_parameter("lighted_index")
+		if index != null:
+			_closed_light_index = int(index)
+	var open := bool(StateManager.get_state(STATE_OPEN, false))
+	if open:
+		_show_background(true)
+	_use_moved_area(open)
 
 func turn_key() -> void:
 	StateManager.set_state(STATE_KEY_TURNED, true)
+	if bool(StateManager.get_state(STATE_OPEN, false)):
+		_show_background(true)
+		return
+	StateManager.set_state(STATE_OPEN, true)
+	_show_background(true)
+	_use_moved_area(true)
 
 func press_item() -> void:
-	if _moving or not bool(StateManager.get_state(STATE_KEY_TURNED, false)):
+	if not bool(StateManager.get_state(STATE_KEY_TURNED, false)):
 		return
 	var open := not bool(StateManager.get_state(STATE_OPEN, false))
 	StateManager.set_state(STATE_OPEN, open)
-	var target := _closed_position + open_offset if open else _closed_position
-	_move_to(target)
+	_show_background(open)
+	_use_moved_area(open)
 
 func get_effective_interaction_type() -> INTERACTION_TYPE:
-	if _moving or not bool(StateManager.get_state(STATE_KEY_TURNED, false)):
+	if not bool(StateManager.get_state(STATE_KEY_TURNED, false)):
 		return INTERACTION_TYPE.NONE
 	return INTERACTION_TYPE.TAKE
 
-func _move_to(target: Vector2) -> void:
-	_moving = true
-	var parallax := get_node_or_null("ParallaxComponent") as ParallaxComponent
-	var from := parallax.rest_position if parallax else position
-	var tween := create_tween()
-	tween.tween_method(_set_rest, from, target, move_duration)
-	tween.finished.connect(func() -> void: _moving = false)
+func _use_moved_area(moved: bool) -> void:
+	var after := get_node_or_null("Area2DAfterMove") as Area2D
+	_set_area_enabled(_area_2d, not moved)
+	if after == null:
+		return
+	if not after.input_event.is_connected(_on_input_event):
+		after.input_event.connect(_on_input_event)
+	_set_area_enabled(after, moved)
 
-func _set_rest(value: Vector2) -> void:
-	var parallax := get_node_or_null("ParallaxComponent") as ParallaxComponent
-	if parallax:
-		parallax.rest_position = value
-	position = value
+func _set_area_enabled(area: Area2D, enabled: bool) -> void:
+	area.input_pickable = enabled
+	area.monitoring = enabled
+	area.monitorable = enabled
+	for child in area.get_children():
+		if child is CollisionPolygon2D or child is CollisionShape2D:
+			child.disabled = not enabled
+
+func _show_background(open: bool) -> void:
+	var background := _background()
+	if background == null:
+		return
+	if open:
+		background.texture = MOVED_BACKGROUND
+		background.set_instance_shader_parameter("lighted_index", MOVED_LIGHT_INDEX)
+	else:
+		background.texture = _closed_background
+		background.set_instance_shader_parameter("lighted_index", _closed_light_index)
+
+func _background() -> Sprite2D:
+	var room := get_parent()
+	if room == null:
+		return null
+	return room.get_node_or_null("Background") as Sprite2D

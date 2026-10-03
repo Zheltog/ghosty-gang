@@ -36,6 +36,8 @@ func get_inventory_item() -> InventoryItemBase:
 
 func take_action(action: String, equipped_item_ui : EquippedItemUI) -> void:
 	_inventory_item.take_action(action, equipped_item_ui)
+	var custom := _inventory_item.inventory_texture_path()
+	sprite.texture = load(custom if not custom.is_empty() else generate_texture_path())
 
 func _ready() -> void:
 	sprite.texture = load(generate_texture_path())

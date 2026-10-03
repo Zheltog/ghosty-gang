@@ -1,30 +1,186 @@
 [gd_scene format=3 uid="uid://dc6akhd6bpn8l"]
 
-[ext_resource type="PackedScene" uid="uid://1sve2gjsuyde" path="res://Scenes/Dialog/text_box_with_options.tscn" id="1_box"]
+[ext_resource type="Script" uid="uid://c1t3g3eu4y42o" path="res://Scripts/Dialog/DossierTextBox.gd" id="1_script"]
 [ext_resource type="PackedScene" uid="uid://chii51pu3s0yv" path="res://Scenes/Dialog/option_button.tscn" id="2_option"]
-[ext_resource type="Script" uid="uid://c1t3g3eu4y42o" path="res://Scripts/Dialog/DossierTextBox.gd" id="3_dossier"]
+[ext_resource type="Texture2D" uid="uid://bd1t7aiqce5ul" path="res://Assets/Sprites/UI/Dialog/DialogWindow.png" id="3_window"]
 
-[node name="dossier" unique_id=1663978582 instance=ExtResource("1_box")]
-script = ExtResource("3_dossier")
+[node name="dossier" type="Control" unique_id=740911103]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_script")
 window_name = "dossier"
 printing_speed = 40.0
 
-[node name="TextureRect" parent="." index="0" unique_id=64437177]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1064589674]
 self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+offset_left = 981.0
+offset_top = 98.0
+offset_right = 1821.0
+offset_bottom = 602.0
+texture = ExtResource("3_window")
 
-[node name="RichTextLabel" parent="TextureRect" index="1" unique_id=595398217]
+[node name="CharacterName" type="Label" parent="TextureRect" unique_id=1966404429]
+layout_mode = 1
+offset_left = 67.0
+offset_top = 4.0
+offset_right = 728.0
+offset_bottom = 60.0
+theme_override_colors/font_color = Color(0.93, 0.88, 0.78, 1)
+theme_override_font_sizes/font_size = 36
+vertical_alignment = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TextureRect" unique_id=1470317105]
+layout_mode = 1
+offset_left = 81.0
+offset_top = 92.0
+offset_right = 766.0
+offset_bottom = 531.0
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.8203659, 0.82036585, 0.8203658, 1)
+theme_override_font_sizes/normal_font_size = 40
+text = "???"
+
+[node name="SingleOption" type="Control" parent="TextureRect" unique_id=1682073729]
 visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -195.0
+offset_top = 54.0
+offset_right = -155.0
+offset_bottom = 94.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
 
-[node name="SingleOption" parent="TextureRect" index="2" unique_id=1142005616]
+[node name="OptionButton" parent="TextureRect/SingleOption" unique_id=2142399313 instance=ExtResource("2_option")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -120.0
+offset_right = -20.0
+offset_bottom = -120.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TwoOptions" type="Control" parent="TextureRect" unique_id=2073708376]
 visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -195.0
+offset_top = 54.0
+offset_right = -155.0
+offset_bottom = 94.0
+grow_horizontal = 2
+grow_vertical = 0
 
-[node name="TwoOptions" parent="TextureRect" index="3" unique_id=1525931489]
+[node name="OptionButtonFirst" parent="TextureRect/TwoOptions" unique_id=709927471 instance=ExtResource("2_option")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -201.0
+offset_top = -120.0
+offset_right = -201.0
+offset_bottom = -120.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OptionButtonSecond" parent="TextureRect/TwoOptions" unique_id=1006060866 instance=ExtResource("2_option")]
 visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 186.0
+offset_top = -117.0
+offset_right = 186.0
+offset_bottom = -117.0
+grow_horizontal = 2
+grow_vertical = 2
+id = 1
 
-[node name="ThreeOptions" parent="TextureRect" index="4" unique_id=52314812]
+[node name="ThreeOptions" type="Control" parent="TextureRect" unique_id=2109975153]
 visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -195.0
+offset_top = 54.0
+offset_right = -155.0
+offset_bottom = 94.0
+grow_horizontal = 2
+grow_vertical = 0
 
-[node name="DossierOptions" type="Control" parent="TextureRect" index="5" unique_id=726313520]
+[node name="OptionButtonFirst" parent="TextureRect/ThreeOptions" unique_id=984305325 instance=ExtResource("2_option")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -209.0
+offset_top = -120.0
+offset_right = -209.0
+offset_bottom = -120.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OptionButtonSecond" parent="TextureRect/ThreeOptions" unique_id=488088102 instance=ExtResource("2_option")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 183.0
+offset_top = -120.0
+offset_right = 183.0
+offset_bottom = -120.0
+grow_horizontal = 2
+grow_vertical = 2
+id = 1
+
+[node name="OptionButtonThird" parent="TextureRect/ThreeOptions" unique_id=794838179 instance=ExtResource("2_option")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 4.0
+offset_top = 34.0
+offset_right = 4.0
+offset_bottom = 34.0
+grow_horizontal = 2
+grow_vertical = 2
+id = 2
+
+[node name="DossierOptions" type="Control" parent="TextureRect" unique_id=2081345200]
 visible = false
 layout_mode = 1
 anchors_preset = 7
@@ -40,7 +196,7 @@ grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2
 
-[node name="Zhenya" parent="TextureRect/DossierOptions" index="0" unique_id=1246705801 instance=ExtResource("2_option")]
+[node name="Zhenya" parent="TextureRect/DossierOptions" unique_id=1183164312 instance=ExtResource("2_option")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -54,7 +210,7 @@ offset_bottom = -420.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Stepan" parent="TextureRect/DossierOptions" index="1" unique_id=1844631314 instance=ExtResource("2_option")]
+[node name="Stepan" parent="TextureRect/DossierOptions" unique_id=863807214 instance=ExtResource("2_option")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -69,7 +225,7 @@ grow_horizontal = 2
 grow_vertical = 2
 id = 1
 
-[node name="Emma" parent="TextureRect/DossierOptions" index="2" unique_id=2063481998 instance=ExtResource("2_option")]
+[node name="Emma" parent="TextureRect/DossierOptions" unique_id=2000975433 instance=ExtResource("2_option")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -84,7 +240,7 @@ grow_horizontal = 2
 grow_vertical = 2
 id = 2
 
-[node name="Lyudmila" parent="TextureRect/DossierOptions" index="3" unique_id=1617216924 instance=ExtResource("2_option")]
+[node name="Lyudmila" parent="TextureRect/DossierOptions" unique_id=1955849144 instance=ExtResource("2_option")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -99,7 +255,7 @@ grow_horizontal = 2
 grow_vertical = 2
 id = 3
 
-[node name="Vadim" parent="TextureRect/DossierOptions" index="4" unique_id=130157618 instance=ExtResource("2_option")]
+[node name="Vadim" parent="TextureRect/DossierOptions" unique_id=163380977 instance=ExtResource("2_option")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -114,7 +270,7 @@ grow_horizontal = 2
 grow_vertical = 2
 id = 4
 
-[node name="Semyon" parent="TextureRect/DossierOptions" index="5" unique_id=62612756 instance=ExtResource("2_option")]
+[node name="Semyon" parent="TextureRect/DossierOptions" unique_id=1691899928 instance=ExtResource("2_option")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -128,3 +284,5 @@ offset_bottom = -100.0
 grow_horizontal = 2
 grow_vertical = 2
 id = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1453330157]

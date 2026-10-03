@@ -11,7 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://bvvvlpwdhio26" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/Bathroom/flashlight.png" id="92_b_flash"]
 
 [node name="Bathroom" type="Node2D" unique_id=844400792]
-visible = false
 script = ExtResource("12_room")
 room_name = "bathroom"
 
@@ -42,7 +41,7 @@ camera_distance = 115.0
 [node name="Flashlight" parent="." unique_id=-894967291 instance=ExtResource("2_item")]
 position = Vector2(365, 601)
 texture = ExtResource("92_b_flash")
-scene_item_id = 12
+scene_item_id = 7
 intercation_type = 1
 
 [node name="ParallaxComponent" type="Node" parent="Flashlight" unique_id=-894967290]

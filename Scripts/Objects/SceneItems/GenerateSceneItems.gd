@@ -161,6 +161,8 @@ func _to_interaction_type_enum(value: String) -> String:
 			return "LOOK"
 		"TAKE":
 			return "TAKE"
+		"MOVE":
+			return "MOVE"
 		"NONE":
 			return "NONE"
 		_:

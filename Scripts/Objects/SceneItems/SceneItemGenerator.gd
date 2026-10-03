@@ -2,39 +2,29 @@ class_name SceneItemGenerator
 extends Object
 
 enum SCENE_ITEM {
-	SALT,
-	BOTTLE,
-	PEPPER,
 	PASSPORT,
 	GLASS_EYE,
-	HOUSE_DOOR,
-	DOOR,
 	BOOK_1,
 	BOOK_2,
 	BOOK_KEY,
 	TUMBA,
 	KEYHOLE,
 	FLASHLIGHT,
+	GUN,
+	KEY_BOOKSHELF,
+	CIGARETTES,
+	TEA,
+	PHOTO,
 	COAT,
 	NONE
 }
 
 static func generate(item : SCENE_ITEM) -> SceneItemBase:
 	match item:
-		SCENE_ITEM.SALT:
-			return SceneItemSalt.new()
-		SCENE_ITEM.BOTTLE:
-			return SceneItemBottle.new()
-		SCENE_ITEM.PEPPER:
-			return SceneItemPepper.new()
 		SCENE_ITEM.PASSPORT:
 			return SceneItemPassport.new()
 		SCENE_ITEM.GLASS_EYE:
 			return SceneItemGlassEye.new()
-		SCENE_ITEM.HOUSE_DOOR:
-			return SceneItemHouseDoor.new()
-		SCENE_ITEM.DOOR:
-			return SceneItemDoor.new()
 		SCENE_ITEM.BOOK_1:
 			return SceneItemBook1.new()
 		SCENE_ITEM.BOOK_2:
@@ -47,6 +37,16 @@ static func generate(item : SCENE_ITEM) -> SceneItemBase:
 			return SceneItemKeyhole.new()
 		SCENE_ITEM.FLASHLIGHT:
 			return SceneItemFlashlight.new()
+		SCENE_ITEM.GUN:
+			return SceneItemGun.new()
+		SCENE_ITEM.KEY_BOOKSHELF:
+			return SceneItemKeyBookshelf.new()
+		SCENE_ITEM.CIGARETTES:
+			return SceneItemCigarettes.new()
+		SCENE_ITEM.TEA:
+			return SceneItemTea.new()
+		SCENE_ITEM.PHOTO:
+			return SceneItemPhoto.new()
 		SCENE_ITEM.COAT:
 			return SceneItemCoat.new()
 		SCENE_ITEM.NONE:

@@ -9,6 +9,12 @@ var actions : Dictionary = {}
 func take_action(action : String, equipped_item_ui : EquippedItemUI) -> void:
 	return
 
+func on_equipped(_equipped_item_ui: EquippedItemUI) -> void:
+	pass
+
+func inventory_texture_path() -> String:
+	return ""
+
 func play_sound(resource_name: String) -> void:
 	var command := AudioSoundCommand.new()
 	command.instant = true

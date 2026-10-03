@@ -1,20 +1,4 @@
 {
-	"salt" : {
-		"pickable" : true,
-		"equiped_immediately" : false,
-		"inventory_item" : "salt",
-		"after_pickup" : "disappear"
-	},
-	"bottle" : {
-		"pickable" : true,
-		"equiped_immediately" : false,
-		"inventory_item" : "bottle",
-		"after_pickup" : "disappear"
-	},
-	"pepper" : {
-		"pickable" : false,
-		"ink_story_view" : "res://Files/SceneDialogs/Ink/pepper_inside_house.ink"
-	},
 	"passport" : {
 		"pickable" : true,
 		"inventory_item" : "passport",
@@ -26,16 +10,9 @@
 		"ink_story_view" : "res://Files/SceneDialogs/Ink/Preview/glass_eye.ink",
 		"interaction_overload" : {
 			"flashlight" : {
-				"interaction_type" : "look"
+				"interaction_type" : "take"
 			}
 		}
-	},
-	"house_door" : {
-		"pickable" : false,
-		"ink_story_view" : "res://Files/SceneDialogs/Ink/door_preview.ink"
-	},
-	"door" : {
-		"pickable" : false
 	},
 	"book_1" : {
 		"pickable" : false,
@@ -68,6 +45,36 @@
 		"pickable" : true,
 		"equiped_immediately" : false,
 		"inventory_item" : "flashlight",
+		"after_pickup" : "disappear"
+	},
+	"gun" : {
+		"pickable" : true,
+		"equiped_immediately" : false,
+		"inventory_item" : "gun",
+		"after_pickup" : "disappear"
+	},
+	"key_bookshelf" : {
+		"pickable" : true,
+		"equiped_immediately" : false,
+		"inventory_item" : "key_bookshelf",
+		"after_pickup" : "disappear"
+	},
+	"cigarettes" : {
+		"pickable" : true,
+		"equiped_immediately" : false,
+		"inventory_item" : "cigarettes",
+		"after_pickup" : "disappear"
+	},
+	"tea" : {
+		"pickable" : true,
+		"equiped_immediately" : false,
+		"inventory_item" : "tea",
+		"after_pickup" : "disappear"
+	},
+	"photo" : {
+		"pickable" : true,
+		"equiped_immediately" : false,
+		"inventory_item" : "photo",
 		"after_pickup" : "disappear"
 	},
 	"coat" : {

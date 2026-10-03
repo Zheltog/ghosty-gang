@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://c8preroom00a1"]
 
-[ext_resource type="Script" uid="uid://bgebmjt4oem53" path="res://Scripts/Room/RoomBase.gd" id="12_room"]
-[ext_resource type="Texture2D" uid="uid://bqn8gn4wknuq7" path="res://Assets/Sprites/Test/PreviewScenes/Backgrounds/InsidePreroom.png" id="16_if3oh"]
-[ext_resource type="Script" uid="uid://8p77bw84c7bp" path="res://Scripts/UI/PointAndClickScenes/Components/ParallaxComponent.gd" id="10_parobj"]
 [ext_resource type="PackedScene" uid="uid://mt1xmuy8xhd5" path="res://Scenes/PointAndClick/SceneUIDoor.tscn" id="2_door"]
 [ext_resource type="PackedScene" uid="uid://dvnnea2fw2ndt" path="res://Scenes/PointAndClick/SceneItemUI.tscn" id="2_item"]
+[ext_resource type="Texture2D" uid="uid://dadq1xc3xcndr" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/MoveBack.png" id="10_a71pi"]
+[ext_resource type="Script" uid="uid://8p77bw84c7bp" path="res://Scripts/UI/PointAndClickScenes/Components/ParallaxComponent.gd" id="10_parobj"]
+[ext_resource type="Script" uid="uid://bgebmjt4oem53" path="res://Scripts/Room/RoomBase.gd" id="12_room"]
+[ext_resource type="Texture2D" uid="uid://bqn8gn4wknuq7" path="res://Assets/Sprites/Test/PreviewScenes/Backgrounds/InsidePreroom.png" id="16_if3oh"]
 [ext_resource type="Texture2D" uid="uid://fm1if2rdci0l" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/Preroom/BathroomDoor.png" id="17_fcff3"]
 [ext_resource type="Texture2D" uid="uid://sfbkpkm3fp3s" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/Preroom/Coat.png" id="18_3mlep"]
-[ext_resource type="Texture2D" uid="uid://dadq1xc3xcndr" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/MoveBack.png" id="10_a71pi"]
 
 [node name="Preroom" type="Node2D" unique_id=1089732691]
 visible = false
@@ -56,5 +56,5 @@ intercation_type = 0
 script = ExtResource("10_parobj")
 camera_distance = 110.0
 
-[node name="Character" type="AnimatedSprite2D" parent="."]
+[node name="Character" type="AnimatedSprite2D" parent="." unique_id=1061309255]
 position = Vector2(960, 540)

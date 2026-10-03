@@ -1,6 +1,8 @@
 class_name Area2DUtils
 extends Object
 
+const MOUSE_BLOCK_GROUP := "mouse_block"
+
 static func get_at_mouse(from : CanvasItem) -> Array[Area2D]:
 	if _is_gui_blocking(from.get_viewport()):
 		return []
@@ -8,10 +10,22 @@ static func get_at_mouse(from : CanvasItem) -> Array[Area2D]:
 
 
 static func _is_gui_blocking(viewport : Viewport) -> bool:
-	var hovered := viewport.gui_get_hovered_control()
-	if hovered == null:
+	var control := viewport.gui_get_hovered_control()
+	while control:
+		if control.get_mouse_filter_with_override() == Control.MOUSE_FILTER_STOP:
+			return true
+		control = control.get_parent() as Control
+	var mouse := viewport.get_mouse_position()
+	var tree := viewport.get_tree()
+	if tree == null:
 		return false
-	return hovered.mouse_filter == Control.MOUSE_FILTER_STOP
+	for node in tree.get_nodes_in_group(MOUSE_BLOCK_GROUP):
+		var plate := node as Control
+		if plate == null or not plate.is_visible_in_tree():
+			continue
+		if plate.get_global_rect().has_point(mouse):
+			return true
+	return false
 
 
 static func _query_at_mouse(from : CanvasItem) -> Array[Area2D]:

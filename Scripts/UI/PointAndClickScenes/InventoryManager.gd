@@ -34,6 +34,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if not equipped_item.get_actions().has(action):
 		return
 	equipped_item.take_action(action, _equipped_item_ui)
+	update_hint()
 	get_viewport().set_input_as_handled()
 
 func unequip_item() -> void:
@@ -78,6 +79,7 @@ func equip_item(item_ui : InventoryItemUI) -> void:
 	_equipped_item_ui = EquippedItemUIGenerator.generate(item_ui.inventory_item_id)
 	_equipped_item_ui.inventory_item = item_ui.get_inventory_item()
 	equipped_item_anchor.add_child(_equipped_item_ui)
+	item_ui.get_inventory_item().on_equipped(_equipped_item_ui)
 	equipped_item = item_ui
 	notify_dialog_event(EVENT.EQUIP, item_ui.inventory_item_id)
 	update_hint()
@@ -91,6 +93,13 @@ func _clear_equipped_item_ui() -> void:
 func notify_dialog_event(event: EVENT, item_id: InventoryItemGenerator.INVENTORY_ITEM) -> void:
 	if dialog_controller:
 		dialog_controller.try_inventory_choice(event, item_id)
+	if item_id != InventoryItemGenerator.INVENTORY_ITEM.GUN:
+		return
+	if event != EVENT.EQUIP and event != EVENT.UNEQUIP:
+		return
+	var house := get_tree().current_scene as HouseScenePreview
+	if house:
+		house.set_gun_drawn(event == EVENT.EQUIP)
 
 func update_hint() -> void:
 	if !equipped_item:

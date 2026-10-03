@@ -4,6 +4,14 @@ extends TextBoxWithOptions
 
 const _options_path := "TextureRect/DossierOptions"
 const _options_count := 6
+const _slots := {
+	"Женя Куликов": &"Zhenya",
+	"Степан Куликов": &"Stepan",
+	"Эмма Куликова": &"Emma",
+	"Людмила Куликова": &"Lyudmila",
+	"Вадим Титов": &"Vadim",
+	"Семён Гало": &"Semyon",
+}
 
 func _ready() -> void:
 	super._ready()
@@ -25,18 +33,20 @@ func _show_options(options: Array) -> void:
 		super._show_options(options)
 		return
 	_are_options_shown = true
-	var buttons: Array[BoxOptionButton] = []
 	for child in holder.get_children():
-		var button := child as BoxOptionButton
-		if button:
-			buttons.append(button)
-	for i in buttons.size():
-		var button := buttons[i]
-		if i < options.size():
-			var option = options[i]
-			button.reset_visual()
-			button.set_text(option.GetText())
-			button.id = option.GetIndex()
-		else:
-			button.hide()
+		if child is BoxOptionButton:
+			child.hide()
+	for option in options:
+		var slot: StringName = _slots.get(str(option.GetText()).strip_edges(), &"")
+		var button := holder.get_node_or_null(NodePath(str(slot))) as BoxOptionButton
+		if button == null:
+			printerr("DossierTextBox: no slot for ", option.GetText())
+			continue
+		button.reset_visual()
+		button.set_text(option.GetText())
+		button.id = option.GetIndex()
 	holder.show()
+
+func hide_other_options(selected: BoxOptionButton) -> void:
+	if selected:
+		selected.hide()

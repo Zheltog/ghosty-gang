@@ -10,6 +10,7 @@ const ROOMS_NODE_NAME := "Rooms"
 
 var current_room: String = ""
 var movement_locked: bool = false
+var _room_locks: Dictionary = {}
 
 func _ready() -> void:
 	current_house_scene = self
@@ -46,7 +47,18 @@ func set_movement_locked(locked: bool) -> void:
 	if manager:
 		manager.update_mouse_cursor()
 
+func lock_room(room_name: String, on_blocked: Callable) -> void:
+	_room_locks[room_name] = on_blocked
+
+func unlock_room(room_name: String) -> void:
+	_room_locks.erase(room_name)
+
 func load_room(room_name: String) -> void:
+	if _room_locks.has(room_name):
+		var on_blocked: Callable = _room_locks[room_name]
+		if on_blocked.is_valid():
+			on_blocked.call()
+		return
 	var rooms := get_node_or_null(ROOMS_NODE_NAME)
 	if rooms == null:
 		printerr("HouseSceneBase: missing '%s' child" % ROOMS_NODE_NAME)

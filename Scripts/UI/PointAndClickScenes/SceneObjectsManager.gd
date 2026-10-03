@@ -34,7 +34,7 @@ func _sync_hovered_items() -> void:
 	var hovered : Array[SceneItemUI] = []
 	for area in Area2DUtils.get_at_mouse(self):
 		var item := _scene_item_from_collider(area)
-		if item != null and not hovered.has(item):
+		if item != null and item.can_interact() and not hovered.has(item):
 			hovered.append(item)
 	_set_hovered_items(hovered)
 
@@ -102,6 +102,8 @@ func _process_add_item(data: Variant) -> void:
 		inventory.equip_item(item_ui)
 
 func update_mouse_cursor() -> void:
+	if inventory != null and inventory.inventory_holder != null and inventory.inventory_holder.highlighted_item() != null:
+		return
 	if _highlighted_items.size() == 0:
 		MouseUi.set_mouse_icon(MouseUI.MOUSE_ICON.CURSOR)
 	else:
@@ -113,4 +115,6 @@ func get_mouse_icon_by_intercation_type(intercation : SceneItemUI.INTERACTION_TY
 			return MouseUI.MOUSE_ICON.EYE
 		SceneItemUI.INTERACTION_TYPE.TAKE:
 			return MouseUI.MOUSE_ICON.HAND
+		SceneItemUI.INTERACTION_TYPE.MOVE:
+			return MouseUI.MOUSE_ICON.FOOT
 	return MouseUI.MOUSE_ICON.CURSOR

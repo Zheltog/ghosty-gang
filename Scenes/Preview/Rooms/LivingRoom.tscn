@@ -1,20 +1,13 @@
 [gd_scene format=3 uid="uid://c8livroom0a1b"]
 
 [ext_resource type="PackedScene" uid="uid://mt1xmuy8xhd5" path="res://Scenes/PointAndClick/SceneUIDoor.tscn" id="2_door"]
-[ext_resource type="PackedScene" uid="uid://dvnnea2fw2ndt" path="res://Scenes/PointAndClick/SceneItemUI.tscn" id="2_item"]
 [ext_resource type="Texture2D" uid="uid://dadq1xc3xcndr" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/MoveBack.png" id="10_a71pi"]
+[ext_resource type="Script" uid="uid://d37oapbkld1pk" path="res://Scripts/UI/PointAndClickScenes/SceneUIDoor.gd" id="10_edql1"]
 [ext_resource type="Script" uid="uid://8p77bw84c7bp" path="res://Scripts/UI/PointAndClickScenes/Components/ParallaxComponent.gd" id="10_parobj"]
 [ext_resource type="Script" uid="uid://bgebmjt4oem53" path="res://Scripts/Room/RoomBase.gd" id="12_room"]
 [ext_resource type="Texture2D" uid="uid://lxj47nksg3di" path="res://Assets/Sprites/Backgrounds/living_room_normal.png" id="30_lr_bg"]
 [ext_resource type="Script" uid="uid://3yscu2its1" path="res://Scenes/Test/Dron/DarknessEffect.gd" id="30_lr_dark"]
 [ext_resource type="Material" uid="uid://cettvgv7o7kmc" path="res://Scripts/Shaders/darkness_material.tres" id="30_lr_mat"]
-[ext_resource type="Texture2D" uid="uid://bqhkqedeovhyq" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/LivingRoom/ROOM.PNG" id="31_lr_room"]
-[ext_resource type="Texture2D" uid="uid://bc54v724hmtw1" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/LivingRoom/SHELFS.PNG" id="32_lr_shelfs"]
-[ext_resource type="Texture2D" uid="uid://hhdv7pg8eo0s" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/LivingRoom/BED.PNG" id="33_lr_bed"]
-[ext_resource type="Texture2D" uid="uid://dwkpvh67pcyy4" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/LivingRoom/TABLE.PNG" id="34_lr_table"]
-[ext_resource type="Texture2D" uid="uid://bm32no0fm88nq" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/LivingRoom/CHAIR.PNG" id="35_lr_chair"]
-[ext_resource type="Texture2D" uid="uid://c6wr0oguvdxi3" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/LivingRoom/TUMBA.PNG" id="36_lr_tumba"]
-[ext_resource type="Texture2D" uid="uid://cebnt76swstxo" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/LivingRoom/DOOR.PNG" id="37_lr_door"]
 [ext_resource type="Texture2D" uid="uid://d2vq8s60l74ri" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/LivingRoom/SECRET DOOR.PNG" id="38_lr_secret"]
 
 [node name="LivingRoom" type="Node2D" unique_id=1900112235]
@@ -32,16 +25,8 @@ script = ExtResource("30_lr_dark")
 script = ExtResource("10_parobj")
 camera_distance = 100.0
 
-[node name="Room" type="Sprite2D" parent="." unique_id=-1294967295]
-visible = false
-position = Vector2(960, 540)
-texture = ExtResource("31_lr_room")
-
-[node name="ParallaxComponent" type="Node" parent="Room" unique_id=-1294967294]
-script = ExtResource("10_parobj")
-camera_distance = 100.0
-
 [node name="ToStorage" parent="." unique_id=-1294967277 instance=ExtResource("2_door")]
+visible = false
 position = Vector2(1678, 440)
 texture = ExtResource("38_lr_secret")
 target_room = "storage"
@@ -52,62 +37,51 @@ intercation_type = 0
 script = ExtResource("10_parobj")
 camera_distance = 100.0
 
-[node name="ToBookshelf" parent="." unique_id=-1294967293 instance=ExtResource("2_door")]
+[node name="ToBookshelf" type="Sprite2D" parent="." unique_id=-1294967293]
 position = Vector2(1526, 474)
-texture = ExtResource("32_lr_shelfs")
+script = ExtResource("10_edql1")
 target_room = "bookshelf"
 scene_item_id = 6
 intercation_type = 0
+
+[node name="Area2D" type="Area2D" parent="ToBookshelf" unique_id=874107418]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ToBookshelf/Area2D" unique_id=1352041128]
+polygon = PackedVector2Array(-224, -154, -241, 110, -503, 155, -526, 137, -523, -159, -497, -168)
 
 [node name="ParallaxComponent" type="Node" parent="ToBookshelf" unique_id=-1294967292]
 script = ExtResource("10_parobj")
 camera_distance = 105.0
 
-[node name="Table" type="Sprite2D" parent="." unique_id=-1294967283]
-visible = false
-position = Vector2(313.5, 817)
-texture = ExtResource("34_lr_table")
-
-[node name="ParallaxComponent" type="Node" parent="Table" unique_id=-1294967282]
-script = ExtResource("10_parobj")
-camera_distance = 105.0
-
-[node name="Chair" type="Sprite2D" parent="." unique_id=-1294967281]
-visible = false
-position = Vector2(551.5, 809)
-texture = ExtResource("35_lr_chair")
-
-[node name="ParallaxComponent" type="Node" parent="Chair" unique_id=-1294967280]
-script = ExtResource("10_parobj")
-camera_distance = 105.0
-
-[node name="Tumba" parent="." unique_id=-1294967279 instance=ExtResource("2_item")]
-position = Vector2(1842, 946)
-texture = ExtResource("36_lr_tumba")
-scene_item_id = 10
-intercation_type = 0
-
-[node name="ParallaxComponent" type="Node" parent="Tumba" unique_id=-1294967278]
-script = ExtResource("10_parobj")
-camera_distance = 120.0
-
-[node name="ToKitchen" parent="." unique_id=1422088194 instance=ExtResource("2_door")]
+[node name="ToKitchen" type="Sprite2D" parent="." unique_id=1422088194]
 position = Vector2(826, 478)
-texture = ExtResource("37_lr_door")
+script = ExtResource("10_edql1")
 target_room = "kitchen"
 scene_item_id = 6
 intercation_type = 0
+
+[node name="Area2D" type="Area2D" parent="ToKitchen" unique_id=891129043]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ToKitchen/Area2D" unique_id=563413442]
+polygon = PackedVector2Array(-30, 165, -40, -146, -196, -149, -171, 184)
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="ParallaxComponent" type="Node" parent="ToKitchen" unique_id=2145012307]
 script = ExtResource("10_parobj")
 camera_distance = 100.0
 
-[node name="ToUnderBed" parent="." unique_id=-1294967275 instance=ExtResource("2_door")]
+[node name="ToUnderBed" type="Sprite2D" parent="." unique_id=-1294967275]
 position = Vector2(1624, 1108)
-texture = ExtResource("33_lr_bed")
+script = ExtResource("10_edql1")
 target_room = "under_bed"
 scene_item_id = 6
 intercation_type = 0
+
+[node name="Area2D" type="Area2D" parent="ToUnderBed" unique_id=829779427]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ToUnderBed/Area2D" unique_id=2015330451]
+polygon = PackedVector2Array(-120, -208, -170, -228, -129, -452, -82, -445, -51, -413, 188, -494, 220, -600, 398, -573, 398, -3, -27, -202)
 
 [node name="ParallaxComponent" type="Node" parent="ToUnderBed" unique_id=-1294967274]
 script = ExtResource("10_parobj")
@@ -121,6 +95,18 @@ scene_item_id = 6
 intercation_type = 0
 
 [node name="ParallaxComponent" type="Node" parent="ToLivingRoomToExit" unique_id=426732625]
+script = ExtResource("10_parobj")
+camera_distance = 100.0
+
+[node name="ToPreroom" parent="." unique_id=1167534544 instance=ExtResource("2_door")]
+position = Vector2(985, 1026)
+rotation = -1.5707964
+texture = ExtResource("10_a71pi")
+target_room = "preroom"
+scene_item_id = 6
+intercation_type = 0
+
+[node name="ParallaxComponent" type="Node" parent="ToPreroom" unique_id=1059769946]
 script = ExtResource("10_parobj")
 camera_distance = 100.0
 

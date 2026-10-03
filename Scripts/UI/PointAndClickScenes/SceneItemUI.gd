@@ -9,6 +9,7 @@ enum TRIGGER_TYPE {
 enum INTERACTION_TYPE {
 	LOOK,
 	TAKE,
+	MOVE,
 	NONE
 }
 
@@ -16,6 +17,7 @@ enum INTERACTION_TYPE {
 @export_category("Interaction Settings")
 @export var trigger_type : TRIGGER_TYPE = TRIGGER_TYPE.PRESS
 @export var intercation_type : INTERACTION_TYPE = INTERACTION_TYPE.NONE
+@export var interact_during_dialog : bool = false
 # only used if trigger_type is hold
 @export var hold_time : float = 1.0
 @export var remove_progress_on_release : bool = true
@@ -62,7 +64,14 @@ func update_hold_animation() -> void:
 	#TODO:
 	print(_pickup_progress)
 
+func can_interact() -> bool:
+	if interact_during_dialog:
+		return true
+	return not DialogController.is_dialog_active()
+
 func press_ui() -> void:
+	if not can_interact():
+		return
 	match trigger_type:
 		TRIGGER_TYPE.PRESS:
 			press_item()
