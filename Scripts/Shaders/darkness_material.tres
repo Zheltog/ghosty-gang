@@ -1,0 +1,16 @@
+[gd_resource type="ShaderMaterial" load_steps=8 format=3]
+
+[ext_resource type="Shader" uid="uid://jym1f30vngt0" path="res://Scripts/Shaders/darkness.gdshader" id="1_shader"]
+[ext_resource type="Texture2D" uid="uid://0g7ysvf72smh" path="res://Assets/Sprites/Backgrounds/living_room_flashlight.png" id="2_living"]
+[ext_resource type="Texture2D" uid="uid://c14oeeuqotk8g" path="res://Assets/Sprites/Backgrounds/living_room_to_exit_flashlight.png" id="3_exit"]
+[ext_resource type="Texture2D" uid="uid://c1fc71ldjrk45" path="res://Assets/Sprites/Backgrounds/kitchen_flashlight.png" id="4_kitchen"]
+[ext_resource type="Texture2D" uid="uid://cdu876x3pnbl1" path="res://Assets/Sprites/Backgrounds/storage_flashlight.png" id="5_storage"]
+[ext_resource type="Texture2D" uid="uid://banvbyutvnm2b" path="res://Assets/Sprites/Backgrounds/bookcase_1_flashlight.png" id="6_bookcase1"]
+[ext_resource type="Texture2D" uid="uid://bl1k7pkmua023" path="res://Assets/Sprites/Backgrounds/bookcase_2_flashlight.png" id="7_bookcase2"]
+
+[resource]
+shader = ExtResource("1_shader")
+shader_parameter/mouse_pos = Vector2(0, 0)
+shader_parameter/light_on = false
+shader_parameter/light_dist = 200.0
+shader_parameter/lighted_textures = Array[Texture2D]([ExtResource("2_living"), ExtResource("3_exit"), ExtResource("4_kitchen"), ExtResource("5_storage"), ExtResource("6_bookcase1"), ExtResource("7_bookcase2")])

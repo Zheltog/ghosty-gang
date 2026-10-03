@@ -6,11 +6,13 @@ static func display_name(character_tag: String) -> String:
 		"dossier":
 			return "Досье"
 		"detective":
-			return "Детектив"
+			return ""
 		"driver":
 			return "Водитель"
 		"scout":
-			return "Разведчик"
+			if bool(StateManager.get_state("scout_introduced", false)):
+				return "Разведчик"
+			return "Мальчик"
 		"landlady":
 			return "Хозяйка"
 		"cashier":

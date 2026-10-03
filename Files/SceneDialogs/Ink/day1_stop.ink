@@ -33,7 +33,7 @@ VAR detective_alias = ""
 Немножко пошутил. Пойдем вместе. # char:scout
 Ну веди. # response # char:detective
 Как звать-то тебя? # response # char:detective
-Я Разведчик. А ты? # char:scout
+Я Разведчик. А ты? # char:scout # introduced
 Угу. А на самом деле? # response # char:detective
 Я на задании. В инкогнито. # char:scout
 А тебя? # char:scout

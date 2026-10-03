@@ -151,6 +151,8 @@ func _story_name() -> String:
 
 func _show_current_line(text: String, choices: Array) -> void:
 	_state.apply(story.GetCurrentTags())
+	if _state.introduced and not _state.character_name.is_empty():
+		StateManager.set_state(_state.character_name + "_introduced", true)
 	_sync_present_characters()
 	_state.speaker_name = _speaker_for_current_line()
 	_apply_character_animation()

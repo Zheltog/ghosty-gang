@@ -19,8 +19,10 @@ func take_action(action : String, equipped_item_ui : EquippedItemUI) -> void:
 			equipped_item_ui.set_ui_animation("default")
 		else:
 			equipped_item_ui.set_ui_animation("page" + str(page))
+		play_sound("res://Assets/Audio/Sounds/page.mp3")
 	if action == "d":
 		if page == 3:
 			return
 		page += 1
 		equipped_item_ui.set_ui_animation("page" + str(page))
+		play_sound("res://Assets/Audio/Sounds/page.mp3")

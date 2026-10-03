@@ -17,6 +17,7 @@ var animation_name: String = ""
 var character_default: String = ""
 var character_name: String = ""
 var away_character: String = ""
+var introduced: bool = false
 var speaker_name: String = ""
 var timeout_seconds: float = -1.0
 
@@ -35,6 +36,7 @@ func begin_line() -> void:
 	animation_name = ""
 	character_name = character_default
 	away_character = ""
+	introduced = false
 	speaker_name = ""
 	timeout_seconds = -1.0
 
@@ -60,6 +62,7 @@ func apply(tags: Array[String]) -> void:
 		character_name = str(parsed["char"]).strip_edges()
 	if thought and not parsed.has("char"):
 		character_name = none_character
+	introduced = parsed.has("introduced")
 	if parsed.has("away"):
 		var raw := str(parsed["away"]).strip_edges()
 		away_character = character_name if raw.is_empty() else raw

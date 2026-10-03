@@ -54,8 +54,15 @@ func add_item_str(item_id : String) -> InventoryItemUI:
 
 func add_item(item_id: InventoryItemGenerator.INVENTORY_ITEM) -> InventoryItemUI:
 	var item_ui := inventory_holder.add_item(item_id)
+	_play_pickup_sound()
 	notify_dialog_event(EVENT.PICKUP, item_id)
 	return item_ui
+
+func _play_pickup_sound() -> void:
+	var command := AudioSoundCommand.new()
+	command.instant = true
+	command.resource_name = "res://Assets/Audio/Sounds/menu_tick_1.mp3"
+	CommonAudioProcessor.process_sound(command)
 
 func has_item(item_id: InventoryItemGenerator.INVENTORY_ITEM) -> bool:
 	return inventory_holder.has_item(item_id)

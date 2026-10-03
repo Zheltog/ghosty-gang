@@ -1,0 +1,16 @@
+[remap]
+
+importer="ink"
+type="Resource"
+uid="uid://c8busarriv01"
+path="res://.godot/imported/day1_bus_arrival.ink-ecc49aebcc65d17267a9ae1725ec6f44.res"
+
+[deps]
+
+source_file="res://Files/SceneDialogs/Ink/day1_bus_arrival.ink"
+dest_files=["res://.godot/imported/day1_bus_arrival.ink-ecc49aebcc65d17267a9ae1725ec6f44.res"]
+
+[params]
+
+is_main_file=true
+compress=true

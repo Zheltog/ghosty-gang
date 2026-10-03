@@ -8,6 +8,8 @@
 [ext_resource type="Script" uid="uid://c8bookshelf01" path="res://Scripts/UI/PointAndClickScenes/CustomBookshelfSceneItemUI.gd" id="13_shelf"]
 [ext_resource type="Script" uid="uid://c8bookscene01" path="res://Scripts/UI/PointAndClickScenes/CustomBookSceneItemUI.gd" id="14_book"]
 [ext_resource type="Texture2D" uid="uid://fhx12i7wwmur" path="res://Assets/Sprites/Backgrounds/bookcase_1_normal.png" id="30_bg"]
+[ext_resource type="Material" path="res://Scripts/Shaders/darkness_material.tres" id="30_mat"]
+[ext_resource type="Script" uid="uid://3yscu2its1" path="res://Scenes/Test/Dron/DarknessEffect.gd" id="30_dark"]
 [ext_resource type="Texture2D" uid="uid://bc54v724hmtw1" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/LivingRoom/SHELFS.PNG" id="32_shelfs"]
 [ext_resource type="Texture2D" uid="uid://baam1bktpe4on" path="res://Assets/Sprites/InventoryItems/book_1.png" id="39_igo"]
 [ext_resource type="Texture2D" uid="uid://c0bbfg0g2i166" path="res://Assets/Sprites/InventoryItems/book_2.png" id="40_manga"]
@@ -20,8 +22,11 @@ script = ExtResource("12_room")
 room_name = "bookshelf"
 
 [node name="Background" type="Sprite2D" parent="." unique_id=1900112501]
+material = ExtResource("30_mat")
 position = Vector2(960, 540)
 texture = ExtResource("30_bg")
+script = ExtResource("30_dark")
+instance_shader_parameters/lighted_index = 4
 
 [node name="ParallaxComponent" type="Node" parent="Background" unique_id=1900112502]
 script = ExtResource("10_parobj")

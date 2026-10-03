@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://bgebmjt4oem53" path="res://Scripts/Room/RoomBase.gd" id="12_room"]
 [ext_resource type="Texture2D" uid="uid://bxjtno10bk1kn" path="res://Assets/Sprites/Backgrounds/living_room_to_exit_normal.png" id="50_lte_bg"]
+[ext_resource type="Material" path="res://Scripts/Shaders/darkness_material.tres" id="50_lte_mat"]
+[ext_resource type="Script" uid="uid://3yscu2its1" path="res://Scenes/Test/Dron/DarknessEffect.gd" id="50_lte_dark"]
 [ext_resource type="Script" uid="uid://8p77bw84c7bp" path="res://Scripts/UI/PointAndClickScenes/Components/ParallaxComponent.gd" id="10_parobj"]
 [ext_resource type="Texture2D" uid="uid://cq314bqm5t00y" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/LivingRoomToExit/SIDE_TO_DOOR_BG.PNG" id="51_lte_side"]
 [ext_resource type="Texture2D" uid="uid://drlfwgriejbl4" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/LivingRoomToExit/BED.PNG" id="52_lte_bed"]
@@ -19,8 +21,11 @@ script = ExtResource("12_room")
 room_name = "living_room_to_exit"
 
 [node name="Background" type="Sprite2D" parent="." unique_id=-1194967294]
+material = ExtResource("50_lte_mat")
 position = Vector2(960, 540)
 texture = ExtResource("50_lte_bg")
+script = ExtResource("50_lte_dark")
+instance_shader_parameters/lighted_index = 1
 
 [node name="ParallaxComponent" type="Node" parent="Background" unique_id=-1194967293]
 script = ExtResource("10_parobj")

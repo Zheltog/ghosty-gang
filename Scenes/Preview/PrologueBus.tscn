@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://20w50p3wwqvr"]
 
-[ext_resource type="Script" uid="uid://dip5o5vas7khn" path="res://Scripts/Preview/DialogBackdrop.gd" id="1_backdrop"]
+[ext_resource type="Script" path="res://Scripts/Preview/PrologueBus.gd" id="1_backdrop"]
 [ext_resource type="PackedScene" uid="uid://b3fjaokxpivbe" path="res://Scenes/Dialog/dialog_controller.tscn" id="2_dialog"]
 [ext_resource type="PackedScene" path="res://Scenes/Characters/EngineerCopy.tscn" id="3_character"]
 [ext_resource type="Script" uid="uid://ct24630qdy5qa" path="res://Scripts/Characters/SceneCharacter.gd" id="4_none"]

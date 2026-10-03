@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://bgebmjt4oem53" path="res://Scripts/Room/RoomBase.gd" id="12_room"]
 [ext_resource type="Texture2D" uid="uid://dvo5unmy6g40r" path="res://Assets/Sprites/Backgrounds/kitchen_normal.png" id="6_kitchen"]
+[ext_resource type="Material" path="res://Scripts/Shaders/darkness_material.tres" id="6_kitchen_mat"]
+[ext_resource type="Script" uid="uid://3yscu2its1" path="res://Scenes/Test/Dron/DarknessEffect.gd" id="6_kitchen_dark"]
 [ext_resource type="Script" uid="uid://8p77bw84c7bp" path="res://Scripts/UI/PointAndClickScenes/Components/ParallaxComponent.gd" id="10_parobj"]
 [ext_resource type="Texture2D" uid="uid://csag4s2sp1hen" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/Kitchen/Kneeting.png" id="81_k_kneet"]
 [ext_resource type="Texture2D" uid="uid://dkg4fyroraf2x" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/Carpet.png" id="9_fifyc"]
@@ -20,8 +22,11 @@ script = ExtResource("12_room")
 room_name = "kitchen"
 
 [node name="Background" type="Sprite2D" parent="." unique_id=2145012310]
+material = ExtResource("6_kitchen_mat")
 position = Vector2(960, 540)
 texture = ExtResource("6_kitchen")
+script = ExtResource("6_kitchen_dark")
+instance_shader_parameters/lighted_index = 2
 
 [node name="ParallaxComponent" type="Node" parent="Background" unique_id=2145012311]
 script = ExtResource("10_parobj")

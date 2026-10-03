@@ -108,9 +108,4 @@ VAR seen_semyon = false
 
 === after_cards ===
 Вот карта поселка с отмеченными адресами бабушки и Вадима Титова. # window:default # char:dossier
--> arrival
-
-=== arrival ===
-На выход, дядь. # window:default # char:driver # anim:gruff
-Приехали, что ли? # response # char:detective
 -> END
