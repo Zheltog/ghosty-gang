@@ -1,11 +1,26 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://dv8vuuerlvjmw"]
 
 [ext_resource type="PackedScene" uid="uid://1sve2gjsuyde" path="res://Scenes/Dialog/text_box_with_options.tscn" id="1_box"]
 
-[node name="player_phrase" instance=ExtResource("1_box")]
+[node name="player_phrase" unique_id=1030802039 instance=ExtResource("1_box")]
 offset_left = -535.0
 offset_top = 291.0
 offset_right = -535.0
 offset_bottom = 291.0
 window_name = "player_phrase"
 printing_speed = 40.0
+
+[node name="TextureRect" parent="." index="0" unique_id=64437177]
+offset_left = 1055.0
+offset_top = 145.0
+offset_right = 1895.0
+offset_bottom = 765.0
+
+[node name="SingleOption" parent="TextureRect" index="2" unique_id=1142005616]
+visible = false
+
+[node name="TwoOptions" parent="TextureRect" index="3" unique_id=1525931489]
+visible = false
+
+[node name="ThreeOptions" parent="TextureRect" index="4" unique_id=52314812]
+visible = false

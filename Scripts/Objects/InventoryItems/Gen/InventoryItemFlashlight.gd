@@ -15,10 +15,8 @@ func take_action(action : String, _equipped_item_ui : EquippedItemUI) -> void:
 	if action == "e":
 		light_on = !light_on
 		if light_on:
-			_equipped_item_ui.set_ui_animation("on")
 			play_sound(SOUND_ON)
 		else:
-			_equipped_item_ui.set_ui_animation("default")
 			play_sound(SOUND_OFF)
 		
 	

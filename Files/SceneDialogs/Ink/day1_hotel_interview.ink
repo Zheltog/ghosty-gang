@@ -13,7 +13,7 @@ VAR exit = ""
 
 === give_cigarette ===
 {from_theft:
-	Ты поднимаешься по лестнице навстречу хозяйке, стараясь не пересекаться с ней глазами. # window:default # thought
+	Ты поднимаешься по лестнице навстречу хозяйке. # window:default # thought
 	Хамло! Псих! # char:landlady # anim:angry
 	У двери тебя встречает водитель. # thought # char:driver # away:landlady
 	Стерва! Нет бы мастера вызвать, технику починить. # char:driver # anim:angry
@@ -32,7 +32,6 @@ VAR exit = ""
 Он устраивается рядом и сладко затягивается. Вы сидите молча, пока он докуривает. # thought # char:driver
 Вдруг телевизор включается сам собой. # thought
 На экране неровная картинка отечественного сериала. # thought # char:driver # anim:pleased
-Водитель явно доволен таким чудесам. # thought # char:driver
 Лучшего момента для вопросов может и не быть. # thought
 Ты снова суешь ему фотографию. # thought
 -> interview
@@ -47,10 +46,8 @@ VAR exit = ""
 Да он ни имени, ни должности не назвал. # char:driver # anim:shrug
 Бабушка как все бабушки. Блины, мол, жарит. Рассаду выращивает. # char:driver
 В телефоне своем постоянно путает что-то. # char:driver
-Семён разводит руками в стороны. # thought # char:driver
 Людмила Игоревна Куликова. Раньше чиновница была. # response # char:detective
 Куликова? # char:driver # anim:frown
-Он хмурит брови. # thought # char:driver
 Не помню такую. # char:driver
 Ладно. А мальчик еще говорил что-то? # response # char:detective
 Планы строил. Что с мамой летом на Майорку полетят. Мажор, что ли? # char:driver
@@ -64,19 +61,16 @@ VAR exit = ""
 Пропал. Ты последний его видел. # response # char:detective
 Последний? Ё-маё… До бабки что ли не дошел? # char:driver # anim:shocked
 Она не в Вязи тогда была. # response # char:detective
-Водитель сразу сник и уставился в пол. # thought # char:driver # anim:downcast
 Узнаешь что-то — звони мне. # response # char:detective
-А у тебя ловит? # char:driver
+А у тебя ловит? # char:driver # anim:downcast
 Вообще-то нет. Думал, из-за бури. # response # char:detective
 Тут только один оператор ловит нормально. Поищи симку, жить легче будет. # char:driver
 ~ knows_sim = true
 Учту. # response # char:detective
 Удачи в поисках. Найдётся пацан. Вязь маленькая, не заблудишься. # char:driver
 Уж надеюсь. # response # char:detective
-Водитель встаёт, чтобы закрыть за тобой дверь, но останавливается на полпути. # thought # char:driver
 Начальник. А ты к Шнейдеру ходил уже? # char:driver # anim:wary
-Ты морщишься. # thought # char:detective # anim:wince
-Он тут что ли до сих пор? # response # char:detective
+Он тут что ли до сих пор? # response # char:detective # anim:wince
 А куда он денется? Без него тут ни один вопрос не решается. # char:driver
 Вот поэтому у вас все и идёт через жопу. # response # char:detective
 У тебя с ним проблемы какие-то? # char:driver

@@ -1,0 +1,16 @@
+[remap]
+
+importer="ink"
+type="Resource"
+uid="uid://c8engdlg03"
+path="res://.godot/imported/engineer_tea.ink-fa51432f476910207ed39050fd863256.res"
+
+[deps]
+
+source_file="res://Files/SceneDialogs/Ink/engineer_tea.ink"
+dest_files=["res://.godot/imported/engineer_tea.ink-fa51432f476910207ed39050fd863256.res"]
+
+[params]
+
+is_main_file=true
+compress=true

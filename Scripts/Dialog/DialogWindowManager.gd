@@ -42,7 +42,9 @@ func display(text: String, choices: Array) -> void:
 		return
 	var instant := _state != null and _state.instant
 	var speaker := "" if _state == null else _state.speaker_name
-	var character_tag := "" if _state == null else _state.character_name
+	var character_tag := ""
+	if _state != null and not _state.thought:
+		character_tag = _state.character_name
 	_active_box.show_box_instantly(text, choices, speaker, instant, character_tag)
 
 func reset() -> void:

@@ -1,0 +1,16 @@
+[remap]
+
+importer="ink"
+type="Resource"
+uid="uid://c8engdlg06"
+path="res://.godot/imported/engineer_morning.ink-f242d1a03389b0d9c08e5a5a9bb7a3cf.res"
+
+[deps]
+
+source_file="res://Files/SceneDialogs/Ink/engineer_morning.ink"
+dest_files=["res://.godot/imported/engineer_morning.ink-f242d1a03389b0d9c08e5a5a9bb7a3cf.res"]
+
+[params]
+
+is_main_file=true
+compress=true

@@ -120,6 +120,10 @@ func _present_line() -> void:
 		var visible_choices := _visible_choices(_current_choices)
 		var line := "" if text == null else str(text).strip_edges()
 		if line.is_empty() and visible_choices.is_empty():
+			if not story.GetCurrentTags().is_empty():
+				_state.apply(story.GetCurrentTags())
+				_sync_present_characters()
+				_apply_character_animation()
 			continue
 		_show_current_line(line if not line.is_empty() else str(story.GetCurrentText()), visible_choices)
 		if not story.GetCanContinue() and _current_choices.is_empty():

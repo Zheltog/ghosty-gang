@@ -50,22 +50,18 @@ VAR exit = ""
 Из-звините, мужчина… # char:engineer # anim:nervous
 Ты оборачиваешься. # thought
 Голос принадлежал щуплому старичку в больших очках с черепаховой оправой. # thought # char:engineer
-Он как будто смутился от твоего взгляда и спрятал руки в карманы. # thought # char:engineer
 Вы не на завод приехали? Спросите заводских. # char:engineer
 Им симки раздают. Корпоративные. У кого-нибудь лишняя найдется. # char:engineer
 Точно-точно, раздают. У меня у самой заводская, от мужа. # char:cashier
 И детям нашим, то есть, для детей тоже принес. # char:cashier
 Нет, я не заводской. Но спасибо за наводку. # response # char:detective
 А зачем вы к нам пожаловали? Если не секрет, конечно. # char:engineer # anim:curious
-Ты замечаешь странный блеск в глазах старика. # thought # char:engineer
 У меня расследование. # response # char:detective
 Полицейский, что ли? # char:engineer
 Не совсем. Ищу кое-кого. # response # char:detective
 Вот оно что… Ну, добро пожаловать в Вязи. # char:engineer # anim:smile
-Он смущенно улыбается. # thought # char:engineer
 Спасибо. # response # char:detective
-Старичок еще немного переминается с ноги на ногу. # thought # char:engineer
-Потом разворачивается и скрывается за полкой с пряниками. # thought # away:engineer
+Старичок разворачивается и скрывается за полкой с пряниками. # thought # away:engineer
 ~ met_engineer = true
 {not has_cigarette:
 	-> counter

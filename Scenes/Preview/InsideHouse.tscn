@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://wmxkfh73uv2u" path="res://Assets/Sprites/Characters/Engineer/Shounen A/boy a_casual_happy.png" id="22_mv3vy"]
 [ext_resource type="Texture2D" uid="uid://dv7o25ojskrjp" path="res://Assets/Sprites/Characters/Engineer/Shounen A/boy a_casual_shocked.png" id="22_xjebt"]
 [ext_resource type="PackedScene" uid="uid://c8bathroom0a1" path="res://Scenes/Preview/Rooms/Bathroom.tscn" id="room_Bathroom"]
-[ext_resource type="PackedScene" uid="uid://c8bookshelfrm1" path="res://Scenes/Preview/Rooms/Bookshelf.tscn" id="room_Bookshelf"]
+[ext_resource type="PackedScene" uid="uid://s218cktv50w5" path="res://Scenes/Preview/Rooms/Bookshelf.tscn" id="room_Bookshelf"]
 [ext_resource type="PackedScene" uid="uid://c8exitstor0a1" path="res://Scenes/Preview/Rooms/ExitFromStorage.tscn" id="room_ExitFromStorage"]
 [ext_resource type="PackedScene" uid="uid://c8kitchen00a1" path="res://Scenes/Preview/Rooms/Kitchen.tscn" id="room_Kitchen"]
 [ext_resource type="PackedScene" uid="uid://c8livroom0a1b" path="res://Scenes/Preview/Rooms/LivingRoom.tscn" id="room_LivingRoom"]

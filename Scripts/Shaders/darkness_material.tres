@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=8 format=3]
+[gd_resource type="ShaderMaterial" format=3 uid="uid://cettvgv7o7kmc"]
 
 [ext_resource type="Shader" uid="uid://jym1f30vngt0" path="res://Scripts/Shaders/darkness.gdshader" id="1_shader"]
 [ext_resource type="Texture2D" uid="uid://0g7ysvf72smh" path="res://Assets/Sprites/Backgrounds/living_room_flashlight.png" id="2_living"]

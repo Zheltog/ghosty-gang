@@ -24,9 +24,8 @@ VAR detective_alias = ""
 	-> after_fat
 
 === after_fat ===
-Разведчик смеется. # thought # char:scout # anim:laugh
 Скажи лучше, где у вас гостиница? # response # char:detective
-Так я тебе прям все и сказал. # char:scout
+Так я тебе прям все и сказал. # char:scout # anim:laugh
 Дашь полтос? # char:scout
 Сам найду. # response # char:detective
 Постой, дядь! Я ж пошутил немножко. # char:scout
@@ -40,22 +39,23 @@ VAR detective_alias = ""
 * [Сыщик.]
 	Сыщик. # response # char:detective
 	~ detective_alias = "scout"
-	Разведчик старается не подавать вида, но он явно впечатлен. # thought # char:scout # anim:impressed
 	-> after_name
 * [Серега.]
 	Серега. # response # char:detective
 	~ detective_alias = "serega"
-	Разведчик кивает. # thought # char:scout # anim:nod
 	-> after_name
 * [Сергей Степанович.]
 	Сергей Степанович. # response # char:detective
 	~ detective_alias = "sergey"
-	Разведчик кивает. # thought # char:scout # anim:nod
 	-> after_name
 
 === after_name ===
 А ты чего на остановке стоял? Ждал кого-то? # response # char:detective
-Следил. # char:scout
+{detective_alias == "scout":
+	Следил. # char:scout # anim:impressed
+- else:
+	Следил. # char:scout # anim:nod
+}
 За кем? # response # char:detective
 За обстановкой. # char:scout
 Разведчик всегда должен быть начеку. # char:scout
@@ -63,17 +63,14 @@ VAR detective_alias = ""
 Это засекреченная информация. # char:scout
 Тебя не проведешь, я смотрю. # response # char:detective
 Угу. # char:scout # anim:stern
-Вид у него очень суровый. # thought
 А ты зачем приехал? # char:scout
 Ищу кое-кого. Ты, кстати, можешь мне помочь. # response # char:detective
 Не знаешь вот этого пацана? # response # char:detective
-Разведчик изучает фото с непроницаемым лицом. # thought # char:scout # anim:blank
-Пока не знаю. # char:scout
+Пока не знаю. # char:scout # anim:blank
 И что это значит? # response # char:detective
 Пока не скажу. # char:scout
 Колись. # response # char:detective
 А то что? # char:scout # anim:defiant
-Разведчик смотрит с вызовом. # thought
 * [А то маме расскажу.]
 	А то маме расскажу. # response # char:detective
 	-> flees
@@ -89,20 +86,16 @@ VAR detective_alias = ""
 === flees ===
 Ну да. Своей маме еще расскажи. # window:default # char:scout # anim:mocking
 Умник! По горшкам дежурник! # char:scout
-Разведчик корчит рожу и в следующий миг ныряет под теплотрассу, подтягивая штаны. # thought # char:scout # anim:escape # away:scout
+Разведчик ныряет под теплотрассу. # thought # char:scout # anim:escape # away:scout
 // Дальше детектив ищет гостиницу сам. В сценарии эта ветка не прописана.
 -> END
 
 === serious ===
 Раз серьезное… # window:default # char:scout # anim:serious
-Разведчик пристально смотрит на тебя. # thought
-Раз серьезное… # char:scout
 -> walk
 
 === cuffs ===
-Разведчик будто этого и ждал. # thought # char:scout # anim:frantic
-Он протягивает руки и верещит. # thought
-Убей не скажу! Вяжи, мент позорный! # char:scout
+Убей не скажу! Вяжи, мент позорный! # char:scout # anim:frantic
 Женщина на другой стороне улицы оборачивается на вас с Разведчиком. # thought
 Она тычет локтем мужчину с пакетами, идущего рядом с ней. # thought
 Этого еще не хватало. # thought

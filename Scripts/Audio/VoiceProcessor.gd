@@ -1,6 +1,6 @@
 extends Node
 
-const default_voice_sound_resource_name: String = "res://Assets/Audio/voice.wav"
+const default_voice_sound_resource_name: String = "res://Assets/Audio/Voices/voice.wav"
 
 var _voice_sound_resource_name: String
 

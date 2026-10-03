@@ -13,8 +13,7 @@ VAR exit = ""
 -> foyer
 
 === foyer ===
-Хозяйка сидит за стойкой, подперев щёку кулаком. # window:default # thought # char:landlady # anim:bored
-На твоё появление она не реагирует. # thought # char:landlady
+Хозяйка сидит за стойкой. # window:default # thought # char:landlady # anim:bored
 * [Спросить про сигареты.]
 	-> ask_smokes
 + [Дойти до магазина.]
@@ -27,16 +26,13 @@ VAR exit = ""
 Нет. # window:default # char:landlady
 Из-под журнала торчит край пачки. Рядом лежит зажигалка. # thought
 А это? # response # char:detective
-Хозяйка прослеживает твой взгляд. # thought # char:landlady
 Это мои. # char:landlady
 Я куплю. # response # char:detective
 Не продаю. # char:landlady # anim:sharp
-Сверху снова раздаётся удар. # thought
-Хозяйка поднимает глаза к потолку. # thought # char:landlady
 -> pressure
 
 === pressure ===
-Она смотрит на тебя. # window:default # char:landlady
+Сверху снова раздаётся удар. # window:default # thought
 + [Одну хотя бы дайте.]
 	Одну хотя бы дайте. # response # char:detective
 	Мужчина. Вы меня слышите вообще? Не дам. # window:default # char:landlady # anim:sharp
@@ -47,8 +43,7 @@ VAR exit = ""
 	-> lie
 
 === lie ===
-Хозяйка отнимает руку от щеки. # window:default # thought # char:landlady
-В смысле — ломает? # char:landlady # anim:alert
+В смысле — ломает? # window:default # char:landlady # anim:alert
 Сказал, мешает ему. Я стук слышал. # response # char:detective
 Как пить — так больной. Как вещи чужие ломать — сразу здоровый. # char:landlady # anim:angry
 Она отодвигает журнал и выбирается из-за стойки. # thought # char:landlady

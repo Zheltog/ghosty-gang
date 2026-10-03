@@ -98,8 +98,7 @@ VAR has_poison = false
 + [Пока нет.]
 	~ suspicion += 1
 	Пока нет. # response
-	Инженер приподнимает бровь, затем кривовато улыбается. # window:default
-	Материалы дела?
+	Материалы дела? # window:default
 	->->
 + [equip:gun]
 	-> gun -> key_pulled

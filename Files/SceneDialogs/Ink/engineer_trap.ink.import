@@ -1,0 +1,16 @@
+[remap]
+
+importer="ink"
+type="Resource"
+uid="uid://c8engdlg02"
+path="res://.godot/imported/engineer_trap.ink-6f2d335c3cab759ef4b8c3b53f65712d.res"
+
+[deps]
+
+source_file="res://Files/SceneDialogs/Ink/engineer_trap.ink"
+dest_files=["res://.godot/imported/engineer_trap.ink-6f2d335c3cab759ef4b8c3b53f65712d.res"]
+
+[params]
+
+is_main_file=true
+compress=true

@@ -21,16 +21,15 @@ VAR exit = ""
 Семён Гало? # response # char:detective
 Ну. # char:driver
 Можно с вами поговорить? # response # char:detective
-Дверь открывается. Водитель, в одной майке, смотрит на тебя недобро. # thought # char:driver
+Дверь открывается. Водитель в одной майке. # thought # char:driver
 За его спиной смятая постель и закрытые шторы. В комнате пахнет перегаром и табаком. # thought
 Чего пришел? Заплачено за номер. # char:driver
 Я не из гостиницы. Мальчика ищу. # response # char:detective
 Возможно, вы его сюда привезли. # response # char:detective
-Семён смеряет тебя взглядом и молча уходит в глубь комнаты. # thought # char:driver
+Семён молча уходит в глубь комнаты. # thought # char:driver
 Он стучит по корпусу телевизора. После каждого удара в воздух поднимается облачко пыли. # thought # char:driver
 Не включается никак, зараза. # char:driver # anim:sullen
 Ты достаёшь фотографию мальчика и протягиваешь её водителю. # thought
-Семён будто ее не замечает. # thought # char:driver
 Куришь? # char:driver
 Не курю. # response # char:detective
 Тогда потом. # char:driver
@@ -46,13 +45,11 @@ VAR exit = ""
 Развелись мы. # char:driver
 Он сказал — поругались. # response # char:detective
 Я ему так и сказал. # char:driver
-Он долго трёт лицо ладонями. # thought # char:driver
 Я вас не задержу. Посмотрите фотографию. # response # char:detective
-Ты протягиваешь её. Семён отводит глаза. # thought # char:driver
+Ты протягиваешь её. # thought
 Не могу я сейчас. # char:driver
 Ребёнок пропал, Семён. # response # char:detective
 Слышал я. # char:driver
-Он поднимает на тебя глаза. # thought # char:driver
 Принеси сигарет. Покурю, голову соберу. Тогда спрашивай. # char:driver
 И поговорим? # response # char:detective
 Поговорим. Дверь прикрой. Дует. # char:driver
