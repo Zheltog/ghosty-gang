@@ -31,7 +31,9 @@ func display(text: String, choices: Array) -> void:
 	if _state != null and not _state.window_name.is_empty():
 		_open(_state.window_name)
 		_current_window = _active_box
-	if _state != null and _state.response:
+	if _state != null and _state.thought:
+		_open(DialogState.thought_window)
+	elif _state != null and _state.response:
 		_open(DialogState.player_phrase_window)
 	elif _current_window != null and _active_box != _current_window:
 		_open(_current_window.resolved_window_name())
@@ -40,7 +42,8 @@ func display(text: String, choices: Array) -> void:
 		return
 	var instant := _state != null and _state.instant
 	var speaker := "" if _state == null else _state.speaker_name
-	_active_box.show_box_instantly(text, choices, speaker, instant)
+	var character_tag := "" if _state == null else _state.character_name
+	_active_box.show_box_instantly(text, choices, speaker, instant, character_tag)
 
 func reset() -> void:
 	_cancel_delay()
@@ -62,6 +65,8 @@ func handle_click() -> void:
 	if _active_box.is_printing():
 		if _state.skippable:
 			_active_box.skip_printing()
+		return
+	if _active_box.has_options():
 		return
 	if not _state.skippable:
 		return

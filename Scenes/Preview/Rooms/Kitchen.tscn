@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c8kitchen00a1"]
 
 [ext_resource type="Script" uid="uid://bgebmjt4oem53" path="res://Scripts/Room/RoomBase.gd" id="12_room"]
-[ext_resource type="Texture2D" uid="uid://d1kaj1oa2nrcl" path="res://Assets/Sprites/Test/PreviewScenes/Backgrounds/InsideKitchen.png" id="6_kitchen"]
+[ext_resource type="Texture2D" uid="uid://dvo5unmy6g40r" path="res://Assets/Sprites/Backgrounds/kitchen_normal.png" id="6_kitchen"]
 [ext_resource type="Script" uid="uid://8p77bw84c7bp" path="res://Scripts/UI/PointAndClickScenes/Components/ParallaxComponent.gd" id="10_parobj"]
 [ext_resource type="Texture2D" uid="uid://csag4s2sp1hen" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/Kitchen/Kneeting.png" id="81_k_kneet"]
 [ext_resource type="Texture2D" uid="uid://dkg4fyroraf2x" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/Carpet.png" id="9_fifyc"]
@@ -28,6 +28,7 @@ script = ExtResource("10_parobj")
 camera_distance = 100.0
 
 [node name="Kneeting" type="Sprite2D" parent="." unique_id=-694967295]
+visible = false
 position = Vector2(932, 543)
 texture = ExtResource("81_k_kneet")
 
@@ -36,6 +37,7 @@ script = ExtResource("10_parobj")
 camera_distance = 105.0
 
 [node name="Carpet" type="Sprite2D" parent="." unique_id=761985698]
+visible = false
 position = Vector2(522, 897)
 texture = ExtResource("9_fifyc")
 
@@ -44,6 +46,7 @@ script = ExtResource("10_parobj")
 camera_distance = 115.0
 
 [node name="Fridge" type="Sprite2D" parent="." unique_id=-694967293]
+visible = false
 position = Vector2(1839, 444)
 texture = ExtResource("82_k_fridge")
 
@@ -52,6 +55,7 @@ script = ExtResource("10_parobj")
 camera_distance = 110.0
 
 [node name="Chair" type="Sprite2D" parent="." unique_id=1742978604]
+visible = false
 position = Vector2(1332, 668)
 texture = ExtResource("10_dg8yx")
 
@@ -60,6 +64,7 @@ script = ExtResource("10_parobj")
 camera_distance = 110.0
 
 [node name="Table" type="Sprite2D" parent="." unique_id=1369783213]
+visible = false
 position = Vector2(979, 543)
 texture = ExtResource("80_k_table")
 
@@ -68,6 +73,7 @@ script = ExtResource("10_parobj")
 camera_distance = 120.0
 
 [node name="Plate" type="Sprite2D" parent="." unique_id=-694967291]
+visible = false
 position = Vector2(622, 456)
 texture = ExtResource("83_k_plate")
 

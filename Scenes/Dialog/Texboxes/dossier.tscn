@@ -1,0 +1,130 @@
+[gd_scene format=3 uid="uid://dc6akhd6bpn8l"]
+
+[ext_resource type="PackedScene" uid="uid://1sve2gjsuyde" path="res://Scenes/Dialog/text_box_with_options.tscn" id="1_box"]
+[ext_resource type="PackedScene" uid="uid://chii51pu3s0yv" path="res://Scenes/Dialog/option_button.tscn" id="2_option"]
+[ext_resource type="Script" uid="uid://c1t3g3eu4y42o" path="res://Scripts/Dialog/DossierTextBox.gd" id="3_dossier"]
+
+[node name="dossier" unique_id=1663978582 instance=ExtResource("1_box")]
+script = ExtResource("3_dossier")
+window_name = "dossier"
+printing_speed = 40.0
+
+[node name="TextureRect" parent="." index="0" unique_id=64437177]
+self_modulate = Color(1, 1, 1, 0)
+
+[node name="RichTextLabel" parent="TextureRect" index="1" unique_id=595398217]
+visible = false
+
+[node name="SingleOption" parent="TextureRect" index="2" unique_id=1142005616]
+visible = false
+
+[node name="TwoOptions" parent="TextureRect" index="3" unique_id=1525931489]
+visible = false
+
+[node name="ThreeOptions" parent="TextureRect" index="4" unique_id=52314812]
+visible = false
+
+[node name="DossierOptions" type="Control" parent="TextureRect" index="5" unique_id=726313520]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -165.0
+offset_top = 94.0
+offset_right = -125.0
+offset_bottom = 134.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="Zhenya" parent="TextureRect/DossierOptions" index="0" unique_id=1246705801 instance=ExtResource("2_option")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -209.0
+offset_top = -420.0
+offset_right = -209.0
+offset_bottom = -420.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Stepan" parent="TextureRect/DossierOptions" index="1" unique_id=1844631314 instance=ExtResource("2_option")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 183.0
+offset_top = -420.0
+offset_right = 183.0
+offset_bottom = -420.0
+grow_horizontal = 2
+grow_vertical = 2
+id = 1
+
+[node name="Emma" parent="TextureRect/DossierOptions" index="2" unique_id=2063481998 instance=ExtResource("2_option")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -209.0
+offset_top = -260.0
+offset_right = -209.0
+offset_bottom = -260.0
+grow_horizontal = 2
+grow_vertical = 2
+id = 2
+
+[node name="Lyudmila" parent="TextureRect/DossierOptions" index="3" unique_id=1617216924 instance=ExtResource("2_option")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 183.0
+offset_top = -260.0
+offset_right = 183.0
+offset_bottom = -260.0
+grow_horizontal = 2
+grow_vertical = 2
+id = 3
+
+[node name="Vadim" parent="TextureRect/DossierOptions" index="4" unique_id=130157618 instance=ExtResource("2_option")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -209.0
+offset_top = -100.0
+offset_right = -209.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+id = 4
+
+[node name="Semyon" parent="TextureRect/DossierOptions" index="5" unique_id=62612756 instance=ExtResource("2_option")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 183.0
+offset_top = -100.0
+offset_right = 183.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+id = 5

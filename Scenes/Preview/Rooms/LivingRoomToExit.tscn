@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c8livexit0a1b"]
 
 [ext_resource type="Script" uid="uid://bgebmjt4oem53" path="res://Scripts/Room/RoomBase.gd" id="12_room"]
-[ext_resource type="Texture2D" uid="uid://bp5ajnexf8idg" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/LivingRoomToExit/Background.PNG" id="50_lte_bg"]
+[ext_resource type="Texture2D" uid="uid://bxjtno10bk1kn" path="res://Assets/Sprites/Backgrounds/living_room_to_exit_normal.png" id="50_lte_bg"]
 [ext_resource type="Script" uid="uid://8p77bw84c7bp" path="res://Scripts/UI/PointAndClickScenes/Components/ParallaxComponent.gd" id="10_parobj"]
 [ext_resource type="Texture2D" uid="uid://cq314bqm5t00y" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/LivingRoomToExit/SIDE_TO_DOOR_BG.PNG" id="51_lte_side"]
 [ext_resource type="Texture2D" uid="uid://drlfwgriejbl4" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/LivingRoomToExit/BED.PNG" id="52_lte_bed"]
@@ -27,6 +27,7 @@ script = ExtResource("10_parobj")
 camera_distance = 100.0
 
 [node name="SideToDoorBg" type="Sprite2D" parent="." unique_id=-1194967292]
+visible = false
 position = Vector2(1265, 519)
 texture = ExtResource("51_lte_side")
 
@@ -49,6 +50,7 @@ script = ExtResource("10_parobj")
 camera_distance = 115.0
 
 [node name="Table" type="Sprite2D" parent="." unique_id=-1194967288]
+visible = false
 position = Vector2(1587.9999, 929)
 scale = Vector2(1.0210727, 1)
 texture = ExtResource("53_lte_table")
@@ -58,6 +60,7 @@ script = ExtResource("10_parobj")
 camera_distance = 120.0
 
 [node name="Chair" type="Sprite2D" parent="." unique_id=-1194967286]
+visible = false
 position = Vector2(1176, 859)
 texture = ExtResource("54_lte_chair")
 
@@ -66,6 +69,7 @@ script = ExtResource("10_parobj")
 camera_distance = 115.0
 
 [node name="Tumba" type="Sprite2D" parent="." unique_id=-1194967284]
+visible = false
 position = Vector2(3, 958)
 texture = ExtResource("55_lte_tumba")
 

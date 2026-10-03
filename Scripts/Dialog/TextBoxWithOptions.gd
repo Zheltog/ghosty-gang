@@ -15,6 +15,7 @@ signal line_finished
 @export var controller: DialogController
 
 @onready var _label: RichTextLabel = $TextureRect/RichTextLabel
+@onready var _character_name: Label = $TextureRect/CharacterName
 @onready var _anim_player: AnimationPlayer = $AnimationPlayer
 @onready var _rect: TextureRect = $TextureRect
 
@@ -97,8 +98,9 @@ func skip_printing() -> void:
 	line_finished.emit()
 
 # TODO: impl animations
-func _show_box(text: String, options: Array, speaker_name: String = "") -> void:
+func _show_box(text: String, options: Array, speaker_name: String = "", character_tag: String = "") -> void:
 	_current_speaker_name = speaker_name
+	_set_character_name(character_tag)
 	_hide_all_option_holders()
 	if _rect.is_visible():
 		if not _showing_requested:
@@ -113,9 +115,10 @@ func _show_box(text: String, options: Array, speaker_name: String = "") -> void:
 		_saved_options = options
 		_anim_player.play(appear_anim_name)
 
-func show_box_instantly(text: String, options: Array, speaker_name: String = "", instant: bool = false) -> void:
+func show_box_instantly(text: String, options: Array, speaker_name: String = "", instant: bool = false, character_tag: String = "") -> void:
 	_instant_line = instant
 	_current_speaker_name = speaker_name
+	_set_character_name(character_tag)
 	if not _rect.is_visible():
 		_rect.show()
 	_hide_all_option_holders()
@@ -159,7 +162,13 @@ func _on_animation_finished(anim_name: StringName) -> void:
 
 func _do_hide() -> void:
 	_rect.hide()
+	_set_character_name("")
 	_is_shown = false
+
+func _set_character_name(character_tag: String) -> void:
+	var shown := CharacterNames.display_name(character_tag)
+	_character_name.text = shown
+	_character_name.visible = not shown.is_empty()
 
 func _print_text(text: String) -> bool:
 	_full_text = text

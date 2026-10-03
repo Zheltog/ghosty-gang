@@ -16,7 +16,7 @@ animations = [{
 
 [node name="StartingCutscene2" type="Node2D" unique_id=822785570]
 script = ExtResource("1_adv")
-next_scene = 4
+next_scene = 8
 advance_when_animation_finished = false
 day_number = 1
 

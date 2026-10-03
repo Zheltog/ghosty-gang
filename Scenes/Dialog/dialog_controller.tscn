@@ -5,6 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://1sve2gjsuyde" path="res://Scenes/Dialog/text_box_with_options.tscn" id="3_lu0oi"]
 [ext_resource type="PackedScene" uid="uid://kvbvxu0vbc8y" path="res://Scenes/Timer/timer.tscn" id="4_lu0oi"]
 [ext_resource type="Script" uid="uid://2n72i8ghh744" path="res://Scripts/Dialog/DialogWindowManager.gd" id="5_windows"]
+[ext_resource type="PackedScene" path="res://Scenes/Dialog/Texboxes/player_phrase.tscn" id="6_phrase"]
+[ext_resource type="PackedScene" path="res://Scenes/Dialog/Texboxes/thought.tscn" id="7_thought"]
+[ext_resource type="PackedScene" path="res://Scenes/Dialog/Texboxes/four_options.tscn" id="8_four"]
+[ext_resource type="PackedScene" path="res://Scenes/Dialog/Texboxes/dossier.tscn" id="9_dossier"]
 
 [node name="DialogController" type="Node2D" unique_id=158973333 node_paths=PackedStringArray("timer")]
 script = ExtResource("1_bshvn")
@@ -20,14 +24,20 @@ window_name = "default"
 printing_speed = 40.0
 controller = NodePath("../..")
 
-[node name="player_phrase" parent="DialogWindowManager" unique_id=884120332 node_paths=PackedStringArray("controller") instance=ExtResource("3_lu0oi")]
+[node name="player_phrase" parent="DialogWindowManager" unique_id=884120332 node_paths=PackedStringArray("controller") instance=ExtResource("6_phrase")]
 z_index = 3
-offset_left = -535.0
-offset_top = 291.0
-offset_right = -535.0
-offset_bottom = 291.0
-window_name = "player_phrase"
-printing_speed = 40.0
+controller = NodePath("../..")
+
+[node name="thought" parent="DialogWindowManager" unique_id=884120333 node_paths=PackedStringArray("controller") instance=ExtResource("7_thought")]
+z_index = 3
+controller = NodePath("../..")
+
+[node name="four_options" parent="DialogWindowManager" unique_id=1314761597 node_paths=PackedStringArray("controller") instance=ExtResource("8_four")]
+z_index = 3
+controller = NodePath("../..")
+
+[node name="dossier" parent="DialogWindowManager" unique_id=25479130 node_paths=PackedStringArray("controller") instance=ExtResource("9_dossier")]
+z_index = 3
 controller = NodePath("../..")
 
 [node name="GameTimer" parent="." unique_id=2126109467 instance=ExtResource("4_lu0oi")]

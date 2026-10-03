@@ -22,6 +22,18 @@ offset_right = 1821.0
 offset_bottom = 602.0
 texture = ExtResource("2_ntt56")
 
+[node name="CharacterName" type="Label" parent="TextureRect"]
+visible = false
+layout_mode = 1
+offset_left = 137.0
+offset_top = -52.0
+offset_right = 798.0
+offset_bottom = 4.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.93, 0.88, 0.78, 1)
+theme_override_font_sizes/font_size = 36
+vertical_alignment = 2
+
 [node name="RichTextLabel" type="RichTextLabel" parent="TextureRect" unique_id=595398217]
 layout_mode = 1
 offset_left = 137.0

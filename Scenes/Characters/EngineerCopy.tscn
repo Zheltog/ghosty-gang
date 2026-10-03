@@ -1,0 +1,54 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" uid="uid://cxinskm6h1adp" path="res://Assets/Sprites/Characters/Engineer/Shounen A/boy a_casual_normal.png" id="1_normal"]
+[ext_resource type="Script" uid="uid://ct24630qdy5qa" path="res://Scripts/Characters/SceneCharacter.gd" id="2_character"]
+[ext_resource type="Texture2D" uid="uid://12de7dw7k8ai" path="res://Assets/Sprites/Characters/Engineer/Shounen A/boy a_casual_nervous.png" id="3_nervous"]
+[ext_resource type="Texture2D" uid="uid://wmxkfh73uv2u" path="res://Assets/Sprites/Characters/Engineer/Shounen A/boy a_casual_happy.png" id="4_happy"]
+[ext_resource type="Texture2D" uid="uid://dv7o25ojskrjp" path="res://Assets/Sprites/Characters/Engineer/Shounen A/boy a_casual_shocked.png" id="5_shocked"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_normal"]
+atlas = ExtResource("1_normal")
+region = Rect2(0, 0, 2000, 3600)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_engineer"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_normal")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_nervous")
+}],
+"loop": 1,
+"name": &"nervous",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_happy")
+}],
+"loop": 1,
+"name": &"relaxed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_shocked")
+}],
+"loop": 1,
+"name": &"shocked",
+"speed": 5.0
+}]
+
+[node name="EngineerCopy" type="AnimatedSprite2D" node_paths=PackedStringArray("sprite")]
+scale = Vector2(0.15, 0.15)
+sprite_frames = SubResource("SpriteFrames_engineer")
+animation = &"idle"
+script = ExtResource("2_character")
+sprite = NodePath(".")
+character_name = "engineer"

@@ -3,16 +3,20 @@ class_name DialogState
 extends RefCounted
 
 const player_phrase_window := "player_phrase"
+const thought_window := "thought"
+const none_character := "none"
 
 var skippable_default: bool = true
 var skippable: bool = true
 var instant: bool = false
 var response: bool = false
+var thought: bool = false
 var window_name: String = ""
 var has_animation: bool = false
 var animation_name: String = ""
 var character_default: String = ""
 var character_name: String = ""
+var away_character: String = ""
 var speaker_name: String = ""
 var timeout_seconds: float = -1.0
 
@@ -25,10 +29,12 @@ func begin_line() -> void:
 	skippable = skippable_default
 	instant = false
 	response = false
+	thought = false
 	window_name = ""
 	has_animation = false
 	animation_name = ""
 	character_name = character_default
+	away_character = ""
 	speaker_name = ""
 	timeout_seconds = -1.0
 
@@ -42,6 +48,7 @@ func apply(tags: Array[String]) -> void:
 		skippable = _parse_bool(parsed["skippable"], skippable)
 	instant = parsed.has("instant") and _parse_bool(parsed["instant"], true)
 	response = parsed.has("response")
+	thought = parsed.has("thought")
 	if parsed.has("window"):
 		window_name = normalize_window_name(str(parsed["window"]))
 		if window_name.is_empty():
@@ -51,6 +58,11 @@ func apply(tags: Array[String]) -> void:
 		character_name = character_default
 	if parsed.has("char"):
 		character_name = str(parsed["char"]).strip_edges()
+	if thought and not parsed.has("char"):
+		character_name = none_character
+	if parsed.has("away"):
+		var raw := str(parsed["away"]).strip_edges()
+		away_character = character_name if raw.is_empty() else raw
 	if parsed.has("anim"):
 		has_animation = true
 		animation_name = str(parsed["anim"])

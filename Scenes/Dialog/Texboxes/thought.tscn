@@ -1,0 +1,11 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" uid="uid://1sve2gjsuyde" path="res://Scenes/Dialog/text_box_with_options.tscn" id="1_box"]
+
+[node name="thought" instance=ExtResource("1_box")]
+offset_left = 4.0
+offset_top = 2.0
+offset_right = 4.0
+offset_bottom = 2.0
+window_name = "thought"
+printing_speed = 40.0

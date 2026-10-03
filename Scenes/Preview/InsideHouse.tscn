@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://wmxkfh73uv2u" path="res://Assets/Sprites/Characters/Engineer/Shounen A/boy a_casual_happy.png" id="22_mv3vy"]
 [ext_resource type="Texture2D" uid="uid://dv7o25ojskrjp" path="res://Assets/Sprites/Characters/Engineer/Shounen A/boy a_casual_shocked.png" id="22_xjebt"]
 [ext_resource type="PackedScene" uid="uid://c8bathroom0a1" path="res://Scenes/Preview/Rooms/Bathroom.tscn" id="room_Bathroom"]
+[ext_resource type="PackedScene" uid="uid://c8bookshelfrm1" path="res://Scenes/Preview/Rooms/Bookshelf.tscn" id="room_Bookshelf"]
 [ext_resource type="PackedScene" uid="uid://c8exitstor0a1" path="res://Scenes/Preview/Rooms/ExitFromStorage.tscn" id="room_ExitFromStorage"]
 [ext_resource type="PackedScene" uid="uid://c8kitchen00a1" path="res://Scenes/Preview/Rooms/Kitchen.tscn" id="room_Kitchen"]
 [ext_resource type="PackedScene" uid="uid://c8livroom0a1b" path="res://Scenes/Preview/Rooms/LivingRoom.tscn" id="room_LivingRoom"]
@@ -63,7 +64,7 @@ animations = [{
 script = ExtResource("1_r7y35")
 ink_dialog_appear_path = "res://Files/SceneDialogs/Ink/inside_house.ink"
 characters = [NodePath("Characters/Engineer")]
-room_scenes = Array[PackedScene]([ExtResource("room_LivingRoom"), ExtResource("room_LivingRoomToExit"), ExtResource("room_ExitFromStorage"), ExtResource("room_UnderBed"), ExtResource("room_Preroom"), ExtResource("room_Bathroom"), ExtResource("room_Storage"), ExtResource("room_Kitchen")])
+room_scenes = Array[PackedScene]([ExtResource("room_LivingRoom"), ExtResource("room_LivingRoomToExit"), ExtResource("room_ExitFromStorage"), ExtResource("room_UnderBed"), ExtResource("room_Preroom"), ExtResource("room_Bathroom"), ExtResource("room_Storage"), ExtResource("room_Kitchen"), ExtResource("room_Bookshelf")])
 
 [node name="Rooms" type="Node2D" parent="." unique_id=1900112300]
 

@@ -6,6 +6,7 @@ extends Node2D
 @export var emotion: String = "idle"
 @export var character_name: String = ""
 @export var has_voice: bool = true
+@export_file("*.wav", "*.ogg", "*.mp3") var voice_sound: String = ""
 @export var pitch_from: float = 0.75
 @export var pitch_to: float = 1.25
 
@@ -15,8 +16,9 @@ var previous_emotion = "idle"
 
 func _ready() -> void:
 	if has_voice and not character_name.is_empty():
-		VoiceProcessor.register_speaker(character_name, pitch_from, pitch_to)
-	sprite.animation_finished.connect(_on_animation_end)
+		VoiceProcessor.register_speaker(character_name, pitch_from, pitch_to, voice_sound)
+	if sprite != null:
+		sprite.animation_finished.connect(_on_animation_end)
 
 func set_location(new_location: String) -> void:
 	location = new_location
@@ -29,7 +31,8 @@ func set_emotion(new_emotion: String) -> void:
 
 func refresh(save_progress : bool) -> void:
 	var house := HouseSceneBase.current_house_scene
-	visible = house != null and location == house.current_room
+	if house != null and house.is_ancestor_of(self):
+		visible = location == house.current_room
 	if sprite == null or sprite.sprite_frames == null:
 		return
 	if house == null:

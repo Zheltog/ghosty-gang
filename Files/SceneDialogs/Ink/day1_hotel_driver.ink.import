@@ -1,0 +1,16 @@
+[remap]
+
+importer="ink"
+type="Resource"
+uid="uid://6hluxiouloci"
+path="res://.godot/imported/day1_hotel_driver.ink-f848d566ed2f68cc922ee4169726ae1f.res"
+
+[deps]
+
+source_file="res://Files/SceneDialogs/Ink/day1_hotel_driver.ink"
+dest_files=["res://.godot/imported/day1_hotel_driver.ink-f848d566ed2f68cc922ee4169726ae1f.res"]
+
+[params]
+
+is_main_file=true
+compress=true

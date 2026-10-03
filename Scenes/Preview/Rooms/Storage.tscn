@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c8storage00a1"]
 
 [ext_resource type="Script" uid="uid://bgebmjt4oem53" path="res://Scripts/Room/RoomBase.gd" id="12_room"]
-[ext_resource type="Texture2D" uid="uid://d005w884r03n8" path="res://Assets/Sprites/Test/PreviewScenes/Backgrounds/InsideStorage.png" id="24_storbg"]
+[ext_resource type="Texture2D" uid="uid://de3p3kuu483v4" path="res://Assets/Sprites/Backgrounds/storage_normal.png" id="24_storbg"]
 [ext_resource type="Script" uid="uid://8p77bw84c7bp" path="res://Scripts/UI/PointAndClickScenes/Components/ParallaxComponent.gd" id="10_parobj"]
 [ext_resource type="Texture2D" uid="uid://gygidwrc4ns0" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/Storage/Shelf.png" id="100_s_shelf"]
 [ext_resource type="Texture2D" uid="uid://cfoc1q22eb4sk" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/Storage/Chair.png" id="101_s_chair"]
@@ -24,6 +24,7 @@ script = ExtResource("10_parobj")
 camera_distance = 100.0
 
 [node name="Shelf" type="Sprite2D" parent="." unique_id=-794967295]
+visible = false
 position = Vector2(261, 481)
 texture = ExtResource("100_s_shelf")
 
@@ -32,6 +33,7 @@ script = ExtResource("10_parobj")
 camera_distance = 110.0
 
 [node name="Chair" type="Sprite2D" parent="." unique_id=-794967293]
+visible = false
 position = Vector2(950, 691)
 texture = ExtResource("101_s_chair")
 

@@ -1,0 +1,46 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scripts/Preview/DialogBackdrop.gd" id="1_backdrop"]
+[ext_resource type="PackedScene" uid="uid://b3fjaokxpivbe" path="res://Scenes/Dialog/dialog_controller.tscn" id="2_dialog"]
+[ext_resource type="PackedScene" path="res://Scenes/Characters/EngineerCopy.tscn" id="3_character"]
+[ext_resource type="Script" uid="uid://ct24630qdy5qa" path="res://Scripts/Characters/SceneCharacter.gd" id="4_none"]
+
+[node name="HotelDriver" type="Node2D"]
+script = ExtResource("1_backdrop")
+story_path = "res://Files/SceneDialogs/Ink/day1_hotel_driver.ink"
+next_scene = 14
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Background" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.16, 0.13, 0.1, 1)
+
+[node name="Title" type="Label" parent="CanvasLayer"]
+offset_left = 80.0
+offset_top = 48.0
+offset_right = 900.0
+offset_bottom = 100.0
+mouse_filter = 2
+theme_override_font_sizes/font_size = 32
+text = "Номер 204"
+
+[node name="Driver" parent="." instance=ExtResource("3_character")]
+visible = false
+modulate = Color(0.62, 0.7, 0.58, 1)
+position = Vector2(1180, 800)
+character_name = "driver"
+
+[node name="None" type="Node2D" parent="."]
+script = ExtResource("4_none")
+character_name = "none"
+has_voice = false
+
+[node name="DialogController" parent="." instance=ExtResource("2_dialog")]
+story = null

@@ -2,6 +2,8 @@ class_name DialogController
 
 extends Node2D
 
+signal story_finished(story_name: String)
+
 @export var story: InkStory
 @export var timer: GameTimer
 @export var response_continue_delay: float = 0.75
@@ -11,6 +13,8 @@ extends Node2D
 var _state := DialogState.new()
 var _current_choices: Array = []
 var _story_path: String = ""
+var _story_finished := false
+var _present_characters: Array[String] = []
 
 func _ready() -> void:
 	_windows.setup(self, _state)
@@ -39,6 +43,9 @@ func start_story(path: String = "") -> void:
 		printerr("DialogController: no story loaded")
 		return
 	visible = true
+	_story_finished = false
+	_present_characters.clear()
+	_apply_presence()
 	if _story_path.is_empty():
 		_story_path = story.resource_path
 	story.ResetState()
@@ -123,22 +130,71 @@ func _present_line() -> void:
 	if not visible_choices_at_end.is_empty():
 		_show_current_line(str(story.GetCurrentText()), visible_choices_at_end)
 		return
+	_finish_story()
+
+func _finish_story() -> void:
 	InkVariableStore.capture(story, _story_path)
 	_windows.close()
+	if _story_finished:
+		return
+	_story_finished = true
+	story_finished.emit(_story_name())
+
+func _story_name() -> String:
+	var names := InkTagParser.values_for_key(
+		InkTagParser.read_global_tags_from_file(_story_path),
+		"story"
+	)
+	if names.is_empty():
+		return ""
+	return names[0]
 
 func _show_current_line(text: String, choices: Array) -> void:
 	_state.apply(story.GetCurrentTags())
+	_sync_present_characters()
 	_state.speaker_name = _speaker_for_current_line()
 	_apply_character_animation()
 	_windows.display(text, choices)
 
+func _sync_present_characters() -> void:
+	if _stage_character(_state.character_name) != null:
+		_set_present(_state.character_name, true)
+	if not _state.away_character.is_empty():
+		_set_present(_state.away_character, false)
+	_apply_presence()
+
+func _set_present(character_name: String, present: bool) -> void:
+	var key := character_name.strip_edges().to_lower()
+	if key.is_empty():
+		return
+	if present:
+		if not _present_characters.has(key):
+			_present_characters.append(key)
+	else:
+		_present_characters.erase(key)
+
+func _apply_presence() -> void:
+	var scene := get_tree().current_scene
+	if scene == null or scene is HouseSceneBase:
+		return
+	for node in scene.find_children("*", "SceneCharacter", true, false):
+		var character := node as SceneCharacter
+		if character.sprite == null:
+			continue
+		var key := character.character_name.strip_edges().to_lower()
+		character.visible = _present_characters.has(key)
+
+func _stage_character(character_name: String) -> SceneCharacter:
+	var character := _find_character(character_name)
+	if character == null or character.sprite == null:
+		return null
+	return character
+
 func _speaker_for_current_line() -> String:
-	if _state.character_name.is_empty():
+	var speaker := DialogState.none_character if _state.thought else _state.character_name
+	if speaker.is_empty():
 		return ""
-	var house := HouseSceneBase.current_house_scene
-	if house == null:
-		return ""
-	var character := house.find_character(_state.character_name)
+	var character := _find_character(speaker)
 	if character == null or not character.has_voice:
 		return ""
 	return character.character_name
@@ -149,10 +205,26 @@ func _apply_character_animation() -> void:
 	if _state.character_name.is_empty():
 		printerr("DialogController: # anim without current character")
 		return
+	var character := _find_character(_state.character_name)
+	if character == null:
+		printerr("DialogController: no character named '%s'" % _state.character_name)
+		return
+	character.set_emotion(_state.animation_name)
+
+func _find_character(character_name: String) -> SceneCharacter:
+	var needle := character_name.strip_edges().to_lower()
+	if needle.is_empty():
+		return null
+	var scene := get_tree().current_scene
+	if scene != null:
+		for node in scene.find_children("*", "SceneCharacter", true, false):
+			var character := node as SceneCharacter
+			if character.character_name.strip_edges().to_lower() == needle:
+				return character
 	var house := HouseSceneBase.current_house_scene
 	if house == null:
-		return
-	house.set_character_emotion(_state.character_name, _state.animation_name)
+		return null
+	return house.find_character(character_name)
 
 func _read_choices() -> Array:
 	var choices = story.GetCurrentChoices()
