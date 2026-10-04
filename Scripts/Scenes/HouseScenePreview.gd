@@ -10,6 +10,7 @@ const HUM_MUSIC := "res://Assets/Audio/Music/hum.wav"
 const NIGHT_MUSIC := "res://Assets/Audio/Music/Ночь.mp3"
 const KITCHEN_THOUGHT := "res://Files/SceneDialogs/Ink/kitchen_busy.ink"
 const ENGINEER_RETURN := "res://Files/SceneDialogs/Ink/engineer_return.ink"
+const ENGINEER_SIT := "res://Files/SceneDialogs/Ink/engineer_sit.ink"
 const WATER_DELAY := 5.0
 const HUM_FADE_SECONDS := 3.0
 const STORAGE_HUM_FADE_SECONDS := 8.0
@@ -18,12 +19,18 @@ const ENGINEER_RETURN_SECONDS := 6.0
 const RETURN_TIMER_DELAY := 2.0
 const FIRE_DELAY := 10.0
 const INSIDE_ROOMS: Array[String] = ["storage", "exit_from_storage"]
+const KEY_TURN_SOUND := "res://Assets/Audio/Sounds/key_turning.mp3"
+const EXIT_CLOSED_BACKGROUND := preload("res://Assets/Sprites/Backgrounds/exit_from_storage_closed.png")
+const EXIT_CLOSED_LIGHT_INDEX := 15
+const EXIT_CLOSED_B_LIGHT_INDEX := 16
 
 @export var ink_dialog_appear_path : String
 
 var ghost: Node2D
 var _gun_drawn := false
 var _storage_hum := false
+var _engineer_awaits_tea := false
+var _kitchen_sit_said := false
 
 func _ready() -> void:
 	StateManager.clear_state()
@@ -41,9 +48,12 @@ func _ready() -> void:
 
 func load_room(room_name: String) -> void:
 	super.load_room(room_name)
-	if scene_object_manager and current_room == room_name:
+	if current_room != room_name:
+		return
+	if scene_object_manager:
 		scene_object_manager.update_mouse_cursor()
 	_try_resume_tea_after_rag()
+	_on_entered_room(room_name)
 
 func reveal_rag() -> void:
 	_set_room_child_visible("bathroom", "Rag", true)
@@ -185,7 +195,7 @@ func _seal_storage() -> void:
 		StateManager.set_state(CustomBookshelfSceneItemUI.STATE_LOCKED, true)
 	_set_room_child_visible("storage", "ToLivingRoom", false)
 	_set_room_child_visible("exit_from_storage", "ToLivingRoomToExit", false)
-	_set_room_child_visible("exit_from_storage", "ExitLocked", true)
+	_close_storage_exit()
 	lock_room("living_room", _stay_inside)
 	lock_room("living_room_to_exit", _stay_inside)
 	lock_room("living_room_2", _stay_inside)
@@ -194,17 +204,39 @@ func _seal_storage() -> void:
 func _stay_inside() -> void:
 	pass
 
-func _set_room_child_visible(room_name: String, child_name: String, shown: bool) -> void:
+func _close_storage_exit() -> void:
+	var background := _room_child("exit_from_storage", "Background") as Sprite2D
+	if background == null:
+		printerr("HouseScenePreview: exit_from_storage background is missing")
+		return
+	background.texture = EXIT_CLOSED_BACKGROUND
+	background.set_instance_shader_parameter("lighted_index", EXIT_CLOSED_LIGHT_INDEX)
+	var command := AudioSoundCommand.new()
+	command.instant = true
+	command.resource_name = KEY_TURN_SOUND
+	CommonAudioProcessor.process_sound(command)
+	var stream := load(KEY_TURN_SOUND) as AudioStream
+	var length := 1.0
+	if stream != null and stream.get_length() > 0.0:
+		length = stream.get_length()
+	await get_tree().create_timer(length).timeout
+	if not is_inside_tree() or not is_instance_valid(background):
+		return
+	background.set_instance_shader_parameter("lighted_index", EXIT_CLOSED_B_LIGHT_INDEX)
+
+func _room_child(room_name: String, child_name: String) -> Node:
 	var rooms := get_node_or_null(ROOMS_NODE_NAME)
 	if rooms == null:
-		return
+		return null
 	for child in rooms.get_children():
-		if not child is RoomBase or (child as RoomBase).room_name != room_name:
-			continue
-		var node := child.get_node_or_null(child_name)
-		if node is CanvasItem:
-			(node as CanvasItem).visible = shown
-		return
+		if child is RoomBase and (child as RoomBase).room_name == room_name:
+			return child.get_node_or_null(child_name)
+	return null
+
+func _set_room_child_visible(room_name: String, child_name: String, shown: bool) -> void:
+	var node := _room_child(room_name, child_name)
+	if node is CanvasItem:
+		(node as CanvasItem).visible = shown
 
 func _start_trapped_fire() -> void:
 	await get_tree().create_timer(FIRE_DELAY).timeout

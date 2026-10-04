@@ -1,7 +1,7 @@
 class_name CharacterSceneItemUI
 extends SceneItemUI
 
-const DRAW_Z := 2
+const DRAW_Z := 1
 const SHOOT_ACTION := "shoot"
 
 var _collision_ready := false
@@ -35,7 +35,7 @@ func can_interact() -> bool:
 func get_effective_interaction_type() -> INTERACTION_TYPE:
 	if not _holding_gun():
 		return INTERACTION_TYPE.NONE
-	return INTERACTION_TYPE.LOOK
+	return INTERACTION_TYPE.SHOOT
 
 func press_item() -> void:
 	if not _holding_gun():

@@ -10,6 +10,7 @@ enum INTERACTION_TYPE {
 	LOOK,
 	TAKE,
 	MOVE,
+	SHOOT,
 	NONE
 }
 

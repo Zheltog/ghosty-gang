@@ -21,8 +21,8 @@
 [ext_resource type="PackedScene" uid="uid://c8kitchen00a1" path="res://Scenes/Preview/Rooms/Kitchen.tscn" id="room_Kitchen"]
 [ext_resource type="PackedScene" uid="uid://dqxonlmtlnied" path="res://Scenes/Preview/Rooms/KitchenCouch.tscn" id="room_KitchenCouch"]
 [ext_resource type="PackedScene" uid="uid://c8livroom0a1b" path="res://Scenes/Preview/Rooms/LivingRoom.tscn" id="room_LivingRoom"]
-[ext_resource type="PackedScene" uid="uid://c8livexit0a1b" path="res://Scenes/Preview/Rooms/LivingRoomToExit.tscn" id="room_LivingRoomToExit"]
 [ext_resource type="PackedScene" uid="uid://c8livroom2a01" path="res://Scenes/Preview/Rooms/LivingRoom2.tscn" id="room_LivingRoom2"]
+[ext_resource type="PackedScene" uid="uid://c8livexit0a1b" path="res://Scenes/Preview/Rooms/LivingRoomToExit.tscn" id="room_LivingRoomToExit"]
 [ext_resource type="PackedScene" uid="uid://c8preroom00a1" path="res://Scenes/Preview/Rooms/Preroom.tscn" id="room_Preroom"]
 [ext_resource type="PackedScene" uid="uid://c8storage00a1" path="res://Scenes/Preview/Rooms/Storage.tscn" id="room_Storage"]
 [ext_resource type="PackedScene" uid="uid://c8underbed0a1" path="res://Scenes/Preview/Rooms/UnderBed.tscn" id="room_UnderBed"]
@@ -157,7 +157,7 @@ visible = false
 [node name="Engineer" type="AnimatedSprite2D" parent="Characters" unique_id=718858753 node_paths=PackedStringArray("sprite")]
 position = Vector2(802.99994, 382.99997)
 sprite_frames = SubResource("SpriteFrames_280bj")
-animation = &"stand_normal"
+animation = &"attack_chair"
 script = ExtResource("20_pvt63")
 sprite = NodePath(".")
 character_name = "engineer"
@@ -167,6 +167,7 @@ script = ExtResource("10_parobj")
 camera_distance = 110.0
 
 [node name="Inventory" parent="." unique_id=1450084800 node_paths=PackedStringArray("dialog_controller") instance=ExtResource("3_inv")]
+z_index = 3
 anchors_preset = 15
 anchor_top = 0.0
 anchor_right = 1.0
@@ -177,6 +178,7 @@ grow_vertical = 2
 dialog_controller = NodePath("../DialogController")
 
 [node name="DialogController" parent="." unique_id=872390542 node_paths=PackedStringArray("timer") instance=ExtResource("4_dialog")]
+z_index = 4
 story = null
 timer = NodePath("../GameTimer")
 

@@ -1,4 +1,4 @@
-// Триггер: сам после engineer_return, если инженер жив.
+// Триггер: игрок сам перешёл на kitchen_couch после «Садитесь».
 // suspicion >= 4 — проливает чай. gun_drawn — пьёте под стволом.
 EXTERNAL godot(target_class, method)
 # story: engineer_tea

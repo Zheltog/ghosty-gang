@@ -11,10 +11,7 @@ func _init() -> void:
 func reveal_keyhole() -> void:
 	if _host == null:
 		return
-	var shelf := _host.get_parent()
-	if shelf == null:
-		return
-	var keyhole := shelf.get_node_or_null("Keyhole")
-	if keyhole:
-		keyhole.show()
+	var shelf := _host.get_parent() as CustomBookshelfSceneItemUI
+	if shelf:
+		shelf.on_book_removed()
 	_host.hide_self()

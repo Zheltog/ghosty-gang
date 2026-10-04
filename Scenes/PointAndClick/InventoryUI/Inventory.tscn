@@ -8,6 +8,13 @@
 [ext_resource type="Texture2D" uid="uid://d043vkrtn7s6g" path="res://Assets/Sprites/UI/InventoryBar.png" id="3_gnvtc"]
 [ext_resource type="Texture2D" uid="uid://bm04rhvd732q0" path="res://Assets/Test/InventoryHideButton.tres" id="3_t5a8b"]
 
+[sub_resource type="Gradient" id="Gradient_tnygb"]
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_v8nni"]
+gradient = SubResource("Gradient_tnygb")
+width = 1920
+
 [node name="Inventory" type="Control" unique_id=1617643402]
 layout_mode = 3
 anchors_preset = 2
@@ -19,21 +26,24 @@ mouse_filter = 2
 script = ExtResource("1_gnvtc")
 
 [node name="HintRect" type="TextureRect" parent="." unique_id=957362580]
+z_index = 2
 layout_mode = 0
-offset_left = -5.0000005
-offset_top = -572.0
-offset_right = 815.0
-offset_bottom = 48.0
-scale = Vector2(0.4, 0.4)
+offset_left = -1.0
+offset_top = -323.0
+offset_right = 819.0
+offset_bottom = 297.0
+scale = Vector2(0.25, 0.15)
+mouse_filter = 0
 texture = ExtResource("2_tnygb")
 
 [node name="HintLabel" type="Label" parent="HintRect" unique_id=90476242]
 layout_mode = 0
 offset_left = 60.000004
-offset_top = 72.50015
-offset_right = 344.0
-offset_bottom = 260.50015
-scale = Vector2(2.5, 2.5)
+offset_top = 93.33371
+offset_right = 237.0
+offset_bottom = 159.33035
+scale = Vector2(4, 6.667)
+theme_override_font_sizes/font_size = 12
 text = "A: перелистнуть влево
 D: перелистнуть вправо"
 horizontal_alignment = 1
@@ -55,6 +65,14 @@ script = ExtResource("1_4l3tf")
 bring_up_y_diff = 215.0
 inventory = NodePath("..")
 
+[node name="MouseStop" type="TextureRect" parent="InventoryHolder" unique_id=955485601]
+layout_mode = 0
+offset_top = -213.0
+offset_right = 1920.0
+offset_bottom = -3.0
+mouse_filter = 0
+texture = SubResource("GradientTexture2D_v8nni")
+
 [node name="InventoryBackground" type="TextureRect" parent="InventoryHolder" unique_id=452587128]
 layout_mode = 0
 offset_top = -1080.0
@@ -67,30 +85,6 @@ script = ExtResource("2_qdcv2")
 num_columns = 12
 step_x = 100.0
 step_y = 100.0
-
-[node name="HideButton" type="TextureButton" parent="InventoryHolder" unique_id=647732782]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = 824.0
-offset_top = -330.0
-offset_right = 1024.0
-offset_bottom = -270.0
-grow_horizontal = 2
-grow_vertical = 0
-texture_normal = ExtResource("3_t5a8b")
-
-[node name="Label" type="Label" parent="InventoryHolder/HideButton" unique_id=403120913]
-layout_mode = 0
-offset_right = 201.0
-offset_bottom = 61.0
-theme_override_font_sizes/font_size = 26
-text = "Hide"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="ShowButton" type="TextureButton" parent="InventoryHolder" unique_id=519884309]
 layout_mode = 1
@@ -113,5 +107,29 @@ offset_right = 201.0
 offset_bottom = 61.0
 theme_override_font_sizes/font_size = 26
 text = "Show"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HideButton" type="TextureButton" parent="InventoryHolder" unique_id=647732782]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 824.0
+offset_top = -330.0
+offset_right = 1024.0
+offset_bottom = -270.0
+grow_horizontal = 2
+grow_vertical = 0
+texture_normal = ExtResource("3_t5a8b")
+
+[node name="Label" type="Label" parent="InventoryHolder/HideButton" unique_id=403120913]
+layout_mode = 0
+offset_right = 201.0
+offset_bottom = 61.0
+theme_override_font_sizes/font_size = 26
+text = "Hide"
 horizontal_alignment = 1
 vertical_alignment = 1

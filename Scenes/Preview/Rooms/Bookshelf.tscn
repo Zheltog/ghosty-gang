@@ -47,6 +47,7 @@ polygon = PackedVector2Array(-760, -332, 746, -320, 602, 673, -608, 684)
 polygon = PackedVector2Array(-1065, -338, 159, -338, 134, 677, -1060, 684)
 
 [node name="Keyhole" type="Sprite2D" parent="Shelfs" unique_id=1900112506]
+visible = false
 position = Vector2(582, 117)
 script = ExtResource("9_1fc3o")
 scene_item_id = 12

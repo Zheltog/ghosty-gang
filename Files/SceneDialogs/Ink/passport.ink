@@ -3,6 +3,8 @@ EXTERNAL godot_1(target_class, method, arg)
 
 # story: passport
 
+~ godot("Inventory", "unequip_item")
+~ godot("Inventory", "close")
 ~ godot_1("Inventory", "add_item_str", "passport")
 ~ godot("SceneItemPassport", "disappear")
 ~ godot("HouseScenePreview", "notice_passports")

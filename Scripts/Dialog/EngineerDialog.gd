@@ -76,7 +76,7 @@ func _on_story_finished(story_name: String) -> void:
 			if _flag("engineer_dead"):
 				street.call_deferred()
 			else:
-				tea.call_deferred()
+				_wait_in_kitchen()
 		"engineer_tea":
 			if _flag("fetching_rag"):
 				return
@@ -98,6 +98,13 @@ func _on_story_finished(story_name: String) -> void:
 				torture.call_deferred()
 			elif _flag("engineer_dead") or _flag("engineer_leave"):
 				street.call_deferred()
+
+func _wait_in_kitchen() -> void:
+	var house := HouseSceneBase.current_house_scene as HouseScenePreview
+	if house == null:
+		printerr("EngineerDialog: return finished outside the house")
+		return
+	house.engineer_wait_in_kitchen()
 
 func _flag(key: String) -> bool:
 	return bool(InkVariableStore.get_value(key, false))

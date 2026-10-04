@@ -71,6 +71,9 @@ static func setup_collision_from_sprite(sprite: Sprite2D, area: Area2D, image: T
 	if image == null:
 		image = sprite.texture
 	if image == null:
+		for child in area.get_children():
+			if child is CollisionPolygon2D:
+				return
 		printerr("Area2DUtils: no texture for collision setup")
 		return
 

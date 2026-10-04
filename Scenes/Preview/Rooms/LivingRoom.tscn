@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://8p77bw84c7bp" path="res://Scripts/UI/PointAndClickScenes/Components/ParallaxComponent.gd" id="10_parobj"]
 [ext_resource type="Script" uid="uid://cjwqo45k5xnx0" path="res://Scripts/UI/PointAndClickScenes/SceneItemUI.gd" id="10_pp2cq"]
 [ext_resource type="Script" uid="uid://bgebmjt4oem53" path="res://Scripts/Room/RoomBase.gd" id="12_room"]
-[ext_resource type="Texture2D" path="res://Assets/Sprites/Backgrounds/hall_1b_normal.png" id="30_lr_bg"]
+[ext_resource type="Texture2D" uid="uid://lxj47nksg3di" path="res://Assets/Sprites/Backgrounds/living_room_normal.png" id="30_lr_bg"]
 [ext_resource type="Script" uid="uid://3yscu2its1" path="res://Scenes/Test/Dron/DarknessEffect.gd" id="30_lr_dark"]
 [ext_resource type="Material" uid="uid://cettvgv7o7kmc" path="res://Scripts/Shaders/darkness_material.tres" id="30_lr_mat"]
 [ext_resource type="Texture2D" uid="uid://d2vq8s60l74ri" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/LivingRoom/SECRET DOOR.PNG" id="38_lr_secret"]
@@ -96,18 +96,6 @@ scene_item_id = 21
 intercation_type = 0
 
 [node name="ParallaxComponent" type="Node" parent="ToLivingRoomToExit" unique_id=426732625]
-script = ExtResource("10_parobj")
-camera_distance = 100.0
-
-[node name="ToLivingRoom2" parent="." unique_id=2015736751 instance=ExtResource("2_door")]
-position = Vector2(80, 270)
-scale = Vector2(2, 2)
-texture = ExtResource("10_a71pi")
-target_room = "living_room_2"
-scene_item_id = 21
-intercation_type = 0
-
-[node name="ParallaxComponent" type="Node" parent="ToLivingRoom2" unique_id=426732626]
 script = ExtResource("10_parobj")
 camera_distance = 100.0
 

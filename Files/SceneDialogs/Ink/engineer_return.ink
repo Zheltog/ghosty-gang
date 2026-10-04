@@ -1,5 +1,6 @@
-// Триггер: инженер выходит из кухни в зал.
-// closet_open приходит из геймплея: шкаф оставлен открытым или закрыт до возвращения.
+// Триггер: инженер выходит к игроку.
+// Если шкаф открыт — закрывает его (и, если нужно, забирает ключ).
+// Дальше зовёт на кухню. «Садитесь» звучит уже там; чай — после того как игрок сам сядет.
 EXTERNAL godot(target_class, method)
 EXTERNAL godot_1(target_class, method, arg)
 # story: engineer_return
@@ -27,8 +28,7 @@ VAR passports_raised = false
 	~ suspicion += 4
 	-> open_closet
 }
-Извините, что заставил ждать. Чай готов! # window:default # char:engineer # anim:stand_tea # skippable:false
-Владислав выходит с чашками и заварником. Он ставит их на столик. # thought
+Чай готов, пойдемте на кухню. # window:default # char:engineer # anim:stand_tea # skippable:false
 -> END
 
 === open_closet ===
@@ -59,8 +59,7 @@ VAR passports_raised = false
 
 === tidy ===
 Владислав ходит по комнате и поправляет вещи. # thought
-Чай-то будем пить? Заодно и поговорим. # response # skippable:false
-Садитесь. # window:default # char:engineer # anim:sit_normal # skippable:false
+Чай готов, пойдемте на кухню. # window:default # char:engineer # anim:stand_tea # skippable:false
 -> END
 
 === gun ===

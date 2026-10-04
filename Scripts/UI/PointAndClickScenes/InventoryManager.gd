@@ -48,6 +48,10 @@ func unequip_item() -> void:
 	notify_dialog_event(EVENT.UNEQUIP, item_id)
 	update_hint()
 
+func close() -> void:
+	if inventory_holder:
+		inventory_holder.bring_down()
+
 func add_item_str(item_id : String) -> InventoryItemUI:
 	var key := item_id.strip_edges().to_upper()
 	if not InventoryItemGenerator.INVENTORY_ITEM.keys().has(key):
