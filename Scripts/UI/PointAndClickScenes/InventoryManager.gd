@@ -33,9 +33,11 @@ func _unhandled_input(event: InputEvent) -> void:
 	var action := OS.get_keycode_string(key_event.keycode).to_lower()
 	if not equipped_item.get_actions().has(action):
 		return
+	var viewport := get_viewport()
+	if viewport:
+		viewport.set_input_as_handled()
 	equipped_item.take_action(action, _equipped_item_ui)
 	update_hint()
-	get_viewport().set_input_as_handled()
 
 func unequip_item() -> void:
 	if equipped_item == null:

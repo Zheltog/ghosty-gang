@@ -32,7 +32,7 @@ VAR seen_semyon = false
 
 === dossier_menu ===
 {seen_zhenya and seen_stepan and seen_emma and seen_lyudmila and seen_vadim and seen_semyon:
-	-> after_cards
+	-> END
 }
 ​ # window:dossier
 * {not seen_zhenya} [Женя Куликов]
@@ -53,6 +53,8 @@ VAR seen_semyon = false
 * {not seen_semyon} [Семён Гало]
 	~ seen_semyon = true
 	-> semyon
+* {seen_zhenya and seen_semyon} [Достаточно]
+	-> END
 
 === zhenya ===
 Женя Куликов. 9 лет. # window:default # char:dossier # skippable:false
@@ -79,14 +81,14 @@ VAR seen_semyon = false
 -> dossier_menu
 
 === lyudmila ===
-Бабушка приехала в город только на следующий день. Она была в отъезде. # window:default # char:dossier # skippable:false
+Бабушка мальчика. Людмила Игоревна Куликова. Пенсионерка. Бывшая чиновница. # window:default # char:dossier # skippable:false
+Приехала в город только на следующий день. Она была в отъезде. # char:dossier # skippable:false
 Мальчик вряд ли мог об этом знать. # char:dossier # skippable:false
 М-да. Местные менты в курсе? # response # char:detective # skippable:false
 Ближайший полицейский участок в Красинске. # char:dossier # skippable:false
 Иными словами, местный мент — это ты. # char:dossier # skippable:false
 Так я уже не мент. Давненько. # response # char:detective # skippable:false
 Сойдешь. # char:dossier # skippable:false
-Бабушка мальчика. Людмила Игоревна Куликова. Пенсионерка. Бывшая чиновница. # char:dossier # skippable:false
 Надо же с чего-то начинать. # response # char:detective # skippable:false
 -> dossier_menu
 
@@ -102,10 +104,6 @@ VAR seen_semyon = false
 Судя по табелю с автовокзала именно он вёз Женю в поселок. # char:dossier # skippable:false
 А сейчас он где? # response # char:detective # skippable:false
 По словам второго водителя — в гостинице. Поругался с женой. # char:dossier # skippable:false
-В поселке вряд ли есть вторая гостиница. # response # char:detective # skippable:false
-Значит, мы с ним совсем скоро пересечемся. # response # char:detective # skippable:false
+// В поселке вряд ли есть вторая гостиница. # response # char:detective # skippable:false
+// Значит, мы с ним совсем скоро пересечемся. # response # char:detective # skippable:false
 -> dossier_menu
-
-=== after_cards ===
-Вот карта поселка с отмеченными адресами бабушки и Вадима Титова. # window:default # char:dossier # skippable:false
--> END

@@ -3,6 +3,8 @@ class_name DialogWindowManager
 extends Node
 
 const default_window_name := "default"
+const hold_skip_start_delay := 0.18
+const hold_skip_interval := 0.06
 
 var _controller: DialogController
 var _state: DialogState
@@ -11,6 +13,7 @@ var _default_box: TextBoxWithOptions
 var _active_box: TextBoxWithOptions
 var _current_window: TextBoxWithOptions
 var _delay_id: int = 0
+var _hold_skip_wait: float = 0.0
 
 func setup(controller: DialogController, state: DialogState) -> void:
 	_controller = controller
@@ -60,6 +63,35 @@ func close() -> void:
 	for box in _windows.values():
 		box.interrupt_printing()
 		box.hide_box_instantly()
+
+func _unhandled_input(event: InputEvent) -> void:
+	if not _can_skip_input():
+		return
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		handle_click()
+		return
+	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_SPACE:
+		_mark_input_handled()
+		_hold_skip_wait = hold_skip_start_delay
+		handle_click()
+
+func _process(delta: float) -> void:
+	if not _can_skip_input() or not Input.is_physical_key_pressed(KEY_SPACE):
+		_hold_skip_wait = 0.0
+		return
+	_hold_skip_wait -= delta
+	if _hold_skip_wait > 0.0:
+		return
+	handle_click()
+	_hold_skip_wait = hold_skip_interval
+
+func _mark_input_handled() -> void:
+	var viewport := get_viewport()
+	if viewport:
+		viewport.set_input_as_handled()
+
+func _can_skip_input() -> bool:
+	return DialogController.is_dialog_active() and _active_box != null and _active_box.is_shown()
 
 func handle_click() -> void:
 	if _active_box == null or _state == null or _controller == null:

@@ -1,7 +1,7 @@
 // День 1. Магазин «Продукты». Сигареты и, если Семён уже сказал про связь, симка.
 // Персонажи: cashier, detective, engineer.
 // knows_sim и hotel_phase приходят из гостиницы. Покупка пишет has_cigarette туда же.
-// Если сигарета нужна Семёну, уход возвращает в номер. Иначе — в фойе или на карту.
+// Если сигарета нужна Семёну, уход возвращает в номер. Иначе — сон в гостинице.
 
 # story: shop
 # load: has_cigarette, knows_sim, shop_seen, met_engineer, hotel_phase
@@ -75,6 +75,6 @@ VAR exit = ""
 - hotel_phase >= 2 and hotel_phase < 3:
 	~ exit = "hotel_foyer"
 - else:
-	~ exit = "map"
+	~ exit = "hotel_sleep"
 }
 -> END

@@ -4,6 +4,8 @@ extends Control
 
 const OPTIONS_MARKER := "%%"
 const max_printing_id: int = 100
+const TWO_OPTIONS_GAP := 40.0
+const OPTION_BUTTON_SIZE := Vector2(380, 140)
 
 signal line_finished
 
@@ -227,6 +229,43 @@ func _show_options(options: Array):
 			button.set_text(option.GetText())
 			button.id = option.GetIndex()
 			i += 1
+		if options_size == 2:
+			_layout_two_options(target_holder)
+
+func _layout_two_options(holder: Control) -> void:
+	if holder.get_child_count() < 2:
+		return
+	var first := holder.get_child(0) as Control
+	var second := holder.get_child(1) as Control
+	if first == null or second == null:
+		return
+	var width := _option_visual_size(first).x
+	var total := width * 2.0 + TWO_OPTIONS_GAP
+	var x0 := (_rect.size.x - total) * 0.5 - holder.position.x
+	var y := first.position.y
+	_place_option_origin(first, Vector2(x0, y))
+	_place_option_origin(second, Vector2(x0 + width + TWO_OPTIONS_GAP, y))
+
+func _option_visual_size(option: Control) -> Vector2:
+	var visual := option.get_node_or_null("TextureButton") as Control
+	if visual == null:
+		return OPTION_BUTTON_SIZE
+	if visual.size.x > 1.0 and visual.size.y > 1.0:
+		return visual.size
+	var button := visual as TextureButton
+	if button != null and button.texture_normal != null:
+		var tex_size := button.texture_normal.get_size()
+		if tex_size.x > 1.0:
+			return tex_size
+	return OPTION_BUTTON_SIZE
+
+func _place_option_origin(option: Control, origin: Vector2) -> void:
+	option.anchor_left = 0.0
+	option.anchor_top = 0.0
+	option.anchor_right = 0.0
+	option.anchor_bottom = 0.0
+	option.position = origin
+	option.size = Vector2.ZERO
 
 func hide_other_options(selected: BoxOptionButton) -> void:
 	for holder in _option_holders.values():

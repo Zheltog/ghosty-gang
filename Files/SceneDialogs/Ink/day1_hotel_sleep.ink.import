@@ -1,0 +1,16 @@
+[remap]
+
+importer="ink"
+type="Resource"
+uid="uid://dmyhlve3l6l7t"
+path="res://.godot/imported/day1_hotel_sleep.ink-6250d389e9fba299927f26cd6abc555c.res"
+
+[deps]
+
+source_file="res://Files/SceneDialogs/Ink/day1_hotel_sleep.ink"
+dest_files=["res://.godot/imported/day1_hotel_sleep.ink-6250d389e9fba299927f26cd6abc555c.res"]
+
+[params]
+
+is_main_file=false
+compress=true

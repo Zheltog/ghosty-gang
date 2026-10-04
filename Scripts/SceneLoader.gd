@@ -18,6 +18,10 @@ enum SCENE {
 	HOTEL_FOYER,
 	HOTEL_INTERVIEW,
 	DAY1_SHOP,
+	HOTEL_SLEEP,
+	NIGHT_FIRE,
+	NIGHT_FIRE_STAY,
+	ENGINEER_ROAD,
 }
 
 var _starting_menu: PackedScene = preload("res://Scenes/Preview/StartingMenu.tscn")
@@ -36,29 +40,50 @@ var _hotel_driver: PackedScene = preload("res://Scenes/Preview/HotelDriver.tscn"
 var _hotel_foyer: PackedScene = preload("res://Scenes/Preview/HotelFoyer.tscn")
 var _hotel_interview: PackedScene = preload("res://Scenes/Preview/HotelInterview.tscn")
 var _day1_shop: PackedScene = preload("res://Scenes/Preview/Day1Shop.tscn")
+var _hotel_sleep: PackedScene = preload("res://Scenes/Preview/HotelSleep.tscn")
+var _night_fire: PackedScene = preload("res://Scenes/Preview/NightFire.tscn")
+var _night_fire_stay: PackedScene = preload("res://Scenes/Preview/NightFireStay.tscn")
+var _engineer_road: PackedScene = preload("res://Scenes/Preview/EngineerRoad.tscn")
 
 const INTRO_MUSIC := "res://Assets/Audio/Music/intro.mp3"
 const DAY_MUSIC := "res://Assets/Audio/Music/День.mp3"
 
 func start_day(day_number: int, scene: SCENE) -> void:
-	SaveManager.begin_day(day_number)
+	SaveManager.begin_day(day_number, scene_key(scene))
 	change_scene(scene)
 
 func continue_saved_game() -> bool:
 	if not SaveManager.load_checkpoint():
 		printerr("SceneLoader: no day checkpoint")
 		return false
-	var scene := _scene_for_day(SaveManager.day)
+	var scene := scene_from_name(SaveManager.scene)
+	if scene == SCENE.NONE:
+		scene = entry_scene_for_day(SaveManager.day)
 	if scene == SCENE.NONE:
 		printerr("SceneLoader: no entry scene for day ", SaveManager.day)
 		return false
 	change_scene(scene)
 	return true
 
-func _scene_for_day(day_number: int) -> SCENE:
+func scene_key(scene: SCENE) -> String:
+	var key: Variant = SCENE.find_key(scene)
+	return str(key) if key != null else ""
+
+func scene_from_name(name: String) -> SCENE:
+	var token := name.strip_edges()
+	if token.is_empty():
+		return SCENE.NONE
+	var key := token.to_upper()
+	if SCENE.keys().has(key):
+		return SCENE[key]
+	return scene_from_exit(token.to_lower())
+
+func entry_scene_for_day(day_number: int) -> SCENE:
 	match day_number:
 		1:
 			return SCENE.PROLOGUE_BUS
+		2:
+			return SCENE.NIGHT_FIRE
 		_:
 			return SCENE.NONE
 
@@ -78,6 +103,14 @@ func scene_from_exit(exit_name: String) -> SCENE:
 			return SCENE.HOTEL_INTERVIEW
 		"shop":
 			return SCENE.DAY1_SHOP
+		"hotel_sleep":
+			return SCENE.HOTEL_SLEEP
+		"night_fire":
+			return SCENE.NIGHT_FIRE
+		"night_stay":
+			return SCENE.NIGHT_FIRE_STAY
+		"engineer_road":
+			return SCENE.ENGINEER_ROAD
 		"map":
 			return SCENE.MAP
 		_:
@@ -133,6 +166,14 @@ func change_scene(scene: SCENE) -> void:
 			packed = _hotel_interview
 		SCENE.DAY1_SHOP:
 			packed = _day1_shop
+		SCENE.HOTEL_SLEEP:
+			packed = _hotel_sleep
+		SCENE.NIGHT_FIRE:
+			packed = _night_fire
+		SCENE.NIGHT_FIRE_STAY:
+			packed = _night_fire_stay
+		SCENE.ENGINEER_ROAD:
+			packed = _engineer_road
 		_:
 			printerr("SceneLoader: unsupported scene ", scene)
 			return

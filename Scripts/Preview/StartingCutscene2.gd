@@ -8,6 +8,8 @@ func _ready() -> void:
 	super._ready()
 
 func _fade_out_engine() -> void:
+	if not CommonAudioProcessor.has_looped_sound(ENGINE_SOUND):
+		return
 	var command := AudioSoundLoopedCoomand.new()
 	command.resource_name = ENGINE_SOUND
 	command.post_action = AudioConstants.STOP

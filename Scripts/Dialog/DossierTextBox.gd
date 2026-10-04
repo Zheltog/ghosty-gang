@@ -3,7 +3,7 @@ class_name DossierTextBox
 extends TextBoxWithOptions
 
 const _options_path := "TextureRect/DossierOptions"
-const _options_count := 6
+const _options_count := 7
 const _slots := {
 	"Женя Куликов": &"Zhenya",
 	"Степан Куликов": &"Stepan",
@@ -11,6 +11,7 @@ const _slots := {
 	"Людмила Куликова": &"Lyudmila",
 	"Вадим Титов": &"Vadim",
 	"Семён Гало": &"Semyon",
+	"Достаточно": &"Enough",
 }
 
 func _ready() -> void:

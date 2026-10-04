@@ -8,6 +8,7 @@ static func save_file_path() -> String:
 
 static var _cached_save: SaveData = null
 static var day: int = 0
+static var scene: String = ""
 static var items: Array[String] = []
 
 static func save(data: SaveData) -> void:
@@ -27,14 +28,17 @@ static func has_checkpoint() -> bool:
 
 static func reset_runtime() -> void:
 	day = 0
+	scene = ""
 	items.clear()
 	StateManager.clear_state()
 	StateManager.restore_global_state({})
 
-static func begin_day(day_number: int) -> void:
+static func begin_day(day_number: int, scene_name: String = "") -> void:
 	day = day_number
+	scene = scene_name.strip_edges()
 	var data := load_from_save()
 	data.day = day_number
+	data.scene = scene
 	data.items = items.duplicate()
 	data.global_state = StateManager.export_global_state()
 	save(data)
@@ -44,6 +48,7 @@ static func load_checkpoint() -> bool:
 	if data.day <= 0:
 		return false
 	day = data.day
+	scene = str(data.scene).strip_edges()
 	StateManager.clear_state()
 	items.clear()
 	for item_name in data.items:

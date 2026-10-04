@@ -31,6 +31,18 @@ offset_bottom = 100.0
 theme_override_font_sizes/font_size = 32
 text = "Автобус в Белую Вязь"
 
+[node name="FadeLayer" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="Fade" type="ColorRect" parent="FadeLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
 [node name="Dossier" parent="." unique_id=797533041 instance=ExtResource("3_character")]
 visible = false
 modulate = Color(0.75, 0.85, 1, 1)
@@ -42,6 +54,10 @@ visible = false
 modulate = Color(1, 0.88, 0.72, 1)
 position = Vector2(760, 800)
 character_name = "scout"
+
+[node name="Driver" type="Node2D" parent="."]
+script = ExtResource("4_none")
+character_name = "driver"
 
 [node name="None" type="Node2D" parent="." unique_id=1759844023]
 script = ExtResource("4_none")

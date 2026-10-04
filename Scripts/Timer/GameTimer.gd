@@ -11,7 +11,10 @@ var _start_seconds : float = 0.0
 var _persist := false
 
 
-func _process(delta: float) -> void:
+func _ready() -> void:
+	_set_inactive()
+
+func _process(_delta: float) -> void:
 	_display_remaining_time()
 
 func start(seconds: float, callback: Callable, persist: bool = false) -> void:
@@ -21,6 +24,7 @@ func start(seconds: float, callback: Callable, persist: bool = false) -> void:
 	_timer.start(seconds)
 	_timer.timeout.connect(_finish.bind(callback), CONNECT_ONE_SHOT)
 	show()
+	set_process(true)
 
 func holds_reset() -> bool:
 	return _persist
@@ -29,15 +33,19 @@ func reset() -> void:
 	if _persist:
 		return
 	_stop_timer()
-	_last_time_displayed = 0
-	_label.text = "--:--"
-	hide()
+	_set_inactive()
 
 func _finish(callback: Callable) -> void:
 	_persist = false
-	hide()
+	_set_inactive()
 	if callback.is_valid():
 		callback.call()
+
+func _set_inactive() -> void:
+	_last_time_displayed = 0
+	_label.text = "--:--"
+	hide()
+	set_process(false)
 
 func _stop_timer() -> void:
 	_timer.stop()

@@ -3,6 +3,7 @@ class_name SaveData
 var lang: String = "ru"
 var known_theses: Array = [ "bob_spiders" ]
 var day: int = 0
+var scene: String = ""
 var items: Array = []
 var global_state: Dictionary = {}
 
@@ -11,6 +12,7 @@ func to_dictionary() -> Dictionary:
 		"lang": lang,
 		"known_theses": known_theses,
 		"day": day,
+		"scene": scene,
 		"items": items,
 		"global_state": global_state,
 	}
@@ -24,6 +26,8 @@ func _init(source: Dictionary = {}) -> void:
 	known_theses = kt if kt != null else known_theses
 	if source.has("day"):
 		day = int(source["day"])
+	if source.has("scene"):
+		scene = str(source["scene"])
 	var stored_items = source.get("items")
 	if stored_items is Array:
 		items = stored_items.duplicate()

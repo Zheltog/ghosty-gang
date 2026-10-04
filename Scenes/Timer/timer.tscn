@@ -18,6 +18,7 @@ shader_parameter/background_color = Color(0.24705882, 0.24705882, 0.24705882, 0)
 shader_parameter/color_gradient = SubResource("GradientTexture1D_gb5nr")
 
 [node name="GameTimer" type="Control" unique_id=2126109467]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

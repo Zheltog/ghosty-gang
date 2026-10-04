@@ -19,14 +19,19 @@ func _ready() -> void:
 func _input(event : InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo:
 		if event.keycode == KEY_QUOTELEFT:
+			_mark_input_handled()
 			_toggle()
-			get_viewport().set_input_as_handled()
 		elif _open and event.keycode == KEY_ESCAPE:
+			_mark_input_handled()
 			_set_open(false)
-			get_viewport().set_input_as_handled()
 
 func _toggle() -> void:
 	_set_open(not _open)
+
+func _mark_input_handled() -> void:
+	var viewport := get_viewport()
+	if viewport:
+		viewport.set_input_as_handled()
 
 func _set_open(open : bool) -> void:
 	_open = open
@@ -51,10 +56,22 @@ func _run_command(text : String) -> void:
 	var command := str(parts[0]).to_lower()
 	if command == "day":
 		if parts.size() < 2 or not str(parts[1]).is_valid_int():
-			printerr("Usage: day <number>")
+			printerr("Usage: day <number> [scene]")
 			return
-		SaveManager.begin_day(int(parts[1]))
-		print("Saved day ", int(parts[1]))
+		var day_number := int(parts[1])
+		var entry := SceneLoader.SCENE.NONE
+		if parts.size() >= 3:
+			entry = SceneLoader.scene_from_name(str(parts[2]))
+			if entry == SceneLoader.SCENE.NONE:
+				printerr("Unknown scene: ", parts[2])
+				return
+		else:
+			entry = SceneLoader.entry_scene_for_day(day_number)
+			if entry == SceneLoader.SCENE.NONE:
+				printerr("No entry scene for day ", day_number, ". Usage: day <number> [scene]")
+				return
+		SaveManager.begin_day(day_number, SceneLoader.scene_key(entry))
+		print("Saved day ", day_number, " -> ", SceneLoader.scene_key(entry))
 		return
 	if command == "load":
 		SceneLoader.continue_saved_game()

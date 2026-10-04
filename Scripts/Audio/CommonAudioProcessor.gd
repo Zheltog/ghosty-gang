@@ -117,7 +117,8 @@ func process_sound_looped(command: AudioSoundLoopedCoomand) -> void:
 		return
 	if post_action != null and post_action != "":
 		if not _looped_sound_players.has(resource_name):
-			printerr("[CommonAudioProcessor] Looped sound is not processing: ", resource_name)
+			if post_action != AudioConstants.STOP:
+				printerr("[CommonAudioProcessor] Looped sound is not processing: ", resource_name)
 			return
 		_process_post_action(_looped_sound_players[resource_name], post_action, command.instant, \
 			command.adjustment_mode, command.adjustment_value)

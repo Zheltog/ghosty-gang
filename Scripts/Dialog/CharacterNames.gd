@@ -19,6 +19,12 @@ static func display_name(character_tag: String) -> String:
 			return "Продавщица"
 		"engineer":
 			return "Инженер"
+		"worker":
+			return "Рабочий"
+		"voice":
+			return "Голос"
+		"woman":
+			return "Женщина"
 		"none", "":
 			return ""
 		_:
