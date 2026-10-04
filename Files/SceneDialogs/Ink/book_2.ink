@@ -1,6 +1,6 @@
 EXTERNAL godot(target_class, method)
 
-Учебник по нейробиологии. Переплёт потёртый, внутри схемы мозга и чужие пометки. # window:default
+Учебник по нейробиологии. Переплёт потёртый, внутри схемы мозга и чужие пометки. # window:default # thought
 -> options
 
 == options ==

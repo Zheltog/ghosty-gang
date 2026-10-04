@@ -32,29 +32,29 @@ VAR passports_raised = false
 
 === calm ===
 Ты резко садишься и хватаешь себя за голову. Волосы на месте. В комнате уже светло. Где-то в квартире негромко похрапывает Владислав. # thought
-Вот дрянь. # response
+Вот дрянь. # response # skippable:false
 Ты складываешь одеяло, одеваешься и выходишь, стараясь не разбудить хозяина. # thought
 ~ engineer_leave = true
 -> END
 
 === pistol ===
-Подъём. # window:default # char:engineer # anim:close
-Чего?.. # response
+Подъём. # window:default # char:engineer # anim:close # skippable:false
+Чего?.. # response # skippable:false
 Что-то металлическое упирается в затылок. # thought
-У меня пистолет. Без резких движений. # window:default # char:engineer # anim:close
-Руки за спину. Медленно. # anim:attack_chair
+У меня пистолет. Без резких движений. # window:default # char:engineer # anim:close # skippable:false
+Руки за спину. Медленно. # anim:attack_chair # skippable:false
 Ты подчиняешься. Инженер шустро связывает их бечёвкой. # thought
-Вот так. А теперь… # window:default # char:engineer # anim:close
+Вот так. А теперь… # window:default # char:engineer # anim:close # skippable:false
 Рукоять врезается в висок. # thought
 ~ engineer_to_torture = true
 -> END
 
 === board ===
-Ай! # response
-Ах ты, собака конторская… # window:default # char:engineer # anim:attack_chair
+Ай! # response # skippable:false
+Ах ты, собака конторская… # window:default # char:engineer # anim:attack_chair # skippable:false
 Хозяин заносит доску. Ты прикрываешь голову. Правая рука нащупывает металл. # thought
 Выстрел. # thought # char:engineer # anim:stand_shot
 Ещё один. # thought # char:engineer # anim:lay_shot
-Твою мать. Надо валить. # response
+Твою мать. Надо валить. # response # skippable:false
 ~ engineer_dead = true
 -> END

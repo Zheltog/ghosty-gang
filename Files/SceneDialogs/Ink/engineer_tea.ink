@@ -31,18 +31,18 @@ VAR passports_raised = false
 
 === tea_high ===
 Только он начинает наливать чай, как рука дёргается. По столику расползается лужа. # thought
-Ах ты. Дорогой мой, не будете любезны? Тряпка в ванной, принесите, пожалуйста. # window:default # char:engineer # anim:stand_tea
-Сейчас будет. # response
+Ах ты. Дорогой мой, не будете любезны? Тряпка в ванной, принесите, пожалуйста. # window:default # char:engineer # anim:stand_tea # skippable:false
+Сейчас будет. # response # skippable:false
 Когда ты возвращаешься, чай уже налит. Владислав отхлёбывает из кружки. # thought
-Пейте. Вам сейчас согреться надо. # window:default # char:engineer # anim:sit_normal
+Пейте. Вам сейчас согреться надо. # window:default # char:engineer # anim:sit_normal # skippable:false
 + [Выпить]
-	Взять кружку и выпить. # response
+	Взять кружку и выпить. # response # skippable:false
 	-> drink
 + [Пусть остынет]
-	Пусть сперва остынет. # response
+	Пусть сперва остынет. # response # skippable:false
 	-> let_cool
 + [Не буду]
-	Не буду я ваш чай пить. # response
+	Не буду я ваш чай пить. # response # skippable:false
 	-> refuse
 + [equip:gun]
 	-> arm
@@ -52,14 +52,14 @@ VAR passports_raised = false
 
 === tea_low ===
 Инженер берёт чайник и не спеша разливает его по чашкам. # thought
-Тонут во мгле пустынные сопки, тучей закрыт восток… # window:default # char:engineer # anim:stand_tea
-Со смородиной? То, что доктор прописал. # response
-И с мятой. Мон плезир. # window:default # char:engineer # anim:stand_smiling
+Тонут во мгле пустынные сопки, тучей закрыт восток… # window:default # char:engineer # anim:stand_tea # skippable:false
+Со смородиной? То, что доктор прописал. # response # skippable:false
+И с мятой. Мон плезир. # window:default # char:engineer # anim:stand_smiling # skippable:false
 Он пододвигает тебе чашку. # thought
 + [Выпить]
-	Спасибо. # response
+	Спасибо. # response # skippable:false
 	Ты делаешь глоток. # thought
-	Итак. О чём вы хотели поговорить? # window:default # char:engineer # anim:sit_normal
+	Итак. О чём вы хотели поговорить? # window:default # char:engineer # anim:sit_normal # skippable:false
 	-> END
 + [equip:gun]
 	-> arm
@@ -68,7 +68,7 @@ VAR passports_raised = false
 Он садится и разливает чай. # thought
 + [unequip:gun]
 	~ gun_drawn = false
-	Спасибо. # response
+	Спасибо. # response # skippable:false
 	Ты кладёшь пистолет на стол и делаешь глоток. # thought
 	-> tea
 + [action:shoot]
@@ -76,11 +76,11 @@ VAR passports_raised = false
 
 === drink ===
 Чай крепкий и немного горчит. Слова вдруг приходится выталкивать. Пальцы не слушаются. # thought
-А насчёт мальчика… # response
-Что… # response
-Не пытайтесь встать. # window:default # char:engineer # anim:sit_shocked
+А насчёт мальчика… # response # skippable:false
+Что… # response # skippable:false
+Не пытайтесь встать. # window:default # char:engineer # anim:sit_shocked # skippable:false
 Ты съезжаешь по спинке дивана. # thought
-Слышите меня? # window:default # char:engineer # anim:sit_suspicious
+Слышите меня? # window:default # char:engineer # anim:sit_suspicious # skippable:false
 Ответить не получается. # thought
 ~ engineer_poison = true
 -> END
@@ -89,11 +89,11 @@ VAR passports_raised = false
 -> END
 
 === refuse ===
-Вы меня за кого принимаете? # window:default # char:engineer # anim:sit_suspicious
-Я сказал, что не хочу. # response
-Понял. И к вещам моим это тоже отношения не имеет? # window:default # char:engineer # anim:sit_suspicious
+Вы меня за кого принимаете? # window:default # char:engineer # anim:sit_suspicious # skippable:false
+Я сказал, что не хочу. # response # skippable:false
+Понял. И к вещам моим это тоже отношения не имеет? # window:default # char:engineer # anim:sit_suspicious # skippable:false
 Он ставит свою чашку на стол. # thought
-Извините. Не получится у нас сегодня с ночлегом. # anim:stand_default
+Извините. Не получится у нас сегодня с ночлегом. # anim:stand_default # skippable:false
 ~ engineer_kicked = true
 -> END
 

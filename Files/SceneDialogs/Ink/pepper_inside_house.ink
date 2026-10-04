@@ -4,7 +4,7 @@ EXTERNAL godot(target_class, method)
 
 VAR suspicion = 0
 
-This pepper is kinda wierd... {suspicion > 0: It feels more suspicious than last time.} # window:default
+This pepper is kinda wierd... {suspicion > 0: It feels more suspicious than last time.} # window:default # thought
 -> touch
 
 == touch ==
@@ -12,9 +12,9 @@ This pepper is kinda wierd... {suspicion > 0: It feels more suspicious than last
 	~ suspicion += 1
 	{ suspicion >= 2:
 		~ godot("HouseScenePreview", "ghost_appear")
-		There's someone in the house...
+		There's someone in the house... # thought
 	- else:
-		Nothing happens... but it feels wrong.
+		Nothing happens... but it feels wrong. # thought
 	}
 	-> END
 + [I better not]

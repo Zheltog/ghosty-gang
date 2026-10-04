@@ -37,4 +37,6 @@ controller = NodePath("../..")
 z_index = 3
 controller = NodePath("../..")
 
-[node name="another_room_left" parent="DialogWindowManager" unique_id=1939350733 instance=ExtResource("10_left")]
+[node name="another_room_left" parent="DialogWindowManager" unique_id=1939350733 node_paths=PackedStringArray("controller") instance=ExtResource("10_left")]
+z_index = 3
+controller = NodePath("../..")

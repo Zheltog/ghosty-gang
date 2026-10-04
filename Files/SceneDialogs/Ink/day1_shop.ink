@@ -29,10 +29,10 @@ VAR exit = ""
 -> counter
 
 === counter ===
-Чего вам? # window:default # char:cashier # anim:bored
+Чего вам? # window:default # char:cashier # anim:bored # skippable:false
 * {not has_cigarette} [Сигарет пачку. Недорогих.]
-	Сигарет пачку. Недорогих. # response # char:detective
-	Выбирайте. # window:default # char:cashier
+	Сигарет пачку. Недорогих. # response # char:detective # skippable:false
+	Выбирайте. # window:default # char:cashier # skippable:false
 	Ты наугад тыкаешь в стенд с табаком. # thought
 	Продавщица протягивает тебе пачку. # thought # char:cashier
 	~ has_cigarette = true
@@ -43,24 +43,24 @@ VAR exit = ""
 	-> leave
 
 === sim ===
-А симку у вас взять можно? # response # char:detective
-Мужчина. У нас что тут, салон? # window:default # char:cashier # anim:sharp
-Я без связи совсем. Что мне, в город ехать теперь? # response # char:detective
-А я вам что, свою отдать должна? # char:cashier
-Из-звините, мужчина… # char:engineer # anim:nervous
+А симку у вас взять можно? # response # char:detective # skippable:false
+Мужчина. У нас что тут, салон? # window:default # char:cashier # anim:sharp # skippable:false
+Я без связи совсем. Что мне, в город ехать теперь? # response # char:detective # skippable:false
+А я вам что, свою отдать должна? # char:cashier # skippable:false
+Из-звините, мужчина… # char:engineer # anim:nervous # skippable:false
 Ты оборачиваешься. # thought
 Голос принадлежал щуплому старичку в больших очках с черепаховой оправой. # thought # char:engineer
-Вы не на завод приехали? Спросите заводских. # char:engineer
-Им симки раздают. Корпоративные. У кого-нибудь лишняя найдется. # char:engineer
-Точно-точно, раздают. У меня у самой заводская, от мужа. # char:cashier
-И детям нашим, то есть, для детей тоже принес. # char:cashier
-Нет, я не заводской. Но спасибо за наводку. # response # char:detective
-А зачем вы к нам пожаловали? Если не секрет, конечно. # char:engineer # anim:curious
-У меня расследование. # response # char:detective
-Полицейский, что ли? # char:engineer
-Не совсем. Ищу кое-кого. # response # char:detective
-Вот оно что… Ну, добро пожаловать в Вязи. # char:engineer # anim:smile
-Спасибо. # response # char:detective
+Вы не на завод приехали? Спросите заводских. # char:engineer # skippable:false
+Им симки раздают. Корпоративные. У кого-нибудь лишняя найдется. # char:engineer # skippable:false
+Точно-точно, раздают. У меня у самой заводская, от мужа. # char:cashier # skippable:false
+И детям нашим, то есть, для детей тоже принес. # char:cashier # skippable:false
+Нет, я не заводской. Но спасибо за наводку. # response # char:detective # skippable:false
+А зачем вы к нам пожаловали? Если не секрет, конечно. # char:engineer # anim:curious # skippable:false
+У меня расследование. # response # char:detective # skippable:false
+Полицейский, что ли? # char:engineer # skippable:false
+Не совсем. Ищу кое-кого. # response # char:detective # skippable:false
+Вот оно что… Ну, добро пожаловать в Вязи. # char:engineer # anim:smile # skippable:false
+Спасибо. # response # char:detective # skippable:false
 Старичок разворачивается и скрывается за полкой с пряниками. # thought # away:engineer
 ~ met_engineer = true
 {not has_cigarette:

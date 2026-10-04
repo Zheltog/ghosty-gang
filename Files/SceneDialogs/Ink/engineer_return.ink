@@ -25,38 +25,38 @@ VAR passports_raised = false
 	~ suspicion += 4
 	-> open_closet
 }
-Извините, что заставил ждать. Чай готов! # window:default # char:engineer # anim:stand_tea
+Извините, что заставил ждать. Чай готов! # window:default # char:engineer # anim:stand_tea # skippable:false
 Владислав выходит с чашками и заварником. Он ставит их на столик. # thought
 -> END
 
 === open_closet ===
 В комнату заходит хозяин: в руках пара чашек и полный заварник. # thought
 Он ставит посуду на стол, подходит к шкафу и захлопывает его. # thought
-Верните ключ. # window:default # char:engineer # anim:stand_suspicious
+Верните ключ. # window:default # char:engineer # anim:stand_suspicious # skippable:false
 + [equip:key_bookshelf]
 	~ key_returned = true
 	~ suspicion -= 1
 	-> key_back
 + [Позже.]
 	~ suspicion += 1
-	Возможно, позже. # response
+	Возможно, позже. # response # skippable:false
 	-> key_later
 + [equip:gun]
 	-> gun
 
 === key_back ===
-Пожалуйста. # response
+Пожалуйста. # response # skippable:false
 Владислав забирает ключ и прячет его. # thought
 -> tidy
 
 === key_later ===
-Как вам угодно. # window:default # char:engineer # anim:stand_suspicious
+Как вам угодно. # window:default # char:engineer # anim:stand_suspicious # skippable:false
 -> tidy
 
 === tidy ===
 Владислав ходит по комнате и поправляет вещи. # thought
-Чай-то будем пить? Заодно и поговорим. # response
-Садитесь. # window:default # char:engineer # anim:sit_normal
+Чай-то будем пить? Заодно и поговорим. # response # skippable:false
+Садитесь. # window:default # char:engineer # anim:sit_normal # skippable:false
 -> END
 
 === gun ===
@@ -64,28 +64,28 @@ VAR passports_raised = false
 	~ gun_drawn = true
 	~ suspicion += 5
 }
-Что вы делаете? Уберите его! Опустите оружие, прошу вас! # window:default # char:engineer # anim:stand_scared
+Что вы делаете? Уберите его! Опустите оружие, прошу вас! # window:default # char:engineer # anim:stand_scared # skippable:false
 + [unequip:gun]
 	~ gun_drawn = false
 	-> gun_down
 + [action:shoot]
 	-> gun_kill
 + [Это из вашей кладовки.]
-	Это из вашей кладовки. Объяснитесь. # response
+	Это из вашей кладовки. Объяснитесь. # response # skippable:false
 	-> gun_explain
 
 === gun_down ===
-Господи… # window:default # char:engineer # anim:stand_default
-Прошу вас, не делайте так больше. Мы же цивилизованные люди. # anim:stand_scared
+Господи… # window:default # char:engineer # anim:stand_default # skippable:false
+Прошу вас, не делайте так больше. Мы же цивилизованные люди. # anim:stand_scared # skippable:false
 -> tidy
 
 === gun_explain ===
-Каких объяснений вы от меня хотите? У меня лицензия, всё по закону. # window:default # char:engineer # anim:stand_scared
-Допустим. А паспорта? # response
-Выданы партией. Поверьте мне. Это долгая история, но я могу всё объяснить. Давайте присядем, пожалуйста. # window:default # char:engineer # anim:stand_suspicious
+Каких объяснений вы от меня хотите? У меня лицензия, всё по закону. # window:default # char:engineer # anim:stand_scared # skippable:false
+Допустим. А паспорта? # response # skippable:false
+Выданы партией. Поверьте мне. Это долгая история, но я могу всё объяснить. Давайте присядем, пожалуйста. # window:default # char:engineer # anim:stand_suspicious # skippable:false
 + [unequip:gun]
 	~ gun_drawn = false
-	Спасибо. # response
+	Спасибо. # response # skippable:false
 	Ты кладёшь пистолет на стол. # thought
 	-> tidy
 + [action:shoot]

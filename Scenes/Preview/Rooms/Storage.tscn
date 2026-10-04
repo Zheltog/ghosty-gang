@@ -1,16 +1,15 @@
 [gd_scene format=3 uid="uid://c8storage00a1"]
 
 [ext_resource type="PackedScene" uid="uid://mt1xmuy8xhd5" path="res://Scenes/PointAndClick/SceneUIDoor.tscn" id="2_door"]
-[ext_resource type="Texture2D" uid="uid://cdu876x3pnbl1" path="res://Assets/Sprites/Backgrounds/storage_flashlight.png" id="3_efrgq"]
+[ext_resource type="Texture2D" uid="uid://dyc2vkwumy8vh" path="res://Assets/Sprites/SceneItems/EngineerHouse/passport_dark.png" id="8_081si"]
 [ext_resource type="Script" uid="uid://d3n5tan6phw67" path="res://Scripts/UI/PointAndClickScenes/CustomSceneItemUIInDarkness.gd" id="8_efrgq"]
+[ext_resource type="Texture2D" uid="uid://bkm4i26uvf7r6" path="res://Assets/Sprites/SceneItems/EngineerHouse/gun_dark.png" id="9_u4pon"]
 [ext_resource type="Texture2D" uid="uid://dadq1xc3xcndr" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/MoveBack.png" id="10_a71pi"]
 [ext_resource type="Script" uid="uid://8p77bw84c7bp" path="res://Scripts/UI/PointAndClickScenes/Components/ParallaxComponent.gd" id="10_parobj"]
 [ext_resource type="Script" uid="uid://bgebmjt4oem53" path="res://Scripts/Room/RoomBase.gd" id="12_room"]
+[ext_resource type="Texture2D" uid="uid://de3p3kuu483v4" path="res://Assets/Sprites/Backgrounds/storage_normal.png" id="24_storbg"]
 [ext_resource type="Script" uid="uid://3yscu2its1" path="res://Scenes/Test/Dron/DarknessEffect.gd" id="24_stordark"]
 [ext_resource type="Material" uid="uid://cettvgv7o7kmc" path="res://Scripts/Shaders/darkness_material.tres" id="24_stormat"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_j74um"]
-size = Vector2(97.8385, 136.9502)
 
 [node name="Storage" type="Node2D" unique_id=2005596028]
 script = ExtResource("12_room")
@@ -20,7 +19,7 @@ room_name = "storage"
 material = ExtResource("24_stormat")
 instance_shader_parameters/lighted_index = 3
 position = Vector2(960, 540)
-texture = ExtResource("3_efrgq")
+texture = ExtResource("24_storbg")
 script = ExtResource("24_stordark")
 
 [node name="ParallaxComponent" type="Node" parent="Background" unique_id=1493908703]
@@ -57,19 +56,14 @@ position = Vector2(960, 540)
 
 [node name="Passport" type="Sprite2D" parent="." unique_id=412838733]
 material = ExtResource("24_stormat")
-instance_shader_parameters/lighted_index = 6
-position = Vector2(1373, 813)
-scale = Vector2(-1, 1)
+instance_shader_parameters/lighted_index = 8
+position = Vector2(1226, 598)
+texture = ExtResource("8_081si")
 script = ExtResource("8_efrgq")
 intercation_type = 0
 metadata/_custom_type_script = "uid://cjwqo45k5xnx0"
 
 [node name="Area2D" type="Area2D" parent="Passport" unique_id=577383606]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Passport/Area2D" unique_id=1117973687]
-position = Vector2(2, 0)
-rotation = 0.14569734
-shape = SubResource("RectangleShape2D_j74um")
 
 [node name="ParallaxComponent" type="Node" parent="Passport" unique_id=1696883358]
 script = ExtResource("10_parobj")
@@ -77,9 +71,9 @@ camera_distance = 100.0
 
 [node name="Gun" type="Sprite2D" parent="." unique_id=786481879]
 material = ExtResource("24_stormat")
-instance_shader_parameters/lighted_index = 6
-position = Vector2(1373, 813)
-scale = Vector2(-1, 1)
+instance_shader_parameters/lighted_index = 7
+position = Vector2(1135, 843)
+texture = ExtResource("9_u4pon")
 script = ExtResource("8_efrgq")
 intercation_type = 0
 metadata/_custom_type_script = "uid://cjwqo45k5xnx0"

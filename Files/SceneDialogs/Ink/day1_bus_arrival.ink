@@ -4,6 +4,6 @@
 -> arrival
 
 === arrival ===
-На выход, дядь. # window:default # char:driver # anim:gruff
-Приехали, что ли? # response # char:detective
+На выход, дядь. # window:default # char:driver # anim:gruff # skippable:false
+Приехали, что ли? # response # char:detective # skippable:false
 -> END

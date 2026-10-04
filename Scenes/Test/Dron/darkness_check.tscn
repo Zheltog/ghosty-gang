@@ -1,11 +1,13 @@
 [gd_scene format=3 uid="uid://cswuie5t8lqdl"]
 
 [ext_resource type="Script" uid="uid://bgebmjt4oem53" path="res://Scripts/Room/RoomBase.gd" id="1_rpbjr"]
-[ext_resource type="Texture2D" uid="uid://de3p3kuu483v4" path="res://Assets/Sprites/Backgrounds/storage_normal.png" id="2_vv6n8"]
+[ext_resource type="Texture2D" uid="uid://cdu876x3pnbl1" path="res://Assets/Sprites/Backgrounds/storage_flashlight.png" id="3_rmf6s"]
 [ext_resource type="Script" uid="uid://8p77bw84c7bp" path="res://Scripts/UI/PointAndClickScenes/Components/ParallaxComponent.gd" id="3_yt4yv"]
-[ext_resource type="Material" path="res://Scripts/Shaders/darkness_material.tres" id="4_rmf6s"]
+[ext_resource type="Material" uid="uid://cettvgv7o7kmc" path="res://Scripts/Shaders/darkness_material.tres" id="4_rmf6s"]
 [ext_resource type="PackedScene" uid="uid://17fxcbcv4a1n" path="res://Scenes/PointAndClick/InventoryUI/Inventory.tscn" id="5_o2kdd"]
 [ext_resource type="Script" uid="uid://3yscu2its1" path="res://Scenes/Test/Dron/DarknessEffect.gd" id="5_vv6n8"]
+[ext_resource type="Texture2D" uid="uid://b71jpr1flp51v" path="res://Assets/Sprites/SceneItems/EngineerHouse/gun_light.png" id="7_o2kdd"]
+[ext_resource type="Script" uid="uid://d3n5tan6phw67" path="res://Scripts/UI/PointAndClickScenes/CustomSceneItemUIInDarkness.gd" id="8_o2kdd"]
 
 [node name="DarknessCheck" type="Node2D" unique_id=771040076]
 
@@ -15,10 +17,10 @@ room_name = "storage"
 
 [node name="Background" type="Sprite2D" parent="Storage" unique_id=1669035856]
 material = ExtResource("4_rmf6s")
-position = Vector2(960, 540)
-texture = ExtResource("2_vv6n8")
-script = ExtResource("5_vv6n8")
 instance_shader_parameters/lighted_index = 3
+position = Vector2(960, 540)
+texture = ExtResource("3_rmf6s")
+script = ExtResource("5_vv6n8")
 
 [node name="ParallaxComponent" type="Node" parent="Storage/Background" unique_id=677819036]
 script = ExtResource("3_yt4yv")
@@ -28,3 +30,22 @@ camera_distance = 100.0
 z_index = 6
 offset_top = 1080.0
 offset_bottom = 1080.0
+
+[node name="Gun" type="Sprite2D" parent="." unique_id=468543812]
+material = ExtResource("4_rmf6s")
+instance_shader_parameters/lighted_index = 7
+position = Vector2(1135, 843)
+texture = ExtResource("7_o2kdd")
+script = ExtResource("8_o2kdd")
+intercation_type = 0
+metadata/_custom_type_script = "uid://cjwqo45k5xnx0"
+
+[node name="Area2D" type="Area2D" parent="Gun" unique_id=1387523493]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gun/Area2D" unique_id=385474387]
+position = Vector2(2, 0)
+rotation = 0.14569734
+
+[node name="ParallaxComponent" type="Node" parent="Gun" unique_id=1719067682]
+script = ExtResource("3_yt4yv")
+camera_distance = 100.0

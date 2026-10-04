@@ -4,6 +4,6 @@
 -> arrive
 
 === arrive ===
-Располагайтесь, пожалуйста, проходите в зал. Чувствуйте себя, кхе-хе, как дома. А я пока заварю нам чаю. # window:default # char:engineer # anim:stand_smiling
+Располагайтесь, пожалуйста, проходите в зал. Чувствуйте себя, кхе-хе, как дома. А я пока заварю нам чаю. # window:default # char:engineer # anim:stand_smiling # skippable:false
 Не дожидаясь ответа, он скрывается за дверью кухни. # thought
 -> END
