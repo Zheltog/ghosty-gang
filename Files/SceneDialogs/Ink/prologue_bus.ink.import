@@ -1,0 +1,16 @@
+[remap]
+
+importer="ink"
+type="Resource"
+uid="uid://du4lsdr7b161p"
+path="res://.godot/imported/prologue_bus.ink-d9fa524101ee6f5afacfc6e55f6aaf64.res"
+
+[deps]
+
+source_file="res://Files/SceneDialogs/Ink/prologue_bus.ink"
+dest_files=["res://.godot/imported/prologue_bus.ink-d9fa524101ee6f5afacfc6e55f6aaf64.res"]
+
+[params]
+
+is_main_file=true
+compress=true

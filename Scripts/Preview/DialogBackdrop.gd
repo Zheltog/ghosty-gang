@@ -2,6 +2,8 @@ extends Node2D
 
 @export_file("*.ink") var story_path: String
 @export var next_scene: SceneLoader.SCENE = SceneLoader.SCENE.NONE
+## When set, the day checkpoint is written before the scene changes.
+@export var day_number: int = 0
 
 @onready var _dialog: DialogController = $DialogController
 
@@ -20,5 +22,8 @@ func _on_story_finished(_story_name: String) -> void:
 	if scene == SceneLoader.SCENE.NONE:
 		scene = next_scene
 	if scene == SceneLoader.SCENE.NONE:
+		return
+	if day_number > 0:
+		SceneLoader.start_day(day_number, scene)
 		return
 	SceneLoader.change_scene(scene)
