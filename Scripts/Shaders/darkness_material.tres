@@ -7,13 +7,14 @@
 [ext_resource type="Texture2D" uid="uid://cdu876x3pnbl1" path="res://Assets/Sprites/Backgrounds/storage_flashlight.png" id="5_storage"]
 [ext_resource type="Texture2D" uid="uid://banvbyutvnm2b" path="res://Assets/Sprites/Backgrounds/bookcase_1_flashlight.png" id="6_bookcase1"]
 [ext_resource type="Texture2D" uid="uid://bl1k7pkmua023" path="res://Assets/Sprites/Backgrounds/bookcase_2_flashlight.png" id="7_bookcase2"]
+[ext_resource type="Texture2D" uid="uid://dho0hf3djuluy" path="res://Assets/Sprites/SceneItems/EngineerHouse/hall_under bed_flashlight_ eye.png" id="8_65o82"]
 [ext_resource type="Texture2D" uid="uid://b71jpr1flp51v" path="res://Assets/Sprites/SceneItems/EngineerHouse/gun_light.png" id="9_65o82"]
-[ext_resource type="Texture2D" uid="uid://bskxy61bvl2x0" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/UnderBed/EYE.PNG" id="9_wlnsh"]
 [ext_resource type="Texture2D" uid="uid://co4kyloeaw70b" path="res://Assets/Sprites/SceneItems/EngineerHouse/passport_light.png" id="10_65o82"]
+[ext_resource type="Texture2D" uid="uid://bfoltd4lyekxt" path="res://Assets/Sprites/Backgrounds/hall_under bed_flashlight_without eye.png" id="11_5yjfb"]
 
 [resource]
 shader = ExtResource("1_shader")
 shader_parameter/mouse_pos = Vector2(0, 0)
 shader_parameter/light_on = false
 shader_parameter/light_dist = 200.0
-shader_parameter/lighted_textures = Array[Texture2D]([ExtResource("2_living"), ExtResource("3_exit"), ExtResource("4_kitchen"), ExtResource("5_storage"), ExtResource("6_bookcase1"), ExtResource("7_bookcase2"), ExtResource("9_wlnsh"), ExtResource("9_65o82"), ExtResource("10_65o82")])
+shader_parameter/lighted_textures = Array[Texture2D]([ExtResource("2_living"), ExtResource("3_exit"), ExtResource("4_kitchen"), ExtResource("5_storage"), ExtResource("6_bookcase1"), ExtResource("7_bookcase2"), ExtResource("11_5yjfb"), ExtResource("9_65o82"), ExtResource("10_65o82"), ExtResource("8_65o82")])

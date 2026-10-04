@@ -1,5 +1,6 @@
-// Триггер: EngineerDialog.returned — осмотр закончен, инженер выходит из кухни.
-// Перед вызовом: mark_closet_open, если шкаф остался отодвинут.
+// Триггер: инженер выходит из кухни в зал.
+// closet_open приходит из геймплея: шкаф оставлен открытым или закрыт до возвращения.
+EXTERNAL godot(target_class, method)
 # story: engineer_return
 # load: suspicion, closet_open, key_returned, saw_passports, has_glass_eye, gun_drawn, engineer_dead, engineer_poison, engineer_kicked, engineer_sleep, engineer_to_torture, engineer_leave, passports_raised
 # save: suspicion, closet_open, key_returned, saw_passports, has_glass_eye, gun_drawn, engineer_dead, engineer_poison, engineer_kicked, engineer_sleep, engineer_to_torture, engineer_leave, passports_raised
@@ -31,6 +32,7 @@ VAR passports_raised = false
 
 === open_closet ===
 В комнату заходит хозяин: в руках пара чашек и полный заварник. # thought
+~ godot("CustomBookshelfSceneItemUI", "close_shelf")
 Он ставит посуду на стол, подходит к шкафу и захлопывает его. # thought
 Верните ключ. # window:default # char:engineer # anim:stand_suspicious # skippable:false
 + [equip:key_bookshelf]

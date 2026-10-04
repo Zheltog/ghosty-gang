@@ -19,4 +19,4 @@ func get_effective_interaction_type() -> INTERACTION_TYPE:
 		return INTERACTION_TYPE.NONE
 	if !InventoryItemFlashlight.light_on:
 		return INTERACTION_TYPE.NONE
-	return INTERACTION_TYPE.LOOK
+	return intercation_type

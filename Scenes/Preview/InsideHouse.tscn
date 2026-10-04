@@ -6,15 +6,15 @@
 [ext_resource type="PackedScene" uid="uid://b3fjaokxpivbe" path="res://Scenes/Dialog/dialog_controller.tscn" id="4_dialog"]
 [ext_resource type="Script" uid="uid://b036r1bbtl2ug" path="res://Scripts/UI/PointAndClickScenes/SceneParallaxController.gd" id="9_parallax"]
 [ext_resource type="Script" uid="uid://8p77bw84c7bp" path="res://Scripts/UI/PointAndClickScenes/Components/ParallaxComponent.gd" id="10_parobj"]
-[ext_resource type="Texture2D" uid="uid://ca5hsak2aftyp" path="res://Assets/Sprites/Characters/Engineer/Dron/standing_steel chair.png" id="12_s7x8l"]
+[ext_resource type="Texture2D" uid="uid://ktquvlvtry4r" path="res://Assets/Sprites/Characters/Engineer/Dron/standing_chair_attack.png" id="12_k7bhf"]
 [ext_resource type="Texture2D" uid="uid://cp3i304md3py6" path="res://Assets/Sprites/Characters/Engineer/Dron/sitting_normal.png" id="13_k7bhf"]
 [ext_resource type="Texture2D" uid="uid://ct8jrj8g00yg8" path="res://Assets/Sprites/Characters/Engineer/Dron/sitting_taking_body.png" id="14_xjebt"]
-[ext_resource type="Texture2D" uid="uid://rg3hxxu0hid5" path="res://Assets/Sprites/Characters/Engineer/Dron/standing_я пидорас.png" id="15_if3oh"]
 [ext_resource type="Texture2D" uid="uid://c1mqcjylh6imp" path="res://Assets/Sprites/Characters/Engineer/Dron/sitting_sus.png" id="15_mv3vy"]
 [ext_resource type="Texture2D" uid="uid://yusbqae1gdbk" path="res://Assets/Sprites/Characters/Engineer/Dron/hasle near wardrobe.png" id="16_cxod2"]
-[ext_resource type="Texture2D" uid="uid://d4j4tui08uoks" path="res://Assets/Sprites/Characters/Engineer/Dron/standing_кто_пидарас_вопросительный_знак.png" id="18_i1vas"]
+[ext_resource type="Texture2D" uid="uid://2lcyocqmdhh6" path="res://Assets/Sprites/Characters/Engineer/Dron/sitting_AH.png" id="18_xjebt"]
 [ext_resource type="Texture2D" uid="uid://25u3ny2aflx6" path="res://Assets/Sprites/Characters/Engineer/Dron/standing_sus.png" id="19_f7hr0"]
 [ext_resource type="Script" uid="uid://ct24630qdy5qa" path="res://Scripts/Characters/SceneCharacter.gd" id="20_pvt63"]
+[ext_resource type="Texture2D" uid="uid://daj36qgjxnh3h" path="res://Assets/Sprites/Characters/Engineer/Dron/standing_normal.png" id="20_xjebt"]
 [ext_resource type="PackedScene" uid="uid://c8bathroom0a1" path="res://Scenes/Preview/Rooms/Bathroom.tscn" id="room_Bathroom"]
 [ext_resource type="PackedScene" uid="uid://s218cktv50w5" path="res://Scenes/Preview/Rooms/Bookshelf.tscn" id="room_Bookshelf"]
 [ext_resource type="PackedScene" uid="uid://c8exitstor0a1" path="res://Scenes/Preview/Rooms/ExitFromStorage.tscn" id="room_ExitFromStorage"]
@@ -26,9 +26,9 @@
 [ext_resource type="PackedScene" uid="uid://c8underbed0a1" path="res://Scenes/Preview/Rooms/UnderBed.tscn" id="room_UnderBed"]
 [ext_resource type="PackedScene" uid="uid://kvbvxu0vbc8y" path="res://Scenes/Timer/timer.tscn" id="timer_scene"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kul73"]
-atlas = ExtResource("12_s7x8l")
-region = Rect2(0, 0, 1976, 5815)
+[sub_resource type="AtlasTexture" id="AtlasTexture_cxod2"]
+atlas = ExtResource("12_k7bhf")
+region = Rect2(0, 0, 274, 694)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xuvgt"]
 atlas = ExtResource("13_k7bhf")
@@ -46,27 +46,27 @@ region = Rect2(0, 0, 2120, 1280)
 atlas = ExtResource("16_cxod2")
 region = Rect2(0, 0, 179, 316)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fcff3"]
-atlas = ExtResource("15_if3oh")
-region = Rect2(0, 0, 1976, 5815)
+[sub_resource type="AtlasTexture" id="AtlasTexture_i1vas"]
+atlas = ExtResource("20_xjebt")
+region = Rect2(0, 0, 274, 694)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_k46gi"]
-atlas = ExtResource("18_i1vas")
-region = Rect2(0, 0, 1976, 5815)
+[sub_resource type="AtlasTexture" id="AtlasTexture_f7hr0"]
+atlas = ExtResource("18_xjebt")
+region = Rect2(0, 0, 274, 694)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_re16o"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_kul73"]
 atlas = ExtResource("19_f7hr0")
-region = Rect2(0, 0, 1976, 5815)
+region = Rect2(0, 0, 274, 694)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_amx12"]
-atlas = ExtResource("15_if3oh")
-region = Rect2(0, 0, 1976, 5815)
+[sub_resource type="AtlasTexture" id="AtlasTexture_mv3vy"]
+atlas = ExtResource("20_xjebt")
+region = Rect2(0, 0, 274, 694)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_280bj"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_kul73")
+"texture": SubResource("AtlasTexture_cxod2")
 }],
 "loop": 1,
 "name": &"attack_chair",
@@ -106,15 +106,15 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_fcff3")
+"texture": SubResource("AtlasTexture_i1vas")
 }],
 "loop": 1,
-"name": &"stand_default",
+"name": &"stand_normal",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_k46gi")
+"texture": SubResource("AtlasTexture_f7hr0")
 }],
 "loop": 1,
 "name": &"stand_scared",
@@ -122,7 +122,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_re16o")
+"texture": SubResource("AtlasTexture_kul73")
 }],
 "loop": 1,
 "name": &"stand_suspicious",
@@ -130,7 +130,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_amx12")
+"texture": SubResource("AtlasTexture_mv3vy")
 }],
 "loop": 1,
 "name": &"stand_tea",
@@ -154,9 +154,8 @@ visible = false
 
 [node name="Engineer" type="AnimatedSprite2D" parent="Characters" unique_id=718858753 node_paths=PackedStringArray("sprite")]
 position = Vector2(802.99994, 382.99997)
-scale = Vector2(0.15, 0.15)
 sprite_frames = SubResource("SpriteFrames_280bj")
-animation = &"stand_tea"
+animation = &"stand_normal"
 script = ExtResource("20_pvt63")
 sprite = NodePath(".")
 character_name = "engineer"

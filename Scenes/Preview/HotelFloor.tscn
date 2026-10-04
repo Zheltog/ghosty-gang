@@ -47,3 +47,4 @@ z_index = 3
 
 [node name="default" type="Marker2D" parent="CharacterPositions"]
 position = Vector2(960, 540)
+scale = Vector2(0.15, 0.15)

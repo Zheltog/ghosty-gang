@@ -73,48 +73,64 @@ z_index = 3
 
 [node name="default" type="Marker2D" parent="CharacterPositions"]
 position = Vector2(960, 540)
+scale = Vector2(0.15, 0.15)
 
 [node name="dossier_default" type="Marker2D" parent="CharacterPositions"]
 position = Vector2(480, 780)
+scale = Vector2(0.15, 0.15)
 
 [node name="scout_default" type="Marker2D" parent="CharacterPositions"]
 position = Vector2(760, 800)
+scale = Vector2(0.15, 0.15)
 
 [node name="scout_teasing" type="Marker2D" parent="CharacterPositions"]
 position = Vector2(760, 800)
+scale = Vector2(0.15, 0.15)
 
 [node name="scout_laugh" type="Marker2D" parent="CharacterPositions"]
 position = Vector2(760, 800)
+scale = Vector2(0.15, 0.15)
 
 [node name="scout_impressed" type="Marker2D" parent="CharacterPositions"]
 position = Vector2(760, 800)
+scale = Vector2(0.15, 0.15)
 
 [node name="scout_nod" type="Marker2D" parent="CharacterPositions"]
 position = Vector2(760, 800)
+scale = Vector2(0.15, 0.15)
 
 [node name="scout_stern" type="Marker2D" parent="CharacterPositions"]
 position = Vector2(760, 800)
+scale = Vector2(0.15, 0.15)
 
 [node name="scout_blank" type="Marker2D" parent="CharacterPositions"]
 position = Vector2(760, 800)
+scale = Vector2(0.15, 0.15)
 
 [node name="scout_defiant" type="Marker2D" parent="CharacterPositions"]
 position = Vector2(760, 800)
+scale = Vector2(0.15, 0.15)
 
 [node name="scout_mocking" type="Marker2D" parent="CharacterPositions"]
 position = Vector2(760, 800)
+scale = Vector2(0.15, 0.15)
 
 [node name="scout_escape" type="Marker2D" parent="CharacterPositions"]
 position = Vector2(760, 800)
+scale = Vector2(0.15, 0.15)
 
 [node name="scout_serious" type="Marker2D" parent="CharacterPositions"]
 position = Vector2(760, 800)
+scale = Vector2(0.15, 0.15)
 
 [node name="scout_frantic" type="Marker2D" parent="CharacterPositions"]
 position = Vector2(760, 800)
+scale = Vector2(0.15, 0.15)
 
 [node name="scout_smug" type="Marker2D" parent="CharacterPositions"]
 position = Vector2(760, 800)
+scale = Vector2(0.15, 0.15)
 
 [node name="scout_shiver" type="Marker2D" parent="CharacterPositions"]
 position = Vector2(760, 800)
+scale = Vector2(0.15, 0.15)

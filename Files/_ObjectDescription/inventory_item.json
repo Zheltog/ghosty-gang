@@ -31,5 +31,8 @@
 				"name_rus" : "выпить"
 			}
 		}
+	},
+	"glass_eye" : {
+		"equip_time" : 1.0
 	}
 }

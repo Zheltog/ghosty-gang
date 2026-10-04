@@ -1,13 +1,11 @@
 {
 	"passport" : {
-		"pickable" : true,
-		"inventory_item" : "passport",
-		"equiped_immediately" : false,
-		"after_pickup" : "disappear"
+		"pickable" : false,
+		"ink_story_view" : "res://Files/SceneDialogs/Ink/passport.ink"
 	},
 	"glass_eye" : {
 		"pickable" : false,
-		"ink_story_view" : "res://Files/SceneDialogs/Ink/Preview/glass_eye.ink",
+		"ink_story_view" : "res://Files/SceneDialogs/Ink/glass_eye.ink",
 		"interaction_overload" : {
 			"flashlight" : {
 				"interaction_type" : "take"
@@ -21,6 +19,30 @@
 	"book_2" : {
 		"pickable" : false,
 		"ink_story_view" : "res://Files/SceneDialogs/Ink/book_2.ink"
+	},
+	"book_3" : {
+		"pickable" : false,
+		"ink_story_view" : "res://Files/SceneDialogs/Ink/book_3.ink"
+	},
+	"book_4" : {
+		"pickable" : false,
+		"ink_story_view" : "res://Files/SceneDialogs/Ink/book_4.ink"
+	},
+	"book_5" : {
+		"pickable" : false,
+		"ink_story_view" : "res://Files/SceneDialogs/Ink/book_5.ink"
+	},
+	"book_6" : {
+		"pickable" : false,
+		"ink_story_view" : "res://Files/SceneDialogs/Ink/book_6.ink"
+	},
+	"book_7" : {
+		"pickable" : false,
+		"ink_story_view" : "res://Files/SceneDialogs/Ink/book_7.ink"
+	},
+	"book_8" : {
+		"pickable" : false,
+		"ink_story_view" : "res://Files/SceneDialogs/Ink/book_8.ink"
 	},
 	"book_key" : {
 		"pickable" : false,

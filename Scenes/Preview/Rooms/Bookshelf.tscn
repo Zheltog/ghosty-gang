@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://mt1xmuy8xhd5" path="res://Scenes/PointAndClick/SceneUIDoor.tscn" id="2_door"]
 [ext_resource type="PackedScene" uid="uid://dvnnea2fw2ndt" path="res://Scenes/PointAndClick/SceneItemUI.tscn" id="2_item"]
+[ext_resource type="Script" uid="uid://cjwqo45k5xnx0" path="res://Scripts/UI/PointAndClickScenes/SceneItemUI.gd" id="9_1fc3o"]
 [ext_resource type="Texture2D" uid="uid://dadq1xc3xcndr" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/MoveBack.png" id="10_back"]
 [ext_resource type="Script" uid="uid://8p77bw84c7bp" path="res://Scripts/UI/PointAndClickScenes/Components/ParallaxComponent.gd" id="10_parobj"]
 [ext_resource type="Script" uid="uid://d37oapbkld1pk" path="res://Scripts/UI/PointAndClickScenes/SceneUIDoor.gd" id="11_saou5"]
@@ -30,7 +31,7 @@ camera_distance = 100.0
 [node name="Shelfs" type="Sprite2D" parent="." unique_id=1900112503]
 position = Vector2(960, 500)
 script = ExtResource("13_shelf")
-scene_item_id = 14
+scene_item_id = 15
 intercation_type = 0
 
 [node name="ParallaxComponent" type="Node" parent="Shelfs" unique_id=1900112504]
@@ -48,12 +49,141 @@ polygon = PackedVector2Array(-760, -332, 746, -320, 602, 673, -608, 684)
 polygon = PackedVector2Array(-1065, -338, 159, -338, 134, 677, -1060, 684)
 
 [node name="Keyhole" parent="Shelfs" unique_id=1900112506 instance=ExtResource("2_item")]
+visible = false
 position = Vector2(47, 117)
 texture = ExtResource("42_keyhole")
-scene_item_id = 6
+scene_item_id = 12
 intercation_type = 0
 
 [node name="ParallaxComponent" type="Node" parent="Shelfs/Keyhole" unique_id=1900112507]
+script = ExtResource("10_parobj")
+camera_distance = 3.0
+
+[node name="Books1" type="Sprite2D" parent="Shelfs" unique_id=598298150]
+position = Vector2(47, 117)
+script = ExtResource("9_1fc3o")
+scene_item_id = 2
+intercation_type = 0
+
+[node name="Area2D" type="Area2D" parent="Shelfs/Books1" unique_id=874107418]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Shelfs/Books1/Area2D" unique_id=714205653]
+position = Vector2(-775, -424)
+polygon = PackedVector2Array(712, 2, 716, 143, 22, 141, 0, 0)
+
+[node name="ParallaxComponent" type="Node" parent="Shelfs/Books1" unique_id=721947000]
+script = ExtResource("10_parobj")
+camera_distance = 3.0
+
+[node name="Books2" type="Sprite2D" parent="Shelfs" unique_id=14758560]
+position = Vector2(47, 117)
+script = ExtResource("9_1fc3o")
+scene_item_id = 3
+intercation_type = 0
+
+[node name="Area2D" type="Area2D" parent="Shelfs/Books2" unique_id=1523638626]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Shelfs/Books2/Area2D" unique_id=1599265031]
+position = Vector2(-775, -424)
+polygon = PackedVector2Array(739, 160, 1428, 158, 1403, 320, 743, 319)
+
+[node name="ParallaxComponent" type="Node" parent="Shelfs/Books2" unique_id=62428462]
+script = ExtResource("10_parobj")
+camera_distance = 3.0
+
+[node name="Books3" type="Sprite2D" parent="Shelfs" unique_id=65752136]
+position = Vector2(47, 117)
+script = ExtResource("9_1fc3o")
+scene_item_id = 4
+intercation_type = 0
+
+[node name="Area2D" type="Area2D" parent="Shelfs/Books3" unique_id=765408651]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Shelfs/Books3/Area2D" unique_id=1665428705]
+position = Vector2(-775, -424)
+polygon = PackedVector2Array(738, -3, 1454, -1, 1429, 148, 736, 153)
+
+[node name="ParallaxComponent" type="Node" parent="Shelfs/Books3" unique_id=2085286470]
+script = ExtResource("10_parobj")
+camera_distance = 3.0
+
+[node name="Books4" type="Sprite2D" parent="Shelfs" unique_id=644389273]
+position = Vector2(47, 117)
+script = ExtResource("9_1fc3o")
+scene_item_id = 5
+intercation_type = 0
+
+[node name="Area2D" type="Area2D" parent="Shelfs/Books4" unique_id=740529005]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Shelfs/Books4/Area2D" unique_id=1123824194]
+position = Vector2(-1483, -417)
+polygon = PackedVector2Array(732, 148, 1422, 149, 1421, 312, 754, 314)
+
+[node name="ParallaxComponent" type="Node" parent="Shelfs/Books4" unique_id=764150302]
+script = ExtResource("10_parobj")
+camera_distance = 3.0
+
+[node name="Books6" type="Sprite2D" parent="Shelfs" unique_id=1526740641]
+position = Vector2(47, 117)
+script = ExtResource("9_1fc3o")
+scene_item_id = 7
+intercation_type = 0
+
+[node name="Area2D" type="Area2D" parent="Shelfs/Books6" unique_id=1843537781]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Shelfs/Books6/Area2D" unique_id=754522414]
+position = Vector2(-1464, -247)
+polygon = PackedVector2Array(741, 162, 1407, 158, 1404, 294, 759, 300)
+
+[node name="ParallaxComponent" type="Node" parent="Shelfs/Books6" unique_id=51021431]
+script = ExtResource("10_parobj")
+camera_distance = 3.0
+
+[node name="Books5" type="Sprite2D" parent="Shelfs" unique_id=700698209]
+position = Vector2(47, 117)
+script = ExtResource("9_1fc3o")
+scene_item_id = 6
+intercation_type = 0
+
+[node name="Area2D" type="Area2D" parent="Shelfs/Books5" unique_id=1873794396]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Shelfs/Books5/Area2D" unique_id=1779756025]
+position = Vector2(-800, -250)
+polygon = PackedVector2Array(763, 161, 1425, 159, 1404, 294, 762, 297)
+
+[node name="ParallaxComponent" type="Node" parent="Shelfs/Books5" unique_id=299199059]
+script = ExtResource("10_parobj")
+camera_distance = 3.0
+
+[node name="Books7" type="Sprite2D" parent="Shelfs" unique_id=1708082333]
+position = Vector2(47, 117)
+script = ExtResource("9_1fc3o")
+scene_item_id = 8
+intercation_type = 0
+
+[node name="Area2D" type="Area2D" parent="Shelfs/Books7" unique_id=649726581]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Shelfs/Books7/Area2D" unique_id=2072410937]
+position = Vector2(-1466, -102)
+polygon = PackedVector2Array(763, 161, 1408, 163, 1407, 313, 783, 313)
+
+[node name="ParallaxComponent" type="Node" parent="Shelfs/Books7" unique_id=907096448]
+script = ExtResource("10_parobj")
+camera_distance = 3.0
+
+[node name="Books8" type="Sprite2D" parent="Shelfs" unique_id=2017908192]
+position = Vector2(47, 117)
+script = ExtResource("9_1fc3o")
+scene_item_id = 9
+intercation_type = 0
+
+[node name="Area2D" type="Area2D" parent="Shelfs/Books8" unique_id=1420210211]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Shelfs/Books8/Area2D" unique_id=1595734545]
+position = Vector2(-822, -97)
+polygon = PackedVector2Array(786, 161, 1423, 166, 1407, 313, 783, 313)
+
+[node name="ParallaxComponent" type="Node" parent="Shelfs/Books8" unique_id=1227445765]
 script = ExtResource("10_parobj")
 camera_distance = 3.0
 
@@ -62,7 +192,7 @@ position = Vector2(80, 80)
 scale = Vector2(2, 2)
 texture = ExtResource("10_back")
 target_room = "living_room"
-scene_item_id = 6
+scene_item_id = 20
 intercation_type = 0
 
 [node name="ParallaxComponent" type="Node" parent="ToLivingRoom" unique_id=1900112515]
@@ -75,10 +205,10 @@ position = Vector2(80, 80)
 scale = Vector2(2, 2)
 script = ExtResource("11_saou5")
 target_room = "storage"
-scene_item_id = 14
+scene_item_id = 20
 intercation_type = 2
 
-[node name="Area2D" type="Area2D" parent="ToStorage" unique_id=874107418]
+[node name="Area2D" type="Area2D" parent="ToStorage" unique_id=1437867289]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ToStorage/Area2D" unique_id=1881239196]
 position = Vector2(702.5, 111.5)
@@ -91,58 +221,76 @@ camera_distance = 100.0
 [node name="Character" type="AnimatedSprite2D" parent="." unique_id=1900112516]
 position = Vector2(960, 540)
 
-[node name="CharacterPositions" type="Node2D" parent="."]
+[node name="CharacterPositions" type="Node2D" parent="." unique_id=876425475]
 
-[node name="default" type="Marker2D" parent="CharacterPositions"]
+[node name="default" type="Marker2D" parent="CharacterPositions" unique_id=745426946]
 position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
 
-[node name="engineer_default" type="Marker2D" parent="CharacterPositions"]
+[node name="engineer_default" type="Marker2D" parent="CharacterPositions" unique_id=1119620462]
 position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
 
-[node name="engineer_attack_chair" type="Marker2D" parent="CharacterPositions"]
+[node name="engineer_attack_chair" type="Marker2D" parent="CharacterPositions" unique_id=587349008]
 position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
 
-[node name="engineer_close" type="Marker2D" parent="CharacterPositions"]
+[node name="engineer_close" type="Marker2D" parent="CharacterPositions" unique_id=677245744]
 position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
 
-[node name="engineer_close_needle" type="Marker2D" parent="CharacterPositions"]
+[node name="engineer_close_needle" type="Marker2D" parent="CharacterPositions" unique_id=188307091]
 position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
 
-[node name="engineer_lay_shot" type="Marker2D" parent="CharacterPositions"]
+[node name="engineer_lay_shot" type="Marker2D" parent="CharacterPositions" unique_id=2077041423]
 position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
 
-[node name="engineer_sit_normal" type="Marker2D" parent="CharacterPositions"]
+[node name="engineer_sit_normal" type="Marker2D" parent="CharacterPositions" unique_id=421132195]
 position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
 
-[node name="engineer_sit_reach" type="Marker2D" parent="CharacterPositions"]
+[node name="engineer_sit_reach" type="Marker2D" parent="CharacterPositions" unique_id=1884486682]
 position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
 
-[node name="engineer_sit_shocked" type="Marker2D" parent="CharacterPositions"]
+[node name="engineer_sit_shocked" type="Marker2D" parent="CharacterPositions" unique_id=1719633959]
 position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
 
-[node name="engineer_sit_shot" type="Marker2D" parent="CharacterPositions"]
+[node name="engineer_sit_shot" type="Marker2D" parent="CharacterPositions" unique_id=1629327036]
 position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
 
-[node name="engineer_sit_suspicious" type="Marker2D" parent="CharacterPositions"]
+[node name="engineer_sit_suspicious" type="Marker2D" parent="CharacterPositions" unique_id=2027772724]
 position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
 
-[node name="engineer_stand_back" type="Marker2D" parent="CharacterPositions"]
+[node name="engineer_stand_back" type="Marker2D" parent="CharacterPositions" unique_id=1839898269]
 position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
 
-[node name="engineer_stand_default" type="Marker2D" parent="CharacterPositions"]
+[node name="engineer_stand_default" type="Marker2D" parent="CharacterPositions" unique_id=743282409]
 position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
 
-[node name="engineer_stand_scared" type="Marker2D" parent="CharacterPositions"]
+[node name="engineer_stand_scared" type="Marker2D" parent="CharacterPositions" unique_id=1016086673]
 position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
 
-[node name="engineer_stand_shot" type="Marker2D" parent="CharacterPositions"]
+[node name="engineer_stand_shot" type="Marker2D" parent="CharacterPositions" unique_id=992112308]
 position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
 
-[node name="engineer_stand_smiling" type="Marker2D" parent="CharacterPositions"]
+[node name="engineer_stand_smiling" type="Marker2D" parent="CharacterPositions" unique_id=187048367]
 position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
 
-[node name="engineer_stand_suspicious" type="Marker2D" parent="CharacterPositions"]
+[node name="engineer_stand_suspicious" type="Marker2D" parent="CharacterPositions" unique_id=579468725]
 position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
 
-[node name="engineer_stand_tea" type="Marker2D" parent="CharacterPositions"]
+[node name="engineer_stand_tea" type="Marker2D" parent="CharacterPositions" unique_id=1826345832]
 position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)

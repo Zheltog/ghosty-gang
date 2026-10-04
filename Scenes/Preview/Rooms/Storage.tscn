@@ -43,8 +43,8 @@ position = Vector2(944, 978)
 rotation = -1.5707964
 scale = Vector2(2, 2)
 texture = ExtResource("10_a71pi")
-target_room = "living_room"
-scene_item_id = 6
+target_room = "bookshelf"
+scene_item_id = 20
 intercation_type = 0
 
 [node name="ParallaxComponent" type="Node" parent="ToLivingRoom" unique_id=366923515]
@@ -75,7 +75,8 @@ instance_shader_parameters/lighted_index = 7
 position = Vector2(1135, 843)
 texture = ExtResource("9_u4pon")
 script = ExtResource("8_efrgq")
-intercation_type = 0
+scene_item_id = 14
+intercation_type = 1
 metadata/_custom_type_script = "uid://cjwqo45k5xnx0"
 
 [node name="Area2D" type="Area2D" parent="Gun" unique_id=144310572]
@@ -92,54 +93,72 @@ camera_distance = 100.0
 
 [node name="default" type="Marker2D" parent="CharacterPositions" unique_id=1046564858]
 position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
 
 [node name="engineer_default" type="Marker2D" parent="CharacterPositions" unique_id=1174614894]
 position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
 
 [node name="engineer_attack_chair" type="Marker2D" parent="CharacterPositions" unique_id=890984979]
 position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
 
 [node name="engineer_close" type="Marker2D" parent="CharacterPositions" unique_id=1047724697]
 position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
 
 [node name="engineer_close_needle" type="Marker2D" parent="CharacterPositions" unique_id=293065066]
 position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
 
 [node name="engineer_lay_shot" type="Marker2D" parent="CharacterPositions" unique_id=1208693099]
 position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
 
 [node name="engineer_sit_normal" type="Marker2D" parent="CharacterPositions" unique_id=2130803303]
 position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
 
 [node name="engineer_sit_reach" type="Marker2D" parent="CharacterPositions" unique_id=1378807639]
 position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
 
 [node name="engineer_sit_shocked" type="Marker2D" parent="CharacterPositions" unique_id=1541769475]
 position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
 
 [node name="engineer_sit_shot" type="Marker2D" parent="CharacterPositions" unique_id=615656141]
 position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
 
 [node name="engineer_sit_suspicious" type="Marker2D" parent="CharacterPositions" unique_id=1500667082]
 position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
 
 [node name="engineer_stand_back" type="Marker2D" parent="CharacterPositions" unique_id=1914038322]
 position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
 
 [node name="engineer_stand_default" type="Marker2D" parent="CharacterPositions" unique_id=355021915]
 position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
 
 [node name="engineer_stand_scared" type="Marker2D" parent="CharacterPositions" unique_id=304410850]
 position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
 
 [node name="engineer_stand_shot" type="Marker2D" parent="CharacterPositions" unique_id=779165089]
 position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
 
 [node name="engineer_stand_smiling" type="Marker2D" parent="CharacterPositions" unique_id=1272731358]
 position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
 
 [node name="engineer_stand_suspicious" type="Marker2D" parent="CharacterPositions" unique_id=1264502391]
 position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
 
 [node name="engineer_stand_tea" type="Marker2D" parent="CharacterPositions" unique_id=1766642265]
 position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)

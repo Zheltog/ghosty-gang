@@ -3,7 +3,7 @@ extends Node2D
 
 @export var sprite: AnimatedSprite2D
 @export var location: String = ""
-@export var emotion: String = "idle"
+@export var emotion: String = "stand_normal"
 @export var character_name: String = ""
 @export var has_voice: bool = true
 
@@ -11,11 +11,36 @@ extends Node2D
 
 const EMOTION_POINTS := "CharacterPositions"
 
-var previous_emotion = "idle"
+var previous_emotion = "stand_normal"
 
 func _ready() -> void:
-	if sprite != null:
-		sprite.animation_finished.connect(_on_animation_end)
+	if sprite == null:
+		return
+	sprite.animation_finished.connect(_on_animation_end)
+	_attach_scene_item()
+
+func _attach_scene_item() -> void:
+	if not _scene_has_object_manager():
+		return
+	if sprite.get_node_or_null("CharacterSceneItem") != null:
+		return
+	sprite.z_as_relative = false
+	sprite.z_index = CharacterSceneItemUI.DRAW_Z
+	var item := CharacterSceneItemUI.new()
+	item.name = "CharacterSceneItem"
+	var area := Area2D.new()
+	area.name = "Area2D"
+	item.add_child(area)
+	sprite.add_child(item)
+	sprite.frame_changed.connect(item.sync_frame)
+	sprite.animation_changed.connect(item.sync_frame)
+
+func _scene_has_object_manager() -> bool:
+	var root: Node = self
+	var tree_root := get_tree().root
+	while root.get_parent() != null and root.get_parent() != tree_root:
+		root = root.get_parent()
+	return not root.find_children("*", "SceneObjectsManager", true, false).is_empty()
 
 func set_location(new_location: String) -> void:
 	location = new_location
@@ -65,6 +90,7 @@ func _snap_to_emotion_point() -> void:
 		return
 	var target: Node2D = sprite if sprite != null else self
 	target.global_position = point.global_position
+	target.global_scale = point.global_scale
 	var parallax := target.get_node_or_null("ParallaxComponent") as ParallaxComponent
 	if parallax != null:
 		parallax.rest_position = target.position

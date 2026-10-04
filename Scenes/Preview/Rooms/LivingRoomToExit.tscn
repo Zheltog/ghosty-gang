@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://bxjtno10bk1kn" path="res://Assets/Sprites/Backgrounds/living_room_to_exit_normal.png" id="50_lte_bg"]
 [ext_resource type="Script" uid="uid://3yscu2its1" path="res://Scenes/Test/Dron/DarknessEffect.gd" id="50_lte_dark"]
 [ext_resource type="Material" uid="uid://cettvgv7o7kmc" path="res://Scripts/Shaders/darkness_material.tres" id="50_lte_mat"]
-[ext_resource type="Texture2D" uid="uid://cq314bqm5t00y" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/LivingRoomToExit/SIDE_TO_DOOR_BG.PNG" id="51_lte_side"]
 
 [node name="LivingRoomToExit" type="Node2D" unique_id=-1194967295]
 script = ExtResource("12_room")
@@ -26,20 +25,11 @@ script = ExtResource("50_lte_dark")
 script = ExtResource("10_parobj")
 camera_distance = 100.0
 
-[node name="SideToDoorBg" type="Sprite2D" parent="." unique_id=-1194967292]
-visible = false
-position = Vector2(1265, 519)
-texture = ExtResource("51_lte_side")
-
-[node name="ParallaxComponent" type="Node" parent="SideToDoorBg" unique_id=-1194967291]
-script = ExtResource("10_parobj")
-camera_distance = 100.0
-
 [node name="Bed" type="Sprite2D" parent="." unique_id=-1194967290]
 position = Vector2(283, 715)
 script = ExtResource("20_8cn5p")
 target_room = "under_bed"
-scene_item_id = 7
+scene_item_id = 20
 intercation_type = 0
 
 [node name="Area2D" type="Area2D" parent="Bed" unique_id=674466857]
@@ -54,7 +44,8 @@ camera_distance = 100.0
 [node name="Tumba" type="Sprite2D" parent="." unique_id=-1194967284]
 position = Vector2(3, 958)
 script = ExtResource("8_gnoqc")
-scene_item_id = 5
+scene_item_id = 11
+intercation_type = 0
 
 [node name="ParallaxComponent" type="Node" parent="Tumba" unique_id=-1194967283]
 script = ExtResource("10_parobj")
@@ -69,7 +60,7 @@ polygon = PackedVector2Array(270, -207, 372, -255, 351, -363, 294, -378, 155, -3
 position = Vector2(1166, 558)
 script = ExtResource("20_8cn5p")
 target_room = "preroom"
-scene_item_id = 6
+scene_item_id = 20
 intercation_type = 0
 
 [node name="Area2D" type="Area2D" parent="ToPreroom" unique_id=874107418]
@@ -86,7 +77,7 @@ position = Vector2(88, 444)
 scale = Vector2(2, 2)
 texture = ExtResource("10_a71pi")
 target_room = "living_room"
-scene_item_id = 6
+scene_item_id = 20
 intercation_type = 0
 
 [node name="ParallaxComponent" type="Node" parent="ToLivingRoom" unique_id=1069572054]
@@ -96,58 +87,76 @@ camera_distance = 100.0
 [node name="Character" type="AnimatedSprite2D" parent="." unique_id=891095198]
 position = Vector2(960, 540)
 
-[node name="CharacterPositions" type="Node2D" parent="."]
+[node name="CharacterPositions" type="Node2D" parent="." unique_id=32284585]
 
-[node name="default" type="Marker2D" parent="CharacterPositions"]
+[node name="default" type="Marker2D" parent="CharacterPositions" unique_id=1843467979]
 position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
 
-[node name="engineer_default" type="Marker2D" parent="CharacterPositions"]
+[node name="engineer_default" type="Marker2D" parent="CharacterPositions" unique_id=1032049632]
 position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
 
-[node name="engineer_attack_chair" type="Marker2D" parent="CharacterPositions"]
+[node name="engineer_attack_chair" type="Marker2D" parent="CharacterPositions" unique_id=730750229]
 position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
 
-[node name="engineer_close" type="Marker2D" parent="CharacterPositions"]
+[node name="engineer_close" type="Marker2D" parent="CharacterPositions" unique_id=1922844947]
 position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
 
-[node name="engineer_close_needle" type="Marker2D" parent="CharacterPositions"]
+[node name="engineer_close_needle" type="Marker2D" parent="CharacterPositions" unique_id=1576947129]
 position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
 
-[node name="engineer_lay_shot" type="Marker2D" parent="CharacterPositions"]
+[node name="engineer_lay_shot" type="Marker2D" parent="CharacterPositions" unique_id=592757060]
 position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
 
-[node name="engineer_sit_normal" type="Marker2D" parent="CharacterPositions"]
+[node name="engineer_sit_normal" type="Marker2D" parent="CharacterPositions" unique_id=1020020819]
 position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
 
-[node name="engineer_sit_reach" type="Marker2D" parent="CharacterPositions"]
+[node name="engineer_sit_reach" type="Marker2D" parent="CharacterPositions" unique_id=737354479]
 position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
 
-[node name="engineer_sit_shocked" type="Marker2D" parent="CharacterPositions"]
+[node name="engineer_sit_shocked" type="Marker2D" parent="CharacterPositions" unique_id=1082235519]
 position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
 
-[node name="engineer_sit_shot" type="Marker2D" parent="CharacterPositions"]
+[node name="engineer_sit_shot" type="Marker2D" parent="CharacterPositions" unique_id=1625259557]
 position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
 
-[node name="engineer_sit_suspicious" type="Marker2D" parent="CharacterPositions"]
+[node name="engineer_sit_suspicious" type="Marker2D" parent="CharacterPositions" unique_id=347501844]
 position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
 
-[node name="engineer_stand_back" type="Marker2D" parent="CharacterPositions"]
+[node name="engineer_stand_back" type="Marker2D" parent="CharacterPositions" unique_id=211357528]
 position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
 
-[node name="engineer_stand_default" type="Marker2D" parent="CharacterPositions"]
+[node name="engineer_stand_default" type="Marker2D" parent="CharacterPositions" unique_id=79998277]
 position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
 
-[node name="engineer_stand_scared" type="Marker2D" parent="CharacterPositions"]
+[node name="engineer_stand_scared" type="Marker2D" parent="CharacterPositions" unique_id=1700771711]
 position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
 
-[node name="engineer_stand_shot" type="Marker2D" parent="CharacterPositions"]
+[node name="engineer_stand_shot" type="Marker2D" parent="CharacterPositions" unique_id=1152920402]
 position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
 
-[node name="engineer_stand_smiling" type="Marker2D" parent="CharacterPositions"]
+[node name="engineer_stand_smiling" type="Marker2D" parent="CharacterPositions" unique_id=516929056]
 position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
 
-[node name="engineer_stand_suspicious" type="Marker2D" parent="CharacterPositions"]
+[node name="engineer_stand_suspicious" type="Marker2D" parent="CharacterPositions" unique_id=259069420]
 position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
 
-[node name="engineer_stand_tea" type="Marker2D" parent="CharacterPositions"]
+[node name="engineer_stand_tea" type="Marker2D" parent="CharacterPositions" unique_id=1511249712]
 position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)

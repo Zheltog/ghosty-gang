@@ -18,7 +18,9 @@ static func display_name(character_tag: String) -> String:
 		"cashier":
 			return "Продавщица"
 		"engineer":
-			return "Инженер"
+			if bool(InkVariableStore.get_value("saw_passports", false)):
+				return "Владислав?"
+			return "Владислав"
 		"worker":
 			return "Рабочий"
 		"voice":

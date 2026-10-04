@@ -9,6 +9,7 @@ const INTERVIEW := "res://Files/SceneDialogs/Ink/engineer_interview.ink"
 const NIGHT := "res://Files/SceneDialogs/Ink/engineer_night.ink"
 const MORNING := "res://Files/SceneDialogs/Ink/engineer_morning.ink"
 const TORTURE := "res://Files/SceneDialogs/Ink/engineer_torture.ink"
+const TORTURE_MUSIC := "res://Assets/Audio/Music/FUCK.mp3"
 const STREET := "res://Files/SceneDialogs/Ink/engineer_street.ink"
 
 func _ready() -> void:
@@ -19,6 +20,9 @@ func road() -> void:
 
 func returned() -> void:
 	_start(RETURNED)
+
+func play(path: String) -> void:
+	_start(path)
 
 func trapped() -> void:
 	_start(TRAPPED)
@@ -36,13 +40,20 @@ func morning() -> void:
 	_start(MORNING)
 
 func torture() -> void:
+	CommonAudioProcessor.transition_music(TORTURE_MUSIC)
 	_start(TORTURE)
 
 func street() -> void:
 	_start(STREET)
 
 func mark_closet_open() -> void:
-	InkVariableStore.set_value("closet_open", true)
+	set_closet_open(true)
+
+func set_closet_open(open: bool) -> void:
+	InkVariableStore.set_value("closet_open", open)
+
+func set_gun_drawn(drawn: bool) -> void:
+	InkVariableStore.set_value("gun_drawn", drawn)
 
 func mark_passports_seen() -> void:
 	InkVariableStore.set_value("saw_passports", true)

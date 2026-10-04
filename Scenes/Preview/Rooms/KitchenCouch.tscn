@@ -1,0 +1,97 @@
+[gd_scene format=3 uid="uid://dqxonlmtlnied"]
+
+[ext_resource type="Script" uid="uid://bgebmjt4oem53" path="res://Scripts/Room/RoomBase.gd" id="1_u8j1x"]
+[ext_resource type="Material" uid="uid://cettvgv7o7kmc" path="res://Scripts/Shaders/darkness_material.tres" id="2_71slc"]
+[ext_resource type="Texture2D" uid="uid://c6lti232rmp3h" path="res://Assets/Sprites/Backgrounds/kitchen_2.png" id="3_u8j1x"]
+[ext_resource type="Script" uid="uid://3yscu2its1" path="res://Scenes/Test/Dron/DarknessEffect.gd" id="4_bl6rl"]
+[ext_resource type="Script" uid="uid://8p77bw84c7bp" path="res://Scripts/UI/PointAndClickScenes/Components/ParallaxComponent.gd" id="5_n3wxg"]
+[ext_resource type="Texture2D" uid="uid://dadq1xc3xcndr" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/MoveBack.png" id="14_swiwo"]
+[ext_resource type="Script" uid="uid://d37oapbkld1pk" path="res://Scripts/UI/PointAndClickScenes/SceneUIDoor.gd" id="15_muhom"]
+[ext_resource type="Texture2D" uid="uid://d2xor6m56g17p" path="res://Assets/Sprites/SceneItems/EngineerHouse/kitchen_table.png" id="17_qbynd"]
+[ext_resource type="PackedScene" uid="uid://dvnnea2fw2ndt" path="res://Scenes/PointAndClick/SceneItemUI.tscn" id="18_bl6rl"]
+[ext_resource type="Texture2D" uid="uid://8py760fqn1w5" path="res://Assets/Sprites/InventoryItems/tea.png" id="19_n3wxg"]
+
+[node name="Kitchen" type="Node2D" unique_id=1900112234]
+script = ExtResource("1_u8j1x")
+room_name = "kitchen"
+
+[node name="Background" type="Sprite2D" parent="." unique_id=2145012310]
+material = ExtResource("2_71slc")
+instance_shader_parameters/lighted_index = 2
+position = Vector2(960, 540)
+texture = ExtResource("3_u8j1x")
+script = ExtResource("4_bl6rl")
+
+[node name="ParallaxComponent" type="Node" parent="Background" unique_id=2145012311]
+script = ExtResource("5_n3wxg")
+camera_distance = 100.0
+
+[node name="ToKitchen" type="Sprite2D" parent="." unique_id=1422088193]
+position = Vector2(951, 1003)
+rotation = 1.5707964
+texture = ExtResource("14_swiwo")
+script = ExtResource("15_muhom")
+target_room = "kitchen"
+scene_item_id = 20
+intercation_type = 0
+
+[node name="Area2D" type="Area2D" parent="ToKitchen" unique_id=874107418]
+
+[node name="ParallaxComponent" type="Node" parent="ToKitchen" unique_id=2145012306]
+script = ExtResource("5_n3wxg")
+camera_distance = 100.0
+
+[node name="ToLivingRoom" type="Sprite2D" parent="." unique_id=139125228]
+position = Vector2(1553, 693)
+rotation = -1.5707964
+script = ExtResource("15_muhom")
+target_room = "living_room"
+scene_item_id = 20
+intercation_type = 0
+
+[node name="Area2D" type="Area2D" parent="ToLivingRoom" unique_id=393573391]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ToLivingRoom/Area2D" unique_id=1554636578]
+position = Vector2(-3.0000002, 2.9999998)
+polygon = PackedVector2Array(-75.99994, -1103, 456.00006, -1132, 554.00006, -1416, -195.99994, -1364)
+
+[node name="ParallaxComponent" type="Node" parent="ToLivingRoom" unique_id=460022309]
+script = ExtResource("5_n3wxg")
+camera_distance = 100.0
+
+[node name="Character" type="AnimatedSprite2D" parent="." unique_id=574386481]
+position = Vector2(960, 540)
+
+[node name="CharacterPositions" type="Node2D" parent="." unique_id=603826549]
+
+[node name="default" type="Marker2D" parent="CharacterPositions" unique_id=1668231852]
+position = Vector2(1117, 683)
+
+[node name="engineer_stand_scared" type="Marker2D" parent="CharacterPositions" unique_id=1049608247]
+position = Vector2(542, 583)
+
+[node name="engineer_stand_shot" type="Marker2D" parent="CharacterPositions" unique_id=789926856]
+position = Vector2(542, 583)
+
+[node name="engineer_stand_smiling" type="Marker2D" parent="CharacterPositions" unique_id=204728349]
+position = Vector2(542, 583)
+
+[node name="engineer_stand_suspicious" type="Marker2D" parent="CharacterPositions" unique_id=466749143]
+position = Vector2(542, 583)
+
+[node name="engineer_stand_tea" type="Marker2D" parent="CharacterPositions" unique_id=1019729049]
+position = Vector2(542, 583)
+
+[node name="Table" type="Sprite2D" parent="." unique_id=2053642484]
+position = Vector2(959, 540)
+texture = ExtResource("17_qbynd")
+
+[node name="ParallaxComponent" type="Node" parent="Table" unique_id=120697409]
+script = ExtResource("5_n3wxg")
+camera_distance = 100.0
+
+[node name="Tea" parent="." unique_id=598298150 instance=ExtResource("18_bl6rl")]
+visible = false
+position = Vector2(1253, 937)
+texture = ExtResource("19_n3wxg")
+scene_item_id = 17

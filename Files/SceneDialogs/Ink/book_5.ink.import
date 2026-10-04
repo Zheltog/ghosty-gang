@@ -1,0 +1,16 @@
+[remap]
+
+importer="ink"
+type="Resource"
+uid="uid://dlgacqqey8xqf"
+path="res://.godot/imported/book_5.ink-fcbbdfaf8efc918df2d1ffc5e2af7895.res"
+
+[deps]
+
+source_file="res://Files/SceneDialogs/Ink/book_5.ink"
+dest_files=["res://.godot/imported/book_5.ink-fcbbdfaf8efc918df2d1ffc5e2af7895.res"]
+
+[params]
+
+is_main_file=true
+compress=true

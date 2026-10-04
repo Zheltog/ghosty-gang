@@ -1,0 +1,16 @@
+[remap]
+
+importer="ink"
+type="Resource"
+uid="uid://cldj3bm3ri7oy"
+path="res://.godot/imported/glass_eye.ink-efaaf7aa0099b63b3bb4a6b2f99d8443.res"
+
+[deps]
+
+source_file="res://Files/SceneDialogs/Ink/glass_eye.ink"
+dest_files=["res://.godot/imported/glass_eye.ink-efaaf7aa0099b63b3bb4a6b2f99d8443.res"]
+
+[params]
+
+is_main_file=true
+compress=true

@@ -1,11 +1,2 @@
-EXTERNAL godot(target_class, method)
-
-Учебник по нейробиологии. Переплёт потёртый, внутри схемы мозга и чужие пометки. # window:default # thought
--> options
-
-== options ==
-+ [Взять]
-	~ godot("SceneItemBook2", "hide_self")
-	-> END
-+ [Оставить]
-	-> END
+Ю. Швингер — «Частицы, источники, поля». Книга раскрывается на одном и том же месте. Край страницы почти оторван. # window:default # thought
+-> END

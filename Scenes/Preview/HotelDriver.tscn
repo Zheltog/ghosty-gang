@@ -54,15 +54,20 @@ z_index = 3
 
 [node name="default" type="Marker2D" parent="CharacterPositions"]
 position = Vector2(960, 540)
+scale = Vector2(0.15, 0.15)
 
 [node name="driver_default" type="Marker2D" parent="CharacterPositions"]
 position = Vector2(1180, 800)
+scale = Vector2(0.15, 0.15)
 
 [node name="driver_gruff" type="Marker2D" parent="CharacterPositions"]
 position = Vector2(1180, 800)
+scale = Vector2(0.15, 0.15)
 
 [node name="driver_sullen" type="Marker2D" parent="CharacterPositions"]
 position = Vector2(1180, 800)
+scale = Vector2(0.15, 0.15)
 
 [node name="driver_tired" type="Marker2D" parent="CharacterPositions"]
 position = Vector2(1180, 800)
+scale = Vector2(0.15, 0.15)

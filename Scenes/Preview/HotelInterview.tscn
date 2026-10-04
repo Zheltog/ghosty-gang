@@ -60,36 +60,48 @@ z_index = 3
 
 [node name="default" type="Marker2D" parent="CharacterPositions"]
 position = Vector2(960, 540)
+scale = Vector2(0.15, 0.15)
 
 [node name="landlady_default" type="Marker2D" parent="CharacterPositions"]
 position = Vector2(420, 800)
+scale = Vector2(0.15, 0.15)
 
 [node name="landlady_angry" type="Marker2D" parent="CharacterPositions"]
 position = Vector2(420, 800)
+scale = Vector2(0.15, 0.15)
 
 [node name="driver_default" type="Marker2D" parent="CharacterPositions"]
 position = Vector2(1180, 800)
+scale = Vector2(0.15, 0.15)
 
 [node name="driver_angry" type="Marker2D" parent="CharacterPositions"]
 position = Vector2(1180, 800)
+scale = Vector2(0.15, 0.15)
 
 [node name="driver_gruff" type="Marker2D" parent="CharacterPositions"]
 position = Vector2(1180, 800)
+scale = Vector2(0.15, 0.15)
 
 [node name="driver_pleased" type="Marker2D" parent="CharacterPositions"]
 position = Vector2(1180, 800)
+scale = Vector2(0.15, 0.15)
 
 [node name="driver_shrug" type="Marker2D" parent="CharacterPositions"]
 position = Vector2(1180, 800)
+scale = Vector2(0.15, 0.15)
 
 [node name="driver_frown" type="Marker2D" parent="CharacterPositions"]
 position = Vector2(1180, 800)
+scale = Vector2(0.15, 0.15)
 
 [node name="driver_shocked" type="Marker2D" parent="CharacterPositions"]
 position = Vector2(1180, 800)
+scale = Vector2(0.15, 0.15)
 
 [node name="driver_downcast" type="Marker2D" parent="CharacterPositions"]
 position = Vector2(1180, 800)
+scale = Vector2(0.15, 0.15)
 
 [node name="driver_wary" type="Marker2D" parent="CharacterPositions"]
 position = Vector2(1180, 800)
+scale = Vector2(0.15, 0.15)
