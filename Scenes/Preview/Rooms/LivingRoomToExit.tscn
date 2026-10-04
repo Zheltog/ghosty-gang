@@ -1,31 +1,26 @@
 [gd_scene format=3 uid="uid://c8livexit0a1b"]
 
-[ext_resource type="Script" uid="uid://bgebmjt4oem53" path="res://Scripts/Room/RoomBase.gd" id="12_room"]
-[ext_resource type="Texture2D" uid="uid://bxjtno10bk1kn" path="res://Assets/Sprites/Backgrounds/living_room_to_exit_normal.png" id="50_lte_bg"]
-[ext_resource type="Material" path="res://Scripts/Shaders/darkness_material.tres" id="50_lte_mat"]
-[ext_resource type="Script" uid="uid://3yscu2its1" path="res://Scenes/Test/Dron/DarknessEffect.gd" id="50_lte_dark"]
-[ext_resource type="Script" uid="uid://8p77bw84c7bp" path="res://Scripts/UI/PointAndClickScenes/Components/ParallaxComponent.gd" id="10_parobj"]
-[ext_resource type="Texture2D" uid="uid://cq314bqm5t00y" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/LivingRoomToExit/SIDE_TO_DOOR_BG.PNG" id="51_lte_side"]
-[ext_resource type="Texture2D" uid="uid://drlfwgriejbl4" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/LivingRoomToExit/BED.PNG" id="52_lte_bed"]
-[ext_resource type="Script" uid="uid://d37oapbkld1pk" path="res://Scripts/UI/PointAndClickScenes/SceneUIDoor.gd" id="20_8cn5p"]
-[ext_resource type="Texture2D" uid="uid://b22he5b4jmeas" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/LivingRoomToExit/TABLE.PNG" id="53_lte_table"]
-[ext_resource type="Texture2D" uid="uid://bfbve6aoyda6m" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/LivingRoomToExit/CHAIR.PNG" id="54_lte_chair"]
-[ext_resource type="Texture2D" uid="uid://b3y7bsctj4ntb" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/LivingRoomToExit/TUMBA.PNG" id="55_lte_tumba"]
 [ext_resource type="PackedScene" uid="uid://mt1xmuy8xhd5" path="res://Scenes/PointAndClick/SceneUIDoor.tscn" id="2_door"]
-[ext_resource type="Texture2D" uid="uid://b5l1souun2pfr" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/LivingRoomToExit/DOOR.PNG" id="56_lte_door"]
+[ext_resource type="Script" uid="uid://cjwqo45k5xnx0" path="res://Scripts/UI/PointAndClickScenes/SceneItemUI.gd" id="8_gnoqc"]
 [ext_resource type="Texture2D" uid="uid://dadq1xc3xcndr" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/MoveBack.png" id="10_a71pi"]
+[ext_resource type="Script" uid="uid://8p77bw84c7bp" path="res://Scripts/UI/PointAndClickScenes/Components/ParallaxComponent.gd" id="10_parobj"]
+[ext_resource type="Script" uid="uid://bgebmjt4oem53" path="res://Scripts/Room/RoomBase.gd" id="12_room"]
+[ext_resource type="Script" uid="uid://d37oapbkld1pk" path="res://Scripts/UI/PointAndClickScenes/SceneUIDoor.gd" id="20_8cn5p"]
+[ext_resource type="Texture2D" uid="uid://bxjtno10bk1kn" path="res://Assets/Sprites/Backgrounds/living_room_to_exit_normal.png" id="50_lte_bg"]
+[ext_resource type="Script" uid="uid://3yscu2its1" path="res://Scenes/Test/Dron/DarknessEffect.gd" id="50_lte_dark"]
+[ext_resource type="Material" uid="uid://cettvgv7o7kmc" path="res://Scripts/Shaders/darkness_material.tres" id="50_lte_mat"]
+[ext_resource type="Texture2D" uid="uid://cq314bqm5t00y" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/LivingRoomToExit/SIDE_TO_DOOR_BG.PNG" id="51_lte_side"]
 
 [node name="LivingRoomToExit" type="Node2D" unique_id=-1194967295]
-visible = false
 script = ExtResource("12_room")
 room_name = "living_room_to_exit"
 
 [node name="Background" type="Sprite2D" parent="." unique_id=-1194967294]
 material = ExtResource("50_lte_mat")
+instance_shader_parameters/lighted_index = 1
 position = Vector2(960, 540)
 texture = ExtResource("50_lte_bg")
 script = ExtResource("50_lte_dark")
-instance_shader_parameters/lighted_index = 1
 
 [node name="ParallaxComponent" type="Node" parent="Background" unique_id=-1194967293]
 script = ExtResource("10_parobj")
@@ -42,7 +37,6 @@ camera_distance = 100.0
 
 [node name="Bed" type="Sprite2D" parent="." unique_id=-1194967290]
 position = Vector2(283, 715)
-texture = ExtResource("52_lte_bed")
 script = ExtResource("20_8cn5p")
 target_room = "under_bed"
 scene_item_id = 7
@@ -50,44 +44,38 @@ intercation_type = 0
 
 [node name="Area2D" type="Area2D" parent="Bed" unique_id=674466857]
 
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Bed/Area2D" unique_id=1318797564]
+polygon = PackedVector2Array(491, 30, 601, -70, 599, -188, 584, -188, 566, -170, 238, -200, 234, -266, 7, -223, 19, -139, 70, -122, 84, -45)
+
 [node name="ParallaxComponent" type="Node" parent="Bed" unique_id=-1194967289]
 script = ExtResource("10_parobj")
-camera_distance = 115.0
-
-[node name="Table" type="Sprite2D" parent="." unique_id=-1194967288]
-visible = false
-position = Vector2(1587.9999, 929)
-scale = Vector2(1.0210727, 1)
-texture = ExtResource("53_lte_table")
-
-[node name="ParallaxComponent" type="Node" parent="Table" unique_id=-1194967287]
-script = ExtResource("10_parobj")
-camera_distance = 120.0
-
-[node name="Chair" type="Sprite2D" parent="." unique_id=-1194967286]
-visible = false
-position = Vector2(1176, 859)
-texture = ExtResource("54_lte_chair")
-
-[node name="ParallaxComponent" type="Node" parent="Chair" unique_id=-1194967285]
-script = ExtResource("10_parobj")
-camera_distance = 115.0
+camera_distance = 100.0
 
 [node name="Tumba" type="Sprite2D" parent="." unique_id=-1194967284]
-visible = false
 position = Vector2(3, 958)
-texture = ExtResource("55_lte_tumba")
+script = ExtResource("8_gnoqc")
+scene_item_id = 5
 
 [node name="ParallaxComponent" type="Node" parent="Tumba" unique_id=-1194967283]
 script = ExtResource("10_parobj")
 camera_distance = 120.0
 
-[node name="ToPreroom" parent="." unique_id=-1194967282 instance=ExtResource("2_door")]
+[node name="Area2D" type="Area2D" parent="Tumba" unique_id=1865161662]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Tumba/Area2D" unique_id=1353258803]
+polygon = PackedVector2Array(270, -207, 372, -255, 351, -363, 294, -378, 155, -348, 182, -231)
+
+[node name="ToPreroom" type="Sprite2D" parent="." unique_id=-1194967282]
 position = Vector2(1166, 558)
-texture = ExtResource("56_lte_door")
+script = ExtResource("20_8cn5p")
 target_room = "preroom"
 scene_item_id = 6
 intercation_type = 0
+
+[node name="Area2D" type="Area2D" parent="ToPreroom" unique_id=874107418]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ToPreroom/Area2D" unique_id=1578471848]
+polygon = PackedVector2Array(-30, 106, -10, -264, 178, -264, 137, 126)
 
 [node name="ParallaxComponent" type="Node" parent="ToPreroom" unique_id=-1194967281]
 script = ExtResource("10_parobj")
@@ -105,5 +93,61 @@ intercation_type = 0
 script = ExtResource("10_parobj")
 camera_distance = 100.0
 
-[node name="Character" type="AnimatedSprite2D" parent="."]
+[node name="Character" type="AnimatedSprite2D" parent="." unique_id=891095198]
 position = Vector2(960, 540)
+
+[node name="CharacterPositions" type="Node2D" parent="."]
+
+[node name="default" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_default" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_attack_chair" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_close" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_close_needle" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_lay_shot" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_sit_normal" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_sit_reach" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_sit_shocked" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_sit_shot" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_sit_suspicious" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_stand_back" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_stand_default" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_stand_scared" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_stand_shot" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_stand_smiling" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_stand_suspicious" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_stand_tea" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Preview/PrologueStop.gd" id="1_backdrop"]
 [ext_resource type="PackedScene" uid="uid://b3fjaokxpivbe" path="res://Scenes/Dialog/dialog_controller.tscn" id="2_dialog"]
+[ext_resource type="PackedScene" uid="uid://kvbvxu0vbc8y" path="res://Scenes/Timer/timer.tscn" id="timer_scene"]
 [ext_resource type="PackedScene" path="res://Scenes/Characters/EngineerCopy.tscn" id="3_character"]
 [ext_resource type="Script" uid="uid://ct24630qdy5qa" path="res://Scripts/Characters/SceneCharacter.gd" id="4_none"]
 
@@ -48,5 +49,59 @@ script = ExtResource("4_none")
 character_name = "none"
 has_voice = false
 
-[node name="DialogController" parent="." instance=ExtResource("2_dialog")]
+[node name="DialogController" parent="." node_paths=PackedStringArray("timer") instance=ExtResource("2_dialog")]
 story = null
+timer = NodePath("../GameTimer")
+
+[node name="GameTimer" parent="." instance=ExtResource("timer_scene")]
+z_index = 3
+
+[node name="CharacterPositions" type="Node2D" parent="."]
+
+[node name="default" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(960, 540)
+
+[node name="dossier_default" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(480, 780)
+
+[node name="scout_default" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(760, 800)
+
+[node name="scout_teasing" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(760, 800)
+
+[node name="scout_laugh" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(760, 800)
+
+[node name="scout_impressed" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(760, 800)
+
+[node name="scout_nod" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(760, 800)
+
+[node name="scout_stern" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(760, 800)
+
+[node name="scout_blank" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(760, 800)
+
+[node name="scout_defiant" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(760, 800)
+
+[node name="scout_mocking" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(760, 800)
+
+[node name="scout_escape" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(760, 800)
+
+[node name="scout_serious" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(760, 800)
+
+[node name="scout_frantic" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(760, 800)
+
+[node name="scout_smug" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(760, 800)
+
+[node name="scout_shiver" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(760, 800)

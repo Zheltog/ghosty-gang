@@ -4,13 +4,18 @@
 [ext_resource type="Script" uid="uid://olybr00r1a5" path="res://Scripts/Scenes/HouseScenePreview.gd" id="1_r7y35"]
 [ext_resource type="PackedScene" uid="uid://17fxcbcv4a1n" path="res://Scenes/PointAndClick/InventoryUI/Inventory.tscn" id="3_inv"]
 [ext_resource type="PackedScene" uid="uid://b3fjaokxpivbe" path="res://Scenes/Dialog/dialog_controller.tscn" id="4_dialog"]
+[ext_resource type="PackedScene" uid="uid://kvbvxu0vbc8y" path="res://Scenes/Timer/timer.tscn" id="timer_scene"]
 [ext_resource type="Script" uid="uid://b036r1bbtl2ug" path="res://Scripts/UI/PointAndClickScenes/SceneParallaxController.gd" id="9_parallax"]
 [ext_resource type="Script" uid="uid://8p77bw84c7bp" path="res://Scripts/UI/PointAndClickScenes/Components/ParallaxComponent.gd" id="10_parobj"]
-[ext_resource type="Texture2D" uid="uid://cxinskm6h1adp" path="res://Assets/Sprites/Characters/Engineer/Shounen A/boy a_casual_normal.png" id="20_k7bhf"]
+[ext_resource type="Texture2D" uid="uid://ca5hsak2aftyp" path="res://Assets/Sprites/Characters/Engineer/Dron/standing_steel chair.png" id="12_s7x8l"]
+[ext_resource type="Texture2D" uid="uid://cp3i304md3py6" path="res://Assets/Sprites/Characters/Engineer/Dron/sitting_normal.png" id="13_k7bhf"]
+[ext_resource type="Texture2D" uid="uid://ct8jrj8g00yg8" path="res://Assets/Sprites/Characters/Engineer/Dron/sitting_taking_body.png" id="14_xjebt"]
+[ext_resource type="Texture2D" uid="uid://rg3hxxu0hid5" path="res://Assets/Sprites/Characters/Engineer/Dron/standing_я пидорас.png" id="15_if3oh"]
+[ext_resource type="Texture2D" uid="uid://c1mqcjylh6imp" path="res://Assets/Sprites/Characters/Engineer/Dron/sitting_sus.png" id="15_mv3vy"]
+[ext_resource type="Texture2D" uid="uid://yusbqae1gdbk" path="res://Assets/Sprites/Characters/Engineer/Dron/hasle near wardrobe.png" id="16_cxod2"]
+[ext_resource type="Texture2D" uid="uid://d4j4tui08uoks" path="res://Assets/Sprites/Characters/Engineer/Dron/standing_кто_пидарас_вопросительный_знак.png" id="18_i1vas"]
+[ext_resource type="Texture2D" uid="uid://25u3ny2aflx6" path="res://Assets/Sprites/Characters/Engineer/Dron/standing_sus.png" id="19_f7hr0"]
 [ext_resource type="Script" uid="uid://ct24630qdy5qa" path="res://Scripts/Characters/SceneCharacter.gd" id="20_pvt63"]
-[ext_resource type="Texture2D" uid="uid://12de7dw7k8ai" path="res://Assets/Sprites/Characters/Engineer/Shounen A/boy a_casual_nervous.png" id="21_xjebt"]
-[ext_resource type="Texture2D" uid="uid://wmxkfh73uv2u" path="res://Assets/Sprites/Characters/Engineer/Shounen A/boy a_casual_happy.png" id="22_mv3vy"]
-[ext_resource type="Texture2D" uid="uid://dv7o25ojskrjp" path="res://Assets/Sprites/Characters/Engineer/Shounen A/boy a_casual_shocked.png" id="22_xjebt"]
 [ext_resource type="PackedScene" uid="uid://c8bathroom0a1" path="res://Scenes/Preview/Rooms/Bathroom.tscn" id="room_Bathroom"]
 [ext_resource type="PackedScene" uid="uid://s218cktv50w5" path="res://Scenes/Preview/Rooms/Bookshelf.tscn" id="room_Bookshelf"]
 [ext_resource type="PackedScene" uid="uid://c8exitstor0a1" path="res://Scenes/Preview/Rooms/ExitFromStorage.tscn" id="room_ExitFromStorage"]
@@ -21,42 +26,114 @@
 [ext_resource type="PackedScene" uid="uid://c8storage00a1" path="res://Scenes/Preview/Rooms/Storage.tscn" id="room_Storage"]
 [ext_resource type="PackedScene" uid="uid://c8underbed0a1" path="res://Scenes/Preview/Rooms/UnderBed.tscn" id="room_UnderBed"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mv3vy"]
-atlas = ExtResource("20_k7bhf")
-region = Rect2(0, 0, 2000, 3600)
+[sub_resource type="AtlasTexture" id="AtlasTexture_kul73"]
+atlas = ExtResource("12_s7x8l")
+region = Rect2(0, 0, 1976, 5815)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xuvgt"]
+atlas = ExtResource("13_k7bhf")
+region = Rect2(0, 0, 2120, 1280)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1hnut"]
+atlas = ExtResource("14_xjebt")
+region = Rect2(0, 0, 2120, 1280)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5iv33"]
+atlas = ExtResource("15_mv3vy")
+region = Rect2(0, 0, 2120, 1280)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qllj4"]
+atlas = ExtResource("16_cxod2")
+region = Rect2(0, 0, 179, 316)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fcff3"]
+atlas = ExtResource("15_if3oh")
+region = Rect2(0, 0, 1976, 5815)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k46gi"]
+atlas = ExtResource("18_i1vas")
+region = Rect2(0, 0, 1976, 5815)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_re16o"]
+atlas = ExtResource("19_f7hr0")
+region = Rect2(0, 0, 1976, 5815)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_amx12"]
+atlas = ExtResource("15_if3oh")
+region = Rect2(0, 0, 1976, 5815)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_280bj"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_mv3vy")
+"texture": SubResource("AtlasTexture_kul73")
 }],
 "loop": 1,
-"name": &"idle",
+"name": &"attack_chair",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("21_xjebt")
+"texture": SubResource("AtlasTexture_xuvgt")
 }],
 "loop": 1,
-"name": &"nervous",
+"name": &"sit_normal",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("22_mv3vy")
+"texture": SubResource("AtlasTexture_1hnut")
 }],
 "loop": 1,
-"name": &"relaxed",
+"name": &"sit_reach",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("22_xjebt")
+"texture": SubResource("AtlasTexture_5iv33")
 }],
 "loop": 1,
-"name": &"shocked",
+"name": &"sit_suspicious",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qllj4")
+}],
+"loop": 1,
+"name": &"stand_back",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fcff3")
+}],
+"loop": 1,
+"name": &"stand_default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k46gi")
+}],
+"loop": 1,
+"name": &"stand_scared",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_re16o")
+}],
+"loop": 1,
+"name": &"stand_suspicious",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_amx12")
+}],
+"loop": 1,
+"name": &"stand_tea",
 "speed": 5.0
 }]
 
@@ -79,19 +156,10 @@ visible = false
 position = Vector2(802.99994, 382.99997)
 scale = Vector2(0.15, 0.15)
 sprite_frames = SubResource("SpriteFrames_280bj")
-animation = &"relaxed"
-frame_progress = 0.6919273
+animation = &"stand_tea"
 script = ExtResource("20_pvt63")
 sprite = NodePath(".")
 character_name = "engineer"
-after_emotion = {
-"cleaning": "_prev_",
-"idle": "idle",
-"nervous": "nervous",
-"peeking": "nervous",
-"relaxed": "idle",
-"shocked": "nervous"
-}
 
 [node name="ParallaxComponent" type="Node" parent="Characters/Engineer" unique_id=970396288]
 script = ExtResource("10_parobj")
@@ -107,8 +175,12 @@ grow_horizontal = 2
 grow_vertical = 2
 dialog_controller = NodePath("../DialogController")
 
-[node name="DialogController" parent="." unique_id=872390542 instance=ExtResource("4_dialog")]
+[node name="DialogController" parent="." unique_id=872390542 node_paths=PackedStringArray("timer") instance=ExtResource("4_dialog")]
 story = null
+timer = NodePath("../GameTimer")
 
 [node name="SceneParallax" type="Node" parent="." unique_id=2145012303]
 script = ExtResource("9_parallax")
+
+[node name="GameTimer" parent="." instance=ExtResource("timer_scene")]
+z_index = 3

@@ -1,15 +1,18 @@
 [gd_scene format=3 uid="uid://c8underbed0a1"]
 
+[ext_resource type="PackedScene" uid="uid://mt1xmuy8xhd5" path="res://Scenes/PointAndClick/SceneUIDoor.tscn" id="2_door"]
+[ext_resource type="Script" uid="uid://d3n5tan6phw67" path="res://Scripts/UI/PointAndClickScenes/CustomSceneItemUIInDarkness.gd" id="5_obo47"]
+[ext_resource type="Material" uid="uid://cettvgv7o7kmc" path="res://Scripts/Shaders/darkness_material.tres" id="5_xbjy2"]
+[ext_resource type="Texture2D" uid="uid://dadq1xc3xcndr" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/MoveBack.png" id="10_a71pi"]
+[ext_resource type="Script" uid="uid://8p77bw84c7bp" path="res://Scripts/UI/PointAndClickScenes/Components/ParallaxComponent.gd" id="10_parobj"]
 [ext_resource type="Script" uid="uid://bgebmjt4oem53" path="res://Scripts/Room/RoomBase.gd" id="12_room"]
 [ext_resource type="Texture2D" uid="uid://d0t135t1bpptc" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/UnderBed/Background.PNG" id="70_ub_bg"]
-[ext_resource type="Script" uid="uid://8p77bw84c7bp" path="res://Scripts/UI/PointAndClickScenes/Components/ParallaxComponent.gd" id="10_parobj"]
 [ext_resource type="Texture2D" uid="uid://dscqwm2v4mcig" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/UnderBed/UNDER BED.PNG" id="71_ub_under"]
-[ext_resource type="Texture2D" uid="uid://bskxy61bvl2x0" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/UnderBed/EYE.PNG" id="72_ub_eye"]
-[ext_resource type="PackedScene" uid="uid://mt1xmuy8xhd5" path="res://Scenes/PointAndClick/SceneUIDoor.tscn" id="2_door"]
-[ext_resource type="Texture2D" uid="uid://dadq1xc3xcndr" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/MoveBack.png" id="10_a71pi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v8nni"]
+radius = 100.0
 
 [node name="UnderBed" type="Node2D" unique_id=-994967295]
-visible = false
 script = ExtResource("12_room")
 room_name = "under_bed"
 
@@ -31,13 +34,21 @@ script = ExtResource("10_parobj")
 camera_distance = 110.0
 
 [node name="Eye" type="Sprite2D" parent="." unique_id=-994967290]
+material = ExtResource("5_xbjy2")
+instance_shader_parameters/lighted_index = 7
 position = Vector2(1016.75, 904)
 scale = Vector2(1.0422885, 1)
-texture = ExtResource("72_ub_eye")
+script = ExtResource("5_obo47")
+scene_item_id = 1
 
 [node name="ParallaxComponent" type="Node" parent="Eye" unique_id=-994967289]
 script = ExtResource("10_parobj")
 camera_distance = 115.0
+
+[node name="Area2D" type="Area2D" parent="Eye" unique_id=1881007600]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Eye/Area2D" unique_id=127693648]
+shape = SubResource("CircleShape2D_v8nni")
 
 [node name="ToLivingRoom" parent="." unique_id=-994967288 instance=ExtResource("2_door")]
 position = Vector2(80, 80)
@@ -51,5 +62,61 @@ intercation_type = 0
 script = ExtResource("10_parobj")
 camera_distance = 100.0
 
-[node name="Character" type="AnimatedSprite2D" parent="."]
+[node name="Character" type="AnimatedSprite2D" parent="." unique_id=1126129971]
 position = Vector2(960, 540)
+
+[node name="CharacterPositions" type="Node2D" parent="."]
+
+[node name="default" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_default" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_attack_chair" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_close" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_close_needle" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_lay_shot" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_sit_normal" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_sit_reach" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_sit_shocked" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_sit_shot" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_sit_suspicious" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_stand_back" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_stand_default" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_stand_scared" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_stand_shot" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_stand_smiling" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_stand_suspicious" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_stand_tea" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)

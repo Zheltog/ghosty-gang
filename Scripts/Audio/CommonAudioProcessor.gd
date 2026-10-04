@@ -19,6 +19,7 @@ var _looped_sound_players: Dictionary = {}
 var _resource_cache: Dictionary = {}
 var _music_resource := ""
 var _music_after_fade := ""
+var _music_fade_seconds := MUSIC_FADE_SECONDS
 var _fading_out := false
 
 func _ready() -> void:
@@ -36,7 +37,8 @@ func process_sound_volume_changed() -> void:
 	for i in range(_sound_players_pool_size):
 		_sound_players_pool[i].adjust_volume_instant()
 
-func transition_music(resource_name: String) -> void:
+func transition_music(resource_name: String, fade_seconds: float = MUSIC_FADE_SECONDS) -> void:
+	_music_fade_seconds = fade_seconds
 	if _fading_out:
 		_music_after_fade = resource_name
 		return
@@ -47,7 +49,7 @@ func transition_music(resource_name: String) -> void:
 		_fading_out = true
 		_music_player.adjust_volume_falling(
 			TypedAudioStreamPlayer.AdjustmentMode.BY_TIME,
-			MUSIC_FADE_SECONDS,
+			_music_fade_seconds,
 			_on_music_faded_out
 		)
 		return
@@ -76,7 +78,7 @@ func _fade_in_music(resource_name: String) -> void:
 	_music_player.play_resource(resource_name, stream, "")
 	_music_player.adjust_volume_rising(
 		TypedAudioStreamPlayer.AdjustmentMode.BY_TIME,
-		MUSIC_FADE_SECONDS
+		_music_fade_seconds
 	)
 
 func process_music(command: AudioMusicCommand) -> void:
@@ -96,6 +98,9 @@ func process_sound_random_pitch(command: AudioSoundRandomPitchCommand) -> void:
 	# todo: no need to pass adjustment parameters at all
 	_process_context(player, true, "", command.resource_name, \
 		TypedAudioStreamPlayer.AdjustmentMode.BY_TIME, 0, command.relative_volume, command.tag)
+
+func has_looped_sound(resource_name: String) -> bool:
+	return _looped_sound_players.has(resource_name)
 
 func process_sound_looped(command: AudioSoundLoopedCoomand) -> void:
 	var resource_name = command.resource_name

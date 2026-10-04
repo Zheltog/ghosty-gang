@@ -1,10 +1,10 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://bly07nnpsthlo"]
 
 [ext_resource type="Script" uid="uid://b0hsmfhmj5kmy" path="res://Scripts/Dialog/TextBoxWithOptions.gd" id="1_script"]
 [ext_resource type="PackedScene" uid="uid://chii51pu3s0yv" path="res://Scenes/Dialog/option_button.tscn" id="2_option"]
 [ext_resource type="Texture2D" uid="uid://bd1t7aiqce5ul" path="res://Assets/Sprites/UI/Dialog/DialogWindow.png" id="3_window"]
 
-[node name="default" type="Control"]
+[node name="default" type="Control" unique_id=865306679]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -16,7 +16,7 @@ script = ExtResource("1_script")
 window_name = "default"
 printing_speed = 40.0
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=330517121]
 layout_mode = 1
 offset_left = 981.0
 offset_top = 98.0
@@ -24,21 +24,20 @@ offset_right = 1821.0
 offset_bottom = 602.0
 texture = ExtResource("3_window")
 
-[node name="CharacterName" type="Label" parent="TextureRect"]
+[node name="CharacterName" type="Label" parent="TextureRect" unique_id=922803514]
 visible = false
 layout_mode = 1
-offset_left = 67.0
-offset_top = 4.0
-offset_right = 728.0
-offset_bottom = 60.0
+offset_left = 72.0
+offset_top = 83.0
+offset_right = 733.0
+offset_bottom = 139.0
 theme_override_colors/font_color = Color(0.93, 0.88, 0.78, 1)
 theme_override_font_sizes/font_size = 36
-vertical_alignment = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="TextureRect"]
+[node name="RichTextLabel" type="RichTextLabel" parent="TextureRect" unique_id=959310620]
 layout_mode = 1
-offset_left = 81.0
-offset_top = 92.0
+offset_left = 73.0
+offset_top = 138.0
 offset_right = 766.0
 offset_bottom = 531.0
 mouse_filter = 2
@@ -46,7 +45,7 @@ theme_override_colors/default_color = Color(0.8203659, 0.82036585, 0.8203658, 1)
 theme_override_font_sizes/normal_font_size = 40
 text = "???"
 
-[node name="SingleOption" type="Control" parent="TextureRect"]
+[node name="SingleOption" type="Control" parent="TextureRect" unique_id=362536592]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -61,7 +60,7 @@ grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2
 
-[node name="OptionButton" parent="TextureRect/SingleOption" instance=ExtResource("2_option")]
+[node name="OptionButton" parent="TextureRect/SingleOption" unique_id=1570799380 instance=ExtResource("2_option")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -75,7 +74,7 @@ offset_bottom = -120.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TwoOptions" type="Control" parent="TextureRect"]
+[node name="TwoOptions" type="Control" parent="TextureRect" unique_id=720313102]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -89,7 +88,7 @@ offset_bottom = 94.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="OptionButtonFirst" parent="TextureRect/TwoOptions" instance=ExtResource("2_option")]
+[node name="OptionButtonFirst" parent="TextureRect/TwoOptions" unique_id=1821106499 instance=ExtResource("2_option")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -103,7 +102,7 @@ offset_bottom = -120.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="OptionButtonSecond" parent="TextureRect/TwoOptions" instance=ExtResource("2_option")]
+[node name="OptionButtonSecond" parent="TextureRect/TwoOptions" unique_id=1594346119 instance=ExtResource("2_option")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -118,7 +117,7 @@ grow_horizontal = 2
 grow_vertical = 2
 id = 1
 
-[node name="ThreeOptions" type="Control" parent="TextureRect"]
+[node name="ThreeOptions" type="Control" parent="TextureRect" unique_id=572696472]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -132,7 +131,7 @@ offset_bottom = 94.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="OptionButtonFirst" parent="TextureRect/ThreeOptions" instance=ExtResource("2_option")]
+[node name="OptionButtonFirst" parent="TextureRect/ThreeOptions" unique_id=820175537 instance=ExtResource("2_option")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -146,7 +145,7 @@ offset_bottom = -120.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="OptionButtonSecond" parent="TextureRect/ThreeOptions" instance=ExtResource("2_option")]
+[node name="OptionButtonSecond" parent="TextureRect/ThreeOptions" unique_id=1155783592 instance=ExtResource("2_option")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -161,7 +160,7 @@ grow_horizontal = 2
 grow_vertical = 2
 id = 1
 
-[node name="OptionButtonThird" parent="TextureRect/ThreeOptions" instance=ExtResource("2_option")]
+[node name="OptionButtonThird" parent="TextureRect/ThreeOptions" unique_id=1224889123 instance=ExtResource("2_option")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -176,4 +175,4 @@ grow_horizontal = 2
 grow_vertical = 2
 id = 2
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1391749720]

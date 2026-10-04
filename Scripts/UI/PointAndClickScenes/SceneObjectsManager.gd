@@ -29,6 +29,7 @@ func item_pressed(item : SceneItemUI) -> void:
 # [0] — самый верхний спрайт под курсором (видимость, z_index, затем порядок в дереве).
 var _highlighted_items : Array[SceneItemUI]
 var _last_equipped_item : InventoryItemUI
+var _last_light_on := false
 
 func _sync_hovered_items() -> void:
 	var hovered : Array[SceneItemUI] = []
@@ -47,8 +48,9 @@ func _scene_item_from_collider(collider : Object) -> SceneItemUI:
 	return null
 
 func _set_hovered_items(hovered : Array[SceneItemUI]) -> void:
+	var had_highlight := not _highlighted_items.is_empty()
 	var previous_top : SceneItemUI = null
-	if not _highlighted_items.is_empty() and is_instance_valid(_highlighted_items[0]):
+	if had_highlight and is_instance_valid(_highlighted_items[0]):
 		previous_top = _highlighted_items[0]
 	for item in _highlighted_items:
 		if not is_instance_valid(item):
@@ -62,8 +64,11 @@ func _set_hovered_items(hovered : Array[SceneItemUI]) -> void:
 	var equipped: InventoryItemUI = null
 	if inventory != null and is_instance_valid(inventory.equipped_item):
 		equipped = inventory.equipped_item
-	if previous_top != hovered_top or equipped != _last_equipped_item:
+	var highlight_changed := previous_top != hovered_top or (had_highlight and previous_top == null)
+	var light_on := InventoryItemFlashlight.light_on
+	if highlight_changed or equipped != _last_equipped_item or light_on != _last_light_on:
 		_last_equipped_item = equipped
+		_last_light_on = light_on
 		update_mouse_cursor()
 
 func process_press_result(result : SceneItemPressResult) -> void:

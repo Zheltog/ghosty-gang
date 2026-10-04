@@ -62,3 +62,59 @@ camera_distance = 100.0
 
 [node name="Character" type="AnimatedSprite2D" parent="." unique_id=1984494638]
 position = Vector2(960, 540)
+
+[node name="CharacterPositions" type="Node2D" parent="."]
+
+[node name="default" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_default" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_attack_chair" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_close" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_close_needle" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_lay_shot" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_sit_normal" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_sit_reach" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_sit_shocked" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_sit_shot" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_sit_suspicious" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_stand_back" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_stand_default" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_stand_scared" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_stand_shot" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_stand_smiling" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_stand_suspicious" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_stand_tea" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)

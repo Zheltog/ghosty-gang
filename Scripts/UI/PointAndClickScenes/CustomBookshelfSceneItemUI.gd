@@ -3,6 +3,7 @@ extends CustomSceneItemUIBase
 
 const STATE_KEY_TURNED := "key_turned"
 const STATE_OPEN := "bookshelf_open"
+const KEY_TURN_SOUND := "res://Assets/Audio/Sounds/key_turning.mp3"
 const MOVED_BACKGROUND := preload("res://Assets/Sprites/Backgrounds/bookcase_2_normal.png")
 const MOVED_LIGHT_INDEX := 5
 
@@ -19,27 +20,26 @@ func _ready() -> void:
 		var index: Variant = background.get_instance_shader_parameter("lighted_index")
 		if index != null:
 			_closed_light_index = int(index)
-	var open := bool(StateManager.get_state(STATE_OPEN, false))
-	if open:
-		_show_background(true)
-	_use_moved_area(open)
+	_apply_open(bool(StateManager.get_state(STATE_OPEN, false)))
 
 func turn_key() -> void:
 	StateManager.set_state(STATE_KEY_TURNED, true)
-	if bool(StateManager.get_state(STATE_OPEN, false)):
-		_show_background(true)
-		return
-	StateManager.set_state(STATE_OPEN, true)
-	_show_background(true)
-	_use_moved_area(true)
+	var command := AudioSoundCommand.new()
+	command.instant = true
+	command.resource_name = KEY_TURN_SOUND
+	CommonAudioProcessor.process_sound(command)
 
 func press_item() -> void:
 	if not bool(StateManager.get_state(STATE_KEY_TURNED, false)):
 		return
 	var open := not bool(StateManager.get_state(STATE_OPEN, false))
 	StateManager.set_state(STATE_OPEN, open)
+	_apply_open(open)
+
+func _apply_open(open: bool) -> void:
 	_show_background(open)
 	_use_moved_area(open)
+	_set_storage_path(open)
 
 func get_effective_interaction_type() -> INTERACTION_TYPE:
 	if not bool(StateManager.get_state(STATE_KEY_TURNED, false)):
@@ -62,6 +62,14 @@ func _set_area_enabled(area: Area2D, enabled: bool) -> void:
 	for child in area.get_children():
 		if child is CollisionPolygon2D or child is CollisionShape2D:
 			child.disabled = not enabled
+
+func _set_storage_path(open: bool) -> void:
+	var room := get_parent()
+	if room == null:
+		return
+	var path := room.get_node_or_null("ToStorage")
+	if path:
+		path.visible = open
 
 func _show_background(open: bool) -> void:
 	var background := _background()

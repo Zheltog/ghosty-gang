@@ -2,26 +2,23 @@
 
 [ext_resource type="Script" uid="uid://bjlfyul7j0fq8" path="res://Scripts/Dialog/DialogController.gd" id="1_bshvn"]
 [ext_resource type="Resource" uid="uid://dlv86a4qorq1n" path="res://Files/Test/ink_test.ink" id="2_kfsii"]
-[ext_resource type="PackedScene" path="res://Scenes/Dialog/Texboxes/default.tscn" id="3_lu0oi"]
-[ext_resource type="PackedScene" uid="uid://kvbvxu0vbc8y" path="res://Scenes/Timer/timer.tscn" id="4_lu0oi"]
+[ext_resource type="PackedScene" uid="uid://bly07nnpsthlo" path="res://Scenes/Dialog/Texboxes/default.tscn" id="3_lu0oi"]
 [ext_resource type="Script" uid="uid://2n72i8ghh744" path="res://Scripts/Dialog/DialogWindowManager.gd" id="5_windows"]
-[ext_resource type="PackedScene" path="res://Scenes/Dialog/Texboxes/player_phrase.tscn" id="6_phrase"]
-[ext_resource type="PackedScene" path="res://Scenes/Dialog/Texboxes/thought.tscn" id="7_thought"]
-[ext_resource type="PackedScene" path="res://Scenes/Dialog/Texboxes/four_options.tscn" id="8_four"]
-[ext_resource type="PackedScene" path="res://Scenes/Dialog/Texboxes/dossier.tscn" id="9_dossier"]
+[ext_resource type="PackedScene" uid="uid://celg0qrfy4nih" path="res://Scenes/Dialog/Texboxes/player_phrase.tscn" id="6_phrase"]
+[ext_resource type="PackedScene" uid="uid://cby8o44x0otpv" path="res://Scenes/Dialog/Texboxes/thought.tscn" id="7_thought"]
+[ext_resource type="PackedScene" uid="uid://chmobrytma4ib" path="res://Scenes/Dialog/Texboxes/four_options.tscn" id="8_four"]
+[ext_resource type="PackedScene" uid="uid://dc6akhd6bpn8l" path="res://Scenes/Dialog/Texboxes/dossier.tscn" id="9_dossier"]
+[ext_resource type="PackedScene" uid="uid://b5lkbun8smq2i" path="res://Scenes/Dialog/Texboxes/another_room_left.tscn" id="10_left"]
 
-[node name="DialogController" type="Node2D" unique_id=158973333 node_paths=PackedStringArray("timer")]
+[node name="DialogController" type="Node2D" unique_id=158973333]
 script = ExtResource("1_bshvn")
 story = ExtResource("2_kfsii")
-timer = NodePath("GameTimer")
 
 [node name="DialogWindowManager" type="Node" parent="." unique_id=884120331]
 script = ExtResource("5_windows")
 
 [node name="default" parent="DialogWindowManager" unique_id=2135543664 node_paths=PackedStringArray("controller") instance=ExtResource("3_lu0oi")]
 z_index = 3
-window_name = "default"
-printing_speed = 40.0
 controller = NodePath("../..")
 
 [node name="player_phrase" parent="DialogWindowManager" unique_id=884120332 node_paths=PackedStringArray("controller") instance=ExtResource("6_phrase")]
@@ -40,5 +37,4 @@ controller = NodePath("../..")
 z_index = 3
 controller = NodePath("../..")
 
-[node name="GameTimer" parent="." unique_id=2126109467 instance=ExtResource("4_lu0oi")]
-z_index = 3
+[node name="another_room_left" parent="DialogWindowManager" unique_id=1939350733 instance=ExtResource("10_left")]

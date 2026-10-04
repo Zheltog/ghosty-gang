@@ -63,8 +63,7 @@ func proceed() -> void:
 func process_option_selected(id: int, box: BoxOptionButton = null) -> void:
 	if story == null:
 		return
-	if timer:
-		timer.reset()
+	_clear_choice_timer()
 	if box == null:
 		box = _windows.find_option_button(id)
 	await _windows.confirm_option(box)
@@ -99,22 +98,26 @@ func try_action(action_name: String) -> bool:
 	return false
 
 func start_option_timeout() -> void:
-	if timer == null or _state.timeout_seconds < 0.0:
+	if timer == null or timer.holds_reset() or _state.timeout_seconds < 0.0:
 		return
 	if _state.timeout_seconds == 0.0:
-		timer.reset()
+		_clear_choice_timer()
 		return
 	var visible := _visible_choices(_current_choices)
 	if visible.is_empty():
 		return
 	timer.start(_state.timeout_seconds, func(): process_option_selected(visible[0].GetIndex()))
 
+func _clear_choice_timer() -> void:
+	if timer == null or timer.holds_reset():
+		return
+	timer.reset()
+
 func _present_line() -> void:
 	if story == null:
 		return
 	_state.begin_line()
-	if timer:
-		timer.reset()
+	_clear_choice_timer()
 	# Skips empty lines. Specifically needed for dialog to properly end
 	while story.GetCanContinue():
 		var text: Variant = story.Continue()

@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dvnnea2fw2ndt" path="res://Scenes/PointAndClick/SceneItemUI.tscn" id="2_item"]
 [ext_resource type="PackedScene" uid="uid://17fxcbcv4a1n" path="res://Scenes/PointAndClick/InventoryUI/Inventory.tscn" id="3_inv"]
 [ext_resource type="PackedScene" uid="uid://b3fjaokxpivbe" path="res://Scenes/Dialog/dialog_controller.tscn" id="4_dialog"]
+[ext_resource type="PackedScene" uid="uid://kvbvxu0vbc8y" path="res://Scenes/Timer/timer.tscn" id="timer_scene"]
 [ext_resource type="Texture2D" uid="uid://ccta4jievbuav" path="res://icon.svg" id="4_ugc5w"]
 [ext_resource type="Script" uid="uid://b036r1bbtl2ug" path="res://Scripts/UI/PointAndClickScenes/SceneParallaxController.gd" id="5_parallax"]
 [ext_resource type="Script" uid="uid://8p77bw84c7bp" path="res://Scripts/UI/PointAndClickScenes/Components/ParallaxComponent.gd" id="6_parobj"]
@@ -48,5 +49,9 @@ grow_horizontal = 2
 grow_vertical = 2
 dialog_controller = NodePath("../DialogController")
 
-[node name="DialogController" parent="." unique_id=430537169 instance=ExtResource("4_dialog")]
+[node name="DialogController" parent="." unique_id=430537169 node_paths=PackedStringArray("timer") instance=ExtResource("4_dialog")]
 story = null
+timer = NodePath("../GameTimer")
+
+[node name="GameTimer" parent="." instance=ExtResource("timer_scene")]
+z_index = 3

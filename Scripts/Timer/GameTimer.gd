@@ -8,22 +8,41 @@ extends Control
 
 var _last_time_displayed: int = 0
 var _start_seconds : float = 0.0
+var _persist := false
 
 
 func _process(delta: float) -> void:
 	_display_remaining_time()
 
-func start(seconds: float, callback: Callable) -> void:
+func start(seconds: float, callback: Callable, persist: bool = false) -> void:
+	_stop_timer()
+	_persist = persist
 	_start_seconds = seconds
 	_timer.start(seconds)
-	_timer.timeout.connect(callback)
+	_timer.timeout.connect(_finish.bind(callback), CONNECT_ONE_SHOT)
 	show()
 
+func holds_reset() -> bool:
+	return _persist
+
 func reset() -> void:
-	_timer.stop()
+	if _persist:
+		return
+	_stop_timer()
 	_last_time_displayed = 0
 	_label.text = "--:--"
 	hide()
+
+func _finish(callback: Callable) -> void:
+	_persist = false
+	hide()
+	if callback.is_valid():
+		callback.call()
+
+func _stop_timer() -> void:
+	_timer.stop()
+	for connection in _timer.timeout.get_connections():
+		_timer.timeout.disconnect(connection.callable)
 
 func is_ticking() -> bool:
 	return _timer.time_left != 0

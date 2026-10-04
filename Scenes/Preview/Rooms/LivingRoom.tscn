@@ -51,7 +51,7 @@ polygon = PackedVector2Array(-224, -154, -241, 110, -503, 155, -526, 137, -523, 
 
 [node name="ParallaxComponent" type="Node" parent="ToBookshelf" unique_id=-1294967292]
 script = ExtResource("10_parobj")
-camera_distance = 105.0
+camera_distance = 100.0
 
 [node name="ToKitchen" type="Sprite2D" parent="." unique_id=1422088194]
 position = Vector2(826, 478)
@@ -85,7 +85,7 @@ polygon = PackedVector2Array(-120, -208, -170, -228, -129, -452, -82, -445, -51,
 
 [node name="ParallaxComponent" type="Node" parent="ToUnderBed" unique_id=-1294967274]
 script = ExtResource("10_parobj")
-camera_distance = 115.0
+camera_distance = 100.0
 
 [node name="ToLivingRoomToExit" parent="." unique_id=2015736750 instance=ExtResource("2_door")]
 position = Vector2(268, 270)
@@ -112,3 +112,59 @@ camera_distance = 100.0
 
 [node name="Character" type="AnimatedSprite2D" parent="." unique_id=1489842618]
 position = Vector2(960, 540)
+
+[node name="CharacterPositions" type="Node2D" parent="."]
+
+[node name="default" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_default" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_attack_chair" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_close" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_close_needle" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_lay_shot" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_sit_normal" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_sit_reach" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_sit_shocked" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_sit_shot" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_sit_suspicious" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_stand_back" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_stand_default" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_stand_scared" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_stand_shot" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_stand_smiling" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_stand_suspicious" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)
+
+[node name="engineer_stand_tea" type="Marker2D" parent="CharacterPositions"]
+position = Vector2(803, 383)

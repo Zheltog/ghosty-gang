@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3]
+[gd_scene load_steps=11 format=3]
 
 [ext_resource type="Script" uid="uid://bhaqm2essxb6x" path="res://Scripts/Dialog/DialogueActor.gd" id="1_actor"]
 [ext_resource type="Texture2D" uid="uid://ccta4jievbuav" path="res://icon.svg" id="2_icon"]
 [ext_resource type="PackedScene" uid="uid://b3fjaokxpivbe" path="res://Scenes/Dialog/dialog_controller.tscn" id="3_dialog"]
+[ext_resource type="PackedScene" uid="uid://kvbvxu0vbc8y" path="res://Scenes/Timer/timer.tscn" id="timer_scene"]
 [ext_resource type="Resource" path="res://Files/Test/ink_anim_test.ink" id="4_story"]
 
 [sub_resource type="Animation" id="Animation_idle"]
@@ -240,9 +241,13 @@ libraries = {
 script = ExtResource("1_actor")
 animation_player = NodePath("../AnimationPlayer")
 
-[node name="DialogController" parent="." node_paths=PackedStringArray("dialogue_actor") instance=ExtResource("3_dialog")]
+[node name="DialogController" parent="." node_paths=PackedStringArray("dialogue_actor", "timer") instance=ExtResource("3_dialog")]
 story = ExtResource("4_story")
 dialogue_actor = NodePath("../Ghost/DialogueActor")
+timer = NodePath("../GameTimer")
+
+[node name="GameTimer" parent="." instance=ExtResource("timer_scene")]
+z_index = 3
 
 [node name="Hud" type="CanvasLayer" parent="."]
 

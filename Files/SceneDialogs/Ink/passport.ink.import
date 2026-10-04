@@ -1,0 +1,16 @@
+[remap]
+
+importer="ink"
+type="Resource"
+uid="uid://buxeghuvg7qdo"
+path="res://.godot/imported/passport.ink-a6fd7344defc3f055f5e1efd4f9fa0c5.res"
+
+[deps]
+
+source_file="res://Files/SceneDialogs/Ink/passport.ink"
+dest_files=["res://.godot/imported/passport.ink-a6fd7344defc3f055f5e1efd4f9fa0c5.res"]
+
+[params]
+
+is_main_file=true
+compress=true
