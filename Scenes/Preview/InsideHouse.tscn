@@ -19,8 +19,10 @@
 [ext_resource type="PackedScene" uid="uid://s218cktv50w5" path="res://Scenes/Preview/Rooms/Bookshelf.tscn" id="room_Bookshelf"]
 [ext_resource type="PackedScene" uid="uid://c8exitstor0a1" path="res://Scenes/Preview/Rooms/ExitFromStorage.tscn" id="room_ExitFromStorage"]
 [ext_resource type="PackedScene" uid="uid://c8kitchen00a1" path="res://Scenes/Preview/Rooms/Kitchen.tscn" id="room_Kitchen"]
+[ext_resource type="PackedScene" uid="uid://dqxonlmtlnied" path="res://Scenes/Preview/Rooms/KitchenCouch.tscn" id="room_KitchenCouch"]
 [ext_resource type="PackedScene" uid="uid://c8livroom0a1b" path="res://Scenes/Preview/Rooms/LivingRoom.tscn" id="room_LivingRoom"]
 [ext_resource type="PackedScene" uid="uid://c8livexit0a1b" path="res://Scenes/Preview/Rooms/LivingRoomToExit.tscn" id="room_LivingRoomToExit"]
+[ext_resource type="PackedScene" uid="uid://c8livroom2a01" path="res://Scenes/Preview/Rooms/LivingRoom2.tscn" id="room_LivingRoom2"]
 [ext_resource type="PackedScene" uid="uid://c8preroom00a1" path="res://Scenes/Preview/Rooms/Preroom.tscn" id="room_Preroom"]
 [ext_resource type="PackedScene" uid="uid://c8storage00a1" path="res://Scenes/Preview/Rooms/Storage.tscn" id="room_Storage"]
 [ext_resource type="PackedScene" uid="uid://c8underbed0a1" path="res://Scenes/Preview/Rooms/UnderBed.tscn" id="room_UnderBed"]
@@ -141,7 +143,7 @@ animations = [{
 script = ExtResource("1_r7y35")
 ink_dialog_appear_path = "res://Files/SceneDialogs/Ink/inside_house.ink"
 characters = [NodePath("Characters/Engineer")]
-room_scenes = Array[PackedScene]([ExtResource("room_LivingRoom"), ExtResource("room_LivingRoomToExit"), ExtResource("room_ExitFromStorage"), ExtResource("room_UnderBed"), ExtResource("room_Preroom"), ExtResource("room_Bathroom"), ExtResource("room_Storage"), ExtResource("room_Kitchen"), ExtResource("room_Bookshelf")])
+room_scenes = Array[PackedScene]([ExtResource("room_LivingRoom"), ExtResource("room_LivingRoomToExit"), ExtResource("room_LivingRoom2"), ExtResource("room_ExitFromStorage"), ExtResource("room_UnderBed"), ExtResource("room_Preroom"), ExtResource("room_Bathroom"), ExtResource("room_Storage"), ExtResource("room_Kitchen"), ExtResource("room_KitchenCouch"), ExtResource("room_Bookshelf")])
 
 [node name="Rooms" type="Node2D" parent="." unique_id=1900112300]
 

@@ -158,6 +158,7 @@ func _seal_storage() -> void:
 	_set_room_child_visible("exit_from_storage", "ExitLocked", true)
 	lock_room("living_room", _stay_inside)
 	lock_room("living_room_to_exit", _stay_inside)
+	lock_room("living_room_2", _stay_inside)
 	lock_room("bookshelf", _stay_inside)
 
 func _stay_inside() -> void:

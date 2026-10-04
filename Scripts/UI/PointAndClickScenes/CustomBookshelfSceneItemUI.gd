@@ -8,6 +8,10 @@ const KEY_TURN_SOUND := "res://Assets/Audio/Sounds/key_turning.mp3"
 const SHELF_MOVE_SOUND := "res://Assets/Audio/Sounds/shelf_move.mp3"
 const MOVED_BACKGROUND := preload("res://Assets/Sprites/Backgrounds/bookcase_2_normal.png")
 const MOVED_LIGHT_INDEX := 5
+const LIVING_CLOSED_BACKGROUND := preload("res://Assets/Sprites/Backgrounds/hall_1b_normal.png")
+const LIVING_OPEN_BACKGROUND := preload("res://Assets/Sprites/Backgrounds/hall_1_normal.png")
+const LIVING_CLOSED_LIGHT_INDEX := 0
+const LIVING_OPEN_LIGHT_INDEX := 12
 
 var _closed_background: Texture2D
 var _closed_light_index := 4
@@ -72,6 +76,7 @@ func _apply_open(open: bool) -> void:
 	_show_background(open)
 	_use_moved_area(open)
 	_set_storage_path(open)
+	_update_living_room_background(open)
 
 func get_effective_interaction_type() -> INTERACTION_TYPE:
 	if _is_locked() or not bool(StateManager.get_state(STATE_KEY_TURNED, false)):
@@ -122,3 +127,24 @@ func _background() -> Sprite2D:
 	if room == null:
 		return null
 	return room.get_node_or_null("Background") as Sprite2D
+
+func _update_living_room_background(open: bool) -> void:
+	var house := HouseSceneBase.current_house_scene
+	if house == null:
+		return
+	var rooms := house.get_node_or_null(HouseSceneBase.ROOMS_NODE_NAME)
+	if rooms == null:
+		return
+	for child in rooms.get_children():
+		if not child is RoomBase or (child as RoomBase).room_name != "living_room":
+			continue
+		var background := child.get_node_or_null("Background") as Sprite2D
+		if background == null:
+			return
+		if open:
+			background.texture = LIVING_OPEN_BACKGROUND
+			background.set_instance_shader_parameter("lighted_index", LIVING_OPEN_LIGHT_INDEX)
+		else:
+			background.texture = LIVING_CLOSED_BACKGROUND
+			background.set_instance_shader_parameter("lighted_index", LIVING_CLOSED_LIGHT_INDEX)
+		return

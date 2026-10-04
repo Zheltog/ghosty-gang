@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://b0hsmfhmj5kmy" path="res://Scripts/Dialog/TextBoxWithOptions.gd" id="1_ntt56"]
 [ext_resource type="PackedScene" uid="uid://chii51pu3s0yv" path="res://Scenes/Dialog/option_button.tscn" id="2_04rbt"]
 [ext_resource type="Texture2D" uid="uid://bd1t7aiqce5ul" path="res://Assets/Sprites/UI/Dialog/DialogWindow.png" id="2_ntt56"]
-[ext_resource type="Script" uid="uid://8p77bw84c7bp" path="res://Scripts/UI/PointAndClickScenes/Components/ParallaxComponent.gd" id="3_parobj"]
 
 [node name="TextBoxWithOptions" type="Control" unique_id=1501866700]
 layout_mode = 3
@@ -22,10 +21,6 @@ offset_top = 98.0
 offset_right = 1821.0
 offset_bottom = 602.0
 texture = ExtResource("2_ntt56")
-
-[node name="ParallaxComponent" type="Node" parent="TextureRect" unique_id=225980655]
-script = ExtResource("3_parobj")
-camera_distance = 100.0
 
 [node name="CharacterName" type="Label" parent="TextureRect" unique_id=225980656]
 visible = false

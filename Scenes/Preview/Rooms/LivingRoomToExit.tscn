@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://8p77bw84c7bp" path="res://Scripts/UI/PointAndClickScenes/Components/ParallaxComponent.gd" id="10_parobj"]
 [ext_resource type="Script" uid="uid://bgebmjt4oem53" path="res://Scripts/Room/RoomBase.gd" id="12_room"]
 [ext_resource type="Script" uid="uid://d37oapbkld1pk" path="res://Scripts/UI/PointAndClickScenes/SceneUIDoor.gd" id="20_8cn5p"]
-[ext_resource type="Texture2D" uid="uid://bxjtno10bk1kn" path="res://Assets/Sprites/Backgrounds/living_room_to_exit_normal.png" id="50_lte_bg"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/Backgrounds/hall_3_normal.png" id="50_lte_bg"]
 [ext_resource type="Script" uid="uid://3yscu2its1" path="res://Scenes/Test/Dron/DarknessEffect.gd" id="50_lte_dark"]
 [ext_resource type="Material" uid="uid://cettvgv7o7kmc" path="res://Scripts/Shaders/darkness_material.tres" id="50_lte_mat"]
 
