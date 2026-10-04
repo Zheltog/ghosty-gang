@@ -47,6 +47,7 @@ var _engineer_road: PackedScene = preload("res://Scenes/Preview/EngineerRoad.tsc
 
 const INTRO_MUSIC := "res://Assets/Audio/Music/intro.mp3"
 const DAY_MUSIC := "res://Assets/Audio/Music/День.mp3"
+const AFTER_FIRE_MUSIC := "res://Assets/Audio/Music/after_fire.mp3"
 
 func start_day(day_number: int, scene: SCENE) -> void:
 	SaveManager.begin_day(day_number, scene_key(scene))
@@ -125,6 +126,8 @@ func _music_for(scene: SCENE) -> String:
 			return INTRO_MUSIC
 		SCENE.STARTING_CUTSCENE_1, SCENE.STARTING_CUTSCENE_2, SCENE.PROLOGUE_BUS:
 			return ""
+		SCENE.NIGHT_FIRE:
+			return AFTER_FIRE_MUSIC
 		_:
 			return DAY_MUSIC
 
