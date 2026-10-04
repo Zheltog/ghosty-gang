@@ -30,6 +30,8 @@ func _ready() -> void:
 
 func turn_key() -> void:
 	StateManager.set_state(STATE_KEY_TURNED, true)
+	_remove_keyhole()
+	_disable_books()
 	_play_sound(KEY_TURN_SOUND)
 
 func open_shelf() -> void:
@@ -111,6 +113,26 @@ func _set_storage_path(open: bool) -> void:
 	if path:
 		path.visible = open
 
+<<<<<<< HEAD
+=======
+func _show_keyhole() -> void:
+	if bool(StateManager.get_state(STATE_KEY_TURNED, false)):
+		return
+	var keyhole := get_node_or_null("Keyhole")
+	if keyhole:
+		keyhole.show()
+
+func _remove_keyhole() -> void:
+	var keyhole := get_node_or_null("Keyhole")
+	if keyhole == null:
+		return
+	keyhole.hide()
+	keyhole.queue_free()
+
+func _book_removed() -> bool:
+	return bool(StateManager.get_state(STATE_BOOK_REMOVED, false))
+
+>>>>>>> 1fd06b0 (fixes)
 func _show_background(open: bool) -> void:
 	var background := _background()
 	if background == null:

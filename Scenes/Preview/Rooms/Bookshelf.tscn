@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://s218cktv50w5"]
 
 [ext_resource type="PackedScene" uid="uid://mt1xmuy8xhd5" path="res://Scenes/PointAndClick/SceneUIDoor.tscn" id="2_door"]
-[ext_resource type="PackedScene" uid="uid://dvnnea2fw2ndt" path="res://Scenes/PointAndClick/SceneItemUI.tscn" id="2_item"]
 [ext_resource type="Script" uid="uid://cjwqo45k5xnx0" path="res://Scripts/UI/PointAndClickScenes/SceneItemUI.gd" id="9_1fc3o"]
 [ext_resource type="Texture2D" uid="uid://dadq1xc3xcndr" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/MoveBack.png" id="10_back"]
 [ext_resource type="Script" uid="uid://8p77bw84c7bp" path="res://Scripts/UI/PointAndClickScenes/Components/ParallaxComponent.gd" id="10_parobj"]
@@ -11,7 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://fhx12i7wwmur" path="res://Assets/Sprites/Backgrounds/bookcase_1_normal.png" id="30_bg"]
 [ext_resource type="Script" uid="uid://3yscu2its1" path="res://Scenes/Test/Dron/DarknessEffect.gd" id="30_dark"]
 [ext_resource type="Material" uid="uid://cettvgv7o7kmc" path="res://Scripts/Shaders/darkness_material.tres" id="30_mat"]
-[ext_resource type="Texture2D" uid="uid://daa2vnd05nopl" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/LivingRoom/keyhole.png" id="42_keyhole"]
 
 [node name="Bookshelf" type="Node2D" unique_id=1900112500]
 script = ExtResource("12_room")
@@ -48,12 +46,16 @@ polygon = PackedVector2Array(-760, -332, 746, -320, 602, 673, -608, 684)
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Shelfs/Area2DAfterMove" unique_id=1900515235]
 polygon = PackedVector2Array(-1065, -338, 159, -338, 134, 677, -1060, 684)
 
-[node name="Keyhole" parent="Shelfs" unique_id=1900112506 instance=ExtResource("2_item")]
-visible = false
-position = Vector2(47, 117)
-texture = ExtResource("42_keyhole")
+[node name="Keyhole" type="Sprite2D" parent="Shelfs" unique_id=1900112506]
+position = Vector2(582, 117)
+script = ExtResource("9_1fc3o")
 scene_item_id = 12
 intercation_type = 0
+
+[node name="Area2D" type="Area2D" parent="Shelfs/Keyhole" unique_id=874107418]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Shelfs/Keyhole/Area2D" unique_id=1255627408]
+polygon = PackedVector2Array(-93, 43, -77, -89, -46, -90, -61, 45)
 
 [node name="ParallaxComponent" type="Node" parent="Shelfs/Keyhole" unique_id=1900112507]
 script = ExtResource("10_parobj")
@@ -65,7 +67,7 @@ script = ExtResource("9_1fc3o")
 scene_item_id = 2
 intercation_type = 0
 
-[node name="Area2D" type="Area2D" parent="Shelfs/Books1" unique_id=874107418]
+[node name="Area2D" type="Area2D" parent="Shelfs/Books1" unique_id=472896324]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Shelfs/Books1/Area2D" unique_id=714205653]
 position = Vector2(-775, -424)

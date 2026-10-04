@@ -44,6 +44,7 @@ VAR rag_fetched = false
 -> END
 
 === tea_after_rag ===
+~ godot("HouseScenePreview", "reveal_tea")
 Когда ты возвращаешься с тряпкой чай уже налит. Владислав с блаженным видом отхлебывает из своей кружки. # thought
 Ты вытираешь лужу со столика и садишься рядом. Крепкий черный чай пахнет восхитительно - старик добавил сушеные листья смородины и мяты. # thought
 Пейте. Вам сейчас согреться надо. # window:default # char:engineer # anim:sit_normal # skippable:false
@@ -63,6 +64,7 @@ VAR rag_fetched = false
 	-> tea_after_rag
 
 === tea_low ===
+~ godot("HouseScenePreview", "reveal_tea")
 Инженер берёт чайник и не спеша разливает его по чашкам. # thought
 Тонут во мгле пустынные сопки, тучей закрыт восток… # window:default # char:engineer # anim:stand_tea # skippable:false
 Со смородиной? То, что доктор прописал. # response # skippable:false
@@ -77,6 +79,7 @@ VAR rag_fetched = false
 	-> arm
 
 === tea_gun ===
+~ godot("HouseScenePreview", "reveal_tea")
 Он садится и разливает чай. # thought
 + [unequip:gun]
 	~ gun_drawn = false

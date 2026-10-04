@@ -48,6 +48,36 @@ func load_room(room_name: String) -> void:
 func reveal_rag() -> void:
 	_set_room_child_visible("bathroom", "Rag", true)
 
+func reveal_tea() -> void:
+	_set_room_child_visible("kitchen_couch", "Tea", true)
+
+func engineer_wait_in_kitchen() -> void:
+	unlock_room("kitchen")
+	_engineer_awaits_tea = true
+	_kitchen_sit_said = false
+	if characters.is_empty() or characters[0] == null:
+		printerr("HouseScenePreview: no engineer character configured")
+		return
+	var engineer := characters[0]
+	engineer.set_emotion("stand_tea")
+	engineer.set_location("kitchen")
+
+func _on_entered_room(room_name: String) -> void:
+	if not _engineer_awaits_tea or DialogController.is_dialog_active():
+		return
+	if room_name == "kitchen" and not _kitchen_sit_said:
+		_kitchen_sit_said = true
+		dialog_controller.start_story(ENGINEER_SIT)
+		return
+	if room_name != "kitchen_couch":
+		return
+	_engineer_awaits_tea = false
+	if characters.is_empty() or characters[0] == null:
+		printerr("HouseScenePreview: no engineer character configured")
+		return
+	characters[0].set_location("kitchen_couch")
+	EngineerDialogs.tea()
+
 func _kitchen_blocked() -> void:
 	if DialogController.is_dialog_active():
 		return

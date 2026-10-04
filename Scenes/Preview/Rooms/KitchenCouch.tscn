@@ -92,6 +92,7 @@ camera_distance = 100.0
 
 [node name="Tea" parent="." unique_id=598298150 instance=ExtResource("18_bl6rl")]
 visible = false
+z_index = 2
 position = Vector2(1253, 937)
 texture = ExtResource("19_n3wxg")
 scene_item_id = 17
