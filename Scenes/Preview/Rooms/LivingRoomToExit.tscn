@@ -29,7 +29,7 @@ camera_distance = 100.0
 position = Vector2(283, 715)
 script = ExtResource("20_8cn5p")
 target_room = "under_bed"
-scene_item_id = 20
+scene_item_id = 21
 intercation_type = 0
 
 [node name="Area2D" type="Area2D" parent="Bed" unique_id=674466857]
@@ -60,7 +60,7 @@ polygon = PackedVector2Array(270, -207, 372, -255, 351, -363, 294, -378, 155, -3
 position = Vector2(1166, 558)
 script = ExtResource("20_8cn5p")
 target_room = "preroom"
-scene_item_id = 20
+scene_item_id = 21
 intercation_type = 0
 
 [node name="Area2D" type="Area2D" parent="ToPreroom" unique_id=874107418]
@@ -77,7 +77,7 @@ position = Vector2(88, 444)
 scale = Vector2(2, 2)
 texture = ExtResource("10_a71pi")
 target_room = "living_room"
-scene_item_id = 20
+scene_item_id = 21
 intercation_type = 0
 
 [node name="ParallaxComponent" type="Node" parent="ToLivingRoom" unique_id=1069572054]

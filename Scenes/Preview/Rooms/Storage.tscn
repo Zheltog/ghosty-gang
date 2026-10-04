@@ -44,7 +44,7 @@ rotation = -1.5707964
 scale = Vector2(2, 2)
 texture = ExtResource("10_a71pi")
 target_room = "bookshelf"
-scene_item_id = 20
+scene_item_id = 21
 intercation_type = 0
 
 [node name="ParallaxComponent" type="Node" parent="ToLivingRoom" unique_id=366923515]

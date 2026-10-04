@@ -22,6 +22,8 @@ static func generate(item : InventoryItemGenerator.INVENTORY_ITEM) -> EquippedIt
 			_setup_tea(ui)
 		InventoryItemGenerator.INVENTORY_ITEM.GLASS_EYE:
 			_setup_glass_eye(ui)
+		InventoryItemGenerator.INVENTORY_ITEM.RAG:
+			_setup_rag(ui)
 	return ui
 
 static func _setup_cigarettes(ui: EquippedItemUI) -> void:
@@ -63,6 +65,12 @@ static func _setup_glass_eye(ui: EquippedItemUI) -> void:
 	var frames := SpriteFrames.new()
 	frames.add_animation("default")
 	frames.add_frame("default", preload("res://Assets/Sprites/EquipedInventoryItems/glass_eye.png"))
+	ui.sprite_frames = frames
+	ui.play("default")
+static func _setup_rag(ui: EquippedItemUI) -> void:
+	var frames := SpriteFrames.new()
+	frames.add_animation("default")
+	frames.add_frame("default", preload("res://Assets/Sprites/EquipedInventoryItems/rag.png"))
 	ui.sprite_frames = frames
 	ui.play("default")
 static func _setup_tea(ui: EquippedItemUI) -> void:

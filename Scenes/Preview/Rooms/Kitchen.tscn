@@ -111,7 +111,7 @@ position = Vector2(952, 999)
 rotation = -1.5707964
 texture = ExtResource("14_1tioj")
 target_room = "living_room"
-scene_item_id = 20
+scene_item_id = 21
 intercation_type = 0
 
 [node name="ParallaxComponent" type="Node" parent="ToLivingRoom" unique_id=2145012306]
@@ -123,7 +123,7 @@ position = Vector2(1553, 693)
 rotation = -1.5707964
 script = ExtResource("15_tf3lf")
 target_room = "kitchen_couch"
-scene_item_id = 20
+scene_item_id = 21
 intercation_type = 0
 
 [node name="Area2D" type="Area2D" parent="ToCouch" unique_id=874107418]

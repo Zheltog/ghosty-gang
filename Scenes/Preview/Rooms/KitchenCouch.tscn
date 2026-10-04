@@ -32,7 +32,7 @@ rotation = 1.5707964
 texture = ExtResource("14_swiwo")
 script = ExtResource("15_muhom")
 target_room = "kitchen"
-scene_item_id = 20
+scene_item_id = 21
 intercation_type = 0
 
 [node name="Area2D" type="Area2D" parent="ToKitchen" unique_id=874107418]
@@ -46,7 +46,7 @@ position = Vector2(1553, 693)
 rotation = -1.5707964
 script = ExtResource("15_muhom")
 target_room = "living_room"
-scene_item_id = 20
+scene_item_id = 21
 intercation_type = 0
 
 [node name="Area2D" type="Area2D" parent="ToLivingRoom" unique_id=393573391]

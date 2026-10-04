@@ -192,7 +192,7 @@ position = Vector2(80, 80)
 scale = Vector2(2, 2)
 texture = ExtResource("10_back")
 target_room = "living_room"
-scene_item_id = 20
+scene_item_id = 21
 intercation_type = 0
 
 [node name="ParallaxComponent" type="Node" parent="ToLivingRoom" unique_id=1900112515]
@@ -205,7 +205,7 @@ position = Vector2(80, 80)
 scale = Vector2(2, 2)
 script = ExtResource("11_saou5")
 target_room = "storage"
-scene_item_id = 20
+scene_item_id = 21
 intercation_type = 2
 
 [node name="Area2D" type="Area2D" parent="ToStorage" unique_id=1437867289]

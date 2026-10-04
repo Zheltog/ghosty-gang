@@ -78,6 +78,8 @@ func _on_story_finished(story_name: String) -> void:
 			else:
 				tea.call_deferred()
 		"engineer_tea":
+			if _flag("fetching_rag"):
+				return
 			if _flag("engineer_dead") or _flag("engineer_kicked"):
 				street.call_deferred()
 			elif _flag("engineer_poison"):

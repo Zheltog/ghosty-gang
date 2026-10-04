@@ -103,5 +103,11 @@
 		"pickable" : false,
 		"ink_story_view" : "res://Files/SceneDialogs/Ink/coat.ink",
 		"interaction_type" : "look"
+	},
+	"rag" : {
+		"pickable" : true,
+		"equiped_immediately" : false,
+		"inventory_item" : "rag",
+		"after_pickup" : "disappear"
 	}
 }

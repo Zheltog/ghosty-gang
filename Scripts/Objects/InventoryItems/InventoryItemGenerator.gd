@@ -9,7 +9,8 @@ enum INVENTORY_ITEM {
 	PASSPORT,
 	PHOTO,
 	TEA,
-	GLASS_EYE
+	GLASS_EYE,
+	RAG
 }
 
 static func generate(item : INVENTORY_ITEM) -> InventoryItemBase:
@@ -30,6 +31,8 @@ static func generate(item : INVENTORY_ITEM) -> InventoryItemBase:
 			return InventoryItemTea.new()
 		INVENTORY_ITEM.GLASS_EYE:
 			return InventoryItemGlassEye.new()
+		INVENTORY_ITEM.RAG:
+			return InventoryItemRag.new()
 	
 	printerr("GENERATED UNSOPORTED INVENTORY ITEM")
 	return InventoryItemBase.new()

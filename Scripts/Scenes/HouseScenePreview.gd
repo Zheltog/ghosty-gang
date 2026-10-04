@@ -43,6 +43,10 @@ func load_room(room_name: String) -> void:
 	super.load_room(room_name)
 	if scene_object_manager and current_room == room_name:
 		scene_object_manager.update_mouse_cursor()
+	_try_resume_tea_after_rag()
+
+func reveal_rag() -> void:
+	_set_room_child_visible("bathroom", "Rag", true)
 
 func _kitchen_blocked() -> void:
 	if DialogController.is_dialog_active():
@@ -179,6 +183,21 @@ func _start_trapped_fire() -> void:
 	command.instant = true
 	command.resource_name = FIRE_SOUND
 	CommonAudioProcessor.process_sound_looped(command)
+
+func _try_resume_tea_after_rag() -> void:
+	if current_room != "living_room":
+		return
+	if not bool(InkVariableStore.get_value("fetching_rag", false)):
+		return
+	if DialogController.is_dialog_active():
+		return
+	var inventory := scene_object_manager.inventory if scene_object_manager else null
+	if inventory == null or not inventory.has_item(InventoryItemGenerator.INVENTORY_ITEM.RAG):
+		return
+	inventory.remove_item(InventoryItemGenerator.INVENTORY_ITEM.RAG)
+	InkVariableStore.set_value("fetching_rag", false)
+	InkVariableStore.set_value("rag_fetched", true)
+	EngineerDialogs.tea.call_deferred()
 
 func engineer_appear() -> void:
 	if characters.is_empty() or characters[0] == null:

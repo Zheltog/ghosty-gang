@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dbf0d2v76273k" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/Bathroom/Bath.png" id="90_b_bath"]
 [ext_resource type="Texture2D" uid="uid://bekrlcfujd2wk" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/Bathroom/tumba.png" id="91_b_tumba"]
 [ext_resource type="Texture2D" uid="uid://bvvvlpwdhio26" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/Bathroom/flashlight.png" id="92_b_flash"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/Bathroom/rag.png" id="93_b_rag"]
 
 [node name="Bathroom" type="Node2D" unique_id=844400792]
 script = ExtResource("12_room")
@@ -45,6 +46,17 @@ scene_item_id = 13
 intercation_type = 1
 
 [node name="ParallaxComponent" type="Node" parent="Flashlight" unique_id=-894967290]
+script = ExtResource("10_parobj")
+camera_distance = 118.0
+
+[node name="Rag" parent="." unique_id=-894967280 instance=ExtResource("2_item")]
+visible = false
+position = Vector2(430, 720)
+texture = ExtResource("93_b_rag")
+scene_item_id = 20
+intercation_type = 1
+
+[node name="ParallaxComponent" type="Node" parent="Rag" unique_id=-894967279]
 script = ExtResource("10_parobj")
 camera_distance = 118.0
 

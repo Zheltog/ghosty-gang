@@ -31,7 +31,7 @@ visible = false
 position = Vector2(1678, 440)
 texture = ExtResource("38_lr_secret")
 target_room = "storage"
-scene_item_id = 20
+scene_item_id = 21
 intercation_type = 0
 
 [node name="ParallaxComponent" type="Node" parent="ToStorage" unique_id=-1294967276]
@@ -42,7 +42,7 @@ camera_distance = 100.0
 position = Vector2(1526, 474)
 script = ExtResource("10_edql1")
 target_room = "bookshelf"
-scene_item_id = 20
+scene_item_id = 21
 intercation_type = 0
 
 [node name="Area2D" type="Area2D" parent="ToBookshelf" unique_id=874107418]
@@ -58,7 +58,7 @@ camera_distance = 100.0
 position = Vector2(826, 478)
 script = ExtResource("10_edql1")
 target_room = "kitchen"
-scene_item_id = 20
+scene_item_id = 21
 intercation_type = 0
 
 [node name="Area2D" type="Area2D" parent="ToKitchen" unique_id=891129043]
@@ -76,7 +76,7 @@ camera_distance = 100.0
 position = Vector2(1624, 1108)
 script = ExtResource("10_edql1")
 target_room = "under_bed"
-scene_item_id = 20
+scene_item_id = 21
 intercation_type = 0
 
 [node name="Area2D" type="Area2D" parent="ToUnderBed" unique_id=829779427]
@@ -92,7 +92,7 @@ camera_distance = 100.0
 position = Vector2(268, 270)
 texture = ExtResource("10_a71pi")
 target_room = "living_room_to_exit"
-scene_item_id = 20
+scene_item_id = 21
 intercation_type = 0
 
 [node name="ParallaxComponent" type="Node" parent="ToLivingRoomToExit" unique_id=426732625]
@@ -104,7 +104,7 @@ position = Vector2(985, 1026)
 rotation = -1.5707964
 texture = ExtResource("10_a71pi")
 target_room = "preroom"
-scene_item_id = 20
+scene_item_id = 21
 intercation_type = 0
 
 [node name="ParallaxComponent" type="Node" parent="ToPreroom" unique_id=1059769946]

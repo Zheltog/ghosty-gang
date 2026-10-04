@@ -34,5 +34,8 @@
 	},
 	"glass_eye" : {
 		"equip_time" : 1.0
+	},
+	"rag" : {
+		"equip_time" : 1.0
 	}
 }

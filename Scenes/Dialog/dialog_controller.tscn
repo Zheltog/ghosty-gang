@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://chmobrytma4ib" path="res://Scenes/Dialog/Texboxes/four_options.tscn" id="8_four"]
 [ext_resource type="PackedScene" uid="uid://dc6akhd6bpn8l" path="res://Scenes/Dialog/Texboxes/dossier.tscn" id="9_dossier"]
 [ext_resource type="PackedScene" uid="uid://b5lkbun8smq2i" path="res://Scenes/Dialog/Texboxes/another_room_left.tscn" id="10_left"]
+[ext_resource type="Script" uid="uid://b036r1bbtl2ug" path="res://Scripts/UI/PointAndClickScenes/SceneParallaxController.gd" id="11_parallax"]
 
 [node name="DialogController" type="Node2D" unique_id=158973333]
 script = ExtResource("1_bshvn")
@@ -40,3 +41,6 @@ controller = NodePath("../..")
 [node name="another_room_left" parent="DialogWindowManager" unique_id=1939350733 node_paths=PackedStringArray("controller") instance=ExtResource("10_left")]
 z_index = 3
 controller = NodePath("../..")
+
+[node name="SceneParallax" type="Node" parent="DialogWindowManager" unique_id=884120334]
+script = ExtResource("11_parallax")

@@ -22,6 +22,7 @@ enum SCENE_ITEM {
 	TEA,
 	PHOTO,
 	COAT,
+	RAG,
 	NONE
 }
 
@@ -67,6 +68,8 @@ static func generate(item : SCENE_ITEM) -> SceneItemBase:
 			return SceneItemPhoto.new()
 		SCENE_ITEM.COAT:
 			return SceneItemCoat.new()
+		SCENE_ITEM.RAG:
+			return SceneItemRag.new()
 		SCENE_ITEM.NONE:
 			return SceneItemBase.new()
 	
