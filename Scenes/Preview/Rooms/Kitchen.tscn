@@ -88,7 +88,7 @@ camera_distance = 122.0
 [node name="Bottle" parent="." unique_id=1800578913 instance=ExtResource("2_item")]
 position = Vector2(1059, 909)
 texture = null
-scene_item_id = 1
+scene_item_id = 20
 trigger_type = 0
 intercation_type = 1
 

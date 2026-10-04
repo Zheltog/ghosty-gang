@@ -25,6 +25,9 @@ var _equipped_base: Dictionary = {}
 
 func press(equipped_item: InventoryItemUI = null) -> SceneItemPressResult:
 	apply_equipped(equipped_item)
+	# Later rooms can register another instance of the same class. The click
+	# that opened this dialog is the object ink should act on.
+	InkFunctions.subscribe(self)
 	var result := SceneItemPressResult.new()
 	if not ink_story_view.is_empty() and ink_story_view.begins_with("res://"):
 		result.type = SceneItemPressResult.TYPE.DIALOG
@@ -74,5 +77,7 @@ func hide_self() -> void:
 		_host.hide_self()
 
 func disappear() -> void:
-	if _host:
-		_host.queue_free()
+	if _host == null or not is_instance_valid(_host):
+		return
+	_host.hide()
+	_host.queue_free()

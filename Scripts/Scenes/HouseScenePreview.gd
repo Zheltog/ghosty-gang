@@ -99,7 +99,11 @@ func silence_kitchen() -> void:
 	CommonAudioProcessor.process_sound_looped(command)
 
 func schedule_engineer_arrival() -> void:
-	await get_tree().create_timer(RETURN_TIMER_DELAY).timeout
+	get_tree().create_timer(RETURN_TIMER_DELAY).timeout.connect(
+		_start_engineer_return_timer, CONNECT_ONE_SHOT
+	)
+
+func _start_engineer_return_timer() -> void:
 	if not is_inside_tree():
 		return
 	if dialog_controller == null or dialog_controller.timer == null:
