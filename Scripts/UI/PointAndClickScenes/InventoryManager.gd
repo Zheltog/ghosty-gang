@@ -56,6 +56,9 @@ func add_item_str(item_id : String) -> InventoryItemUI:
 	return add_item(InventoryItemGenerator.INVENTORY_ITEM[key])
 
 func add_item(item_id: InventoryItemGenerator.INVENTORY_ITEM) -> InventoryItemUI:
+	var existing := inventory_holder.get_item(item_id)
+	if existing != null:
+		return existing
 	var item_ui := inventory_holder.add_item(item_id)
 	_play_pickup_sound()
 	notify_dialog_event(EVENT.PICKUP, item_id)
@@ -69,6 +72,13 @@ func _play_pickup_sound() -> void:
 
 func has_item(item_id: InventoryItemGenerator.INVENTORY_ITEM) -> bool:
 	return inventory_holder.has_item(item_id)
+
+func remove_item_str(item_id: String) -> void:
+	var key := item_id.strip_edges().to_upper()
+	if not InventoryItemGenerator.INVENTORY_ITEM.keys().has(key):
+		printerr("Unknown inventory item: ", item_id)
+		return
+	remove_item(InventoryItemGenerator.INVENTORY_ITEM[key])
 
 func remove_item(item_id: InventoryItemGenerator.INVENTORY_ITEM) -> void:
 	inventory_holder.remove_item(item_id)

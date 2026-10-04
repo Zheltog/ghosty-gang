@@ -39,10 +39,13 @@ func _create_item(item_id : InventoryItemGenerator.INVENTORY_ITEM) -> InventoryI
 	return item_ui
 
 func has_item(item_id : InventoryItemGenerator.INVENTORY_ITEM) -> bool:
+	return get_item(item_id) != null
+
+func get_item(item_id : InventoryItemGenerator.INVENTORY_ITEM) -> InventoryItemUI:
 	for item in item_placer.items:
 		if item.inventory_item_id == item_id:
-			return true
-	return false
+			return item
+	return null
 
 func remove_item(item_id : InventoryItemGenerator.INVENTORY_ITEM) -> void:
 	var found : InventoryItemUI = null

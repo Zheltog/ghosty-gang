@@ -1,6 +1,7 @@
 // Триггер: инженер выходит из кухни в зал.
 // closet_open приходит из геймплея: шкаф оставлен открытым или закрыт до возвращения.
 EXTERNAL godot(target_class, method)
+EXTERNAL godot_1(target_class, method, arg)
 # story: engineer_return
 # load: suspicion, closet_open, key_returned, saw_passports, has_glass_eye, gun_drawn, engineer_dead, engineer_poison, engineer_kicked, engineer_sleep, engineer_to_torture, engineer_leave, passports_raised
 # save: suspicion, closet_open, key_returned, saw_passports, has_glass_eye, gun_drawn, engineer_dead, engineer_poison, engineer_kicked, engineer_sleep, engineer_to_torture, engineer_leave, passports_raised
@@ -48,6 +49,7 @@ VAR passports_raised = false
 
 === key_back ===
 Пожалуйста. # response # skippable:false
+~ godot_1("Inventory", "remove_item_str", "key_bookshelf")
 Владислав забирает ключ и прячет его. # thought
 -> tidy
 
