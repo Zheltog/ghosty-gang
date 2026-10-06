@@ -69,8 +69,9 @@ func lock_closed() -> void:
 
 func _start_storage_hum() -> void:
 	var house := HouseSceneBase.current_house_scene as HouseScenePreview
-	if house:
-		house.on_storage_opened()
+	if house == null or house.scene_states == null:
+		return
+	house.scene_states.process_event("storage_opened")
 
 func _play_sound(resource_name: String) -> void:
 	var command := AudioSoundCommand.new()

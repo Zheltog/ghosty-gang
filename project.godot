@@ -26,9 +26,10 @@ VoiceRegistry="*res://Scripts/Audio/VoiceRegistry.gd"
 AudioEventBus="*uid://x8u4ulln4cji"
 SceneLoader="*res://Scripts/SceneLoader.gd"
 InkFunctions="*res://Scripts/Dialog/InkFunctions.gd"
-EngineerDialogs="*res://Scripts/Dialog/EngineerDialog.gd"
 StateManager="*res://Scripts/StateManager.gd"
 InkVariableStore="*res://Scripts/Dialog/InkVariableStore.gd"
+DialogPathConstants="*uid://dmppmp8srhy65"
+TrackNameConstants="*uid://vx7uyuo4cfmx"
 
 [display]
 

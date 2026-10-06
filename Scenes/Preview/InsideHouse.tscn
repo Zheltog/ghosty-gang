@@ -11,10 +11,12 @@
 [ext_resource type="Texture2D" uid="uid://ct8jrj8g00yg8" path="res://Assets/Sprites/Characters/Engineer/Dron/sitting_taking_body.png" id="14_xjebt"]
 [ext_resource type="Texture2D" uid="uid://c1mqcjylh6imp" path="res://Assets/Sprites/Characters/Engineer/Dron/sitting_sus.png" id="15_mv3vy"]
 [ext_resource type="Texture2D" uid="uid://yusbqae1gdbk" path="res://Assets/Sprites/Characters/Engineer/Dron/hasle near wardrobe.png" id="16_cxod2"]
+[ext_resource type="Texture2D" uid="uid://dtrjugtkksekv" path="res://Assets/Sprites/Characters/Engineer/Dron/standing_dead.png" id="18_i1vas"]
 [ext_resource type="Texture2D" uid="uid://2lcyocqmdhh6" path="res://Assets/Sprites/Characters/Engineer/Dron/sitting_AH.png" id="18_xjebt"]
 [ext_resource type="Texture2D" uid="uid://25u3ny2aflx6" path="res://Assets/Sprites/Characters/Engineer/Dron/standing_sus.png" id="19_f7hr0"]
 [ext_resource type="Script" uid="uid://ct24630qdy5qa" path="res://Scripts/Characters/SceneCharacter.gd" id="20_pvt63"]
 [ext_resource type="Texture2D" uid="uid://daj36qgjxnh3h" path="res://Assets/Sprites/Characters/Engineer/Dron/standing_normal.png" id="20_xjebt"]
+[ext_resource type="Script" uid="uid://sv300tnhe327" path="res://Scripts/Scenes/BlackoutEffect.gd" id="blackout_script"]
 [ext_resource type="PackedScene" uid="uid://c8bathroom0a1" path="res://Scenes/Preview/Rooms/Bathroom.tscn" id="room_Bathroom"]
 [ext_resource type="PackedScene" uid="uid://s218cktv50w5" path="res://Scenes/Preview/Rooms/Bookshelf.tscn" id="room_Bookshelf"]
 [ext_resource type="PackedScene" uid="uid://c8exitstor0a1" path="res://Scenes/Preview/Rooms/ExitFromStorage.tscn" id="room_ExitFromStorage"]
@@ -28,28 +30,36 @@
 [ext_resource type="PackedScene" uid="uid://c8underbed0a1" path="res://Scenes/Preview/Rooms/UnderBed.tscn" id="room_UnderBed"]
 [ext_resource type="PackedScene" uid="uid://kvbvxu0vbc8y" path="res://Scenes/Timer/timer.tscn" id="timer_scene"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_cxod2"]
-atlas = ExtResource("12_k7bhf")
+[sub_resource type="AtlasTexture" id="AtlasTexture_i1vas"]
+atlas = ExtResource("20_xjebt")
 region = Rect2(0, 0, 274, 694)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xuvgt"]
-atlas = ExtResource("13_k7bhf")
-region = Rect2(0, 0, 2120, 1280)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1hnut"]
 atlas = ExtResource("14_xjebt")
+region = Rect2(0, 0, 2120, 1280)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k46gi"]
+atlas = ExtResource("18_xjebt")
 region = Rect2(0, 0, 2120, 1280)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5iv33"]
 atlas = ExtResource("15_mv3vy")
 region = Rect2(0, 0, 2120, 1280)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_re16o"]
+atlas = ExtResource("18_i1vas")
+region = Rect2(0, 0, 404, 174)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xuvgt"]
+atlas = ExtResource("13_k7bhf")
+region = Rect2(0, 0, 2120, 1280)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_qllj4"]
 atlas = ExtResource("16_cxod2")
 region = Rect2(0, 0, 179, 316)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_i1vas"]
-atlas = ExtResource("20_xjebt")
+[sub_resource type="AtlasTexture" id="AtlasTexture_cxod2"]
+atlas = ExtResource("12_k7bhf")
 region = Rect2(0, 0, 274, 694)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f7hr0"]
@@ -68,10 +78,42 @@ region = Rect2(0, 0, 274, 694)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_cxod2")
+"texture": SubResource("AtlasTexture_i1vas")
 }],
 "loop": 1,
-"name": &"attack_chair",
+"name": &"kitchen_couch_from_kitchen_sit_normal",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1hnut")
+}],
+"loop": 1,
+"name": &"kitchen_couch_from_kitchen_sit_reach",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k46gi")
+}],
+"loop": 1,
+"name": &"kitchen_couch_from_kitchen_sit_scared",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5iv33")
+}],
+"loop": 1,
+"name": &"kitchen_couch_from_kitchen_sit_suspicious",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_re16o")
+}],
+"loop": 1,
+"name": &"lay_dead",
 "speed": 5.0
 }, {
 "frames": [{
@@ -92,6 +134,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_k46gi")
+}],
+"loop": 1,
+"name": &"sit_scared",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_5iv33")
 }],
 "loop": 1,
@@ -104,6 +154,14 @@ animations = [{
 }],
 "loop": 1,
 "name": &"stand_back",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cxod2")
+}],
+"loop": 1,
+"name": &"stand_chair",
 "speed": 5.0
 }, {
 "frames": [{
@@ -139,9 +197,488 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="InsideHouse" type="Node2D" unique_id=1084163573 node_paths=PackedStringArray("characters")]
+[sub_resource type="Gradient" id="Gradient_blackout"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_blackout"]
+gradient = SubResource("Gradient_blackout")
+width = 4
+height = 4
+
+[sub_resource type="Animation" id="Animation_blackout"]
+resource_name = "blackout"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_blackout"]
+_data = {
+&"blackout": SubResource("Animation_blackout")
+}
+
+[sub_resource type="GDScript" id="GDScript_states"]
+script/source = "extends SceneDialogManager
+
+const HUM_MUSIC := \"res://Assets/Audio/Music/hum.wav\"
+const WATER_SOUND := \"res://Assets/Audio/Sounds/water_kitchen.mp3\"
+const STORAGE_HUM_FADE_SECONDS := 8.0
+const KITCHEN_BUSY := \"res://Files/SceneDialogs/Ink/kitchen_busy.ink\"
+
+var gun_drawn := false
+var _storage_hum := false
+
+func process_event(event: String) -> void:
+	if event == \"gun_drawn\":
+		set_gun_drawn(true)
+		return
+	if event == \"gun_holstered\":
+		set_gun_drawn(false)
+		return
+	if event == \"storage_opened\":
+		on_storage_opened()
+		return
+	if event == \"kitchen_blocked\":
+		_on_kitchen_blocked()
+		return
+	if event == \"silence_kitchen\":
+		_silence_kitchen()
+		return
+	if event == \"reveal_rag\":
+		_reveal_room_child(\"bathroom\", \"Rag\")
+		return
+	if event == \"reveal_tea\":
+		_reveal_room_child(\"kitchen_couch\", \"Tea\")
+		return
+	if event == \"reveal_empty_tea\":
+		_reveal_room_child(\"kitchen_couch\", \"EmptyTea\")
+		return
+	if event == \"mark_glass_eye\":
+		mark_glass_eye()
+		return
+	super.process_event(event)
+
+func set_gun_drawn(drawn: bool) -> void:
+	if gun_drawn == drawn:
+		return
+	gun_drawn = drawn
+	InkVariableStore.set_value(\"gun_drawn\", drawn)
+	if drawn:
+		CommonAudioProcessor.transition_music(HUM_MUSIC)
+	elif not _storage_hum:
+		CommonAudioProcessor.transition_music(SceneLoader.DAY_MUSIC)
+
+func on_storage_opened() -> void:
+	if _storage_hum:
+		return
+	_storage_hum = true
+	CommonAudioProcessor.transition_music(HUM_MUSIC, STORAGE_HUM_FADE_SECONDS)
+
+func mark_glass_eye() -> void:
+	InkVariableStore.set_value(\"has_glass_eye\", true)
+
+func mark_passports_seen() -> void:
+	InkVariableStore.set_value(\"saw_passports\", true)
+
+func store_gun_drawn() -> void:
+	InkVariableStore.set_value(\"gun_drawn\", gun_drawn)
+
+func _on_kitchen_blocked() -> void:
+	if DialogController.is_dialog_active():
+		return
+	if dialog_controller == null:
+		printerr(\"SceneStates: no DialogController\")
+		return
+	dialog_controller.start_story(KITCHEN_BUSY)
+
+func _silence_kitchen() -> void:
+	if not CommonAudioProcessor.has_looped_sound(WATER_SOUND):
+		return
+	var command := AudioSoundLoopedCoomand.new()
+	command.instant = true
+	command.resource_name = WATER_SOUND
+	command.post_action = AudioConstants.STOP
+	CommonAudioProcessor.process_sound_looped(command)
+
+func _reveal_room_child(room_name: String, child_name: String) -> void:
+	var scene := HouseSceneBase.current_house_scene as HouseScenePreview
+	if scene == null:
+		printerr(\"SceneStates: no house scene\")
+		return
+	scene.set_room_child_visible(room_name, child_name, true)
+
+func suspicion() -> int:
+	return int(InkVariableStore.get_value(\"suspicion\", 0))
+
+func store_arrival_flags() -> void:
+	var shelf_open := bool(StateManager.get_state(CustomBookshelfSceneItemUI.STATE_OPEN, false))
+	InkVariableStore.set_value(\"closet_open\", shelf_open)
+
+func engineer() -> SceneCharacter:
+	var scene := HouseSceneBase.current_house_scene as HouseScenePreview
+	if scene == null:
+		return null
+	var character := scene.find_character(\"engineer\")
+	if character:
+		return character
+	return scene.get_node_or_null(\"Characters/Engineer\") as SceneCharacter
+
+func show_engineer(location: String, emotion: String = \"\") -> void:
+	var character := engineer()
+	if character == null:
+		printerr(\"SceneStates: no engineer\")
+		return
+	var root := character.get_parent()
+	if root:
+		root.visible = true
+	if not emotion.is_empty():
+		character.set_emotion(emotion)
+	character.set_location(location)
+"
+
+[sub_resource type="GDScript" id="GDScript_welcome"]
+script/source = "extends SceneDialogState
+
+const WATER_SOUND := \"res://Assets/Audio/Sounds/water_kitchen.mp3\"
+const WATER_DELAY := 4.0
+
+func activate() -> void:
+	super.activate()
+	scene_dialog_manager.show_engineer(\"preroom\", \"stand_normal\")
+	play(DialogPathConstants.WELCOME)
+	scene_dialog_manager.call_delayed(_start_water, WATER_DELAY)
+
+func process_event(event: String) -> void:
+	if event == \"story_inside_house_finished\":
+		scene_dialog_manager.show_engineer(\"kitchen\")
+	elif event == \"story_passport_finished\":
+		if scene_dialog_manager.has_method(\"mark_passports_seen\"):
+			scene_dialog_manager.mark_passports_seen()
+		activate_next(0)
+
+func _start_water() -> void:
+	play_looped(WATER_SOUND, 80)
+"
+
+[sub_resource type="GDScript" id="GDScript_timer"]
+script/source = "extends SceneDialogState
+
+const RETURN_SECONDS := 6.0
+const NIGHT_MUSIC := \"res://Assets/Audio/Music/Ночь.mp3\"
+const NIGHT_FADE_SECONDS := 8.0
+const INSIDE_ROOMS: Array[String] = [\"storage\", \"exit_from_storage\"]
+
+func activate() -> void:
+	super.activate()
+	var countdown := scene_dialog_manager.timer
+	if countdown == null:
+		printerr(\"PassportTimer: no GameTimer\")
+		return
+	countdown.start(RETURN_SECONDS, _on_timer_timeout, true)
+
+func _on_timer_timeout() -> void:
+	var scene := house()
+	if scene == null:
+		printerr(\"PassportTimer: no house scene\")
+		return
+	scene_dialog_manager.show_engineer(\"living_room\")
+	CommonAudioProcessor.transition_music(NIGHT_MUSIC, NIGHT_FADE_SECONDS)
+	if INSIDE_ROOMS.has(scene.current_room):
+		scene.set_movement_locked(true)
+		activate_next(0)
+	else:
+		activate_next(1)
+"
+
+[sub_resource type="GDScript" id="GDScript_fire"]
+script/source = "extends SceneDialogState
+
+const FIRE_SOUND := \"res://Assets/Audio/Sounds/fire.mp3\"
+const KEY_TURN_SOUND := \"res://Assets/Audio/Sounds/key_turning.mp3\"
+const FIRE_DELAY := 8.0
+const EXIT_CLOSED_BACKGROUND := preload(\"res://Assets/Sprites/Backgrounds/exit_from_storage_closed.png\")
+const EXIT_CLOSED_LIGHT_INDEX := 15
+const EXIT_CLOSED_B_LIGHT_INDEX := 16
+
+func activate() -> void:
+	super.activate()
+	_seal_storage()
+	scene_dialog_manager.call_delayed(_start_fire, FIRE_DELAY)
+	play(DialogPathConstants.STORAGE_FIRE, false)
+
+func _start_fire() -> void:
+	play_looped(FIRE_SOUND)
+
+func _seal_storage() -> void:
+	var scene := house()
+	if scene == null:
+		printerr(\"StorageFire: no house scene\")
+		return
+	var shelf := scene.find_child(\"Shelfs\", true, false) as CustomBookshelfSceneItemUI
+	if shelf:
+		shelf.lock_closed()
+	else:
+		StateManager.set_state(CustomBookshelfSceneItemUI.STATE_OPEN, false)
+		StateManager.set_state(CustomBookshelfSceneItemUI.STATE_LOCKED, true)
+	scene.set_room_child_visible(\"storage\", \"ToLivingRoom\", false)
+	scene.set_room_child_visible(\"exit_from_storage\", \"ToLivingRoomToExit\", false)
+	_close_storage_exit()
+	scene.lock_room(\"living_room\", _stay_inside)
+	scene.lock_room(\"living_room_to_exit\", _stay_inside)
+	scene.lock_room(\"living_room_2\", _stay_inside)
+	scene.lock_room(\"bookshelf\", _stay_inside)
+
+func _stay_inside() -> void:
+	pass
+
+func _close_storage_exit() -> void:
+	var scene := house()
+	if scene == null:
+		return
+	var background := scene.room_child(\"exit_from_storage\", \"Background\") as Sprite2D
+	if background == null:
+		printerr(\"StorageFire: exit_from_storage background is missing\")
+		return
+	background.texture = EXIT_CLOSED_BACKGROUND
+	background.set_instance_shader_parameter(\"lighted_index\", EXIT_CLOSED_LIGHT_INDEX)
+	var command := AudioSoundCommand.new()
+	command.instant = true
+	command.resource_name = KEY_TURN_SOUND
+	CommonAudioProcessor.process_sound(command)
+	var stream := load(KEY_TURN_SOUND) as AudioStream
+	var length := 1.0
+	if stream != null and stream.get_length() > 0.0:
+		length = stream.get_length()
+	get_tree().create_timer(length).timeout.connect(_dim_storage_exit.bind(background))
+
+func _dim_storage_exit(background: Sprite2D) -> void:
+	if not is_instance_valid(background):
+		return
+	background.set_instance_shader_parameter(\"lighted_index\", EXIT_CLOSED_B_LIGHT_INDEX)
+"
+
+[sub_resource type="GDScript" id="GDScript_tea_ready"]
+script/source = "extends SceneDialogState
+
+func activate() -> void:
+	super.activate()
+	var scene := house()
+	if scene:
+		scene.load_room(\"living_room\")
+	scene_dialog_manager.show_engineer(\"living_room\", \"stand_tea\")
+	scene_dialog_manager.store_arrival_flags()
+	if scene_dialog_manager.has_method(\"store_gun_drawn\"):
+		scene_dialog_manager.store_gun_drawn()
+	play(DialogPathConstants.TEA_READY)
+
+func process_event(event: String) -> void:
+	if event != \"story_engineer_tea_ready_finished\":
+		return
+	if scene_dialog_manager.flag(\"engineer_dead\"):
+		activate_next(0)
+	else:
+		activate_next(1)
+"
+
+[sub_resource type="GDScript" id="GDScript_street"]
+script/source = "extends SceneDialogState
+
+func activate() -> void:
+	super.activate()
+	play(DialogPathConstants.STREET)
+"
+
+[sub_resource type="GDScript" id="GDScript_kitchen"]
+script/source = "extends SceneDialogState
+
+var _entered_kitchen := false
+var _entered_couch := false
+var _sit_said := false
+
+func activate() -> void:
+	super.activate()
+	var scene := house()
+	if scene:
+		scene.unlock_room(\"kitchen\")
+	scene_dialog_manager.show_engineer(\"kitchen\", \"stand_tea\")
+
+func process_event(event: String) -> void:
+	if event == \"room_kitchen\":
+		_entered_kitchen = true
+	elif event == \"room_kitchen_couch\":
+		_entered_couch = true
+
+func check_condition() -> int:
+	if DialogController.is_dialog_active():
+		return -1
+	if _entered_kitchen and not _sit_said:
+		_sit_said = true
+		play(DialogPathConstants.SIT)
+		return -1
+	if _entered_couch:
+		return 0
+	return -1
+"
+
+[sub_resource type="GDScript" id="GDScript_couch"]
+script/source = "extends SceneDialogState
+
+const SPILL_SUSPICION := 4
+
+func activate() -> void:
+	super.activate()
+	scene_dialog_manager.show_engineer(\"kitchen_couch\")
+	if scene_dialog_manager.suspicion() >= SPILL_SUSPICION:
+		activate_next(0)
+	else:
+		activate_next(1)
+"
+
+[sub_resource type="GDScript" id="GDScript_spill"]
+script/source = "extends SceneDialogState
+
+func activate() -> void:
+	super.activate()
+	play(DialogPathConstants.SPILL_TEA)
+
+func process_event(event: String) -> void:
+	if event != \"story_engineer_spil_tea_finished\":
+		return
+	if scene_dialog_manager.flag(\"engineer_dead\"):
+		activate_next(1)
+	elif scene_dialog_manager.flag(\"fetching_rag\"):
+		activate_next(0)
+	else:
+		printerr(\"SpillTea: story ended without a follow-up flag\")
+"
+
+[sub_resource type="GDScript" id="GDScript_rag"]
+script/source = "extends SceneDialogState
+
+var _on_the_couch := false
+
+func activate() -> void:
+	super.activate()
+	var scene := house()
+	_on_the_couch = scene != null and scene.current_room == \"kitchen\"
+
+func process_event(event: String) -> void:
+	if event == \"room_kitchen_couch\":
+		_on_the_couch = true
+	elif event.begins_with(\"room_\"):
+		_on_the_couch = false
+
+func check_condition() -> int:
+	if not _on_the_couch or DialogController.is_dialog_active():
+		return -1
+	if not _has_rag():
+		return -1
+	return 0
+
+func _has_rag() -> bool:
+	var scene := house()
+	if scene == null or scene.scene_object_manager == null:
+		return false
+	var inventory := scene.scene_object_manager.inventory
+	if inventory == null:
+		return false
+	return inventory.has_item(InventoryItemGenerator.INVENTORY_ITEM.RAG)
+"
+
+[sub_resource type="GDScript" id="GDScript_interview"]
+script/source = "extends SceneDialogState
+
+func activate() -> void:
+	super.activate()
+	play(DialogPathConstants.INTERVIEW)
+
+func process_event(event: String) -> void:
+	if event != \"story_engineer_interview_finished\":
+		return
+	if scene_dialog_manager.flag(\"engineer_dead\") or scene_dialog_manager.flag(\"engineer_kicked\"):
+		activate_next(0)
+	elif scene_dialog_manager.flag(\"engineer_poison\"):
+		activate_next(1)
+	elif scene_dialog_manager.flag(\"engineer_sleep\"):
+		activate_next(2)
+	else:
+		printerr(\"Interview: story ended without a follow-up flag\")
+"
+
+[sub_resource type="GDScript" id="GDScript_torture"]
+script/source = "extends SceneDialogState
+
+const TORTURE_MUSIC := \"res://Assets/Audio/Music/FUCK.mp3\"
+const EXIT_CLOSED_BACKGROUND := preload(\"res://Assets/Sprites/Backgrounds/exit_from_storage_dark.png\")
+const EXIT_CLOSED_LIGHT_INDEX := 15
+
+@export var blackout: BlackoutEffect
+@export var engineer: SceneCharacter
+
+func activate() -> void:
+	super.activate()
+	var scene := house()
+	scene.set_movement_locked(true)
+	await blackout.effect_blackout()
+	CommonAudioProcessor.transition_music(TORTURE_MUSIC)
+	if scene == null:
+		printerr(\"Torture: no house scene\")
+		return
+	scene.load_room(\"exit_from_storage\")
+	_close_storage_exit(scene)
+	_lock_inventory(scene)
+	await blackout.back_to_normal()
+	engineer.set_emotion(\"stand_normal\")
+	engineer.set_location(\"exit_from_storage\")
+	#TODO: REMOVE:
+	engineer.modulate = Color.from_rgba8(110,100,100)
+	play(DialogPathConstants.TORTURE)
+
+func _close_storage_exit(scene: HouseScenePreview) -> void:
+	var background := scene.room_child(\"exit_from_storage\", \"Background\") as Sprite2D
+	if background == null:
+		printerr(\"Torture: exit_from_storage background is missing\")
+		return
+	background.texture = EXIT_CLOSED_BACKGROUND
+	background.set_instance_shader_parameter(\"lighted_index\", EXIT_CLOSED_LIGHT_INDEX)
+	
+
+func _lock_inventory(scene: HouseScenePreview) -> void:
+	if scene.scene_object_manager == null or scene.scene_object_manager.inventory == null:
+		printerr(\"Torture: no inventory\")
+		return
+	scene.scene_object_manager.inventory.set_locked(true)
+"
+
+[sub_resource type="GDScript" id="GDScript_dream"]
+script/source = "extends SceneDialogState
+
+func activate() -> void:
+	super.activate()
+	play(DialogPathConstants.DREAM)
+
+func process_event(event: String) -> void:
+	if event != \"story_dream_finished\":
+		return
+	if scene_dialog_manager.flag(\"engineer_to_torture\"):
+		activate_next(0)
+	elif scene_dialog_manager.flag(\"engineer_dead\") or scene_dialog_manager.flag(\"engineer_leave\"):
+		activate_next(1)
+	else:
+		printerr(\"Dream: story ended without a follow-up flag\")
+"
+
+[node name="InsideHouse" type="Node2D" unique_id=1084163573 node_paths=PackedStringArray("scene_states", "characters")]
 script = ExtResource("1_r7y35")
-ink_dialog_appear_path = "res://Files/SceneDialogs/Ink/inside_house.ink"
+scene_states = NodePath("SceneStates")
 characters = [NodePath("Characters/Engineer")]
 room_scenes = Array[PackedScene]([ExtResource("room_LivingRoom"), ExtResource("room_LivingRoomToExit"), ExtResource("room_LivingRoom2"), ExtResource("room_ExitFromStorage"), ExtResource("room_UnderBed"), ExtResource("room_Preroom"), ExtResource("room_Bathroom"), ExtResource("room_Storage"), ExtResource("room_Kitchen"), ExtResource("room_KitchenCouch"), ExtResource("room_Bookshelf")])
 
@@ -157,7 +694,7 @@ visible = false
 [node name="Engineer" type="AnimatedSprite2D" parent="Characters" unique_id=718858753 node_paths=PackedStringArray("sprite")]
 position = Vector2(802.99994, 382.99997)
 sprite_frames = SubResource("SpriteFrames_280bj")
-animation = &"attack_chair"
+animation = &"lay_dead"
 script = ExtResource("20_pvt63")
 sprite = NodePath(".")
 character_name = "engineer"
@@ -182,8 +719,116 @@ z_index = 4
 story = null
 timer = NodePath("../GameTimer")
 
+[node name="Blackout" type="TextureRect" parent="." unique_id=1847263105]
+modulate = Color(1, 1, 1, 0)
+z_index = 5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_blackout")
+expand_mode = 1
+script = ExtResource("blackout_script")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Blackout" unique_id=1847263106]
+libraries/ = SubResource("AnimationLibrary_blackout")
+
 [node name="SceneParallax" type="Node" parent="." unique_id=2145012303]
 script = ExtResource("9_parallax")
 
 [node name="GameTimer" parent="." unique_id=729499716 instance=ExtResource("timer_scene")]
 z_index = 3
+
+[node name="SceneStates" type="Node" parent="." unique_id=359844260 node_paths=PackedStringArray("dialog_controller", "timer", "first_state")]
+script = SubResource("GDScript_states")
+dialog_controller = NodePath("../DialogController")
+timer = NodePath("../GameTimer")
+first_state = NodePath("Welcome")
+
+[node name="Welcome" type="Node" parent="SceneStates" unique_id=208105396 node_paths=PackedStringArray("next_options")]
+script = SubResource("GDScript_welcome")
+next_options = [NodePath("PassportTimer")]
+
+[node name="PassportTimer" type="Node" parent="SceneStates/Welcome" unique_id=1988318410 node_paths=PackedStringArray("next_options")]
+script = SubResource("GDScript_timer")
+next_options = [NodePath("StorageFire"), NodePath("TeaReady")]
+
+[node name="StorageFire" type="Node" parent="SceneStates/Welcome/PassportTimer" unique_id=1592969705]
+script = SubResource("GDScript_fire")
+active = null
+
+[node name="TeaReady" type="Node" parent="SceneStates/Welcome/PassportTimer" unique_id=2131681683 node_paths=PackedStringArray("next_options")]
+script = SubResource("GDScript_tea_ready")
+next_options = [NodePath("Street"), NodePath("KitchenWait")]
+
+[node name="Street" type="Node" parent="SceneStates/Welcome/PassportTimer/TeaReady" unique_id=675708743]
+script = SubResource("GDScript_street")
+
+[node name="KitchenWait" type="Node" parent="SceneStates/Welcome/PassportTimer/TeaReady" unique_id=1507142644 node_paths=PackedStringArray("next_options")]
+script = SubResource("GDScript_kitchen")
+next_options = [NodePath("CouchTea")]
+
+[node name="CouchTea" type="Node" parent="SceneStates/Welcome/PassportTimer/TeaReady/KitchenWait" unique_id=1807811794 node_paths=PackedStringArray("next_options")]
+script = SubResource("GDScript_couch")
+next_options = [NodePath("SpillTea"), NodePath("Interview")]
+
+[node name="SpillTea" type="Node" parent="SceneStates/Welcome/PassportTimer/TeaReady/KitchenWait/CouchTea" unique_id=289538580 node_paths=PackedStringArray("next_options")]
+script = SubResource("GDScript_spill")
+next_options = [NodePath("FetchRag"), NodePath("Street")]
+
+[node name="FetchRag" type="Node" parent="SceneStates/Welcome/PassportTimer/TeaReady/KitchenWait/CouchTea/SpillTea" unique_id=953906665 node_paths=PackedStringArray("next_options")]
+script = SubResource("GDScript_rag")
+next_options = [NodePath("Interview")]
+
+[node name="Interview" type="Node" parent="SceneStates/Welcome/PassportTimer/TeaReady/KitchenWait/CouchTea/SpillTea/FetchRag" unique_id=1572280777 node_paths=PackedStringArray("next_options")]
+script = SubResource("GDScript_interview")
+next_options = [NodePath("Street"), NodePath("Torture"), NodePath("Dream")]
+
+[node name="Street" type="Node" parent="SceneStates/Welcome/PassportTimer/TeaReady/KitchenWait/CouchTea/SpillTea/FetchRag/Interview" unique_id=1518758341]
+script = SubResource("GDScript_street")
+
+[node name="Torture" type="Node" parent="SceneStates/Welcome/PassportTimer/TeaReady/KitchenWait/CouchTea/SpillTea/FetchRag/Interview" unique_id=2140173122 node_paths=PackedStringArray("blackout", "engineer")]
+script = SubResource("GDScript_torture")
+blackout = NodePath("../../../../../../../../../../Blackout")
+engineer = NodePath("../../../../../../../../../../Characters/Engineer")
+
+[node name="Dream" type="Node" parent="SceneStates/Welcome/PassportTimer/TeaReady/KitchenWait/CouchTea/SpillTea/FetchRag/Interview" unique_id=2039561647 node_paths=PackedStringArray("next_options")]
+script = SubResource("GDScript_dream")
+next_options = [NodePath("Torture"), NodePath("Street")]
+
+[node name="Torture" type="Node" parent="SceneStates/Welcome/PassportTimer/TeaReady/KitchenWait/CouchTea/SpillTea/FetchRag/Interview/Dream" unique_id=1290171044 node_paths=PackedStringArray("blackout", "engineer")]
+script = SubResource("GDScript_torture")
+blackout = NodePath("../../../../../../../../../../../Blackout")
+engineer = NodePath("../../../../../../../../../../../Characters/Engineer")
+
+[node name="Street" type="Node" parent="SceneStates/Welcome/PassportTimer/TeaReady/KitchenWait/CouchTea/SpillTea/FetchRag/Interview/Dream" unique_id=1507918003]
+script = SubResource("GDScript_street")
+
+[node name="Street" type="Node" parent="SceneStates/Welcome/PassportTimer/TeaReady/KitchenWait/CouchTea/SpillTea" unique_id=769850700]
+script = SubResource("GDScript_street")
+
+[node name="Interview" type="Node" parent="SceneStates/Welcome/PassportTimer/TeaReady/KitchenWait/CouchTea" unique_id=1438438167 node_paths=PackedStringArray("next_options")]
+script = SubResource("GDScript_interview")
+next_options = [NodePath("Street"), NodePath("Torture"), NodePath("Dream")]
+
+[node name="Street" type="Node" parent="SceneStates/Welcome/PassportTimer/TeaReady/KitchenWait/CouchTea/Interview" unique_id=334978175]
+script = SubResource("GDScript_street")
+
+[node name="Torture" type="Node" parent="SceneStates/Welcome/PassportTimer/TeaReady/KitchenWait/CouchTea/Interview" unique_id=1003113537 node_paths=PackedStringArray("blackout", "engineer")]
+script = SubResource("GDScript_torture")
+blackout = NodePath("../../../../../../../../Blackout")
+engineer = NodePath("../../../../../../../../Characters/Engineer")
+
+[node name="Dream" type="Node" parent="SceneStates/Welcome/PassportTimer/TeaReady/KitchenWait/CouchTea/Interview" unique_id=509828763 node_paths=PackedStringArray("next_options")]
+script = SubResource("GDScript_dream")
+next_options = [NodePath("Torture"), NodePath("Street")]
+
+[node name="Torture" type="Node" parent="SceneStates/Welcome/PassportTimer/TeaReady/KitchenWait/CouchTea/Interview/Dream" unique_id=238540501 node_paths=PackedStringArray("blackout", "engineer")]
+script = SubResource("GDScript_torture")
+blackout = NodePath("../../../../../../../../../Blackout")
+engineer = NodePath("../../../../../../../../../Characters/Engineer")
+
+[node name="Street" type="Node" parent="SceneStates/Welcome/PassportTimer/TeaReady/KitchenWait/CouchTea/Interview/Dream" unique_id=607823804]
+script = SubResource("GDScript_street")

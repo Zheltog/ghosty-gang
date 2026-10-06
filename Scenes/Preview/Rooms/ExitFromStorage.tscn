@@ -3,14 +3,13 @@
 [ext_resource type="PackedScene" uid="uid://mt1xmuy8xhd5" path="res://Scenes/PointAndClick/SceneUIDoor.tscn" id="2_door"]
 [ext_resource type="Texture2D" uid="uid://dadq1xc3xcndr" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/MoveBack.png" id="10_a71pi"]
 [ext_resource type="Script" uid="uid://8p77bw84c7bp" path="res://Scripts/UI/PointAndClickScenes/Components/ParallaxComponent.gd" id="10_parobj"]
-[ext_resource type="Script" uid="uid://bsceneuidoor001" path="res://Scripts/UI/PointAndClickScenes/SceneUIDoor.gd" id="11_door"]
+[ext_resource type="Script" uid="uid://d37oapbkld1pk" path="res://Scripts/UI/PointAndClickScenes/SceneUIDoor.gd" id="11_door"]
 [ext_resource type="Script" uid="uid://bgebmjt4oem53" path="res://Scripts/Room/RoomBase.gd" id="12_room"]
 [ext_resource type="Texture2D" uid="uid://cyisfyc7w6di0" path="res://Assets/Sprites/Backgrounds/exit_from_storage_dark.png" id="60_efs_bg"]
 [ext_resource type="Script" uid="uid://3yscu2its1" path="res://Scenes/Test/Dron/DarknessEffect.gd" id="60_efs_dark"]
 [ext_resource type="Material" uid="uid://cettvgv7o7kmc" path="res://Scripts/Shaders/darkness_material.tres" id="60_efs_mat"]
 
 [node name="ExitFromStorage" type="Node2D" unique_id=-1094967295]
-visible = false
 script = ExtResource("12_room")
 room_name = "exit_from_storage"
 
@@ -54,76 +53,16 @@ camera_distance = 100.0
 [node name="Character" type="AnimatedSprite2D" parent="." unique_id=847728140]
 position = Vector2(960, 540)
 
-[node name="CharacterPositions" type="Node2D" parent="."]
+[node name="CharacterPositions" type="Node2D" parent="." unique_id=1474846183]
 
-[node name="default" type="Marker2D" parent="CharacterPositions"]
+[node name="default" type="Marker2D" parent="CharacterPositions" unique_id=1659678063]
 position = Vector2(803, 383)
-scale = Vector2(0.15, 0.15)
+scale = Vector2(2, 2)
 
-[node name="engineer_default" type="Marker2D" parent="CharacterPositions"]
-position = Vector2(803, 383)
-scale = Vector2(0.15, 0.15)
+[node name="engineer_stand_back" type="Marker2D" parent="CharacterPositions" unique_id=1706260570]
+position = Vector2(529, 708)
+scale = Vector2(3, 3)
 
-[node name="engineer_attack_chair" type="Marker2D" parent="CharacterPositions"]
-position = Vector2(803, 383)
-scale = Vector2(0.15, 0.15)
-
-[node name="engineer_close" type="Marker2D" parent="CharacterPositions"]
-position = Vector2(803, 383)
-scale = Vector2(0.15, 0.15)
-
-[node name="engineer_close_needle" type="Marker2D" parent="CharacterPositions"]
-position = Vector2(803, 383)
-scale = Vector2(0.15, 0.15)
-
-[node name="engineer_lay_shot" type="Marker2D" parent="CharacterPositions"]
-position = Vector2(803, 383)
-scale = Vector2(0.15, 0.15)
-
-[node name="engineer_sit_normal" type="Marker2D" parent="CharacterPositions"]
-position = Vector2(803, 383)
-scale = Vector2(0.15, 0.15)
-
-[node name="engineer_sit_reach" type="Marker2D" parent="CharacterPositions"]
-position = Vector2(803, 383)
-scale = Vector2(0.15, 0.15)
-
-[node name="engineer_sit_shocked" type="Marker2D" parent="CharacterPositions"]
-position = Vector2(803, 383)
-scale = Vector2(0.15, 0.15)
-
-[node name="engineer_sit_shot" type="Marker2D" parent="CharacterPositions"]
-position = Vector2(803, 383)
-scale = Vector2(0.15, 0.15)
-
-[node name="engineer_sit_suspicious" type="Marker2D" parent="CharacterPositions"]
-position = Vector2(803, 383)
-scale = Vector2(0.15, 0.15)
-
-[node name="engineer_stand_back" type="Marker2D" parent="CharacterPositions"]
-position = Vector2(803, 383)
-scale = Vector2(0.15, 0.15)
-
-[node name="engineer_stand_default" type="Marker2D" parent="CharacterPositions"]
-position = Vector2(803, 383)
-scale = Vector2(0.15, 0.15)
-
-[node name="engineer_stand_scared" type="Marker2D" parent="CharacterPositions"]
-position = Vector2(803, 383)
-scale = Vector2(0.15, 0.15)
-
-[node name="engineer_stand_shot" type="Marker2D" parent="CharacterPositions"]
-position = Vector2(803, 383)
-scale = Vector2(0.15, 0.15)
-
-[node name="engineer_stand_smiling" type="Marker2D" parent="CharacterPositions"]
-position = Vector2(803, 383)
-scale = Vector2(0.15, 0.15)
-
-[node name="engineer_stand_suspicious" type="Marker2D" parent="CharacterPositions"]
-position = Vector2(803, 383)
-scale = Vector2(0.15, 0.15)
-
-[node name="engineer_stand_tea" type="Marker2D" parent="CharacterPositions"]
-position = Vector2(803, 383)
-scale = Vector2(0.15, 0.15)
+[node name="engineer_lay_dead" type="Marker2D" parent="CharacterPositions" unique_id=165976067]
+position = Vector2(675, 993)
+scale = Vector2(1.6, 1.6)

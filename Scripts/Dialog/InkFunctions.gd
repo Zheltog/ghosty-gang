@@ -64,10 +64,11 @@ func _invoke(target_class: String, method: String, args: Array) -> Variant:
 
 func _class_key(target: Object) -> StringName:
 	var script := target.get_script() as Script
-	if script:
+	while script:
 		var global_name := script.get_global_name()
 		if global_name != &"":
 			return global_name
+		script = script.get_base_script()
 	return StringName()
 
 func _on_target_tree_exiting(target: Object) -> void:

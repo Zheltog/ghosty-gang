@@ -1,0 +1,10 @@
+Фичи:
+1) Picking up scene objects should have a visible progress bar of some kind.
+2) Effect of blinking which allows for other people to appear suddenly
+3) 
+
+Превью:
+1) Add music
+
+Баги:
+1) pickup of SceneObjectItem doesn't change the mouse cursor back. 

@@ -1,4 +1,4 @@
 # story: engineer_sit
 
-Садитесь. # window:default # char:engineer # anim:stand_tea # skippable:false
+Садитесь. # window:default # char:engineer # pose:stand # anim:tea # skippable:false
 -> END

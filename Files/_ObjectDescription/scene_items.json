@@ -89,7 +89,7 @@
 	},
 	"tea" : {
 		"pickable" : true,
-		"equiped_immediately" : false,
+		"equiped_immediately" : true,
 		"inventory_item" : "tea",
 		"after_pickup" : "disappear"
 	},

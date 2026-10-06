@@ -1,0 +1,16 @@
+[remap]
+
+importer="ink"
+type="Resource"
+uid="uid://sngvbuvpjtl0"
+path="res://.godot/imported/gun_reaction.ink-734ae73b275bdf6f9b5d6fbbde929be4.res"
+
+[deps]
+
+source_file="res://Files/SceneDialogs/Ink/EngineerHouse/gun_reaction.ink"
+dest_files=["res://.godot/imported/gun_reaction.ink-734ae73b275bdf6f9b5d6fbbde929be4.res"]
+
+[params]
+
+is_main_file=false
+compress=true

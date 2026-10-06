@@ -38,23 +38,23 @@ VAR passports_raised = false
 -> END
 
 === pistol ===
-Подъём. # window:default # char:engineer # anim:close # skippable:false
+Подъём. # window:default # char:engineer # pose:none # skippable:false
 Чего?.. # response # skippable:false
 Что-то металлическое упирается в затылок. # thought
-У меня пистолет. Без резких движений. # window:default # char:engineer # anim:close # skippable:false
-Руки за спину. Медленно. # anim:attack_chair # skippable:false
+У меня пистолет. Без резких движений. # window:default # char:engineer # skippable:false
+Руки за спину. Медленно. # pose:attack # skippable:false
 Ты подчиняешься. Инженер шустро связывает их бечёвкой. # thought
-Вот так. А теперь… # window:default # char:engineer # anim:close # skippable:false
+Вот так. А теперь… # window:default # char:engineer # skippable:false
 Рукоять врезается в висок. # thought
 ~ engineer_to_torture = true
 -> END
 
 === board ===
 Ай! # response # skippable:false
-Ах ты, собака конторская… # window:default # char:engineer # anim:attack_chair # skippable:false
+Ах ты, собака конторская… # window:default # char:engineer # pose:attack # anim:chair # skippable:false
 Хозяин заносит доску. Ты прикрываешь голову. Правая рука нащупывает металл. # thought
-Выстрел. # thought # char:engineer # anim:stand_shot
-Ещё один. # thought # char:engineer # anim:lay_shot
+Выстрел. # thought # char:engineer # pose:stand # anim:shot
+Ещё один. # thought # char:engineer # pose:lay # anim:shot
 Твою мать. Надо валить. # response # skippable:false
 ~ engineer_dead = true
 -> END

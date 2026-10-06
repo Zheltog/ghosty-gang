@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://c8engreturn01"]
+
+[ext_resource type="PackedScene" uid="uid://coqod58rqhc2u" path="res://Scenes/Preview/InsideHouse.tscn" id="1_house"]
+[ext_resource type="Script" uid="uid://ddx6ksi0lkjt1" path="res://Scripts/Scenes/EngineerReturnSetup.gd" id="2_setup"]
+
+[node name="InsideHouse2" unique_id=1450198390 instance=ExtResource("1_house")]
+
+[node name="EngineerReturnSetup" type="Node" parent="." index="0" unique_id=1442136173]
+script = ExtResource("2_setup")
+
+[node name="StorageFire" parent="SceneStates/Welcome/PassportTimer" parent_id_path=PackedInt32Array(1988318410) index="0" unique_id=1592969705]
+active = false

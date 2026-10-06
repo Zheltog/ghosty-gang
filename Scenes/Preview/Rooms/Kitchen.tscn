@@ -141,19 +141,19 @@ position = Vector2(960, 540)
 [node name="CharacterPositions" type="Node2D" parent="." unique_id=603826549]
 
 [node name="default" type="Marker2D" parent="CharacterPositions" unique_id=1668231852]
-position = Vector2(1117, 683)
+position = Vector2(955, 539)
 
 [node name="engineer_stand_scared" type="Marker2D" parent="CharacterPositions" unique_id=1049608247]
-position = Vector2(1117, 683)
+position = Vector2(954, 548)
 
 [node name="engineer_stand_shot" type="Marker2D" parent="CharacterPositions" unique_id=789926856]
-position = Vector2(1117, 683)
+position = Vector2(954, 548)
 
 [node name="engineer_stand_smiling" type="Marker2D" parent="CharacterPositions" unique_id=204728349]
-position = Vector2(1117, 683)
+position = Vector2(954, 548)
 
 [node name="engineer_stand_suspicious" type="Marker2D" parent="CharacterPositions" unique_id=466749143]
-position = Vector2(1117, 683)
+position = Vector2(954, 548)
 
 [node name="engineer_stand_tea" type="Marker2D" parent="CharacterPositions" unique_id=1019729049]
-position = Vector2(1117, 683)
+position = Vector2(954, 548)

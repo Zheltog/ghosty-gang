@@ -12,7 +12,8 @@ Keys are case-insensitive. Bool values: `true` / `false`, `1` / `0`, `yes` / `no
 
 | Tag | Example | What it does |
 |---|---|---|
-| `anim` | `# anim:wave` | Play this animation on the current character. With no current character, the tag warns and does nothing. |
+| `anim` | `# anim:scared` | Play this animation on the current character. If that character has a `pose`, the clip is `pose_anim` (`stand` + `scared` plays `stand_scared`). If the value is the pose itself (`# pose:close # anim:close`), the clip is that pose. With no pose, the value is the whole clip name. With no current character, the tag warns and does nothing. |
+| `pose` | `# pose:stand` | Sticks for the current character until another `pose` for that character. An empty `# pose:` clears it. Does not play an animation by itself. |
 | `char` | `# char:engineer` | This line only. Speak and animate as this character. The name matches `character_name` on the scene character. |
 | `char_default` | `# char_default:engineer` | Sets the character for this line and every line after, until another `char_default`. A per-line `char` still overrides it. New stories start with no character. |
 | `window` | `# window:speech_left` | Open this dialog window. It stays until another `window` tag. An unknown name uses `default`. |

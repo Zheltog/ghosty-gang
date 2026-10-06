@@ -133,9 +133,19 @@ func unequip_item() -> void:
 	inventory.unequip_item()
 
 var _up = true
+var _locked := false
+
+func set_locked(locked: bool) -> void:
+	_locked = locked
+	if locked:
+		bring_down()
+		show_button.visible = false
+		hide_button.visible = false
+	elif not _up:
+		show_button.visible = true
 
 func bring_up() -> void:
-	if _up:
+	if _locked or _up:
 		return
 	hide_button.visible = true
 	show_button.visible = false

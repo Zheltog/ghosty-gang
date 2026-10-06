@@ -1,0 +1,16 @@
+[remap]
+
+importer="ink"
+type="Resource"
+uid="uid://r7g53t2bpu0a"
+path="res://.godot/imported/storage_fire.ink-6c50d5e806fb5814e071a304885a886c.res"
+
+[deps]
+
+source_file="res://Files/SceneDialogs/Ink/EngineerHouse/storage_fire.ink"
+dest_files=["res://.godot/imported/storage_fire.ink-6c50d5e806fb5814e071a304885a886c.res"]
+
+[params]
+
+is_main_file=true
+compress=true

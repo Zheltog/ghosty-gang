@@ -23,6 +23,7 @@ var _music_fade_seconds := MUSIC_FADE_SECONDS
 var _fading_out := false
 
 func _ready() -> void:
+	InkFunctions.subscribe(self)
 	for i in range(_sound_players_pool_size):
 		var sound_player = TypedAudioStreamPlayer.new()
 		sound_player.type = TypedAudioStreamPlayer.AudioStreamPlayerType.Sound
@@ -54,6 +55,12 @@ func transition_music(resource_name: String, fade_seconds: float = MUSIC_FADE_SE
 		)
 		return
 	_fade_in_music(resource_name)
+
+func transition_music_by_name(track_name: String, fade_seconds: float = MUSIC_FADE_SECONDS) -> void:
+	if !TrackNameConstants.name_to_resource.has(track_name):
+		printerr("Resource not set for track name " + track_name)
+		return
+	transition_music(TrackNameConstants.name_to_resource[track_name], fade_seconds)
 
 func _on_music_faded_out() -> void:
 	_music_player.stop()

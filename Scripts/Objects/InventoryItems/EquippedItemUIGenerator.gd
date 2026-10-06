@@ -59,6 +59,15 @@ static func _setup_passport(ui: EquippedItemUI) -> void:
 static func _setup_photo(ui: EquippedItemUI) -> void:
 	var frames := SpriteFrames.new()
 	frames.add_animation("default")
+	frames.add_frame("default", preload("res://Assets/Sprites/EquipedInventoryItems/photo.png"))
+	ui.sprite_frames = frames
+	ui.play("default")
+static func _setup_tea(ui: EquippedItemUI) -> void:
+	var frames := SpriteFrames.new()
+	frames.add_animation("default")
+	frames.add_frame("default", preload("res://Assets/Sprites/EquipedInventoryItems/tea.png"))
+	frames.add_animation("empty")
+	frames.add_frame("empty", preload("res://Assets/Sprites/EquipedInventoryItems/tea_empty_0.png"))
 	ui.sprite_frames = frames
 	ui.play("default")
 static func _setup_glass_eye(ui: EquippedItemUI) -> void:
@@ -71,14 +80,6 @@ static func _setup_rag(ui: EquippedItemUI) -> void:
 	var frames := SpriteFrames.new()
 	frames.add_animation("default")
 	frames.add_frame("default", preload("res://Assets/Sprites/EquipedInventoryItems/rag.png"))
-	ui.sprite_frames = frames
-	ui.play("default")
-static func _setup_tea(ui: EquippedItemUI) -> void:
-	var frames := SpriteFrames.new()
-	frames.add_animation("default")
-	frames.add_frame("default", preload("res://Assets/Sprites/EquipedInventoryItems/tea.png"))
-	frames.add_animation("empty")
-	frames.add_frame("empty", preload("res://Assets/Sprites/EquipedInventoryItems/tea_empty_0.png"))
 	ui.sprite_frames = frames
 	ui.play("default")
 

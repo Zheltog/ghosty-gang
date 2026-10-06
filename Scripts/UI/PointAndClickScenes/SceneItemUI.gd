@@ -68,7 +68,7 @@ func update_hold_animation() -> void:
 func can_interact() -> bool:
 	if interact_during_dialog:
 		return true
-	return not DialogController.is_dialog_active()
+	return not DialogController.is_dialog_active() or not DialogController.is_world_locked()
 
 func press_ui() -> void:
 	if not can_interact():
@@ -111,6 +111,8 @@ func _get_equipped_item() -> InventoryItemUI:
 		return null
 	return equipped
 
-func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
+func _on_input_event(viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		if can_interact() and viewport is Viewport:
+			viewport.set_input_as_handled()
 		_scene_object_manager.item_pressed(self)

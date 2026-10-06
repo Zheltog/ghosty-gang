@@ -1,22 +1,14 @@
 // Триггер: игрок сам перешёл на kitchen_couch после «Садитесь».
-// suspicion >= 4 — проливает чай. gun_drawn — пьёте под стволом.
+// suspicion >= 4 — проливает чай
 EXTERNAL godot(target_class, method)
+EXTERNAL godot_1(target_class, method, arg)
 # story: engineer_tea
-# load: suspicion, closet_open, key_returned, saw_passports, has_glass_eye, gun_drawn, engineer_dead, engineer_poison, engineer_kicked, engineer_sleep, engineer_to_torture, engineer_leave, passports_raised, fetching_rag, rag_fetched
-# save: suspicion, closet_open, key_returned, saw_passports, has_glass_eye, gun_drawn, engineer_dead, engineer_poison, engineer_kicked, engineer_sleep, engineer_to_torture, engineer_leave, passports_raised, fetching_rag, rag_fetched
+# load: suspicion, closet_open, saw_passports, gun_drawn, engineer_poison, passports_raised, fetching_rag, rag_fetched
+# save: suspicion, closet_open, saw_passports, gun_drawn, engineer_poison, passports_raised, fetching_rag, rag_fetched
 
 VAR suspicion = 0
-VAR closet_open = false
-VAR key_returned = false
 VAR saw_passports = false
-VAR has_glass_eye = false
 VAR gun_drawn = false
-VAR engineer_dead = false
-VAR engineer_poison = false
-VAR engineer_kicked = false
-VAR engineer_sleep = false
-VAR engineer_to_torture = false
-VAR engineer_leave = false
 VAR passports_raised = false
 VAR fetching_rag = false
 VAR rag_fetched = false
@@ -36,18 +28,19 @@ VAR rag_fetched = false
 -> tea_low
 
 === tea_high ===
+# char:engineer # pose:sit # anim:scared
 Только он начинает наливать чай, как рука дёргается. По столику расползается лужа. # thought
-Ах ты. Дорогой мой, не будете любезны?.. Тряпка в ванной, принесите, пожалуйста. # window:default # char:engineer # anim:stand_tea # skippable:false
+Ах ты. # window:default # char:engineer # anim:scared # skippable:false
+Дорогой мой, не будете любезны?.. Тряпка в ванной, принесите, пожалуйста. # window:default # char:engineer # anim:normal # skippable:false
 Сейчас будет. Момент. # response # skippable:false
 ~ fetching_rag = true
-~ godot("HouseScenePreview", "reveal_rag")
+~ godot_1("SceneDialogManager", "process_event", "reveal_rag")
 -> END
 
 === tea_after_rag ===
-~ godot("HouseScenePreview", "reveal_tea")
 Когда ты возвращаешься с тряпкой чай уже налит. Владислав с блаженным видом отхлебывает из своей кружки. # thought
 Ты вытираешь лужу со столика и садишься рядом. Крепкий черный чай пахнет восхитительно - старик добавил сушеные листья смородины и мяты. # thought
-Пейте. Вам сейчас согреться надо. # window:default # char:engineer # anim:sit_normal # skippable:false
+Пейте. Вам сейчас согреться надо. # window:default # char:engineer # pose:sit # anim:normal # skippable:false
 + [Выпить]
 	Взять кружку и выпить. # response # skippable:false
 	-> drink
@@ -64,22 +57,22 @@ VAR rag_fetched = false
 	-> tea_after_rag
 
 === tea_low ===
-~ godot("HouseScenePreview", "reveal_tea")
+~ godot_1("SceneDialogManager", "process_event", "reveal_tea")
 Инженер берёт чайник и не спеша разливает его по чашкам. # thought
-Тонут во мгле пустынные сопки, тучей закрыт восток… # window:default # char:engineer # anim:stand_tea # skippable:false
+Тонут во мгле пустынные сопки, тучей закрыт восток… # window:default # char:engineer # pose:stand # anim:tea # skippable:false
 Со смородиной? То, что доктор прописал. # response # skippable:false
-И с мятой. Мон плезир. # window:default # char:engineer # anim:stand_smiling # skippable:false
+И с мятой. Мон плезир. # window:default # char:engineer # anim:smiling # skippable:false
 Он пододвигает тебе чашку. # thought
 + [Выпить]
 	Спасибо. # response # skippable:false
 	Ты делаешь глоток. # thought
-	Итак. О чём вы хотели поговорить? # window:default # char:engineer # anim:sit_normal # skippable:false
+	Итак. О чём вы хотели поговорить? # window:default # char:engineer # pose:sit # anim:normal # skippable:false
 	-> END
 + [equip:gun]
 	-> arm
 
 === tea_gun ===
-~ godot("HouseScenePreview", "reveal_tea")
+~ godot_1("SceneDialogManager", "process_event", "reveal_tea")
 Он садится и разливает чай. # thought
 + [unequip:gun]
 	~ gun_drawn = false
@@ -93,9 +86,9 @@ VAR rag_fetched = false
 Чай крепкий и немного горчит. Слова вдруг приходится выталкивать. Пальцы не слушаются. # thought
 А насчёт мальчика… # response # skippable:false
 Что… # response # skippable:false
-Не пытайтесь встать. # window:default # char:engineer # anim:sit_shocked # skippable:false
+Не пытайтесь встать. # window:default # char:engineer # pose:sit # anim:shocked # skippable:false
 Ты съезжаешь по спинке дивана. # thought
-Слышите меня? # window:default # char:engineer # anim:sit_suspicious # skippable:false
+Слышите меня? # window:default # char:engineer # anim:suspicious # skippable:false
 Ответить не получается. # thought
 ~ engineer_poison = true
 -> END
@@ -104,11 +97,11 @@ VAR rag_fetched = false
 -> END
 
 === refuse ===
-Вы меня за кого принимаете? # window:default # char:engineer # anim:sit_suspicious # skippable:false
+Вы меня за кого принимаете? # window:default # char:engineer # pose:sit # anim:suspicious # skippable:false
 Я сказал, что не хочу. # response # skippable:false
-Понял. И к вещам моим это тоже отношения не имеет? # window:default # char:engineer # anim:sit_suspicious # skippable:false
+Понял. И к вещам моим это тоже отношения не имеет? # window:default # char:engineer # anim:suspicious # skippable:false
 Он ставит свою чашку на стол. # thought
-Извините. Не получится у нас сегодня с ночлегом. # anim:stand_default # skippable:false
+Извините. Не получится у нас сегодня с ночлегом. # pose:stand # anim:default # skippable:false
 ~ engineer_kicked = true
 -> END
 
@@ -120,7 +113,7 @@ VAR rag_fetched = false
 -> tea_gun
 
 === shot ===
-Выстрел. # thought # char:engineer # anim:sit_shot
-# char:engineer # anim:lay_shot
+Выстрел. # thought # char:engineer # pose:sit # anim:shot
+# char:engineer # pose:lay # anim:shot
 ~ engineer_dead = true
 -> END

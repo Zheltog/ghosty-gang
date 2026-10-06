@@ -1,0 +1,16 @@
+[remap]
+
+importer="ink"
+type="Resource"
+uid="uid://b4pmkgwbat6on"
+path="res://.godot/imported/torture.ink-ab655304992bdc93764a3936f4f90880.res"
+
+[deps]
+
+source_file="res://Files/SceneDialogs/Ink/EngineerHouse/torture.ink"
+dest_files=["res://.godot/imported/torture.ink-ab655304992bdc93764a3936f4f90880.res"]
+
+[params]
+
+is_main_file=true
+compress=true

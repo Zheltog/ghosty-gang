@@ -27,7 +27,7 @@ script = ExtResource("10_parobj")
 camera_distance = 100.0
 
 [node name="ToExitFromStorage" parent="." unique_id=-794967289 instance=ExtResource("2_door")]
-position = Vector2(109, 126)
+position = Vector2(109, 781)
 scale = Vector2(2, 2)
 texture = ExtResource("10_a71pi")
 target_room = "exit_from_storage"

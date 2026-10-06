@@ -15,7 +15,7 @@ var _current_choices: Array = []
 var _story_path: String = ""
 var _story_finished := false
 static var dialog_active := false
-var _present_characters: Array[String] = []
+static var world_locked := true
 
 func _ready() -> void:
 	_windows.setup(self, _state)
@@ -36,18 +36,17 @@ func load_story(path: String) -> bool:
 	_state.reset()
 	return true
 
-func start_story(path: String = "") -> void:
-	if not path.is_empty():
-		if not load_story(path):
-			return
+func start_story(path: String = "", lock_world: bool = true) -> void:
+	if not path.is_empty() and not load_story(path):
+		return
 	if story == null:
 		printerr("DialogController: no story loaded")
 		return
 	visible = true
 	_story_finished = false
 	dialog_active = true
-	_present_characters.clear()
-	_apply_presence()
+	world_locked = lock_world
+	_hide_stage()
 	if _story_path.is_empty():
 		_story_path = story.resource_path
 	story.ResetState()
@@ -72,30 +71,31 @@ func process_option_selected(id: int, box: BoxOptionButton = null) -> void:
 	story.ChooseChoiceIndex(id)
 	_present_line()
 
+static func is_dialog_active() -> bool:
+	return dialog_active
+
+static func is_world_locked() -> bool:
+	return world_locked
+
 func try_inventory_choice(event: Inventory.EVENT, item_id: InventoryItemGenerator.INVENTORY_ITEM) -> bool:
-	if story == null:
-		return false
 	var item_name = InventoryItemGenerator.INVENTORY_ITEM.find_key(item_id)
-	if item_name == null:
+	if story == null or item_name == null:
 		return false
 	var item_token := str(item_name).to_lower()
-	for choice in _current_choices:
-		if _choice_matches_inventory(choice, event, item_token):
-			process_option_selected(choice.GetIndex())
-			return true
-	return false
+	return _choose(func(token: Dictionary) -> bool:
+		if token.get("kind") != "inventory" or token.get("event") != event:
+			return false
+		var item := str(token.get("item", ""))
+		return item.is_empty() or item == item_token
+	)
 
 func try_action(action_name: String) -> bool:
-	if story == null:
-		return false
 	var action_token := action_name.strip_edges().to_lower()
-	if action_token.is_empty():
+	if story == null or action_token.is_empty():
 		return false
-	for choice in _current_choices:
-		if _choice_matches_action(choice, action_token):
-			process_option_selected(choice.GetIndex())
-			return true
-	return false
+	return _choose(func(token: Dictionary) -> bool:
+		return token.get("kind") == "action" and token.get("action") == action_token
+	)
 
 func start_option_timeout() -> void:
 	if timer == null or timer.holds_reset() or _state.timeout_seconds < 0.0:
@@ -122,32 +122,27 @@ func _present_line() -> void:
 	while story.GetCanContinue():
 		var text: Variant = story.Continue()
 		_current_choices = _read_choices()
-		var visible_choices := _visible_choices(_current_choices)
+		var visible := _visible_choices(_current_choices)
 		var line := "" if text == null else str(text).strip_edges()
-		if line.is_empty() and visible_choices.is_empty():
-			if not story.GetCurrentTags().is_empty():
-				_state.apply(story.GetCurrentTags())
-				_sync_present_characters()
-				_apply_character_animation()
+		if line.is_empty() and visible.is_empty():
+			_apply_tag_only_line()
 			continue
-		_show_current_line(line if not line.is_empty() else str(story.GetCurrentText()), visible_choices)
+		_show_current_line(line if not line.is_empty() else str(story.GetCurrentText()), visible)
 		if not story.GetCanContinue() and _current_choices.is_empty():
 			InkVariableStore.capture(story, _story_path)
 		return
 	_current_choices = _read_choices()
-	var visible_choices_at_end := _visible_choices(_current_choices)
-	if not visible_choices_at_end.is_empty():
-		_show_current_line(str(story.GetCurrentText()), visible_choices_at_end)
+	var pending := _visible_choices(_current_choices)
+	if pending.is_empty():
+		_finish_story()
 		return
-	_finish_story()
-
-static func is_dialog_active() -> bool:
-	return dialog_active
+	_show_current_line(str(story.GetCurrentText()), pending)
 
 func _finish_story() -> void:
 	InkVariableStore.capture(story, _story_path)
 	_windows.close()
 	dialog_active = false
+	world_locked = true
 	if _story_finished:
 		return
 	_story_finished = true
@@ -163,49 +158,50 @@ func _story_name() -> String:
 	return names[0]
 
 func _show_current_line(text: String, choices: Array) -> void:
-	_state.apply(story.GetCurrentTags())
+	_apply_line()
 	if _state.introduced and not _state.character_name.is_empty():
 		StateManager.set_state(_state.character_name + "_introduced", true)
-	_sync_present_characters()
-	_state.speaker_name = _speaker_for_current_line()
-	_apply_character_animation()
+	_state.speaker_name = _speaker_name()
 	_windows.display(text, choices)
 
-func _sync_present_characters() -> void:
-	if _stage_character(_state.character_name) != null:
-		_set_present(_state.character_name, true)
-	if not _state.away_character.is_empty():
-		_set_present(_state.away_character, false)
-	_apply_presence()
+func _apply_tag_only_line() -> void:
+	if story.GetCurrentTags().is_empty():
+		return
+	_apply_line()
 
-func _set_present(character_name: String, present: bool) -> void:
+func _apply_line() -> void:
+	_state.apply(story.GetCurrentTags())
+	_update_stage()
+	_play_animation()
+
+func _hide_stage() -> void:
+	for character in _staged_characters():
+		character.visible = false
+
+func _update_stage() -> void:
+	_set_staged(_state.character_name, true)
+	_set_staged(_state.away_character, false)
+
+func _set_staged(character_name: String, shown: bool) -> void:
 	var key := character_name.strip_edges().to_lower()
 	if key.is_empty():
 		return
-	if present:
-		if not _present_characters.has(key):
-			_present_characters.append(key)
-	else:
-		_present_characters.erase(key)
+	for character in _staged_characters():
+		if character.character_name.strip_edges().to_lower() == key:
+			character.visible = shown
 
-func _apply_presence() -> void:
+func _staged_characters() -> Array[SceneCharacter]:
+	var staged: Array[SceneCharacter] = []
 	var scene := get_tree().current_scene
 	if scene == null or scene is HouseSceneBase:
-		return
+		return staged
 	for node in scene.find_children("*", "SceneCharacter", true, false):
 		var character := node as SceneCharacter
-		if character.sprite == null:
-			continue
-		var key := character.character_name.strip_edges().to_lower()
-		character.visible = _present_characters.has(key)
+		if character.sprite != null:
+			staged.append(character)
+	return staged
 
-func _stage_character(character_name: String) -> SceneCharacter:
-	var character := _find_character(character_name)
-	if character == null or character.sprite == null:
-		return null
-	return character
-
-func _speaker_for_current_line() -> String:
+func _speaker_name() -> String:
 	var speaker := DialogState.none_character if _state.thought else _state.character_name
 	if speaker.is_empty():
 		return ""
@@ -214,7 +210,7 @@ func _speaker_for_current_line() -> String:
 		return ""
 	return character.character_name
 
-func _apply_character_animation() -> void:
+func _play_animation() -> void:
 	if not _state.has_animation:
 		return
 	if _state.character_name.is_empty():
@@ -248,47 +244,31 @@ func _read_choices() -> Array:
 func _visible_choices(choices: Array) -> Array:
 	var visible: Array = []
 	for choice in choices:
-		if choice == null or _is_hidden_inventory_choice(choice):
+		if choice == null or _is_hidden_choice(choice):
 			continue
 		visible.append(choice)
 	return visible
 
-func _is_hidden_inventory_choice(choice) -> bool:
+func _is_hidden_choice(choice) -> bool:
 	return not _parse_choice_token(choice.GetText()).is_empty()
 
-func _choice_matches_inventory(choice, event: Inventory.EVENT, item_name: String) -> bool:
-	if _inventory_token_matches(_parse_choice_token(choice.GetText()), event, item_name):
+func _choose(matches: Callable) -> bool:
+	for choice in _current_choices:
+		if _choice_matches(choice, matches):
+			process_option_selected(choice.GetIndex())
+			return true
+	return false
+
+func _choice_matches(choice, matches: Callable) -> bool:
+	if matches.call(_parse_choice_token(choice.GetText())):
 		return true
 	var tags = choice.GetTags()
 	if tags == null:
 		return false
 	for tag in tags:
-		if _inventory_token_matches(_parse_choice_token(str(tag)), event, item_name):
+		if matches.call(_parse_choice_token(str(tag))):
 			return true
 	return false
-
-func _choice_matches_action(choice, action_name: String) -> bool:
-	if _action_token_matches(_parse_choice_token(choice.GetText()), action_name):
-		return true
-	var tags = choice.GetTags()
-	if tags == null:
-		return false
-	for tag in tags:
-		if _action_token_matches(_parse_choice_token(str(tag)), action_name):
-			return true
-	return false
-
-func _inventory_token_matches(parsed: Dictionary, event: Inventory.EVENT, item_name: String) -> bool:
-	if parsed.is_empty() or parsed.get("kind") != "inventory":
-		return false
-	if parsed.event != event:
-		return false
-	if str(parsed.item).is_empty():
-		return true
-	return parsed.item == item_name
-
-func _action_token_matches(parsed: Dictionary, action_name: String) -> bool:
-	return parsed.get("kind") == "action" and parsed.get("action") == action_name
 
 func _parse_choice_token(text: String) -> Dictionary:
 	var normalized := text.strip_edges().to_lower()

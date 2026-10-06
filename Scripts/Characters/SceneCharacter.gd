@@ -53,16 +53,19 @@ func set_emotion(new_emotion: String) -> void:
 
 func refresh(save_progress : bool) -> void:
 	var house := HouseSceneBase.current_house_scene
-	if house != null and house.is_ancestor_of(self):
-		visible = location == house.current_room
+	var player_location := ""
+	if house != null:
+		player_location = house.current_room
+	var from_here := _has_from_view(player_location)
+	if house != null:
+		visible = location == player_location or from_here
 	_snap_to_emotion_point()
 	if sprite == null or sprite.sprite_frames == null:
 		return
 	if house == null:
 		return
-	var player_location := house.current_room
 	var anim := "%s_from_%s_%s" % [location, player_location, emotion]
-	if not sprite.sprite_frames.has_animation(anim):
+	if not from_here:
 		var named := "%s_%s" % [location, emotion]
 		if sprite.sprite_frames.has_animation(named):
 			anim = named
@@ -77,6 +80,14 @@ func refresh(save_progress : bool) -> void:
 		sprite.play(anim)
 	if sprite != self:
 		sprite.show()
+
+func _has_from_view(player_location: String) -> bool:
+	if sprite == null or sprite.sprite_frames == null:
+		return false
+	if location.is_empty() or player_location == location:
+		return false
+	var anim := "%s_from_%s_%s" % [location, player_location, emotion]
+	return sprite.sprite_frames.has_animation(anim)
 
 func _snap_to_emotion_point() -> void:
 	var root := _emotion_point_root()

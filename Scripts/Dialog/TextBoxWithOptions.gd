@@ -46,6 +46,7 @@ func _ready() -> void:
 	_assign_option_holder(1, "TextureRect/SingleOption")
 	_assign_option_holder(2, "TextureRect/TwoOptions")
 	_assign_option_holder(3, "TextureRect/ThreeOptions")
+	_assign_option_holder(4, "TextureRect/FourOptions")
 	_init_options()
 	_hide_all_option_holders()
 	_rect.hide()

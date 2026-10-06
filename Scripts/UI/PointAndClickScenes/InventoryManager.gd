@@ -24,6 +24,10 @@ func _ready() -> void:
 	InkFunctions.subscribe(self)
 	update_hint()
 
+func set_locked(is_locked: bool) -> void:
+	if inventory_holder:
+		inventory_holder.set_locked(is_locked)
+
 func _unhandled_input(event: InputEvent) -> void:
 	if equipped_item == null or not event is InputEventKey:
 		return
@@ -36,7 +40,10 @@ func _unhandled_input(event: InputEvent) -> void:
 	var viewport := get_viewport()
 	if viewport:
 		viewport.set_input_as_handled()
+	var action_name := str(equipped_item.get_actions()[action].get("name", ""))
 	equipped_item.take_action(action, _equipped_item_ui)
+	if dialog_controller:
+		dialog_controller.try_action(action_name)
 	update_hint()
 
 func unequip_item() -> void:
@@ -113,9 +120,10 @@ func notify_dialog_event(event: EVENT, item_id: InventoryItemGenerator.INVENTORY
 		return
 	if event != EVENT.EQUIP and event != EVENT.UNEQUIP:
 		return
-	var house := get_tree().current_scene as HouseScenePreview
-	if house:
-		house.set_gun_drawn(event == EVENT.EQUIP)
+	var house := HouseSceneBase.current_house_scene as HouseScenePreview
+	if house == null or house.scene_states == null:
+		return
+	house.scene_states.process_event("gun_drawn" if event == EVENT.EQUIP else "gun_holstered")
 
 func update_hint() -> void:
 	if !equipped_item:

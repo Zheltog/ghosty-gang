@@ -68,7 +68,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	if not _can_skip_input():
 		return
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		handle_click()
+		if DialogController.is_world_locked():
+			handle_click()
 		return
 	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_SPACE:
 		_mark_input_handled()

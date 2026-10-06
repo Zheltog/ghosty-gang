@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cdssuxsiadf10" path="res://Assets/Sprites/SceneItems/EngineerHouse/kitchen_sitting_table_normal.png" id="17_qbynd"]
 [ext_resource type="PackedScene" uid="uid://dvnnea2fw2ndt" path="res://Scenes/PointAndClick/SceneItemUI.tscn" id="18_bl6rl"]
 [ext_resource type="Texture2D" uid="uid://8py760fqn1w5" path="res://Assets/Sprites/InventoryItems/tea.png" id="19_n3wxg"]
+[ext_resource type="Texture2D" uid="uid://ehlj4r5kofa7" path="res://Assets/Sprites/SceneItems/EngineerHouse/tea_empty_icon.png" id="20_empty"]
 
 [node name="KitchenCouch" type="Node2D" unique_id=1900112234]
 script = ExtResource("1_u8j1x")
@@ -89,11 +90,24 @@ script = ExtResource("5_n3wxg")
 camera_distance = 100.0
 
 [node name="Tea" parent="." unique_id=598298150 instance=ExtResource("18_bl6rl")]
+visible = false
 z_index = 2
 position = Vector2(1399, 937)
 texture = ExtResource("19_n3wxg")
 scene_item_id = 17
+intercation_type = 1
+interact_during_dialog = true
 
 [node name="ParallaxComponent" type="Node" parent="Tea" unique_id=1472747300]
+script = ExtResource("5_n3wxg")
+camera_distance = 100.0
+
+[node name="EmptyTea" type="Sprite2D" parent="." unique_id=598298151]
+visible = false
+z_index = 2
+position = Vector2(1399, 937)
+texture = ExtResource("20_empty")
+
+[node name="ParallaxComponent" type="Node" parent="EmptyTea" unique_id=1472747301]
 script = ExtResource("5_n3wxg")
 camera_distance = 100.0
