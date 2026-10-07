@@ -21,6 +21,7 @@ var away_character: String = ""
 var introduced: bool = false
 var speaker_name: String = ""
 var timeout_seconds: float = -1.0
+var react_wait: bool = false
 
 func reset() -> void:
 	skippable_default = true
@@ -41,6 +42,7 @@ func begin_line() -> void:
 	introduced = false
 	speaker_name = ""
 	timeout_seconds = -1.0
+	react_wait = false
 
 func apply(tags: Array[String]) -> void:
 	begin_line()
@@ -78,6 +80,7 @@ func apply(tags: Array[String]) -> void:
 	if parsed.has("timeout"):
 		var raw := str(parsed["timeout"]).strip_edges()
 		timeout_seconds = 0.0 if raw.is_empty() else float(raw)
+	react_wait = parsed.has("react_wait") and _parse_bool(parsed["react_wait"], true)
 
 func _parse_bool(value: Variant, fallback: bool) -> bool:
 	var normalized := str(value).strip_edges().to_lower()

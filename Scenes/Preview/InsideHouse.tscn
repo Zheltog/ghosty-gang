@@ -413,7 +413,7 @@ func activate() -> void:
 	super.activate()
 	_seal_storage()
 	scene_dialog_manager.call_delayed(_start_fire, FIRE_DELAY)
-	play(DialogPathConstants.STORAGE_FIRE, false)
+	play(DialogPathConstants.STORAGE_FIRE)
 
 func _start_fire() -> void:
 	play_looped(FIRE_SOUND)

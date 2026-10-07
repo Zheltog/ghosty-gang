@@ -33,12 +33,13 @@ INCLUDE gun_reaction.ink
 -> ask
 
 === ask ===
-Дорогой мой, не будете любезны?.. Тряпка в ванной, принесите, пожалуйста. # window:default # char:engineer # anim:normal # skippable:false
+Дорогой мой, не будете любезны?.. Тряпка в ванной, принесите, пожалуйста. # window:default # char:engineer # anim:normal # skippable:false # react_default:equip:gun:gun_ask
 + [Сейчас будет. Момент.]
 	Сейчас будет. Момент. # response # skippable:false
 	~ fetching_rag = true
 	~ godot_1("SceneDialogManager", "process_event", "reveal_rag")
 	-> END
-+ [equip:gun]
-	-> gun ->
-	-> ask
+
+=== gun_ask ===
+-> gun ->
+-> ask

@@ -40,7 +40,7 @@ VAR rag_fetched = false
 === tea_after_rag ===
 Когда ты возвращаешься с тряпкой чай уже налит. Владислав с блаженным видом отхлебывает из своей кружки. # thought
 Ты вытираешь лужу со столика и садишься рядом. Крепкий черный чай пахнет восхитительно - старик добавил сушеные листья смородины и мяты. # thought
-Пейте. Вам сейчас согреться надо. # window:default # char:engineer # pose:sit # anim:normal # skippable:false
+Пейте. Вам сейчас согреться надо. # window:default # char:engineer # pose:sit # anim:normal # skippable:false # react_default:equip:gun:arm, unequip:gun:tea_holster
 + [Выпить]
 	Взять кружку и выпить. # response # skippable:false
 	-> drink
@@ -50,11 +50,6 @@ VAR rag_fetched = false
 + [Не буду]
 	Не буду я ваш чай пить. # response # skippable:false
 	-> refuse
-+ [equip:gun]
-	-> arm
-+ [unequip:gun]
-	~ gun_drawn = false
-	-> tea_after_rag
 
 === tea_low ===
 ~ godot_1("SceneDialogManager", "process_event", "reveal_tea")
@@ -62,25 +57,17 @@ VAR rag_fetched = false
 Тонут во мгле пустынные сопки, тучей закрыт восток… # window:default # char:engineer # pose:stand # anim:tea # skippable:false
 Со смородиной? То, что доктор прописал. # response # skippable:false
 И с мятой. Мон плезир. # window:default # char:engineer # anim:smiling # skippable:false
-Он пододвигает тебе чашку. # thought
+Он пододвигает тебе чашку. # thought # react_default:equip:gun:arm
 + [Выпить]
 	Спасибо. # response # skippable:false
 	Ты делаешь глоток. # thought
 	Итак. О чём вы хотели поговорить? # window:default # char:engineer # pose:sit # anim:normal # skippable:false
 	-> END
-+ [equip:gun]
-	-> arm
 
 === tea_gun ===
 ~ godot_1("SceneDialogManager", "process_event", "reveal_tea")
-Он садится и разливает чай. # thought
-+ [unequip:gun]
-	~ gun_drawn = false
-	Спасибо. # response # skippable:false
-	Ты кладёшь пистолет на стол и делаешь глоток. # thought
-	-> tea
-+ [action:shoot]
-	-> shot
+Он садится и разливает чай. # thought # react_default:unequip:gun:tea_gun_down, action:shoot:shot # react_wait
+-> DONE
 
 === drink ===
 Чай крепкий и немного горчит. Слова вдруг приходится выталкивать. Пальцы не слушаются. # thought
@@ -104,6 +91,16 @@ VAR rag_fetched = false
 Извините. Не получится у нас сегодня с ночлегом. # pose:stand # anim:default # skippable:false
 ~ engineer_kicked = true
 -> END
+
+=== tea_holster ===
+~ gun_drawn = false
+-> tea_after_rag
+
+=== tea_gun_down ===
+~ gun_drawn = false
+Спасибо. # response # skippable:false
+Ты кладёшь пистолет на стол и делаешь глоток. # thought
+-> tea
 
 === arm ===
 {not gun_drawn:

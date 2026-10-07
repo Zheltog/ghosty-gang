@@ -4,12 +4,11 @@ importer="ink"
 importer_version=2
 type="Resource"
 uid="uid://dwhv2eoisg3rt"
-path="res://.godot/imported/dream.ink-4a12efa6bbc5088a41845d476e01503d.res"
+valid=false
 
 [deps]
 
 source_file="res://Files/SceneDialogs/Ink/EngineerHouse/dream.ink"
-dest_files=["res://.godot/imported/dream.ink-4a12efa6bbc5088a41845d476e01503d.res"]
 
 [params]
 

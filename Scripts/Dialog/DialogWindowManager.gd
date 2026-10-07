@@ -103,7 +103,7 @@ func handle_click(force := false) -> void:
 		_active_box.skip_printing()
 		if not force or _state.skippable:
 			return
-	if _active_box.has_options():
+	if _active_box.has_options() or _state.react_wait:
 		return
 	if not force and not _state.skippable:
 		return
@@ -160,7 +160,7 @@ func _open(window_name: String) -> void:
 func _on_line_finished(box: TextBoxWithOptions) -> void:
 	if box != _active_box or _state == null or _controller == null or _state.skippable:
 		return
-	if box.has_options():
+	if box.has_options() or _state.react_wait:
 		return
 	_delay_id += 1
 	var wait_id := _delay_id

@@ -37,17 +37,16 @@ VAR passports_raised = false
 В комнату заходит хозяин: в руках пара чашек и полный заварник. # thought
 ~ godot("CustomBookshelfSceneItemUI", "close_shelf")
 Он ставит посуду на стол, подходит к шкафу и захлопывает его. # thought
-Верните ключ. # window:default # char:engineer # anim:stand_suspicious # skippable:false
-+ [equip:key_bookshelf]
-	~ key_returned = true
-	~ suspicion -= 1
-	-> key_back
+Верните ключ. # window:default # char:engineer # anim:stand_suspicious # skippable:false # react_default:equip:key_bookshelf:key_give, equip:gun:gun
 + [Позже.]
 	~ suspicion += 1
 	Возможно, позже. # response # skippable:false
 	-> key_later
-+ [equip:gun]
-	-> gun
+
+=== key_give ===
+~ key_returned = true
+~ suspicion -= 1
+-> key_back
 
 === key_back ===
 Пожалуйста. # response # skippable:false

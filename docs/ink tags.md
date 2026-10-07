@@ -20,8 +20,11 @@ Keys are case-insensitive. Bool values: `true` / `false`, `1` / `0`, `yes` / `no
 | `instant` | `# instant` | This line only. Show the whole line at once. Without it, the line uses the window's printing speed. |
 | `response` | `# response` | Show this line in the `player_phrase` window. The following lines stay on the window `# window` last selected. |
 | `timeout` | `# timeout:7` | Start a timer (seconds) when visible choices appear. Time-out picks the first one. `# timeout:0` clears the timer. |
-| `skippable` | `# skippable:false` | This line only. If `true` (the default), a click fills the rest of the line, then another click continues. If `false`, a click does nothing: after the line finishes, the story continues on its own. The wait is `response_continue_delay` on DialogController. A line that still has choices waits for a button or its timeout instead. |
+| `skippable` | `# skippable:false` | This line only. If `true` (the default), a click fills the rest of the line, then another click continues. If `false`, a click does nothing: after the line finishes, the story continues on its own. The wait is `response_continue_delay` on DialogController. A line that still has choices, or a line with `react_wait`, waits instead. |
 | `skip_default` | `# skip_default:false` | Sets skippable for this line and every line after, until another `skip_default`. A per-line `skippable` still overrides it. New stories start with skippable on. |
+| `react` | `# react:unequip:gun:gun_down` | This line only. When that inventory event or `action` happens, jump to the knot. Replaces the sticky set for this line. `# react:` means this line reacts to nothing. |
+| `react_default` | `# react_default:action:shoot:gun_kill` | Same reaction for this line and every line after, until another `react_default`. A per-line `react` still replaces it. `# react_default:` clears it. A new story starts with none. |
+| `react_wait` | `# react_wait` | This line only. The line stays up until a reaction fires or the player picks a visible option. Click, space-hold, and the auto-continue delay do not advance it. |
 
 ### `window` values
 
@@ -48,28 +51,32 @@ Hyphens and spaces match the same window (`speech-left`, `speech left`). A name 
     -> closing
 ```
 
-## Choice tags
+## Line reactions
 
-A choice whose **text** is `pickup:item`, `equip:item`, `equip_start:item`, `unequip:item`, or `unequip_start:item` is hidden from the UI and fires when that inventory event happens.
-
-The same tokens work as **tags** on a visible choice, so clicking the button and using the item are the same option:
-
-```ink
-+ [Wave back]
-+ [pickup:bottle]
-	You're grabbing the bottle while I'm talking?
-+ [Take it] # pickup:bottle
-```
-
-Item names match inventory ids in lowercase (`bottle`, `salt`, `pepper`). Events:
+`react` and `react_default` name an inventory event or an `action`, plus a knot path: `event:item:knot` or `action:name:knot`. Several reactions can share a line, or sit in one tag separated by commas. Item names match inventory ids in lowercase (`gun`, `photo`, `rag`).
 
 - `pickup` — item added to inventory
 - `equip` — item equipped
-- `equip_start` — player started hold-to-equip in the inventory
+- `equip_start` — player started hold-to-equip
 - `unequip` — item unequipped
-- `unequip_start` — player started hold-to-unequip in the inventory
+- `unequip_start` — player started hold-to-unequip
+- `action` — the equipped item's action, such as `shoot` or `drink`
 
-These choices belong to the current beat (available once Ink has reached that choice list, including while the line is still typing). If there is no matching choice, the item does nothing to the dialog.
+```ink
+Прошу вас... # react_default:unequip:gun:gun_down, action:shoot:gun_kill # react_wait # skippable:false
+```
+
+The jump keeps the current tunnel, so `->->` in the target knot still returns to the caller. Put side effects in that knot (`~ gun_drawn = false`).
+
+`react_default` applies to the line that sets it. To keep reactions on a spoken line and drop them before the story continues, clear them on the next tag-only line:
+
+```ink
+Прошу вас, не делайте так больше. # skippable:false
+# react_default:
+->->
+```
+
+`react_wait` is for a line that has no visible option and should not move on by itself. A spoken line without it keeps playing, and a reaction can still interrupt it while it is up.
 
 ## Inline (not a tag)
 

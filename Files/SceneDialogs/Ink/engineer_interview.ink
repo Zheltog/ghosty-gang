@@ -1,5 +1,5 @@
 // Триггер: сам после чая, если не отравил, не выгнал и не убит.
-// О мальчике — equip:photo. Паспорта — equip:passport. Ствол — equip:gun.
+// О мальчике — react:equip:photo. Паспорта — react:equip:passport. Ствол — react:equip:gun.
 # story: engineer_interview
 # load: suspicion, closet_open, key_returned, saw_passports, has_glass_eye, gun_drawn, engineer_dead, engineer_poison, engineer_kicked, engineer_sleep, engineer_to_torture, engineer_leave, passports_raised
 # save: suspicion, closet_open, key_returned, saw_passports, has_glass_eye, gun_drawn, engineer_dead, engineer_poison, engineer_kicked, engineer_sleep, engineer_to_torture, engineer_leave, passports_raised
@@ -21,7 +21,7 @@ VAR passports_raised = false
 -> menu
 
 === menu ===
-Что вам ещё рассказать? # window:default # char:engineer # pose:sit # anim:normal # skippable:false
+Что вам ещё рассказать? # window:default # char:engineer # pose:sit # anim:normal # skippable:false # react_default:equip:photo:boy, equip:passport:passports_if, equip:gun:gun
 + [О мальчике]
 	Я в ПГТ не просто так. Пропал мальчик. # response # skippable:false
 	-> boy_wait
@@ -31,21 +31,13 @@ VAR passports_raised = false
 + [О лаборатории]
 	На фотографии вы с коллегами? Из НИИ? # response # skippable:false
 	-> lab
-* {saw_passports} [equip:passport]
-	-> passports
-+ [equip:photo]
-	-> boy
-+ [equip:gun]
-	-> gun
 + [На сегодня хватит]
 	Что ж. Спасибо за чай. # response # skippable:false
 	~ engineer_sleep = true
 	-> END
 
 === boy_wait ===
-Покажите. # window:default # char:engineer # pose:sit # anim:reach # skippable:false
-+ [equip:photo]
-	-> boy
+Покажите. # window:default # char:engineer # pose:sit # anim:reach # skippable:false # react_default:equip:photo:boy
 + [Позже]
 	Позже. # response # skippable:false
 	-> menu
@@ -61,7 +53,7 @@ VAR passports_raised = false
 -> boy_more
 
 === boy_more ===
-Что именно? # window:default # char:engineer # pose:sit # anim:normal # skippable:false
+Что именно? # window:default # char:engineer # pose:sit # anim:normal # skippable:false # react_default:equip:gun:gun
 * [Почему так точно?]
 	Почему так точно? # response # skippable:false
 	Вязал на кухне. Поглядывал на часы: пора было ужинать. В это время по нашей улице почти никто уже не ходит. # window:default # char:engineer # anim:normal # skippable:false
@@ -80,8 +72,6 @@ VAR passports_raised = false
 	-> boy_more
 + [Дальше]
 	-> menu
-+ [equip:gun]
-	-> gun
 
 === lab ===
 Это имеет отношение к мальчику или вам просто интересно? # window:default # char:engineer # pose:sit # anim:suspicious # timeout:8 # skippable:false
@@ -206,5 +196,14 @@ VAR passports_raised = false
 Он убирает глаз в карман. # thought # char:engineer # pose:stand # anim:back
 ~ has_glass_eye = false
 -> menu
+
+=== passports_if ===
+{not saw_passports:
+	-> menu
+}
+{passports_raised:
+	-> passport_more
+}
+-> passports
 
 INCLUDE _engineer_gun_reaction_include.ink

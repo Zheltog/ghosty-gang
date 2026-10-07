@@ -43,18 +43,11 @@ INCLUDE gun_reaction.ink
 Когда он видит отодвинутый шкаф, улыбка уходит с его лица. # thought # anim:suspicion
 ~ godot("CustomBookshelfSceneItemUI", "close_shelf")
 Он молча подходит к шкафу и захлопывает его. Затем, будто вспомнив о твоём присутствии, резко оборачивается. # thought # char:engineer # pose:stand # anim:back
-Верните ключ. # window:default # char:engineer # pose:stand # anim:suspicious # skippable:false
-+ [equip:key_bookshelf]
-	~ key_returned = true
-	~ suspicion -= 1
-	-> key_back
+Верните ключ. # window:default # char:engineer # pose:stand # anim:suspicious # skippable:false # react_default:equip:key_bookshelf:key_give, equip:gun:gun_tidy
 + [Возможно, позже.]
 	~ suspicion += 1
 	Возможно, позже. # response # skippable:false
 	-> key_later
-+ [equip:gun]
-	-> gun ->
-	-> tidy
 
 === key_back ===
 Пожалуйста. # response # skippable:false
@@ -65,6 +58,15 @@ INCLUDE gun_reaction.ink
 === key_later ===
 Бровь Владислава приподнимается. # thought # char:engineer # pose:stand # anim:suspicious
 Как вам угодно. # window:default # char:engineer # pose:stand # anim:suspicious # skippable:false
+-> tidy
+
+=== key_give ===
+~ key_returned = true
+~ suspicion -= 1
+-> key_back
+
+=== gun_tidy ===
+-> gun ->
 -> tidy
 
 === tidy ===

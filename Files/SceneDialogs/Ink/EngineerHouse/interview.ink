@@ -26,6 +26,7 @@ INCLUDE gun_reaction.ink
 -> begin
 
 === begin ===
+# react_default:equip:rag:show_rag_given, equip:gun:gun_show_rag
 {gun_drawn:
 	-> armed
 }
@@ -43,21 +44,13 @@ INCLUDE gun_reaction.ink
 
 === show_rag ===
 Чай уже налит. Владислав с блаженным видом отхлебывает из своей кружки. # thought # char:engineer # pose:sit # anim:normal
-+ [Показать тряпку.] # equip:rag
-	Ты достаёшь тряпку из инвентаря и показываешь её инженеру. # thought
-	~ fetching_rag = false
-	~ godot_1("Inventory", "remove_item_str", "rag")
-	-> wiped
-+ [equip:gun]
-	-> gun ->
-	-> show_rag
++ [Показать тряпку.]
+	-> show_rag_given
 
 === wiped ===
 ~ godot_1("SceneDialogManager", "process_event", "reveal_tea")
 Ты вытираешь лужу со столика и садишься рядом. Крепкий чёрный чай пахнет восхитительно — старик добавил сушеные листья смородины и мяты. # thought
-Пейте. Вам сейчас согреться надо. # window:default # char:engineer # pose:sit # anim:normal # skippable:false
-+ [action:drink]
-	-> poison
+Пейте. Вам сейчас согреться надо. # window:default # char:engineer # pose:sit # anim:normal # skippable:false # react_default:action:drink:poison, equip:gun:gun_wiped
 + [Пусть сперва остынет.]
 	Пусть сперва остынет. # response # skippable:false
 	Хозяин пожимает плечами. # thought # char:engineer # pose:sit # anim:normal
@@ -65,9 +58,6 @@ INCLUDE gun_reaction.ink
 + [Не буду я ваш чай пить.]
 	Не буду я ваш чай пить. Вдруг вы подмешали мне что-то? # response # skippable:false
 	-> refuse
-+ [equip:gun]
-	-> gun ->
-	-> wiped
 
 === poison ===
 Чай крепкий и немного горчит. Ты ставишь чашку на стол. # thought
@@ -102,38 +92,23 @@ INCLUDE gun_reaction.ink
 
 === cup ===
 ~ godot_1("SceneDialogManager", "process_event", "reveal_tea")
-Он пододвигает к тебе чашку. # thought # char:engineer # pose:sit # anim:reach
-+ [action:drink]
-	Ты делаешь глоток. Просто прекрасно. # thought
-	-> menu
-+ [equip:gun]
-	-> gun ->
-	-> cup
+Он пододвигает к тебе чашку. # thought # char:engineer # pose:sit # anim:reach # react_default:action:drink:cup_drink, equip:gun:gun_cup # react_wait
+-> DONE
 
 === menu ===
 {not menu_started:
 	~ menu_started = true
-	Итак. О чём вы хотели поговорить? # window:default # char:engineer # pose:sit # anim:normal # skippable:false
+	Итак. О чём вы хотели поговорить? # window:default # char:engineer # pose:sit # anim:normal # skippable:false # react_default:equip:photo:photo_if, equip:passport:passports_if, equip:glass_eye:eye_if, equip:gun:gun_menu
 - else:
-	Что вам ещё рассказать? # window:default # char:engineer # pose:sit # anim:normal # skippable:false
+	Что вам ещё рассказать? # window:default # char:engineer # pose:sit # anim:normal # skippable:false # react_default:equip:photo:photo_if, equip:passport:passports_if, equip:glass_eye:eye_if, equip:gun:gun_menu
 }
 * [О мальчике.]
 	-> boy_ask
-* [equip:photo]
-	-> boy_shown
 * [О лаборатории.]
 	На фотографии вы с коллегами? Из НИИ? # response # skippable:false
 	-> lab
 * {saw_passports} [О паспортах.]
 	-> passports
-* {saw_passports} [equip:passport]
-	-> passports
-* {has_glass_eye} [equip:glass_eye]
-	Это ваше? Под диваном нашёл. # response # skippable:false
-	-> eye
-+ [equip:gun]
-	-> gun ->
-	-> menu
 + [На сегодня хватит.]
 	Что ж. Спасибо за чай. # response # skippable:false
 	~ engineer_sleep = true
@@ -161,7 +136,7 @@ INCLUDE gun_reaction.ink
 А позавчера? # response # skippable:false
 Да. Позавчера тоже видел. Из окна кухни. Он шёл от остановки в сторону Горной. # window:default # char:engineer # pose:sit # anim:normal # skippable:false
 Во сколько? # response # skippable:false
-В половине восьмого. Вечера, конечно. # char:engineer # pose:sit # anim:normal # skippable:false
+В половине восьмого. Вечера, конечно. # char:engineer # pose:sit # anim:normal # skippable:false # react_default:equip:gun:gun_boy_more
 -> boy_more
 
 === boy_more ===
@@ -184,9 +159,6 @@ INCLUDE gun_reaction.ink
 	-> boy_more
 + [Дальше.]
 	-> menu
-+ [equip:gun]
-	-> gun ->
-	-> boy_more
 
 === lab ===
 Это имеет отношение к мальчику или вам просто интересно? # window:default # char:engineer # pose:sit # anim:suspicious # timeout:8 # skippable:false
@@ -226,7 +198,7 @@ INCLUDE gun_reaction.ink
 Получилось? # response # skippable:false
 Не вполне. # window:default # char:engineer # pose:sit # anim:suspicious # skippable:false
 Владислав смотрит на фотографию. # thought # char:engineer # pose:sit # anim:normal
-Проект закрыли. Людей разослали. Аппаратуру разобрали. Вот и вся история. # window:default # char:engineer # pose:sit # anim:normal # skippable:false
+Проект закрыли. Людей разослали. Аппаратуру разобрали. Вот и вся история. # window:default # char:engineer # pose:sit # anim:normal # skippable:false # react_default:equip:gun:gun_lab_books
 -> lab_books
 
 === lab_books ===
@@ -240,9 +212,6 @@ INCLUDE gun_reaction.ink
 + [Понятно. Вернёмся к мальчику.]
 	Понятно. Вернёмся к мальчику. # response # skippable:false
 	-> menu
-+ [equip:gun]
-	-> gun ->
-	-> lab_books
 
 === maya ===
 {suspicion <= 1:
@@ -280,6 +249,7 @@ INCLUDE gun_reaction.ink
 
 === passports ===
 {passports_raised:
+	# react_default:equip:gun:gun_passport_more
 	-> passport_more
 }
 ~ passports_raised = true
@@ -297,7 +267,7 @@ INCLUDE gun_reaction.ink
 Ответ очевиден: потому что менять их приходилось не раз и не два. # char:engineer # pose:sit # anim:normal # skippable:false
 Вы параноик. # response # skippable:false
 Неужели? Я жив. Мои коллеги нет. # char:engineer # pose:sit # anim:suspicious # skippable:false
-Он замолкает. # thought # char:engineer # pose:sit # anim:suspicious
+Он замолкает. # thought # char:engineer # pose:sit # anim:suspicious # react_default:equip:gun:gun_passport_more
 -> passport_more
 
 === passport_more ===
@@ -316,9 +286,6 @@ INCLUDE gun_reaction.ink
 	Владислав медленно кивает. # thought # char:engineer # pose:sit # anim:normal
 	Тогда давайте о мальчике. # window:default # char:engineer # pose:sit # anim:normal # skippable:false
 	-> menu
-+ [equip:gun]
-	-> gun ->
-	-> passport_more
 
 === eye ===
 Ты кладёшь глаз на стол. Владислав забирает его раньше, чем тот успевает докатиться до чашки. # thought # char:engineer # pose:sit # anim:reach
@@ -329,3 +296,64 @@ INCLUDE gun_reaction.ink
 ~ has_glass_eye = false
 ~ godot_1("Inventory", "remove_item_str", "glass_eye")
 -> menu
+
+=== show_rag_given ===
+Ты достаёшь тряпку из инвентаря и показываешь её инженеру. # thought
+~ fetching_rag = false
+~ godot_1("Inventory", "remove_item_str", "rag")
+-> wiped
+
+=== cup_drink ===
+Ты делаешь глоток. Просто прекрасно. # thought
+-> menu
+
+=== photo_if ===
+{boy_told:
+	# react_default:equip:gun:gun_boy_more
+	-> boy_more
+}
+-> boy_shown
+
+=== passports_if ===
+{saw_passports:
+	-> passports
+}
+-> menu
+
+=== eye_if ===
+{has_glass_eye:
+	Это ваше? Под диваном нашёл. # response # skippable:false
+	-> eye
+}
+-> menu
+
+=== gun_show_rag ===
+-> gun ->
+-> show_rag
+
+=== gun_wiped ===
+-> gun ->
+-> wiped
+
+=== gun_cup ===
+-> gun ->
+-> cup
+
+=== gun_menu ===
+-> gun ->
+-> menu
+
+=== gun_boy_more ===
+-> gun ->
+# react_default:equip:gun:gun_boy_more
+-> boy_more
+
+=== gun_lab_books ===
+-> gun ->
+# react_default:equip:gun:gun_lab_books
+-> lab_books
+
+=== gun_passport_more ===
+-> gun ->
+# react_default:equip:gun:gun_passport_more
+-> passport_more
