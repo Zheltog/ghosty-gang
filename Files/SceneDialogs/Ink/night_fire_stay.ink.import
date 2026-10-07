@@ -12,5 +12,5 @@ dest_files=["res://.godot/imported/night_fire_stay.ink-be00eae7d7d3dc117b3ded986
 
 [params]
 
-is_main_file=false
+is_main_file=true
 compress=true

@@ -2,28 +2,29 @@ class_name SceneItemGenerator
 extends Object
 
 enum SCENE_ITEM {
-	PASSPORT,
-	GLASS_EYE,
-	BOOK_1,
-	BOOK_2,
-	BOOK_3,
-	BOOK_4,
-	BOOK_5,
-	BOOK_6,
-	BOOK_7,
-	BOOK_8,
-	BOOK_KEY,
-	TUMBA,
-	KEYHOLE,
-	FLASHLIGHT,
-	GUN,
-	KEY_BOOKSHELF,
-	CIGARETTES,
-	TEA,
-	PHOTO,
-	COAT,
-	RAG,
-	NONE
+	PASSPORT = 0,
+	GLASS_EYE = 1,
+	BOOK_1 = 2,
+	BOOK_2 = 3,
+	BOOK_3 = 4,
+	BOOK_4 = 5,
+	BOOK_5 = 6,
+	BOOK_6 = 7,
+	BOOK_7 = 8,
+	BOOK_8 = 9,
+	BOOK_KEY = 10,
+	TUMBA = 11,
+	KEYHOLE = 12,
+	FLASHLIGHT = 13,
+	GUN = 14,
+	KEY_BOOKSHELF = 15,
+	CIGARETTES = 16,
+	TEA = 17,
+	PHOTO = 18,
+	COAT = 19,
+	RAG = 20,
+	NONE = 21,
+	CHARACTER = 22
 }
 
 static func generate(item : SCENE_ITEM) -> SceneItemBase:
@@ -72,6 +73,8 @@ static func generate(item : SCENE_ITEM) -> SceneItemBase:
 			return SceneItemRag.new()
 		SCENE_ITEM.NONE:
 			return SceneItemBase.new()
+		SCENE_ITEM.CHARACTER:
+			return SceneItemCharacter.new()
 	
 	printerr("GENERATED UNSOPORTED SCENE ITEM")
 	return SceneItemBase.new()

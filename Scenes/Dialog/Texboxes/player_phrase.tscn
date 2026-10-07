@@ -23,10 +23,10 @@ printing_speed = 40.0
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1863393327]
 layout_mode = 1
 offset_left = 1291.0
-offset_top = 331.0
+offset_top = 420.0
 offset_right = 2131.0
-offset_bottom = 951.0
-scale = Vector2(0.8, 0.8)
+offset_bottom = 1040.0
+scale = Vector2(0.6, 0.6)
 pivot_offset = Vector2(420, 310)
 texture = ExtResource("3_window")
 
@@ -34,9 +34,8 @@ texture = ExtResource("3_window")
 layout_mode = 1
 offset_left = 82.0
 offset_top = 96.0
-offset_right = 634.0
-offset_bottom = 442.0
-scale = Vector2(1.25, 1.25)
+offset_right = 773.75
+offset_bottom = 523.74994
 mouse_filter = 2
 theme_override_colors/default_color = Color(0.8203659, 0.82036585, 0.8203658, 1)
 theme_override_font_sizes/normal_font_size = 40

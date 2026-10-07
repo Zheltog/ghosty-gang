@@ -8,8 +8,9 @@ func _init() -> void:
 
 # SKIP GENERATION
 
+const GULP := "res://Assets/Audio/Sounds/gulp.mp3"
 const _EMPTY_INVENTORY := "res://Assets/Sprites/InventoryItems/tea_empty.png"
-const _REMOVE_DELAY := 0.75
+const _REMOVE_DELAY := 2.0
 var _empty := false
 var _removed := false
 
@@ -18,12 +19,13 @@ func take_action(action: String, equipped_item_ui: EquippedItemUI) -> void:
 		return
 	_empty = true
 	actions = {}
+	var command := AudioSoundCommand.new()
+	command.instant = true
+	command.resource_name = GULP
+	CommonAudioProcessor.process_sound(command)
 	if equipped_item_ui:
 		equipped_item_ui.set_ui_animation("empty")
 	var scene := _scene()
-	if scene == null:
-		_remove_from_inventory()
-		return
 	scene.get_tree().create_timer(_REMOVE_DELAY).timeout.connect(_remove_from_inventory)
 
 func on_equipped(equipped_item_ui: EquippedItemUI) -> void:

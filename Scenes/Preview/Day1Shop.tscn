@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://kvbvxu0vbc8y" path="res://Scenes/Timer/timer.tscn" id="timer_scene"]
 [ext_resource type="PackedScene" path="res://Scenes/Characters/EngineerCopy.tscn" id="3_character"]
 [ext_resource type="Script" uid="uid://ct24630qdy5qa" path="res://Scripts/Characters/SceneCharacter.gd" id="4_none"]
+[ext_resource type="PackedScene" path="res://Scenes/Characters/Engineer.tscn" id="5_engineer"]
 
 [node name="Day1Shop" type="Node2D"]
 script = ExtResource("1_backdrop")
@@ -38,16 +39,15 @@ modulate = Color(0.95, 0.82, 0.55, 1)
 position = Vector2(520, 800)
 character_name = "cashier"
 
-[node name="Engineer" parent="." instance=ExtResource("3_character")]
+[node name="Engineer" parent="." instance=ExtResource("5_engineer")]
 visible = false
-modulate = Color(0.75, 0.8, 0.88, 1)
-position = Vector2(1180, 800)
+position = Vector2(1180, 723)
+scene_object_manager = NodePath("")
 character_name = "engineer"
 
 [node name="None" type="Node2D" parent="."]
 script = ExtResource("4_none")
 character_name = "none"
-has_voice = false
 
 [node name="DialogController" parent="." node_paths=PackedStringArray("timer") instance=ExtResource("2_dialog")]
 story = null
@@ -75,29 +75,22 @@ position = Vector2(520, 800)
 scale = Vector2(0.15, 0.15)
 
 [node name="engineer_default" type="Marker2D" parent="CharacterPositions"]
-position = Vector2(1180, 800)
-scale = Vector2(0.15, 0.15)
+position = Vector2(1180, 723)
 
 [node name="engineer_nervous" type="Marker2D" parent="CharacterPositions"]
-position = Vector2(1180, 800)
-scale = Vector2(0.15, 0.15)
+position = Vector2(1180, 723)
 
 [node name="engineer_curious" type="Marker2D" parent="CharacterPositions"]
-position = Vector2(1180, 800)
-scale = Vector2(0.15, 0.15)
+position = Vector2(1180, 723)
 
 [node name="engineer_smile" type="Marker2D" parent="CharacterPositions"]
-position = Vector2(1180, 800)
-scale = Vector2(0.15, 0.15)
+position = Vector2(1180, 723)
 
 [node name="engineer_idle" type="Marker2D" parent="CharacterPositions"]
-position = Vector2(1180, 800)
-scale = Vector2(0.15, 0.15)
+position = Vector2(1180, 723)
 
 [node name="engineer_relaxed" type="Marker2D" parent="CharacterPositions"]
-position = Vector2(1180, 800)
-scale = Vector2(0.15, 0.15)
+position = Vector2(1180, 723)
 
 [node name="engineer_shocked" type="Marker2D" parent="CharacterPositions"]
-position = Vector2(1180, 800)
-scale = Vector2(0.15, 0.15)
+position = Vector2(1180, 723)

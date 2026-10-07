@@ -156,34 +156,28 @@ func _to_after_pickup_enum(value: String) -> String:
 
 
 func _to_interaction_type_enum(value: String) -> String:
-	match value.strip_edges().to_upper():
-		"LOOK":
-			return "LOOK"
-		"TAKE":
-			return "TAKE"
-		"MOVE":
-			return "MOVE"
-		"NONE":
-			return "NONE"
-		_:
-			return ""
+	var key := value.strip_edges().to_upper()
+	if SceneItemUI.INTERACTION_TYPE.has(key):
+		return key
+	return ""
 
 
 func _write_generator_script(ids: PackedStringArray) -> void:
-	var enum_ids: PackedStringArray = ids.duplicate()
-	if not _has_enum_name(enum_ids, "NONE"):
-		enum_ids.append("none")
+	# SceneItemUI stores scene_item_id as the enum int. Keep existing values and
+	# append unknown ids so regeneration does not remap every scene.
+	var entries := _stable_enum_entries(ids)
 	var enum_lines: PackedStringArray = []
 	var match_lines: PackedStringArray = []
-	for i in enum_ids.size():
-		var enum_name := _to_enum_name(enum_ids[i])
-		var comma := "," if i < enum_ids.size() - 1 else ""
-		enum_lines.append("\t%s%s" % [enum_name, comma])
+	for i in entries.size():
+		var entry: Dictionary = entries[i]
+		var enum_name: String = entry["name"]
+		var comma := "," if i < entries.size() - 1 else ""
+		enum_lines.append("\t%s = %d%s" % [enum_name, int(entry["value"]), comma])
 		match_lines.append("\t\tSCENE_ITEM.%s:" % enum_name)
 		if enum_name == "NONE":
 			match_lines.append("\t\t\treturn SceneItemBase.new()")
 		else:
-			match_lines.append("\t\t\treturn %s.new()" % ("SceneItem" + _to_pascal_case(enum_ids[i])))
+			match_lines.append("\t\t\treturn %s.new()" % ("SceneItem" + _to_pascal_case(str(entry["id"]))))
 	var generated := "\n".join([
 		"class_name SceneItemGenerator",
 		"extends Object",
@@ -226,6 +220,85 @@ func _read_custom_tail(path: String) -> String:
 	if idx < 0:
 		return ""
 	return content.substr(idx + SKIP_MARKER.length())
+
+
+func _stable_enum_entries(ids: PackedStringArray) -> Array:
+	var incoming: PackedStringArray = ids.duplicate()
+	if not _has_enum_name(incoming, "NONE"):
+		incoming.append("none")
+
+	var incoming_by_name := {}
+	for id in incoming:
+		incoming_by_name[_to_enum_name(id)] = id
+
+	var existing := _read_existing_enum_entries()
+	var max_value := -1
+	for entry in existing:
+		max_value = maxi(max_value, int(entry["value"]))
+
+	var entries: Array = []
+	var placed := {}
+	for entry in existing:
+		var enum_name: String = entry["name"]
+		if not incoming_by_name.has(enum_name) or placed.has(enum_name):
+			continue
+		entries.append({
+			"id": incoming_by_name[enum_name],
+			"name": enum_name,
+			"value": int(entry["value"]),
+		})
+		placed[enum_name] = true
+
+	var next_value := max_value + 1
+	for id in incoming:
+		var enum_name := _to_enum_name(id)
+		if placed.has(enum_name):
+			continue
+		entries.append({
+			"id": id,
+			"name": enum_name,
+			"value": next_value,
+		})
+		placed[enum_name] = true
+		next_value += 1
+	return entries
+
+
+func _read_existing_enum_entries() -> Array:
+	var entries: Array = []
+	if not FileAccess.file_exists(GENERATOR_PATH):
+		return entries
+	var file := FileAccess.open(GENERATOR_PATH, FileAccess.READ)
+	if file == null:
+		return entries
+	var content := file.get_as_text()
+	var header := content.find("enum SCENE_ITEM")
+	if header < 0:
+		return entries
+	var open_brace := content.find("{", header)
+	var close_brace := content.find("}", open_brace)
+	if open_brace < 0 or close_brace < 0:
+		return entries
+
+	var next_value := 0
+	var body := content.substr(open_brace + 1, close_brace - open_brace - 1)
+	for raw_line in body.split("\n"):
+		var line := raw_line.split("#")[0].strip_edges().trim_suffix(",").strip_edges()
+		if line.is_empty():
+			continue
+		var enum_name := line
+		var value := next_value
+		if "=" in line:
+			var parts := line.split("=", true, 1)
+			enum_name = parts[0].strip_edges()
+			var value_text := parts[1].strip_edges()
+			if value_text.is_valid_int():
+				value = value_text.to_int()
+		if enum_name.is_empty():
+			continue
+		entries.append({"name": enum_name, "value": value})
+		next_value = value + 1
+	return entries
 
 
 func _has_enum_name(ids: PackedStringArray, enum_name: String) -> bool:

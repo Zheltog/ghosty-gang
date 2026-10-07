@@ -1,18 +1,11 @@
 class_name CharacterSceneItemUI
 extends SceneItemUI
 
-const DRAW_Z := 1
 const SHOOT_ACTION := "shoot"
 
 var _collision_ready := false
 
 func _ready() -> void:
-	scene_item_id = SceneItemGenerator.SCENE_ITEM.NONE
-	intercation_type = INTERACTION_TYPE.LOOK
-	interact_during_dialog = true
-	z_as_relative = false
-	z_index = DRAW_Z
-	modulate.a = 0.0
 	_apply_current_frame()
 	if texture == null:
 		_area_2d.input_event.connect(_on_input_event)

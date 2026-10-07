@@ -119,6 +119,9 @@ position = Vector2(960, 540)
 [node name="default" type="Marker2D" parent="CharacterPositions" unique_id=1568120115]
 position = Vector2(924, 557)
 
+[node name="lay_dead" type="Marker2D" parent="CharacterPositions" unique_id=845893054]
+position = Vector2(860, 749)
+
 [node name="engineer_stand_back" type="Marker2D" parent="CharacterPositions" unique_id=86477806]
 position = Vector2(1206, 517)
 

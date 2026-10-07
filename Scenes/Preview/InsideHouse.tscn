@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://25u3ny2aflx6" path="res://Assets/Sprites/Characters/Engineer/Dron/standing_sus.png" id="19_f7hr0"]
 [ext_resource type="Script" uid="uid://ct24630qdy5qa" path="res://Scripts/Characters/SceneCharacter.gd" id="20_pvt63"]
 [ext_resource type="Texture2D" uid="uid://daj36qgjxnh3h" path="res://Assets/Sprites/Characters/Engineer/Dron/standing_normal.png" id="20_xjebt"]
+[ext_resource type="Script" uid="uid://cpcmmpjnyoy7g" path="res://Scripts/UI/PointAndClickScenes/CharacterSceneItemUI.gd" id="25_f7hr0"]
 [ext_resource type="Script" uid="uid://sv300tnhe327" path="res://Scripts/Scenes/BlackoutEffect.gd" id="blackout_script"]
 [ext_resource type="PackedScene" uid="uid://c8bathroom0a1" path="res://Scenes/Preview/Rooms/Bathroom.tscn" id="room_Bathroom"]
 [ext_resource type="PackedScene" uid="uid://s218cktv50w5" path="res://Scenes/Preview/Rooms/Bookshelf.tscn" id="room_Bookshelf"]
@@ -635,12 +636,18 @@ func activate() -> void:
 	scene.load_room(\"exit_from_storage\")
 	_close_storage_exit(scene)
 	_lock_inventory(scene)
+	_place_engineer()
 	await blackout.back_to_normal()
-	engineer.set_emotion(\"stand_normal\")
+	play(DialogPathConstants.TORTURE)
+
+func _place_engineer() -> void:
+	var root := engineer.get_parent()
+	if root:
+		root.visible = true
+	engineer.set_emotion(\"stand_suspicious\")
 	engineer.set_location(\"exit_from_storage\")
 	#TODO: REMOVE:
 	engineer.modulate = Color.from_rgba8(110,100,100)
-	play(DialogPathConstants.TORTURE)
 
 func _close_storage_exit(scene: HouseScenePreview) -> void:
 	var background := scene.room_child(\"exit_from_storage\", \"Background\") as Sprite2D
@@ -691,17 +698,30 @@ inventory = NodePath("../Inventory")
 [node name="Characters" type="Node2D" parent="." unique_id=1949332713]
 visible = false
 
-[node name="Engineer" type="AnimatedSprite2D" parent="Characters" unique_id=718858753 node_paths=PackedStringArray("sprite")]
+[node name="Engineer" type="AnimatedSprite2D" parent="Characters" unique_id=718858753 node_paths=PackedStringArray("scene_object_manager", "sprite")]
 position = Vector2(802.99994, 382.99997)
 sprite_frames = SubResource("SpriteFrames_280bj")
 animation = &"lay_dead"
 script = ExtResource("20_pvt63")
+scene_object_manager = NodePath("../../SceneObjectManager")
 sprite = NodePath(".")
 character_name = "engineer"
 
 [node name="ParallaxComponent" type="Node" parent="Characters/Engineer" unique_id=970396288]
 script = ExtResource("10_parobj")
-camera_distance = 110.0
+camera_distance = 105.0
+
+[node name="SceneItemUI" type="Sprite2D" parent="Characters/Engineer" unique_id=337927701]
+modulate = Color(1, 1, 1, 0)
+z_index = 1
+z_as_relative = false
+position = Vector2(-802.99994, -382.99997)
+script = ExtResource("25_f7hr0")
+scene_item_id = 22
+interact_during_dialog = true
+metadata/_custom_type_script = "uid://cjwqo45k5xnx0"
+
+[node name="Area2D" type="Area2D" parent="Characters/Engineer/SceneItemUI" unique_id=1737483621]
 
 [node name="Inventory" parent="." unique_id=1450084800 node_paths=PackedStringArray("dialog_controller") instance=ExtResource("3_inv")]
 z_index = 3
@@ -718,6 +738,10 @@ dialog_controller = NodePath("../DialogController")
 z_index = 4
 story = null
 timer = NodePath("../GameTimer")
+
+[node name="ParallaxComponent" type="Node" parent="DialogController" unique_id=2059081290]
+script = ExtResource("10_parobj")
+camera_distance = 50.0
 
 [node name="Blackout" type="TextureRect" parent="." unique_id=1847263105]
 modulate = Color(1, 1, 1, 0)

@@ -37,18 +37,22 @@ func _process_adjustment_by_time(delta: float) -> void:
 		var percent = clamp(_changing_volume_time_elapsed / _changing_volume_duration, 0, 1)
 		volume_linear = lerp(_saved_volume, _target_volume, percent)
 	if _changing_volume_time_elapsed >= _changing_volume_duration:
-		if _dynamicAdjustmentState == DynamicAdjustmentState.Falling and _saved_callback != null:
-			_saved_callback.call()
+		var callback := _saved_callback
+		_saved_callback = Callable()
 		_dynamicAdjustmentState = DynamicAdjustmentState.None
+		if callback.is_valid():
+			callback.call()
 
 func _process_adjustment_by_speed(delta: float) -> void:
 	var multiplier = 1 if _target_volume > _saved_volume else -1
 	volume_linear += multiplier * _changing_volume_speed * delta
 	if (multiplier == 1 and volume_linear >= _target_volume) or (multiplier == -1 and volume_linear <= _target_volume):
-		volume_linear = _target_volume 
-		if _dynamicAdjustmentState == DynamicAdjustmentState.Falling and _saved_callback != null:
-			_saved_callback.call()
+		volume_linear = _target_volume
+		var callback := _saved_callback
+		_saved_callback = Callable()
 		_dynamicAdjustmentState = DynamicAdjustmentState.None
+		if callback.is_valid():
+			callback.call()
 
 func play_resource(resource_name: String, resource_stream: AudioStream, tag: String) -> void:
 	_resource_name = resource_name

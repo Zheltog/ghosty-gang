@@ -203,12 +203,10 @@ func _staged_characters() -> Array[SceneCharacter]:
 
 func _speaker_name() -> String:
 	var speaker := DialogState.none_character if _state.thought else _state.character_name
-	if speaker.is_empty():
+	speaker = speaker.strip_edges().to_lower()
+	if speaker.is_empty() or not VoiceProcessor.has_speaker(speaker):
 		return ""
-	var character := _find_character(speaker)
-	if character == null or not character.has_voice:
-		return ""
-	return character.character_name
+	return speaker
 
 func _play_animation() -> void:
 	if not _state.has_animation:

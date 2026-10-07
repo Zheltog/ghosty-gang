@@ -19,6 +19,9 @@ func register_speaker(speaker_name: String, pitch_from: float, pitch_to: float, 
 		"sound": voice_sound.strip_edges(),
 	}
 
+func has_speaker(speaker_name: String) -> bool:
+	return _speakers.has(speaker_name)
+
 func _play_speaker_voice_sound(speaker_name: String) -> void:
 	if speaker_name == null or speaker_name == "":
 		printerr("[VoiceProcessor] No speaker name provided")

@@ -25,7 +25,6 @@ color = Color(0.07, 0.09, 0.14, 1)
 [node name="None" type="Node2D" parent="."]
 script = ExtResource("4_none")
 character_name = "none"
-has_voice = false
 
 [node name="DialogController" parent="." node_paths=PackedStringArray("timer") instance=ExtResource("2_dialog")]
 story = null

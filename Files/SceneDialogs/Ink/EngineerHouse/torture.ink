@@ -1,4 +1,5 @@
 // Пытка в кладовке. Вход один: отравленный чай, удар во сне и оглушение после выстрела сюда не ветвятся.
+EXTERNAL godot_2(target_class, method, arg0, arg1)
 # story: torture
 # load: engineer_dead
 # save: engineer_dead
@@ -10,7 +11,7 @@ VAR engineer_dead = false
 === wake ===
 # skip_default:false
 Чувства возвращаются постепенно. Сначала головная боль. Затем — жжение в кистях рук. Звон в ушах. Наконец, ты с усилием открываешь заплывшие глаза и видишь свои ноги. Что ж, по крайней мере они не связаны. # window:thought
-Ты поднимаешь голову и видишь перед собой фигуру инженера. # window:thought # char:engineer # pose:stand # anim:suspicious
+Ты поднимаешь голову и видишь перед собой фигуру инженера. # window:thought
 Ты привязан к стулу в кладовке за шкафом. Руки связаны накрепко, так что ты не чувствуешь пальцев. # window:thought
 Очнулся? Вот и хорошо. Где твоё удостоверение? Документы? # window:default # char:engineer # pose:stand # anim:suspicious # skippable:false
 Только паспорт. Я не из инстанций. # response # skippable:false
@@ -18,10 +19,12 @@ VAR engineer_dead = false
 Какой нахрен?.. # response # skippable:false
 Кто тебя послал? Что тебе надо от меня? # window:default # char:engineer # pose:stand # anim:suspicious # skippable:false
 Слушай, мужик, я тут за мальчиком. До тебя мне вообще дела нет. # response # skippable:false
-Ну конечно. # char:engineer # pose:stand # anim:scared # skippable:false
-Инженер отворачивается. Ты не видишь, что он делает, но предчувствие у тебя плохое. # window:thought # char:engineer # pose:stand # anim:back
+Ну конечно. # char:engineer # pose:stand # anim:suspicious # skippable:false
+~ godot_2("HouseScenePreview", "set_character_emotion", "engineer", "stand_back")
+Инженер отворачивается. Ты не видишь, что он делает, но предчувствие у тебя плохое. # window:thought
 Ну конечно, ты же не думал, что после всего удастся просто потеряться? Интересно, кто всё-таки прокололся? Игнатьев, скотина болтливая, наверняка он… # window:default # char:engineer # pose:stand # anim:back # skippable:false
-Он оборачивается. В руках вязальная спица и зажигалка. # window:thought # char:engineer # pose:stand # anim:suspicious
+~ godot_2("HouseScenePreview", "set_character_emotion", "engineer", "stand_suspicious")
+Он оборачивается. В руках вязальная спица и зажигалка. # window:thought
 Мне всё-таки кажется, никакой ты не бандит. # window:default # char:engineer # pose:stand # anim:suspicious # skippable:false
 Твои старшие коллеги из КГБ в своё время кое-чему меня научили. После первой облавы, когда брали Морозова. Ты, наверное, и сам читал материалы допросов. # char:engineer # pose:stand # anim:suspicious # skippable:false
 Но кое-какие детали туда вряд ли записали. # char:engineer # pose:stand # anim:suspicious # skippable:false
@@ -52,8 +55,9 @@ VAR engineer_dead = false
 + [Меня послали убить тебя.]
 	Я из разведки. Меня послали убить тебя. # response # skippable:false
 	Я так и думал. Что ж, тогда тянуть больше нет смысла. # window:default # char:engineer # pose:stand # anim:suspicious # skippable:false
-	Он достаёт пистолет и направляет его прямо в твою голову. # window:thought # char:engineer # pose:stand # anim:scared
-	Зря вы сюда приехали. # window:default # char:engineer # pose:stand # anim:scared # skippable:false
+	~ godot_2("HouseScenePreview", "set_character_emotion", "engineer", "stand_normal")
+	Он достаёт пистолет и направляет его прямо в твою голову. # window:thought
+	Зря вы сюда приехали. # window:default # char:engineer # pose:stand # anim:normal # skippable:false
 	Не делай… # response # skippable:false
 	Ты даже не успеваешь услышать выстрел — просто смотришь, будто в замедленной съёмке, как его палец вжимает курок. # window:thought
 	Все кончено. # window:thought
@@ -82,14 +86,15 @@ VAR engineer_dead = false
 
 === organs_deal ===
 Вот значит как… # window:default # char:engineer # pose:stand # anim:suspicious # skippable:false
-Инженер опускает иглу. Видно, что он колеблется. # window:thought # char:engineer # pose:stand # anim:normal
+~ godot_2("HouseScenePreview", "set_character_emotion", "engineer", "stand_normal")
+Инженер опускает иглу. Видно, что он колеблется. # window:thought
 Вы сможете гарантировать мою неприкосновенность, если я буду сотрудничать? # window:default # char:engineer # pose:stand # anim:suspicious # skippable:false
 Да. Слово офицера. # response # skippable:false
 Мне надо подумать над этим. # window:default # char:engineer # pose:stand # anim:back # skippable:false
 -> chance
 
 === shove ===
-Инженер успевает понять, что ты пытаешься сделать, и с силой усаживает тебя обратно. # window:thought # char:engineer # pose:stand
+Инженер успевает понять, что ты пытаешься сделать, и с силой усаживает тебя обратно. # window:thought # char:engineer
 Это лишнее. Не суетитесь. # window:default # char:engineer # pose:stand # anim:chair # skippable:false
 -> torture_2
 
@@ -105,10 +110,12 @@ VAR engineer_dead = false
 -> chance
 
 === chance ===
-Он отворачивается к полке и начинает искать что-то. # window:thought # char:engineer # pose:stand # anim:back
+~ godot_2("HouseScenePreview", "set_character_emotion", "engineer", "stand_back")
+Он отворачивается к полке и начинает искать что-то. # window:thought
 Вот он. Твой шанс. # window:thought
 Ты с усилием поднимаешься вместе со стулом и врезаешься в инженера. Ты вложил все силы в удар лбом по его затылку. # window:thought
-Раздаётся хруст, и Владислав опускается на пол ничком. Под его лицом растекается кровь. # window:thought # char:engineer # pose:lay #anim:dead
+~ godot_2("HouseScenePreview", "set_character_emotion", "engineer", "lay_dead")
+Раздаётся хруст, и Владислав опускается на пол ничком. Под его лицом растекается кровь. # window:thought
 Тебе повезло: удар впечатал инженера лицом в крепёж на стене, который вогнал кость в его мозг. Он мёртв — это точно. # window:thought
 Получай, с-сука… # response # skippable:false
 Ты валишься на пол и снова теряешь сознание. # window:thought

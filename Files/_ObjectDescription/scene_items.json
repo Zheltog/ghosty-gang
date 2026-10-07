@@ -63,6 +63,15 @@
 			}
 		}
 	},
+	"character" : {
+		"pickable" : false,
+		"intercaton_type" : "none",
+		"interaction_overload" : {
+			"gun" : {
+				"interaction_type" : "shoot",
+			}
+		}
+	},
 	"flashlight" : {
 		"pickable" : true,
 		"equiped_immediately" : false,

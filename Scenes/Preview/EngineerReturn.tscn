@@ -3,10 +3,23 @@
 [ext_resource type="PackedScene" uid="uid://coqod58rqhc2u" path="res://Scenes/Preview/InsideHouse.tscn" id="1_house"]
 [ext_resource type="Script" uid="uid://ddx6ksi0lkjt1" path="res://Scripts/Scenes/EngineerReturnSetup.gd" id="2_setup"]
 
+[sub_resource type="Gradient" id="Gradient_3ffpp"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_f7hr0"]
+gradient = SubResource("Gradient_3ffpp")
+width = 1920
+height = 1080
+
 [node name="InsideHouse2" unique_id=1450198390 instance=ExtResource("1_house")]
 
 [node name="EngineerReturnSetup" type="Node" parent="." index="0" unique_id=1442136173]
 script = ExtResource("2_setup")
+
+[node name="Blackout" parent="." index="6" unique_id=1847263105]
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = SubResource("GradientTexture2D_f7hr0")
 
 [node name="StorageFire" parent="SceneStates/Welcome/PassportTimer" parent_id_path=PackedInt32Array(1988318410) index="0" unique_id=1592969705]
 active = false

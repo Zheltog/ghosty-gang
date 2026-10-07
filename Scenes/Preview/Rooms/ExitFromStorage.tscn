@@ -56,7 +56,7 @@ position = Vector2(960, 540)
 [node name="CharacterPositions" type="Node2D" parent="." unique_id=1474846183]
 
 [node name="default" type="Marker2D" parent="CharacterPositions" unique_id=1659678063]
-position = Vector2(803, 383)
+position = Vector2(767, 685)
 scale = Vector2(2, 2)
 
 [node name="engineer_stand_back" type="Marker2D" parent="CharacterPositions" unique_id=1706260570]

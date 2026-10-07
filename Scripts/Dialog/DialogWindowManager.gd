@@ -74,7 +74,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_SPACE:
 		_mark_input_handled()
 		_hold_skip_wait = hold_skip_start_delay
-		handle_click()
+		handle_click(true)
 
 func _process(delta: float) -> void:
 	if not _can_skip_input() or not Input.is_physical_key_pressed(KEY_SPACE):
@@ -83,7 +83,7 @@ func _process(delta: float) -> void:
 	_hold_skip_wait -= delta
 	if _hold_skip_wait > 0.0:
 		return
-	handle_click()
+	handle_click(true)
 	_hold_skip_wait = hold_skip_interval
 
 func _mark_input_handled() -> void:
@@ -94,16 +94,18 @@ func _mark_input_handled() -> void:
 func _can_skip_input() -> bool:
 	return DialogController.is_dialog_active() and _active_box != null and _active_box.is_shown()
 
-func handle_click() -> void:
+func handle_click(force := false) -> void:
 	if _active_box == null or _state == null or _controller == null:
 		return
 	if _active_box.is_printing():
-		if _state.skippable:
-			_active_box.skip_printing()
-		return
+		if not force and not _state.skippable:
+			return
+		_active_box.skip_printing()
+		if not force or _state.skippable:
+			return
 	if _active_box.has_options():
 		return
-	if not _state.skippable:
+	if not force and not _state.skippable:
 		return
 	_controller.proceed()
 

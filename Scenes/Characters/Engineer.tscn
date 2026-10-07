@@ -1,0 +1,230 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" uid="uid://ktquvlvtry4r" path="res://Assets/Sprites/Characters/Engineer/Dron/standing_chair_attack.png" id="1_chair"]
+[ext_resource type="Texture2D" uid="uid://cp3i304md3py6" path="res://Assets/Sprites/Characters/Engineer/Dron/sitting_normal.png" id="2_sit"]
+[ext_resource type="Texture2D" uid="uid://ct8jrj8g00yg8" path="res://Assets/Sprites/Characters/Engineer/Dron/sitting_taking_body.png" id="3_reach"]
+[ext_resource type="Texture2D" uid="uid://c1mqcjylh6imp" path="res://Assets/Sprites/Characters/Engineer/Dron/sitting_sus.png" id="4_sitsus"]
+[ext_resource type="Texture2D" uid="uid://yusbqae1gdbk" path="res://Assets/Sprites/Characters/Engineer/Dron/hasle near wardrobe.png" id="5_back"]
+[ext_resource type="Texture2D" uid="uid://dtrjugtkksekv" path="res://Assets/Sprites/Characters/Engineer/Dron/standing_dead.png" id="6_dead"]
+[ext_resource type="Texture2D" uid="uid://2lcyocqmdhh6" path="res://Assets/Sprites/Characters/Engineer/Dron/sitting_AH.png" id="7_sitah"]
+[ext_resource type="Texture2D" uid="uid://25u3ny2aflx6" path="res://Assets/Sprites/Characters/Engineer/Dron/standing_sus.png" id="8_sus"]
+[ext_resource type="Texture2D" uid="uid://daj36qgjxnh3h" path="res://Assets/Sprites/Characters/Engineer/Dron/standing_normal.png" id="9_normal"]
+[ext_resource type="Texture2D" uid="uid://ccxjsbk8n5yq6" path="res://Assets/Sprites/Characters/Engineer/Dron/standing_AH.png" id="10_ah"]
+[ext_resource type="Script" uid="uid://ct24630qdy5qa" path="res://Scripts/Characters/SceneCharacter.gd" id="11_character"]
+[ext_resource type="Script" uid="uid://8p77bw84c7bp" path="res://Scripts/UI/PointAndClickScenes/Components/ParallaxComponent.gd" id="12_parallax"]
+[ext_resource type="Script" uid="uid://cpcmmpjnyoy7g" path="res://Scripts/UI/PointAndClickScenes/CharacterSceneItemUI.gd" id="13_item"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_normal"]
+atlas = ExtResource("9_normal")
+region = Rect2(0, 0, 274, 694)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_reach"]
+atlas = ExtResource("3_reach")
+region = Rect2(0, 0, 2120, 1280)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sitah"]
+atlas = ExtResource("7_sitah")
+region = Rect2(0, 0, 2120, 1280)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sitsus"]
+atlas = ExtResource("4_sitsus")
+region = Rect2(0, 0, 2120, 1280)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dead"]
+atlas = ExtResource("6_dead")
+region = Rect2(0, 0, 404, 174)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sit"]
+atlas = ExtResource("2_sit")
+region = Rect2(0, 0, 2120, 1280)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_back"]
+atlas = ExtResource("5_back")
+region = Rect2(0, 0, 179, 316)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_chair"]
+atlas = ExtResource("1_chair")
+region = Rect2(0, 0, 274, 694)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_scared"]
+atlas = ExtResource("7_sitah")
+region = Rect2(0, 0, 274, 694)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sus"]
+atlas = ExtResource("8_sus")
+region = Rect2(0, 0, 274, 694)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ah"]
+atlas = ExtResource("10_ah")
+region = Rect2(0, 0, 274, 694)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_engineer"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sus")
+}],
+"loop": true,
+"name": &"curious",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_normal")
+}],
+"loop": true,
+"name": &"kitchen_couch_from_kitchen_sit_normal",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_reach")
+}],
+"loop": true,
+"name": &"kitchen_couch_from_kitchen_sit_reach",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sitah")
+}],
+"loop": true,
+"name": &"kitchen_couch_from_kitchen_sit_scared",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sitsus")
+}],
+"loop": true,
+"name": &"kitchen_couch_from_kitchen_sit_suspicious",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dead")
+}],
+"loop": true,
+"name": &"lay_dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ah")
+}],
+"loop": true,
+"name": &"nervous",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sit")
+}],
+"loop": true,
+"name": &"sit_normal",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_reach")
+}],
+"loop": true,
+"name": &"sit_reach",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sitah")
+}],
+"loop": true,
+"name": &"sit_scared",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sitsus")
+}],
+"loop": true,
+"name": &"sit_suspicious",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_normal")
+}],
+"loop": true,
+"name": &"smile",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_back")
+}],
+"loop": true,
+"name": &"stand_back",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_chair")
+}],
+"loop": true,
+"name": &"stand_chair",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_normal")
+}],
+"loop": true,
+"name": &"stand_normal",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_scared")
+}],
+"loop": true,
+"name": &"stand_scared",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sus")
+}],
+"loop": true,
+"name": &"stand_suspicious",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_normal")
+}],
+"loop": true,
+"name": &"stand_tea",
+"speed": 5.0
+}]
+
+[node name="Engineer" type="AnimatedSprite2D" node_paths=PackedStringArray("scene_object_manager", "sprite")]
+sprite_frames = SubResource("SpriteFrames_engineer")
+animation = &"stand_normal"
+script = ExtResource("11_character")
+scene_object_manager = NodePath("../../SceneObjectManager")
+sprite = NodePath(".")
+character_name = "engineer"
+
+[node name="ParallaxComponent" type="Node" parent="."]
+script = ExtResource("12_parallax")
+camera_distance = 105.0
+
+[node name="SceneItemUI" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+z_index = 1
+z_as_relative = false
+position = Vector2(-802.99994, -382.99997)
+script = ExtResource("13_item")
+scene_item_id = 22
+interact_during_dialog = true
+metadata/_custom_type_script = "uid://cjwqo45k5xnx0"
+
+[node name="Area2D" type="Area2D" parent="SceneItemUI"]

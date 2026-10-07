@@ -5,8 +5,6 @@ extends RefCounted
 const player_phrase_window := "player_phrase"
 const thought_window := "thought"
 const none_character := "none"
-## TODO: temporary override, ignores `skippable:false` / `skip_default:false` tags.
-const force_skippable := true
 
 var skippable_default: bool = true
 var skippable: bool = true
@@ -52,9 +50,6 @@ func apply(tags: Array[String]) -> void:
 		skippable = skippable_default
 	if parsed.has("skippable"):
 		skippable = _parse_bool(parsed["skippable"], skippable)
-	if force_skippable:
-		skippable_default = true
-		skippable = true
 	instant = parsed.has("instant") and _parse_bool(parsed["instant"], true)
 	response = parsed.has("response")
 	thought = parsed.has("thought")
@@ -69,6 +64,8 @@ func apply(tags: Array[String]) -> void:
 		character_name = str(parsed["char"]).strip_edges()
 	if thought and not parsed.has("char"):
 		character_name = none_character
+	elif response and not parsed.has("char"):
+		character_name = "detective"
 	introduced = parsed.has("introduced")
 	if parsed.has("away"):
 		var raw := str(parsed["away"]).strip_edges()

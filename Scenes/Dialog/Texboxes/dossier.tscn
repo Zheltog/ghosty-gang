@@ -19,10 +19,11 @@ printing_speed = 40.0
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1064589674]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
-offset_left = 981.0
-offset_top = 98.0
-offset_right = 1821.0
-offset_bottom = 602.0
+offset_left = 1166.0
+offset_top = 120.99999
+offset_right = 2006.0
+offset_bottom = 741.0
+scale = Vector2(0.7, 0.7)
 texture = ExtResource("3_window")
 
 [node name="CharacterName" type="Label" parent="TextureRect" unique_id=1966404429]

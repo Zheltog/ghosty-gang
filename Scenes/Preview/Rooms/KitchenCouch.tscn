@@ -61,7 +61,10 @@ camera_distance = 100.0
 [node name="CharacterPositions" type="Node2D" parent="." unique_id=603826549]
 
 [node name="default" type="Marker2D" parent="CharacterPositions" unique_id=1668231852]
-position = Vector2(1117, 683)
+position = Vector2(928, 683)
+
+[node name="lay_dead" type="Marker2D" parent="CharacterPositions" unique_id=1235206975]
+position = Vector2(2601, -978)
 
 [node name="engineer_stand_scared" type="Marker2D" parent="CharacterPositions" unique_id=1049608247]
 position = Vector2(542, 583)
