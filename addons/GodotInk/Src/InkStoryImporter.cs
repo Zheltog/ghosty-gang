@@ -36,6 +36,8 @@ public partial class InkStoryImporter : EditorImportPlugin
 
     public override string _GetSaveExtension() => "res";
 
+    public override int _GetFormatVersion() => 2;
+
     public override float _GetPriority() => 1.0f;
 
     public override int _GetPresetCount() => 0;
@@ -74,7 +76,8 @@ public partial class InkStoryImporter : EditorImportPlugin
         if (file == null)
             return Godot.FileAccess.GetOpenError();
 
-        Compiler compiler = new(file.GetAsText(), new Compiler.Options
+        string sourceText = file.GetAsText();
+        Compiler compiler = new(sourceText, new Compiler.Options
         {
             sourceFilename = sourceFile,
             errorHandler = InkCompilerErrorHandler,
@@ -87,6 +90,7 @@ public partial class InkStoryImporter : EditorImportPlugin
         {
             string storyContent = compiler.Compile().ToJson();
             InkStory resource = InkStory.Create(storyContent);
+            resource.SourceText = sourceText;
             ResourceSaver.SaverFlags flags = shouldCompress ? ResourceSaver.SaverFlags.Compress
                                                             : ResourceSaver.SaverFlags.None;
             return ResourceSaver.Save(resource, destFile, flags);

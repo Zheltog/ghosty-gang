@@ -38,10 +38,21 @@ public partial class InkStory : Resource
     }
 
     private string rawStory = string.Empty;
+    private string sourceText = string.Empty;
     private Ink.Runtime.Story runtimeStory = null!;
 
     private readonly Dictionary<string, HashSet<Callable>> observers = new();
     private readonly Dictionary<string, Ink.Runtime.Story.VariableObserver> internalObservers = new();
+
+    /// <summary>
+    /// Original .ink source, stored beside the compiled story so an export
+    /// can read the same lines the editor reads from disk.
+    /// </summary>
+    public string SourceText
+    {
+        get => sourceText;
+        set => sourceText = value ?? string.Empty;
+    }
 
     public static InkStory Create(string rawStory)
     {
@@ -692,7 +703,30 @@ public partial class InkStory : Resource
             { "type", Variant.From(Variant.Type.Object) },
             { "usage", Variant.From(PropertyUsageFlags.NoEditor) },
         });
+        properties.Add(new Godot.Collections.Dictionary()
+        {
+            { "name", PropertyName.SourceText },
+            { "type", Variant.From(Variant.Type.String) },
+            { "usage", Variant.From(PropertyUsageFlags.NoEditor) },
+        });
 
         return properties;
+    }
+
+    public override Variant _Get(StringName property)
+    {
+        if (property == PropertyName.SourceText)
+            return SourceText;
+        return base._Get(property);
+    }
+
+    public override bool _Set(StringName property, Variant value)
+    {
+        if (property == PropertyName.SourceText)
+        {
+            SourceText = value.AsString();
+            return true;
+        }
+        return base._Set(property, value);
     }
 }

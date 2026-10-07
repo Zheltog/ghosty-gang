@@ -31,6 +31,12 @@ public partial class InkStory
     public Godot.Collections.Array<string> GetCurrentTags() => new(CurrentTags);
 
     /// <summary>
+    /// This method is here for GDScript compatibility. Use <see cref="SourceText" /> instead.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public string GetSourceText() => SourceText;
+
+    /// <summary>
     /// This method is here for GDScript compatibility. Use <see cref="CurrentText" /> instead.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]

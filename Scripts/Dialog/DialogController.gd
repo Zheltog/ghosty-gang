@@ -149,13 +149,20 @@ func _finish_story() -> void:
 	story_finished.emit(_story_name())
 
 func _story_name() -> String:
-	var names := InkTagParser.values_for_key(
-		InkTagParser.read_global_tags_from_file(_story_path),
-		"story"
-	)
+	var names := InkTagParser.values_for_key(_story_source_tags(), "story")
 	if names.is_empty():
 		return ""
 	return names[0]
+
+func _story_source_tags() -> Array[String]:
+	return InkTagParser.read_global_tags_from_text(_story_source_text())
+
+func _story_source_text() -> String:
+	if story != null and story.has_method("GetSourceText"):
+		var stored := str(story.GetSourceText())
+		if not stored.is_empty():
+			return stored
+	return InkTagParser.read_text_file(_story_path)
 
 func _show_current_line(text: String, choices: Array) -> void:
 	_apply_line()

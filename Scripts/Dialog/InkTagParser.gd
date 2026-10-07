@@ -49,27 +49,13 @@ static func values_for_key(tags: Array, key: String) -> Array[String]:
 
 	return values
 
-## Reads `# tag` lines at the top of an .ink file (before story content).
-static func read_global_tags_from_file(path: String) -> Array[String]:
+## Reads `# tag` lines at the top of an ink source (before story content).
+static func read_global_tags_from_text(text: String) -> Array[String]:
 	var tags: Array[String] = []
-	if path.is_empty() or not FileAccess.file_exists(path):
-		return tags
-
-	var file := FileAccess.open(path, FileAccess.READ)
-	if file == null:
-		printerr("InkTagParser: failed to open ", path)
-		return tags
-
-	while not file.eof_reached():
-		var line := file.get_line().strip_edges()
+	for raw_line in text.split("\n"):
+		var line := _strip_comment(str(raw_line).strip_edges())
 		if line.is_empty():
 			continue
-
-		var comment_index := line.find("//")
-		if comment_index != -1:
-			line = line.left(comment_index).strip_edges()
-			if line.is_empty():
-				continue
 
 		if line.begins_with("#"):
 			var tag := line.substr(1).strip_edges()
@@ -91,29 +77,15 @@ static func read_global_tags_from_file(path: String) -> Array[String]:
 
 	return tags
 
-## Collects `VAR name` declarations from an .ink file.
-static func declared_var_names_from_file(path: String) -> Array[String]:
+static func read_global_tags_from_file(path: String) -> Array[String]:
+	return read_global_tags_from_text(read_text_file(path))
+
+## Collects `VAR name` declarations from an ink source.
+static func declared_var_names_from_text(text: String) -> Array[String]:
 	var names: Array[String] = []
-	if path.is_empty() or not FileAccess.file_exists(path):
-		return names
-
-	var file := FileAccess.open(path, FileAccess.READ)
-	if file == null:
-		printerr("InkTagParser: failed to open ", path)
-		return names
-
-	while not file.eof_reached():
-		var line := file.get_line().strip_edges()
-		if line.is_empty():
-			continue
-
-		var comment_index := line.find("//")
-		if comment_index != -1:
-			line = line.left(comment_index).strip_edges()
-			if line.is_empty():
-				continue
-
-		if not line.to_upper().begins_with("VAR "):
+	for raw_line in text.split("\n"):
+		var line := _strip_comment(str(raw_line).strip_edges())
+		if line.is_empty() or not line.to_upper().begins_with("VAR "):
 			continue
 
 		var rest := line.substr(4).strip_edges()
@@ -125,3 +97,21 @@ static func declared_var_names_from_file(path: String) -> Array[String]:
 		names.append(variable_name)
 
 	return names
+
+static func declared_var_names_from_file(path: String) -> Array[String]:
+	return declared_var_names_from_text(read_text_file(path))
+
+static func read_text_file(path: String) -> String:
+	if path.is_empty() or not FileAccess.file_exists(path):
+		return ""
+	var file := FileAccess.open(path, FileAccess.READ)
+	if file == null:
+		printerr("InkTagParser: failed to open ", path)
+		return ""
+	return file.get_as_text()
+
+static func _strip_comment(line: String) -> String:
+	var comment_index := line.find("//")
+	if comment_index == -1:
+		return line
+	return line.left(comment_index).strip_edges()

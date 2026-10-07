@@ -35,6 +35,14 @@
 atlas = ExtResource("20_xjebt")
 region = Rect2(0, 0, 274, 694)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_re16o"]
+atlas = ExtResource("18_i1vas")
+region = Rect2(0, 0, 404, 174)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xuvgt"]
+atlas = ExtResource("13_k7bhf")
+region = Rect2(0, 0, 2120, 1280)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_1hnut"]
 atlas = ExtResource("14_xjebt")
 region = Rect2(0, 0, 2120, 1280)
@@ -45,14 +53,6 @@ region = Rect2(0, 0, 2120, 1280)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5iv33"]
 atlas = ExtResource("15_mv3vy")
-region = Rect2(0, 0, 2120, 1280)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_re16o"]
-atlas = ExtResource("18_i1vas")
-region = Rect2(0, 0, 404, 174)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xuvgt"]
-atlas = ExtResource("13_k7bhf")
 region = Rect2(0, 0, 2120, 1280)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qllj4"]
@@ -87,7 +87,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_1hnut")
+"texture": SubResource("AtlasTexture_i1vas")
 }],
 "loop": 1,
 "name": &"kitchen_couch_from_kitchen_sit_reach",
@@ -95,7 +95,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_k46gi")
+"texture": SubResource("AtlasTexture_i1vas")
 }],
 "loop": 1,
 "name": &"kitchen_couch_from_kitchen_sit_scared",
@@ -103,7 +103,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5iv33")
+"texture": SubResource("AtlasTexture_i1vas")
 }],
 "loop": 1,
 "name": &"kitchen_couch_from_kitchen_sit_suspicious",
@@ -701,7 +701,7 @@ visible = false
 [node name="Engineer" type="AnimatedSprite2D" parent="Characters" unique_id=718858753 node_paths=PackedStringArray("scene_object_manager", "sprite")]
 position = Vector2(802.99994, 382.99997)
 sprite_frames = SubResource("SpriteFrames_280bj")
-animation = &"lay_dead"
+animation = &"kitchen_couch_from_kitchen_sit_suspicious"
 script = ExtResource("20_pvt63")
 scene_object_manager = NodePath("../../SceneObjectManager")
 sprite = NodePath(".")
