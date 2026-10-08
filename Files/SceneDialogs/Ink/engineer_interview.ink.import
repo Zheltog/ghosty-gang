@@ -4,11 +4,12 @@ importer="ink"
 importer_version=2
 type="Resource"
 uid="uid://c8engdlg04"
-valid=false
+path="res://.godot/imported/engineer_interview.ink-e8d7abeabd5e69eeccd3449500c4970e.res"
 
 [deps]
 
 source_file="res://Files/SceneDialogs/Ink/engineer_interview.ink"
+dest_files=["res://.godot/imported/engineer_interview.ink-e8d7abeabd5e69eeccd3449500c4970e.res"]
 
 [params]
 

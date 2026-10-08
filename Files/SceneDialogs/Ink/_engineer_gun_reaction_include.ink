@@ -3,7 +3,7 @@
 	~ saw_gun = true
 	~ suspicion += 5
 	Что вы делаете? Уберите его! Опустите оружие, прошу вас! # window:default # char:engineer # anim:scared # skippable:false # react_default:unequip:gun:gun_down, action:shoot:gun_kill # react_wait
-- else
+- else:
 	Прошу вас... # window:default # char:engineer # anim:scared # skippable:false # react_default:unequip:gun:gun_down, action:shoot:gun_kill # react_wait
 }
 {not explained_gun:

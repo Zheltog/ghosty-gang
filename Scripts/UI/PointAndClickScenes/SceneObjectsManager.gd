@@ -122,4 +122,6 @@ func get_mouse_icon_by_intercation_type(intercation : SceneItemUI.INTERACTION_TY
 			return MouseUI.MOUSE_ICON.HAND
 		SceneItemUI.INTERACTION_TYPE.MOVE:
 			return MouseUI.MOUSE_ICON.FOOT
+		SceneItemUI.INTERACTION_TYPE.SHOOT:
+			return MouseUI.MOUSE_ICON.SHOOT
 	return MouseUI.MOUSE_ICON.CURSOR

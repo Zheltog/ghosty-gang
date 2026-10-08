@@ -58,6 +58,13 @@ func reset() -> void:
 	_active_box = _default_box
 	_current_window = _default_box
 
+func save_window() -> TextBoxWithOptions:
+	return _current_window
+
+func load_window(window: TextBoxWithOptions) -> void:
+	if window != null:
+		_current_window = window
+
 func close() -> void:
 	_cancel_delay()
 	for box in _windows.values():

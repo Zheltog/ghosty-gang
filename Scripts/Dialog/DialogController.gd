@@ -11,9 +11,8 @@ signal story_finished(story_name: String)
 @onready var _windows: DialogWindowManager = $DialogWindowManager
 
 var _state := DialogState.new()
+var _reactions := DialogReactions.new()
 var _current_choices: Array = []
-var _reaction_defaults: Array = []
-var _line_reactions: Array = []
 var _story_path: String = ""
 var _story_finished := false
 static var dialog_active := false
@@ -21,6 +20,7 @@ static var world_locked := true
 
 func _ready() -> void:
 	_windows.setup(self, _state)
+	_reactions.setup(_state, _windows)
 	InkFunctions.subscribe(self)
 	if story:
 		_story_path = story.resource_path
@@ -54,7 +54,7 @@ func start_story(path: String = "", lock_world: bool = true) -> void:
 	InkFunctions.bind_story(story)
 	InkVariableStore.apply(story, _story_path)
 	_state.reset()
-	_clear_reactions()
+	_reactions.reset(story)
 	_windows.reset()
 	_present_line()
 
@@ -124,11 +124,14 @@ func _present_line() -> void:
 	var visible_choices := _visible_choices(_current_choices)
 	if advanced:
 		_show_current_line(str(story.GetCurrentText()), visible_choices)
-		if not _state.react_wait and not story.GetCanContinue() and _current_choices.is_empty():
-			InkVariableStore.capture(story, _story_path)
 		return
-	if _current_choices.is_empty():
-		_finish_story()
+	if not _current_choices.is_empty():
+		return
+	if _reactions.try_return():
+		_current_choices = _read_choices()
+		_show_current_line(str(story.GetCurrentText()), _visible_choices(_current_choices))
+		return
+	_finish_story()
 
 # Skips empty tag lines. Returns true when a spoken line or a visible choice is reached.
 func _advance_to_line() -> bool:
@@ -180,55 +183,8 @@ func _apply_line() -> void:
 	if tags == null:
 		tags = []
 	_state.apply(tags)
-	_update_reactions(tags)
+	_reactions.update(tags)
 	_play_animation()
-
-func _clear_reactions() -> void:
-	_reaction_defaults.clear()
-	_line_reactions.clear()
-
-func _update_reactions(tags: Array) -> void:
-	if _has_tag_key(tags, "react_default"):
-		_reaction_defaults = _parse_reactions(InkTagParser.values_for_key(tags, "react_default"))
-	if _has_tag_key(tags, "react"):
-		_line_reactions = _parse_reactions(InkTagParser.values_for_key(tags, "react"))
-	else:
-		_line_reactions = _reaction_defaults.duplicate(true)
-
-func _has_tag_key(tags: Array, key: String) -> bool:
-	var needle := key.strip_edges().to_lower()
-	var prefix := needle + ":"
-	for tag in tags:
-		var normalized := str(tag).strip_edges().to_lower()
-		if normalized == needle or normalized.begins_with(prefix):
-			return true
-	return false
-
-func _parse_reactions(values: Array) -> Array:
-	var reactions: Array = []
-	for value in values:
-		var reaction := _parse_reaction(str(value))
-		if reaction.is_empty():
-			printerr("DialogController: bad reaction '%s'" % value)
-			continue
-		reactions.append(reaction)
-	return reactions
-
-func _parse_reaction(value: String) -> Dictionary:
-	var parts := value.strip_edges().to_lower().split(":")
-	if parts.size() < 3 or parts[1].is_empty() or parts[1].contains(" "):
-		return {}
-	var path := ":".join(parts.slice(2)).strip_edges()
-	if path.is_empty() or path.contains(" "):
-		return {}
-	if parts[0] == "action":
-		return {"kind": "action", "action": parts[1], "path": path}
-	var event_key := parts[0].to_upper()
-	if event_key == "UNEQIP":
-		event_key = "UNEQUIP"
-	if not Inventory.EVENT.keys().has(event_key):
-		return {}
-	return {"kind": "inventory", "event": Inventory.EVENT[event_key], "item": parts[1], "path": path}
 
 func _speaker_name() -> String:
 	var speaker := DialogState.none_character if _state.thought else _state.character_name
@@ -277,15 +233,10 @@ func _visible_choices(choices: Array) -> Array:
 	return visible
 
 func _divert_reaction(matches: Callable) -> bool:
-	for reaction in _line_reactions:
-		if not matches.call(reaction):
-			continue
-		var path := str(reaction.get("path", "")).strip_edges()
-		if path.is_empty() or story == null:
-			printerr("DialogController: reaction has no knot")
-			return false
-		_clear_choice_timer()
-		story.ChoosePathString(path, false)
-		_present_line()
-		return true
-	return false
+	var reaction := _reactions.find(matches)
+	if reaction.is_empty():
+		return false
+	_clear_choice_timer()
+	_reactions.divert(reaction)
+	_present_line()
+	return true

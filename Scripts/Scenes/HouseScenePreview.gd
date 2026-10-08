@@ -2,6 +2,7 @@ class_name HouseScenePreview
 extends HouseSceneBase
 
 @export var scene_states: SceneDialogManager
+@export var init_room : String
 @onready var scene_object_manager: SceneObjectsManager = $SceneObjectManager
 @onready var blackout: BlackoutEffect = $Blackout
 
@@ -9,7 +10,7 @@ func _ready() -> void:
 	StateManager.clear_state()
 	super._ready()
 	lock_room("kitchen", _kitchen_blocked)
-	load_room("preroom")
+	load_room(init_room)
 	CommonAudioProcessor.transition_music(SceneLoader.DAY_MUSIC)
 
 func load_room(room_name: String) -> void:

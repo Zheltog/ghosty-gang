@@ -29,6 +29,20 @@ func reset() -> void:
 	poses.clear()
 	begin_line()
 
+func snapshot() -> DialogState:
+	var copy := DialogState.new()
+	copy.copy_from(self)
+	return copy
+
+func copy_from(other: DialogState) -> void:
+	for property in get_property_list():
+		if not (property.usage & PROPERTY_USAGE_SCRIPT_VARIABLE):
+			continue
+		var value: Variant = other.get(property.name)
+		if value is Dictionary or value is Array:
+			value = value.duplicate(true)
+		set(property.name, value)
+
 func begin_line() -> void:
 	skippable = skippable_default
 	instant = false

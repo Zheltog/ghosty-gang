@@ -48,9 +48,10 @@ INCLUDE gun_reaction.ink
 	-> show_rag_given
 
 === wiped ===
+# react_default:equip:rag:show_rag_given, equip:gun:gun:back
 ~ godot_1("SceneDialogManager", "process_event", "reveal_tea")
 Ты вытираешь лужу со столика и садишься рядом. Крепкий чёрный чай пахнет восхитительно — старик добавил сушеные листья смородины и мяты. # thought
-Пейте. Вам сейчас согреться надо. # window:default # char:engineer # pose:sit # anim:normal # skippable:false # react_default:action:drink:poison, equip:gun:gun_wiped
+Пейте. Вам сейчас согреться надо. # window:default # char:engineer # pose:sit # anim:normal # skippable:false
 + [Пусть сперва остынет.]
 	Пусть сперва остынет. # response # skippable:false
 	Хозяин пожимает плечами. # thought # char:engineer # pose:sit # anim:normal
@@ -82,6 +83,7 @@ INCLUDE gun_reaction.ink
 -> END
 
 === calm ===
+# react_default: equip:gun:gun:back
 Инженер берёт чайник и не спеша разливает его по чашкам. Он улыбается и мурлычет себе под нос. # thought # char:engineer # pose:stand # anim:tea
 Тонут во мгле пустынные сопки, # window:default # char:engineer # pose:stand # anim:tea # skippable:false
 тучей закрыт восток… # char:engineer # pose:stand # anim:tea # skippable:false
@@ -92,15 +94,15 @@ INCLUDE gun_reaction.ink
 
 === cup ===
 ~ godot_1("SceneDialogManager", "process_event", "reveal_tea")
-Он пододвигает к тебе чашку. # thought # char:engineer # pose:sit # anim:reach # react_default:action:drink:cup_drink, equip:gun:gun_cup # react_wait
+Он пододвигает к тебе чашку. # thought # char:engineer # pose:sit # anim:reach # react:action:drink:cup_drink, equip:gun:gun_cup # react_wait
 -> DONE
 
 === menu ===
 {not menu_started:
 	~ menu_started = true
-	Итак. О чём вы хотели поговорить? # window:default # char:engineer # pose:sit # anim:normal # skippable:false # react_default:equip:photo:photo_if, equip:passport:passports_if, equip:glass_eye:eye_if, equip:gun:gun_menu
+	Итак. О чём вы хотели поговорить? # window:default # char:engineer # pose:sit # anim:normal # skippable:false # react:equip:photo:photo_if, equip:passport:passports_if, equip:glass_eye:eye_if, equip:gun:gun_menu
 - else:
-	Что вам ещё рассказать? # window:default # char:engineer # pose:sit # anim:normal # skippable:false # react_default:equip:photo:photo_if, equip:passport:passports_if, equip:glass_eye:eye_if, equip:gun:gun_menu
+	Что вам ещё рассказать? # window:default # char:engineer # pose:sit # anim:normal # skippable:false # react:equip:photo:photo_if, equip:passport:passports_if, equip:glass_eye:eye_if, equip:gun:gun_menu
 }
 * [О мальчике.]
 	-> boy_ask
@@ -136,7 +138,7 @@ INCLUDE gun_reaction.ink
 А позавчера? # response # skippable:false
 Да. Позавчера тоже видел. Из окна кухни. Он шёл от остановки в сторону Горной. # window:default # char:engineer # pose:sit # anim:normal # skippable:false
 Во сколько? # response # skippable:false
-В половине восьмого. Вечера, конечно. # char:engineer # pose:sit # anim:normal # skippable:false # react_default:equip:gun:gun_boy_more
+В половине восьмого. Вечера, конечно. # char:engineer # pose:sit # anim:normal # skippable:false
 -> boy_more
 
 === boy_more ===
@@ -186,7 +188,7 @@ INCLUDE gun_reaction.ink
 	~ suspicion += 1
 	Разумеется. # response # skippable:false
 	Да? Сейчас его редко вспоминают. # window:default # char:engineer # pose:sit # anim:suspicious # skippable:false
-	Он смотрит внимательнее, словно ждёт, что ты продолжишь. # thought # char:engineer # pose:sit # anim:suspicious
+	Он смотрит внимательнее, словно ждёт, что ты продолжишь. # window:thought # skippable:false
 	-> lab_work
 + [Если честно, нет.]
 	Если честно, нет. # response # skippable:false
@@ -198,7 +200,7 @@ INCLUDE gun_reaction.ink
 Получилось? # response # skippable:false
 Не вполне. # window:default # char:engineer # pose:sit # anim:suspicious # skippable:false
 Владислав смотрит на фотографию. # thought # char:engineer # pose:sit # anim:normal
-Проект закрыли. Людей разослали. Аппаратуру разобрали. Вот и вся история. # window:default # char:engineer # pose:sit # anim:normal # skippable:false # react_default:equip:gun:gun_lab_books
+Проект закрыли. Людей разослали. Аппаратуру разобрали. Вот и вся история. # window:default # char:engineer # pose:sit # anim:normal # skippable:false
 -> lab_books
 
 === lab_books ===
@@ -249,7 +251,6 @@ INCLUDE gun_reaction.ink
 
 === passports ===
 {passports_raised:
-	# react_default:equip:gun:gun_passport_more
 	-> passport_more
 }
 ~ passports_raised = true
@@ -267,7 +268,7 @@ INCLUDE gun_reaction.ink
 Ответ очевиден: потому что менять их приходилось не раз и не два. # char:engineer # pose:sit # anim:normal # skippable:false
 Вы параноик. # response # skippable:false
 Неужели? Я жив. Мои коллеги нет. # char:engineer # pose:sit # anim:suspicious # skippable:false
-Он замолкает. # thought # char:engineer # pose:sit # anim:suspicious # react_default:equip:gun:gun_passport_more
+Он замолкает. # thought # char:engineer # pose:sit # anim:suspicious
 -> passport_more
 
 === passport_more ===
@@ -288,13 +289,16 @@ INCLUDE gun_reaction.ink
 	-> menu
 
 === eye ===
-Ты кладёшь глаз на стол. Владислав забирает его раньше, чем тот успевает докатиться до чашки. # thought # char:engineer # pose:sit # anim:reach
+# char:engineer # pose:sit # anim:reach
+~ godot_1("Inventory", "remove_item_str", "glass_eye")
+~ godot_1("SceneDialogManager", "process_event", "reveal_glass_eye")
+Ты кладёшь глаз на стол. Владислав забирает его раньше, чем тот успевает докатиться до чашки. # thought
+~ godot_1("SceneDialogManager", "process_event", "hide_glass_eye")
 Моё. Давно искал. Спасибо. # window:default # char:engineer # pose:sit # anim:reach # skippable:false
 Запасной? # response # skippable:false
 Старый. Новый мне тоже не вполне нравится. # window:default # char:engineer # pose:sit # anim:suspicious # skippable:false
-Он убирает глаз в карман. Тебе хочется рассмотреть его лицо внимательнее, но он уже отвернулся. # thought # char:engineer # pose:stand # anim:back
+Он убирает глаз в карман. Тебе хочется рассмотреть его лицо внимательнее, но он уже отвернулся. # thought
 ~ has_glass_eye = false
-~ godot_1("Inventory", "remove_item_str", "glass_eye")
 -> menu
 
 === show_rag_given ===
@@ -321,10 +325,8 @@ INCLUDE gun_reaction.ink
 -> menu
 
 === eye_if ===
-{has_glass_eye:
-	Это ваше? Под диваном нашёл. # response # skippable:false
+Это ваше? Под диваном нашёл. # response # skippable:false
 	-> eye
-}
 -> menu
 
 === gun_show_rag ===

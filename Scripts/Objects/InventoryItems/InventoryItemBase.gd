@@ -12,6 +12,10 @@ func take_action(action : String, equipped_item_ui : EquippedItemUI) -> void:
 func on_equipped(_equipped_item_ui: EquippedItemUI) -> void:
 	pass
 
+# Returns true when the click on target is consumed by this equipped item.
+func use_on(_target: SceneItemUI) -> bool:
+	return false
+
 func inventory_texture_path() -> String:
 	return ""
 

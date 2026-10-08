@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://df4h0yasb7j4" path="res://Assets/Sprites/Backgrounds/kitchen_sitting_normal.png" id="3_u8j1x"]
 [ext_resource type="Script" uid="uid://3yscu2its1" path="res://Scenes/Test/Dron/DarknessEffect.gd" id="4_bl6rl"]
 [ext_resource type="Script" uid="uid://8p77bw84c7bp" path="res://Scripts/UI/PointAndClickScenes/Components/ParallaxComponent.gd" id="5_n3wxg"]
+[ext_resource type="Texture2D" uid="uid://drg5knjscjm5g" path="res://Assets/Sprites/EquipedInventoryItems/glass_eye.png" id="12_oqwtk"]
 [ext_resource type="Texture2D" uid="uid://dadq1xc3xcndr" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/MoveBack.png" id="14_swiwo"]
 [ext_resource type="Script" uid="uid://d37oapbkld1pk" path="res://Scripts/UI/PointAndClickScenes/SceneUIDoor.gd" id="15_muhom"]
 [ext_resource type="Texture2D" uid="uid://cdssuxsiadf10" path="res://Assets/Sprites/SceneItems/EngineerHouse/kitchen_sitting_table_normal.png" id="17_qbynd"]
@@ -112,5 +113,16 @@ position = Vector2(1399, 937)
 texture = ExtResource("20_empty")
 
 [node name="ParallaxComponent" type="Node" parent="EmptyTea" unique_id=1472747301]
+script = ExtResource("5_n3wxg")
+camera_distance = 100.0
+
+[node name="GlassEye" type="Sprite2D" parent="." unique_id=1946154003]
+visible = false
+z_index = 2
+position = Vector2(742, 844)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("12_oqwtk")
+
+[node name="ParallaxComponent" type="Node" parent="GlassEye" unique_id=847769909]
 script = ExtResource("5_n3wxg")
 camera_distance = 100.0

@@ -76,7 +76,28 @@ The jump keeps the current tunnel, so `->->` in the target knot still returns to
 ->->
 ```
 
-`react_wait` is for a line that has no visible option and should not move on by itself. A spoken line without it keeps playing, and a reaction can still interrupt it while it is up.
+`react_wait` is for a line that has no visible option and should not move on by itself. A spoken line without it keeps playing, and a reaction can still interrupt it while it is up. Put `-> DONE` after such a line if nothing follows it in the knot.
+
+### Returning to the same place
+
+Add `:back` to a reaction to come back to the line it interrupted: `equip:gun:standoff:back`. The knot runs in a separate Ink flow while the main dialog stays where it was. When that knot runs out (`-> DONE`), the interrupted line is shown again, with its choices and reactions. Variables are shared, so `~ gun_drawn = false` in the knot still counts.
+
+```ink
+Что вам ещё рассказать? # react_default:equip:gun:standoff:back
++ [О мальчике.]
+	-> boy
+
+=== standoff ===
+Уберите оружие! # react_default:unequip:gun:standoff_down, action:shoot:shot # react_wait
+-> DONE
+
+=== standoff_down ===
+~ gun_drawn = false
+Спасибо.
+-> DONE
+```
+
+A reaction without `:back` jumps inside the flow it fires in, so `standoff_down` above still returns to the interrupted line when it runs out. A `:back` reaction inside a `:back` knot opens another flow on top and returns to the line it interrupted there. `-> END` in any of them ends the whole dialog (the shot above). Do not end a `:back` knot with `->->`: it is not a tunnel call.
 
 ## Inline (not a tag)
 

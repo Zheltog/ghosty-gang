@@ -35,13 +35,17 @@ func get_pickup_time() -> float:
 	return _scene_item.pickup_time
 
 func _ready() -> void:
-	if scene_item_id != SceneItemGenerator.SCENE_ITEM.NONE:
-		_scene_item = SceneItemGenerator.generate(scene_item_id)
-		_scene_item.ready(self)
-		tree_exiting.connect(_on_tree_exiting, CONNECT_ONE_SHOT)
+	_init_scene_item()
 	Area2DUtils.setup_collision_from_sprite(self, _area_2d)
 	_area_2d.input_event.connect(_on_input_event)
 	release()
+
+func _init_scene_item() -> void:
+	if scene_item_id == SceneItemGenerator.SCENE_ITEM.NONE:
+		return
+	_scene_item = SceneItemGenerator.generate(scene_item_id)
+	_scene_item.ready(self)
+	tree_exiting.connect(_on_tree_exiting, CONNECT_ONE_SHOT)
 
 func _on_tree_exiting() -> void:
 	if _scene_item == null:
@@ -90,9 +94,12 @@ func hide_self() -> void:
 	hide()
 
 func press_item() -> void:
+	var equipped := _get_equipped_item()
+	if equipped != null and equipped.get_inventory_item() != null and equipped.get_inventory_item().use_on(self):
+		return
 	if _scene_item == null:
 		return
-	var press_result = _scene_item.press(_get_equipped_item())
+	var press_result = _scene_item.press(equipped)
 	_scene_object_manager.process_press_result(press_result)
 
 func get_effective_interaction_type() -> INTERACTION_TYPE:

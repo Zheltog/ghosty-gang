@@ -1,5 +1,7 @@
 // Ночёвка, сон и пробуждение.
 // Очень высокое подозрение — 8, как в утренней сцене. В сценарии порог не задан.
+EXTERNAL godot_1(target_class, method, arg)
+
 # story: dream
 # load: suspicion, gun_drawn, engineer_dead, engineer_to_torture, engineer_leave
 # save: suspicion, gun_drawn, engineer_dead, engineer_to_torture, engineer_leave
@@ -40,7 +42,7 @@ VAR engineer_leave = false
 -> wake
 
 === wake ===
-{suspicion >= 8 and has_gun:
+{suspicion >= 8 and godot_1("Inventory", "has_item_str", "gun"):
 	-> board
 }
 {suspicion >= 8:

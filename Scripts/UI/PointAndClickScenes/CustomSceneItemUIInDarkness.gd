@@ -5,6 +5,8 @@ func press_item() -> void:
 	if _scene_item == null or _scene_object_manager == null:
 		printerr("No scene object manager or scene item")
 		return
+	if !_get_equipped_item():
+		return
 	if _get_equipped_item().inventory_item_id != InventoryItemGenerator.INVENTORY_ITEM.FLASHLIGHT:
 		return
 	if !InventoryItemFlashlight.light_on:

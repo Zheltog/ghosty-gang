@@ -84,6 +84,13 @@ func _play_pickup_sound() -> void:
 func has_item(item_id: InventoryItemGenerator.INVENTORY_ITEM) -> bool:
 	return inventory_holder.has_item(item_id)
 
+func has_item_str(item_id: String) -> bool:
+	var key := item_id.strip_edges().to_upper()
+	if not InventoryItemGenerator.INVENTORY_ITEM.keys().has(key):
+		printerr("Unknown inventory item: ", item_id)
+		return false
+	return has_item(InventoryItemGenerator.INVENTORY_ITEM[key])
+
 func remove_item_str(item_id: String) -> void:
 	var key := item_id.strip_edges().to_upper()
 	if not InventoryItemGenerator.INVENTORY_ITEM.keys().has(key):

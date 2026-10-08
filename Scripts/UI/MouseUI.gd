@@ -7,6 +7,7 @@ var _ICON_HAND = preload("res://Assets/Sprites/UI/MouseIcons/mouse_hand.png")
 var _ICON_IN = preload("res://Assets/Sprites/UI/MouseIcons/mouse_in.png")
 var _ICON_OUT = preload("res://Assets/Sprites/UI/MouseIcons/mouse_out.png")
 var _ICON_FOOT = preload("res://Assets/Sprites/UI/MouseIcons/mouse_foot.png")
+var _ICON_SHOOT = preload("res://Assets/Sprites/UI/MouseIcons/mouse_shoot.png")
 
 enum MOUSE_ICON {
 	CURSOR,
@@ -14,7 +15,8 @@ enum MOUSE_ICON {
 	EYE,
 	IN,
 	OUT,
-	FOOT
+	FOOT,
+	SHOOT
 }
 
 const _HOTSPOT := Vector2(15, 15)
@@ -38,6 +40,8 @@ func set_mouse_icon(icon : MOUSE_ICON) -> void:
 			_set_offset_cursor(_ICON_OUT)
 		MOUSE_ICON.FOOT:
 			_set_offset_cursor(_ICON_FOOT)
+		MOUSE_ICON.SHOOT:
+			_set_offset_cursor(_ICON_SHOOT)
 		_:
 			printerr("MOUSE_ICON present in enum, but icon was not provided. Did you forget to add icon preload?")
 			set_mouse_icon(MOUSE_ICON.CURSOR)

@@ -22,6 +22,7 @@
 ~ gun_drawn = false
 Господи… # window:default # char:engineer # anim:normal # skippable:false
 Прошу вас, не делайте так больше. Мы же цивилизованные люди. # char:engineer # anim:scared # skippable:false
+Так о чем это мы... # char:engineer # anim:normal # skippable:false
 # react_default:
 ->->
 
@@ -34,13 +35,14 @@
 
 === gun_thanks ===
 ~ gun_drawn = false
-Спасибо. # response # skippable:false
+Спасибо. # window:default # char:engineer # anim:normal # skippable:false
 # react_default:
 ->->
 
 === gun_kill ===
 # react_default:
-Владислав вздрагивает от выстрела и хватается рукой за грудь. Кровавое пятно расползается под его ладонью. Он раскрывает рот, будто собирается что-то сказать, но осекается и валится на пол, не издав ни звука. # thought # char:engineer # anim:scared
+# char:engineer # anim:scared
+Владислав вздрагивает от выстрела и хватается рукой за грудь. Кровавое пятно расползается под его ладонью. Он раскрывает рот, будто собирается что-то сказать, но осекается и валится на пол, не издав ни звука. # thought
 # char:engineer # pose:lay # anim:dead
 Пиздец. # response # skippable:false
 ~ engineer_dead = true

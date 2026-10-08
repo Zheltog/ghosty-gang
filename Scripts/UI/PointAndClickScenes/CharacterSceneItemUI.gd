@@ -1,13 +1,16 @@
 class_name CharacterSceneItemUI
 extends SceneItemUI
 
-const SHOOT_ACTION := "shoot"
-
 var _collision_ready := false
 
 func _ready() -> void:
+	var source := get_parent() as AnimatedSprite2D
+	if source != null:
+		source.frame_changed.connect(sync_frame)
+		source.animation_changed.connect(sync_frame)
 	_apply_current_frame()
 	if texture == null:
+		_init_scene_item()
 		_area_2d.input_event.connect(_on_input_event)
 		release()
 		_collision_ready = true
@@ -23,27 +26,7 @@ func sync_frame() -> void:
 	Area2DUtils.setup_collision_from_sprite(self, _area_2d)
 
 func can_interact() -> bool:
-	return _holding_gun()
-
-func get_effective_interaction_type() -> INTERACTION_TYPE:
-	if not _holding_gun():
-		return INTERACTION_TYPE.NONE
-	return INTERACTION_TYPE.SHOOT
-
-func press_item() -> void:
-	if not _holding_gun():
-		return
-	var scene := get_tree().current_scene
-	if scene == null:
-		return
-	var dialog := NodeUtils.get_child_of_type(scene, DialogController) as DialogController
-	if dialog == null:
-		return
-	dialog.try_action(SHOOT_ACTION)
-
-func _holding_gun() -> bool:
-	var equipped := _get_equipped_item()
-	return equipped != null and equipped.inventory_item_id == InventoryItemGenerator.INVENTORY_ITEM.GUN
+	return get_effective_interaction_type() != INTERACTION_TYPE.NONE
 
 func _apply_current_frame() -> void:
 	var source := get_parent() as AnimatedSprite2D
