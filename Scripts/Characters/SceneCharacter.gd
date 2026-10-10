@@ -12,7 +12,7 @@ extends Node2D
 
 const EMOTION_POINTS := "CharacterPositions"
 
-var previous_emotion = "stand_normal"
+var previous_emotion = "default"
 
 func _ready() -> void:
 	if sprite == null:

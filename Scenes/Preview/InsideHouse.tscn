@@ -8,16 +8,22 @@
 [ext_resource type="Script" uid="uid://8p77bw84c7bp" path="res://Scripts/UI/PointAndClickScenes/Components/ParallaxComponent.gd" id="10_parobj"]
 [ext_resource type="Texture2D" uid="uid://ktquvlvtry4r" path="res://Assets/Sprites/Characters/Engineer/Dron/standing_chair_attack.png" id="12_k7bhf"]
 [ext_resource type="Texture2D" uid="uid://cp3i304md3py6" path="res://Assets/Sprites/Characters/Engineer/Dron/sitting_normal.png" id="13_k7bhf"]
+[ext_resource type="Shader" uid="uid://cxkjoa2kouvt2" path="res://Scripts/Shaders/Lighting.gdshader" id="14_5iv33"]
 [ext_resource type="Texture2D" uid="uid://ct8jrj8g00yg8" path="res://Assets/Sprites/Characters/Engineer/Dron/sitting_taking_body.png" id="14_xjebt"]
 [ext_resource type="Texture2D" uid="uid://c1mqcjylh6imp" path="res://Assets/Sprites/Characters/Engineer/Dron/sitting_sus.png" id="15_mv3vy"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/Characters/ShaderTextures/128x128-blue-noise-texture-tiled-4x4-1.png" id="15_qllj4"]
 [ext_resource type="Texture2D" uid="uid://yusbqae1gdbk" path="res://Assets/Sprites/Characters/Engineer/Dron/hasle near wardrobe.png" id="16_cxod2"]
+[ext_resource type="Texture2D" uid="uid://dba88ntoitw1a" path="res://Assets/Sprites/ShaderTextures/aap-64-1x.png" id="16_k46gi"]
 [ext_resource type="Texture2D" uid="uid://dtrjugtkksekv" path="res://Assets/Sprites/Characters/Engineer/Dron/standing_dead.png" id="18_i1vas"]
+[ext_resource type="Texture2D" uid="uid://b5wkmnen5dera" path="res://Assets/Sprites/Characters/Engineer/Dron/standing_snore mimimi.png" id="18_k46gi"]
 [ext_resource type="Texture2D" uid="uid://2lcyocqmdhh6" path="res://Assets/Sprites/Characters/Engineer/Dron/sitting_AH.png" id="18_xjebt"]
 [ext_resource type="Texture2D" uid="uid://25u3ny2aflx6" path="res://Assets/Sprites/Characters/Engineer/Dron/standing_sus.png" id="19_f7hr0"]
 [ext_resource type="Texture2D" uid="uid://ccxjsbk8n5yq6" path="res://Assets/Sprites/Characters/Engineer/Dron/standing_AH.png" id="19_standah"]
-[ext_resource type="Script" uid="uid://ct24630qdy5qa" path="res://Scripts/Characters/SceneCharacter.gd" id="20_pvt63"]
 [ext_resource type="Texture2D" uid="uid://daj36qgjxnh3h" path="res://Assets/Sprites/Characters/Engineer/Dron/standing_normal.png" id="20_xjebt"]
+[ext_resource type="Texture2D" uid="uid://bs0r1at2veu34" path="res://Assets/Sprites/Characters/Engineer/Dron/close_scary.png" id="22_1hnut"]
+[ext_resource type="Script" uid="uid://cn7artycc2xk4" path="res://Scripts/Characters/SceneCharacterEngineer.gd" id="24_xuvgt"]
 [ext_resource type="Script" uid="uid://cpcmmpjnyoy7g" path="res://Scripts/UI/PointAndClickScenes/CharacterSceneItemUI.gd" id="25_f7hr0"]
+[ext_resource type="Texture2D" uid="uid://d2jphawspp6sk" path="res://Assets/Sprites/Characters/Engineer/Dron/sitting_taking_arm.png" id="27_xuvgt"]
 [ext_resource type="Script" uid="uid://sv300tnhe327" path="res://Scripts/Scenes/BlackoutEffect.gd" id="blackout_script"]
 [ext_resource type="PackedScene" uid="uid://c8bathroom0a1" path="res://Scenes/Preview/Rooms/Bathroom.tscn" id="room_Bathroom"]
 [ext_resource type="PackedScene" uid="uid://s218cktv50w5" path="res://Scenes/Preview/Rooms/Bookshelf.tscn" id="room_Bookshelf"]
@@ -32,13 +38,26 @@
 [ext_resource type="PackedScene" uid="uid://c8underbed0a1" path="res://Scenes/Preview/Rooms/UnderBed.tscn" id="room_UnderBed"]
 [ext_resource type="PackedScene" uid="uid://kvbvxu0vbc8y" path="res://Scenes/Timer/timer.tscn" id="timer_scene"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_55pqa"]
+shader = ExtResource("14_5iv33")
+shader_parameter/palette = ExtResource("16_k46gi")
+shader_parameter/use_palette = true
+shader_parameter/dithering_noise = ExtResource("15_qllj4")
+shader_parameter/dithering_strength = 1.0
+shader_parameter/dithering = false
+shader_parameter/dithering_size = 16
+shader_parameter/pixel_size = 16
+shader_parameter/brightness = 0.70000003325
+shader_parameter/contrast = 2.50000011875
+shader_parameter/saturation = 1.0000000475
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_i1vas"]
 atlas = ExtResource("20_xjebt")
 region = Rect2(0, 0, 274, 694)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_re16o"]
-atlas = ExtResource("18_i1vas")
-region = Rect2(0, 0, 404, 174)
+atlas = ExtResource("18_k46gi")
+region = Rect2(0, 0, 3064, 1528)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xuvgt"]
 atlas = ExtResource("13_k7bhf")
@@ -63,6 +82,10 @@ region = Rect2(0, 0, 179, 316)
 [sub_resource type="AtlasTexture" id="AtlasTexture_cxod2"]
 atlas = ExtResource("12_k7bhf")
 region = Rect2(0, 0, 274, 694)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0gpqo"]
+atlas = ExtResource("22_1hnut")
+region = Rect2(0, 0, 4064, 3048)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f7hr0"]
 atlas = ExtResource("19_standah")
@@ -168,6 +191,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_0gpqo")
+}],
+"loop": 1,
+"name": &"stand_close1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_i1vas")
 }],
 "loop": 1,
@@ -196,6 +227,21 @@ animations = [{
 }],
 "loop": 1,
 "name": &"stand_tea",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_amx12"]
+atlas = ExtResource("27_xuvgt")
+region = Rect2(0, 0, 2120, 1280)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v8nni"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_amx12")
+}],
+"loop": 1,
+"name": &"default",
 "speed": 5.0
 }]
 
@@ -235,6 +281,7 @@ const WATER_SOUND := \"res://Assets/Audio/Sounds/water_kitchen.mp3\"
 const STORAGE_HUM_FADE_SECONDS := 8.0
 const KITCHEN_BUSY := \"res://Files/SceneDialogs/Ink/kitchen_busy.ink\"
 @onready var blackout: BlackoutEffect = $\"../Blackout\"
+@onready var blackout_keep_dialog: BlackoutEffect = $\"../BlackoutKeepDialog\"
 
 var gun_drawn := false
 var _storage_hum := false
@@ -494,8 +541,11 @@ func process_event(event: String) -> void:
 [sub_resource type="GDScript" id="GDScript_street"]
 script/source = "extends SceneDialogState
 
+@export var blackout_keep_text : BlackoutEffect
+
 func activate() -> void:
 	super.activate()
+	await blackout_keep_text.effect_blackout()
 	play(DialogPathConstants.STREET)
 "
 
@@ -648,6 +698,10 @@ func activate() -> void:
 	await blackout.back_to_normal()
 	play(DialogPathConstants.TORTURE)
 
+func process_event(_event: String) -> void:
+	if _event == \"story_torture_finished\":
+		await blackout.effect_blackout()
+
 func _place_engineer() -> void:
 	var root := engineer.get_parent()
 	if root:
@@ -672,28 +726,60 @@ func _lock_inventory(scene: HouseScenePreview) -> void:
 	scene.scene_object_manager.inventory.set_locked(true)
 "
 
-[sub_resource type="GDScript" id="GDScript_dream"]
+[sub_resource type="GDScript" id="GDScript_bedding"]
 script/source = "extends SceneDialogState
 
 func activate() -> void:
 	super.activate()
+	play(DialogPathConstants.BEDDING)
+
+func process_event(event: String) -> void:
+	if event != \"story_bedding_finished\":
+		return
+	activate_next(0)
+"
+
+[sub_resource type="GDScript" id="GDScript_dream"]
+script/source = "extends SceneDialogState
+
+@export var blackout_keep_dialog : BlackoutEffect
+
+func activate() -> void:
+	super.activate()
+	await blackout_keep_dialog.effect_blackout()
 	play(DialogPathConstants.DREAM)
 
 func process_event(event: String) -> void:
 	if event != \"story_dream_finished\":
 		return
-	if scene_dialog_manager.flag(\"engineer_to_torture\"):
+	await blackout_keep_dialog.back_to_normal()
+	activate_next(0)
+"
+
+[sub_resource type="GDScript" id="GDScript_wake"]
+script/source = "extends SceneDialogState
+
+const SUSPITION_THRESHOLD := 3
+
+func activate() -> void:
+	super.activate()
+	var engineer = scene_dialog_manager.engineer() as SceneCharacter
+	engineer.set_emotion(\"stand_suspicious\")
+	play(DialogPathConstants.WAKE)
+
+func process_event(event: String) -> void:
+	if event != \"story_wake_finished\":
+		return
+	if InkVariableStore.get_value(\"suspition\", 0) >= SUSPITION_THRESHOLD and !scene_dialog_manager.flag(\"engineer_dead\"):
 		activate_next(0)
-	elif scene_dialog_manager.flag(\"engineer_dead\") or scene_dialog_manager.flag(\"engineer_leave\"):
-		activate_next(1)
 	else:
-		printerr(\"Dream: story ended without a follow-up flag\")
+		activate_next(1)
 "
 
 [node name="InsideHouse" type="Node2D" unique_id=1084163573 node_paths=PackedStringArray("scene_states", "characters")]
 script = ExtResource("1_r7y35")
 scene_states = NodePath("SceneStates")
-init_room = "storage"
+init_room = "preroom"
 characters = [NodePath("Characters/Engineer")]
 room_scenes = Array[PackedScene]([ExtResource("room_LivingRoom"), ExtResource("room_LivingRoomToExit"), ExtResource("room_LivingRoom2"), ExtResource("room_ExitFromStorage"), ExtResource("room_UnderBed"), ExtResource("room_Preroom"), ExtResource("room_Bathroom"), ExtResource("room_Storage"), ExtResource("room_Kitchen"), ExtResource("room_KitchenCouch"), ExtResource("room_Bookshelf")])
 
@@ -704,13 +790,13 @@ script = ExtResource("1_manager")
 inventory = NodePath("../Inventory")
 
 [node name="Characters" type="Node2D" parent="." unique_id=1949332713]
-visible = false
 
 [node name="Engineer" type="AnimatedSprite2D" parent="Characters" unique_id=718858753 node_paths=PackedStringArray("scene_object_manager", "sprite")]
-position = Vector2(802.99994, 382.99997)
+material = SubResource("ShaderMaterial_55pqa")
+position = Vector2(-486.00006, 280)
 sprite_frames = SubResource("SpriteFrames_280bj")
-animation = &"stand_scared"
-script = ExtResource("20_pvt63")
+animation = &"lay_dead"
+script = ExtResource("24_xuvgt")
 scene_object_manager = NodePath("../../SceneObjectManager")
 sprite = NodePath(".")
 character_name = "engineer"
@@ -730,7 +816,51 @@ metadata/_custom_type_script = "uid://cjwqo45k5xnx0"
 
 [node name="Area2D" type="Area2D" parent="Characters/Engineer/SceneItemUI" unique_id=1737483621]
 
+[node name="Hand" type="AnimatedSprite2D" parent="Characters/Engineer" unique_id=1379950138]
+visible = false
+z_index = 3
+z_as_relative = false
+sprite_frames = SubResource("SpriteFrames_v8nni")
+
+[node name="Engineer2" type="AnimatedSprite2D" parent="Characters" unique_id=1059430059 node_paths=PackedStringArray("scene_object_manager", "sprite")]
+visible = false
+material = SubResource("ShaderMaterial_55pqa")
+position = Vector2(-486.00006, 280)
+sprite_frames = SubResource("SpriteFrames_280bj")
+animation = &"lay_dead"
+script = ExtResource("24_xuvgt")
+scene_object_manager = NodePath("../../SceneObjectManager")
+sprite = NodePath(".")
+character_name = "engineer"
+
+[node name="ParallaxComponent" type="Node" parent="Characters/Engineer2" unique_id=901964273]
+script = ExtResource("10_parobj")
+camera_distance = 105.0
+
+[node name="SceneItemUI" type="Sprite2D" parent="Characters/Engineer2" unique_id=1779158118]
+modulate = Color(1, 1, 1, 0)
+z_index = 1
+z_as_relative = false
+script = ExtResource("25_f7hr0")
+scene_item_id = 22
+interact_during_dialog = true
+metadata/_custom_type_script = "uid://cjwqo45k5xnx0"
+
+[node name="Area2D" type="Area2D" parent="Characters/Engineer2/SceneItemUI" unique_id=1511661011]
+
+[node name="Hand" type="AnimatedSprite2D" parent="Characters/Engineer2" unique_id=1466659290]
+visible = false
+z_index = 3
+z_as_relative = false
+sprite_frames = SubResource("SpriteFrames_v8nni")
+
+[node name="StandingDead" type="Sprite2D" parent="Characters" unique_id=1553235192]
+position = Vector2(2345, 501)
+scale = Vector2(6, 6)
+texture = ExtResource("18_i1vas")
+
 [node name="Inventory" parent="." unique_id=1450084800 node_paths=PackedStringArray("dialog_controller") instance=ExtResource("3_inv")]
+visible = false
 z_index = 3
 anchors_preset = 15
 anchor_top = 0.0
@@ -742,7 +872,8 @@ grow_vertical = 2
 dialog_controller = NodePath("../DialogController")
 
 [node name="DialogController" parent="." unique_id=872390542 node_paths=PackedStringArray("timer") instance=ExtResource("4_dialog")]
-z_index = 4
+visible = false
+position = Vector2(-73, 370)
 story = null
 timer = NodePath("../GameTimer")
 
@@ -768,6 +899,24 @@ script = ExtResource("blackout_script")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Blackout" unique_id=1847263106]
 libraries/ = SubResource("AnimationLibrary_blackout")
 
+[node name="BlackoutKeepDialog" type="TextureRect" parent="." unique_id=1011000703]
+modulate = Color(1, 1, 1, 0)
+z_index = 6
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_blackout")
+expand_mode = 1
+script = ExtResource("blackout_script")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BlackoutKeepDialog" unique_id=1896663827]
+libraries/ = SubResource("AnimationLibrary_blackout")
+
 [node name="SceneParallax" type="Node" parent="." unique_id=2145012303]
 script = ExtResource("9_parallax")
 
@@ -778,7 +927,7 @@ z_index = 3
 script = SubResource("GDScript_states")
 dialog_controller = NodePath("../DialogController")
 timer = NodePath("../GameTimer")
-first_state = NodePath("Welcome/PassportTimer/StorageFire")
+first_state = NodePath("Welcome")
 
 [node name="Welcome" type="Node" parent="SceneStates" unique_id=208105396 node_paths=PackedStringArray("next_options")]
 script = SubResource("GDScript_welcome")
@@ -795,8 +944,9 @@ script = SubResource("GDScript_fire")
 script = SubResource("GDScript_tea_ready")
 next_options = [NodePath("Street"), NodePath("KitchenWait")]
 
-[node name="Street" type="Node" parent="SceneStates/Welcome/PassportTimer/TeaReady" unique_id=675708743]
+[node name="Street" type="Node" parent="SceneStates/Welcome/PassportTimer/TeaReady" unique_id=675708743 node_paths=PackedStringArray("blackout_keep_text")]
 script = SubResource("GDScript_street")
+blackout_keep_text = NodePath("../../../../../BlackoutKeepDialog")
 
 [node name="KitchenWait" type="Node" parent="SceneStates/Welcome/PassportTimer/TeaReady" unique_id=1507142644 node_paths=PackedStringArray("next_options")]
 script = SubResource("GDScript_kitchen")
@@ -816,51 +966,74 @@ next_options = [NodePath("Interview")]
 
 [node name="Interview" type="Node" parent="SceneStates/Welcome/PassportTimer/TeaReady/KitchenWait/CouchTea/SpillTea/FetchRag" unique_id=1572280777 node_paths=PackedStringArray("next_options")]
 script = SubResource("GDScript_interview")
-next_options = [NodePath("Street"), NodePath("Torture"), NodePath("Dream")]
+next_options = [NodePath("Street"), NodePath("Torture"), NodePath("Bedding")]
 
-[node name="Street" type="Node" parent="SceneStates/Welcome/PassportTimer/TeaReady/KitchenWait/CouchTea/SpillTea/FetchRag/Interview" unique_id=1518758341]
+[node name="Street" type="Node" parent="SceneStates/Welcome/PassportTimer/TeaReady/KitchenWait/CouchTea/SpillTea/FetchRag/Interview" unique_id=1518758341 node_paths=PackedStringArray("blackout_keep_text")]
 script = SubResource("GDScript_street")
+blackout_keep_text = NodePath("../../../../../../../../../../BlackoutKeepDialog")
 
 [node name="Torture" type="Node" parent="SceneStates/Welcome/PassportTimer/TeaReady/KitchenWait/CouchTea/SpillTea/FetchRag/Interview" unique_id=2140173122 node_paths=PackedStringArray("blackout", "engineer")]
 script = SubResource("GDScript_torture")
 blackout = NodePath("../../../../../../../../../../Blackout")
 engineer = NodePath("../../../../../../../../../../Characters/Engineer")
 
-[node name="Dream" type="Node" parent="SceneStates/Welcome/PassportTimer/TeaReady/KitchenWait/CouchTea/SpillTea/FetchRag/Interview" unique_id=2039561647 node_paths=PackedStringArray("next_options")]
+[node name="Bedding" type="Node" parent="SceneStates/Welcome/PassportTimer/TeaReady/KitchenWait/CouchTea/SpillTea/FetchRag/Interview" unique_id=2039561647 node_paths=PackedStringArray("next_options")]
+script = SubResource("GDScript_bedding")
+next_options = [NodePath("Dream")]
+
+[node name="Dream" type="Node" parent="SceneStates/Welcome/PassportTimer/TeaReady/KitchenWait/CouchTea/SpillTea/FetchRag/Interview/Bedding" unique_id=1740283103 node_paths=PackedStringArray("blackout_keep_dialog", "next_options")]
 script = SubResource("GDScript_dream")
+blackout_keep_dialog = NodePath("../../../../../../../../../../../BlackoutKeepDialog")
+next_options = [NodePath("Wake")]
+
+[node name="Wake" type="Node" parent="SceneStates/Welcome/PassportTimer/TeaReady/KitchenWait/CouchTea/SpillTea/FetchRag/Interview/Bedding/Dream" unique_id=1740283101 node_paths=PackedStringArray("next_options")]
+script = SubResource("GDScript_wake")
 next_options = [NodePath("Torture"), NodePath("Street")]
 
-[node name="Torture" type="Node" parent="SceneStates/Welcome/PassportTimer/TeaReady/KitchenWait/CouchTea/SpillTea/FetchRag/Interview/Dream" unique_id=1290171044 node_paths=PackedStringArray("blackout", "engineer")]
+[node name="Torture" type="Node" parent="SceneStates/Welcome/PassportTimer/TeaReady/KitchenWait/CouchTea/SpillTea/FetchRag/Interview/Bedding/Dream/Wake" unique_id=1290171044 node_paths=PackedStringArray("blackout", "engineer")]
 script = SubResource("GDScript_torture")
-blackout = NodePath("../../../../../../../../../../../Blackout")
-engineer = NodePath("../../../../../../../../../../../Characters/Engineer")
+blackout = NodePath("../../../../../../../../../../../../../Blackout")
+engineer = NodePath("../../../../../../../../../../../../../Characters/Engineer")
 
-[node name="Street" type="Node" parent="SceneStates/Welcome/PassportTimer/TeaReady/KitchenWait/CouchTea/SpillTea/FetchRag/Interview/Dream" unique_id=1507918003]
+[node name="Street" type="Node" parent="SceneStates/Welcome/PassportTimer/TeaReady/KitchenWait/CouchTea/SpillTea/FetchRag/Interview/Bedding/Dream/Wake" unique_id=1507918003 node_paths=PackedStringArray("blackout_keep_text")]
 script = SubResource("GDScript_street")
+blackout_keep_text = NodePath("../../../../../../../../../../../../../BlackoutKeepDialog")
 
-[node name="Street" type="Node" parent="SceneStates/Welcome/PassportTimer/TeaReady/KitchenWait/CouchTea/SpillTea" unique_id=769850700]
+[node name="Street" type="Node" parent="SceneStates/Welcome/PassportTimer/TeaReady/KitchenWait/CouchTea/SpillTea" unique_id=769850700 node_paths=PackedStringArray("blackout_keep_text")]
 script = SubResource("GDScript_street")
+blackout_keep_text = NodePath("../../../../../../../../BlackoutKeepDialog")
 
 [node name="Interview" type="Node" parent="SceneStates/Welcome/PassportTimer/TeaReady/KitchenWait/CouchTea" unique_id=1438438167 node_paths=PackedStringArray("next_options")]
 script = SubResource("GDScript_interview")
-next_options = [NodePath("Street"), NodePath("Torture"), NodePath("Dream")]
+next_options = [NodePath("Street"), NodePath("Torture"), NodePath("Bedding")]
 
-[node name="Street" type="Node" parent="SceneStates/Welcome/PassportTimer/TeaReady/KitchenWait/CouchTea/Interview" unique_id=334978175]
+[node name="Street" type="Node" parent="SceneStates/Welcome/PassportTimer/TeaReady/KitchenWait/CouchTea/Interview" unique_id=334978175 node_paths=PackedStringArray("blackout_keep_text")]
 script = SubResource("GDScript_street")
+blackout_keep_text = NodePath("../../../../../../../../BlackoutKeepDialog")
 
 [node name="Torture" type="Node" parent="SceneStates/Welcome/PassportTimer/TeaReady/KitchenWait/CouchTea/Interview" unique_id=1003113537 node_paths=PackedStringArray("blackout", "engineer")]
 script = SubResource("GDScript_torture")
 blackout = NodePath("../../../../../../../../Blackout")
 engineer = NodePath("../../../../../../../../Characters/Engineer")
 
-[node name="Dream" type="Node" parent="SceneStates/Welcome/PassportTimer/TeaReady/KitchenWait/CouchTea/Interview" unique_id=509828763 node_paths=PackedStringArray("next_options")]
+[node name="Bedding" type="Node" parent="SceneStates/Welcome/PassportTimer/TeaReady/KitchenWait/CouchTea/Interview" unique_id=509828763 node_paths=PackedStringArray("next_options")]
+script = SubResource("GDScript_bedding")
+next_options = [NodePath("Dream")]
+
+[node name="Dream" type="Node" parent="SceneStates/Welcome/PassportTimer/TeaReady/KitchenWait/CouchTea/Interview/Bedding" unique_id=1740283104 node_paths=PackedStringArray("blackout_keep_dialog", "next_options")]
 script = SubResource("GDScript_dream")
+blackout_keep_dialog = NodePath("../../../../../../../../../BlackoutKeepDialog")
+next_options = [NodePath("Wake")]
+
+[node name="Wake" type="Node" parent="SceneStates/Welcome/PassportTimer/TeaReady/KitchenWait/CouchTea/Interview/Bedding/Dream" unique_id=1740283102 node_paths=PackedStringArray("next_options")]
+script = SubResource("GDScript_wake")
 next_options = [NodePath("Torture"), NodePath("Street")]
 
-[node name="Torture" type="Node" parent="SceneStates/Welcome/PassportTimer/TeaReady/KitchenWait/CouchTea/Interview/Dream" unique_id=238540501 node_paths=PackedStringArray("blackout", "engineer")]
+[node name="Torture" type="Node" parent="SceneStates/Welcome/PassportTimer/TeaReady/KitchenWait/CouchTea/Interview/Bedding/Dream/Wake" unique_id=238540501 node_paths=PackedStringArray("blackout", "engineer")]
 script = SubResource("GDScript_torture")
-blackout = NodePath("../../../../../../../../../Blackout")
-engineer = NodePath("../../../../../../../../../Characters/Engineer")
+blackout = NodePath("../../../../../../../../../../../Blackout")
+engineer = NodePath("../../../../../../../../../../../Characters/Engineer")
 
-[node name="Street" type="Node" parent="SceneStates/Welcome/PassportTimer/TeaReady/KitchenWait/CouchTea/Interview/Dream" unique_id=607823804]
+[node name="Street" type="Node" parent="SceneStates/Welcome/PassportTimer/TeaReady/KitchenWait/CouchTea/Interview/Bedding/Dream/Wake" unique_id=607823804 node_paths=PackedStringArray("blackout_keep_text")]
 script = SubResource("GDScript_street")
+blackout_keep_text = NodePath("../../../../../../../../../../../BlackoutKeepDialog")

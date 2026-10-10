@@ -3,8 +3,8 @@
 EXTERNAL godot(target_class, method)
 EXTERNAL godot_1(target_class, method, arg)
 # story: engineer_tea_ready
-# load: suspicion, closet_open, key_returned, gun_drawn, saw_gun, explained_gun, engineer_dead
-# save: suspicion, closet_open, key_returned, gun_drawn, saw_gun, explained_gun, engineer_dead
+# load: suspicion, closet_open, key_returned, gun_drawn, saw_gun, explained_gun, talked_about_gun, engineer_dead
+# save: suspicion, closet_open, key_returned, gun_drawn, saw_gun, explained_gun, talked_about_gun, engineer_dead
 
 VAR suspicion = 0
 VAR closet_open = false
@@ -12,6 +12,7 @@ VAR key_returned = false
 VAR gun_drawn = false
 VAR saw_gun = false
 VAR explained_gun = false
+VAR talked_about_gun = false
 VAR engineer_dead = false
 
 INCLUDE gun_reaction.ink
@@ -33,6 +34,7 @@ INCLUDE gun_reaction.ink
 	~ suspicion += 4
 	-> open_closet
 }
+# react_default:equip:gun:gun_back:back
 Извините, что заставил ждать. Чай готов! # window:default # char:engineer # pose:stand # anim:tea # skippable:false
 Пойдёмте на кухню. # window:default # char:engineer # pose:stand # anim:tea # skippable:false
 -> END

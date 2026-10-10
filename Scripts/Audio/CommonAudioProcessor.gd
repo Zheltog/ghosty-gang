@@ -62,6 +62,15 @@ func transition_music_by_name(track_name: String, fade_seconds: float = MUSIC_FA
 		return
 	transition_music(TrackNameConstants.name_to_resource[track_name], fade_seconds)
 
+func play_sound(sound_name: String) -> void:
+	if !TrackNameConstants.sound_name_to_resource.has(sound_name):
+		printerr("Resource not set for sound name " + sound_name)
+		return
+	var command := AudioSoundCommand.new()
+	command.instant = true
+	command.resource_name = TrackNameConstants.sound_name_to_resource[sound_name]
+	process_sound(command)
+
 func _on_music_faded_out() -> void:
 	_music_player.stop()
 	_music_resource = ""

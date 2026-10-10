@@ -3,8 +3,8 @@
 // Выпитый после лужи чай отравлен.
 EXTERNAL godot_1(target_class, method, arg)
 # story: engineer_interview
-# load: suspicion, saw_passports, has_glass_eye, gun_drawn, saw_gun, explained_gun, engineer_dead, engineer_poison, engineer_kicked, engineer_sleep, passports_raised, fetching_rag
-# save: suspicion, saw_passports, has_glass_eye, gun_drawn, saw_gun, explained_gun, engineer_dead, engineer_poison, engineer_kicked, engineer_sleep, passports_raised, fetching_rag
+# load: suspicion, saw_passports, has_glass_eye, gun_drawn, saw_gun, explained_gun, talked_about_gun, engineer_dead, engineer_poison, engineer_kicked, engineer_sleep, passports_raised, fetching_rag
+# save: suspicion, saw_passports, has_glass_eye, gun_drawn, saw_gun, explained_gun, talked_about_gun, engineer_dead, engineer_poison, engineer_kicked, engineer_sleep, passports_raised, fetching_rag
 
 VAR suspicion = 0
 VAR saw_passports = false
@@ -20,6 +20,7 @@ VAR passports_raised = false
 VAR fetching_rag = false
 VAR menu_started = false
 VAR boy_told = false
+VAR talked_about_gun = false
 
 INCLUDE gun_reaction.ink
 
@@ -48,7 +49,7 @@ INCLUDE gun_reaction.ink
 	-> show_rag_given
 
 === wiped ===
-# react_default:equip:rag:show_rag_given, equip:gun:gun:back
+# react_default:equip:gun:gun_back:back, action:drink:poison
 ~ godot_1("SceneDialogManager", "process_event", "reveal_tea")
 Ты вытираешь лужу со столика и садишься рядом. Крепкий чёрный чай пахнет восхитительно — старик добавил сушеные листья смородины и мяты. # thought
 Пейте. Вам сейчас согреться надо. # window:default # char:engineer # pose:sit # anim:normal # skippable:false
@@ -83,7 +84,7 @@ INCLUDE gun_reaction.ink
 -> END
 
 === calm ===
-# react_default: equip:gun:gun:back
+# react_default:equip:gun:gun_back:back
 Инженер берёт чайник и не спеша разливает его по чашкам. Он улыбается и мурлычет себе под нос. # thought # char:engineer # pose:stand # anim:tea
 Тонут во мгле пустынные сопки, # window:default # char:engineer # pose:stand # anim:tea # skippable:false
 тучей закрыт восток… # char:engineer # pose:stand # anim:tea # skippable:false
@@ -98,6 +99,7 @@ INCLUDE gun_reaction.ink
 -> DONE
 
 === menu ===
+# react_default:equip:gun:gun_back:back
 {not menu_started:
 	~ menu_started = true
 	Итак. О чём вы хотели поговорить? # window:default # char:engineer # pose:sit # anim:normal # skippable:false # react:equip:photo:photo_if, equip:passport:passports_if, equip:glass_eye:eye_if, equip:gun:gun_menu
@@ -268,6 +270,12 @@ INCLUDE gun_reaction.ink
 Ответ очевиден: потому что менять их приходилось не раз и не два. # char:engineer # pose:sit # anim:normal # skippable:false
 Вы параноик. # response # skippable:false
 Неужели? Я жив. Мои коллеги нет. # char:engineer # pose:sit # anim:suspicious # skippable:false
+{suspicion >= 5:
+	 Вы лишь подтверждаете мои опасения. Завалились ко мне с оружием. # char:engineer # pose:sit # anim:suspicious # skippable:false
+	 Пистолет из вашей же кладовки. # response # skippable:false
+	 Это не меняет дела. # char:engineer # pose:sit # anim:suspicious # skippable:false
+	 ~ talked_about_gun = true
+}
 Он замолкает. # thought # char:engineer # pose:sit # anim:suspicious
 -> passport_more
 

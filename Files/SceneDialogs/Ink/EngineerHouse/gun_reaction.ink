@@ -1,6 +1,11 @@
 // Реакция инженера на направленный пистолет.
-// Вход только туннелем: -> gun ->
-// Опущенный ствол возвращает в то место, откуда туннель вызвали. Выстрел кончает сюжет.
+// Туннель: -> gun ->. Опущенный ствол возвращает ->-> туда, откуда туннель вызвали.
+// :back входит в gun_back: тот же туннель, затем -> DONE, чтобы поток реакции кончился.
+// Выстрел кончает сюжет.
+
+=== gun_back ===
+-> gun ->
+-> DONE
 
 === gun ===
 ~ gun_drawn = true
@@ -9,14 +14,19 @@
 	~ suspicion += 5
 	Что вы делаете? Уберите его! Опустите оружие, прошу вас! # window:default # char:engineer # anim:scared # skippable:false # react_default:unequip:gun:gun_down, action:shoot:gun_kill # react_wait
 - else:
-	Прошу вас... # window:default # char:engineer # anim:scared # skippable:false # react_default:unequip:gun:gun_down, action:shoot:gun_kill # react_wait
+	{talked_about_gun:
+		Опять вы за свое... # window:default # char:engineer # anim:scared # skippable:false # react_default:unequip:gun:gun_thanks, action:shoot:gun_kill # react_wait
+	- else:
+		Прошу вас... # window:default # char:engineer # anim:scared # skippable:false # react_default:unequip:gun:gun_down, action:shoot:gun_kill # react_wait
+	}
 }
-{not explained_gun:
+{not explained_gun and not talked_about_gun:
 + [Это из вашей кладовки.]
 	Это из вашей кладовки. Объяснитесь. # response # skippable:false
 	-> gun_explain
+- else:
+	->->
 }
--> DONE
 
 === gun_down ===
 ~ gun_drawn = false
@@ -31,7 +41,7 @@
 Каких объяснений вы от меня хотите? У меня лицензия, всё по закону. # window:default # char:engineer # anim:scared # skippable:false # react_default:unequip:gun:gun_thanks, action:shoot:gun_kill
 Допустим. А паспорта? # response # skippable:false
 Выданы партией. Поверьте мне. Это долгая история, но я могу всё объяснить. Давайте присядем, пожалуйста. # window:default # char:engineer # anim:suspicious # skippable:false # react_wait
--> DONE
+->->
 
 === gun_thanks ===
 ~ gun_drawn = false

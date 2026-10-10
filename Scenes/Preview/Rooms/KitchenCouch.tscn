@@ -62,25 +62,39 @@ camera_distance = 100.0
 [node name="CharacterPositions" type="Node2D" parent="." unique_id=603826549]
 
 [node name="default" type="Marker2D" parent="CharacterPositions" unique_id=1668231852]
-position = Vector2(928, 683)
+position = Vector2(921, 655)
+scale = Vector2(0.8, 0.8)
 
 [node name="lay_dead" type="Marker2D" parent="CharacterPositions" unique_id=1235206975]
 position = Vector2(2601, -978)
 
 [node name="engineer_stand_scared" type="Marker2D" parent="CharacterPositions" unique_id=1049608247]
-position = Vector2(542, 583)
+position = Vector2(738, 625)
+scale = Vector2(1.5, 1.5)
+
+[node name="engineer_stand_normal" type="Marker2D" parent="CharacterPositions" unique_id=180781689]
+position = Vector2(738, 625)
+scale = Vector2(1.5, 1.5)
 
 [node name="engineer_stand_shot" type="Marker2D" parent="CharacterPositions" unique_id=789926856]
-position = Vector2(542, 583)
+position = Vector2(738, 625)
+scale = Vector2(1.5, 1.5)
+
+[node name="engineer_stand_chair" type="Marker2D" parent="CharacterPositions" unique_id=561167399]
+position = Vector2(325, 634)
+scale = Vector2(3, 3)
 
 [node name="engineer_stand_smiling" type="Marker2D" parent="CharacterPositions" unique_id=204728349]
-position = Vector2(542, 583)
+position = Vector2(738, 625)
+scale = Vector2(1.5, 1.5)
 
 [node name="engineer_stand_suspicious" type="Marker2D" parent="CharacterPositions" unique_id=466749143]
-position = Vector2(542, 583)
+position = Vector2(738, 625)
+scale = Vector2(1.5, 1.5)
 
 [node name="engineer_stand_tea" type="Marker2D" parent="CharacterPositions" unique_id=1019729049]
-position = Vector2(542, 583)
+position = Vector2(738, 625)
+scale = Vector2(1.5, 1.5)
 
 [node name="Table" type="Sprite2D" parent="." unique_id=2053642484]
 z_index = 2
@@ -96,7 +110,7 @@ camera_distance = 100.0
 [node name="Tea" parent="." unique_id=598298150 instance=ExtResource("18_bl6rl")]
 visible = false
 z_index = 2
-position = Vector2(1399, 937)
+position = Vector2(573, 929)
 texture = ExtResource("19_n3wxg")
 scene_item_id = 17
 intercation_type = 1
@@ -109,7 +123,7 @@ camera_distance = 100.0
 [node name="EmptyTea" type="Sprite2D" parent="." unique_id=598298151]
 visible = false
 z_index = 2
-position = Vector2(1399, 937)
+position = Vector2(573, 929)
 texture = ExtResource("20_empty")
 
 [node name="ParallaxComponent" type="Node" parent="EmptyTea" unique_id=1472747301]
@@ -119,7 +133,7 @@ camera_distance = 100.0
 [node name="GlassEye" type="Sprite2D" parent="." unique_id=1946154003]
 visible = false
 z_index = 2
-position = Vector2(742, 844)
+position = Vector2(768, 914)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("12_oqwtk")
 

@@ -1,0 +1,17 @@
+[remap]
+
+importer="ink"
+importer_version=2
+type="Resource"
+uid="uid://cqwake0ink8a1"
+path="res://.godot/imported/wake.ink-3b35a541dc4d181dbd68ead593180733.res"
+
+[deps]
+
+source_file="res://Files/SceneDialogs/Ink/EngineerHouse/wake.ink"
+dest_files=["res://.godot/imported/wake.ink-3b35a541dc4d181dbd68ead593180733.res"]
+
+[params]
+
+is_main_file=true
+compress=true

@@ -1,0 +1,17 @@
+[remap]
+
+importer="ink"
+importer_version=2
+type="Resource"
+uid="uid://e4hhamd6y5vd"
+path="res://.godot/imported/street.ink-39fa4f2b4ba2febb4de5f427a3814587.res"
+
+[deps]
+
+source_file="res://Files/SceneDialogs/Ink/EngineerHouse/street.ink"
+dest_files=["res://.godot/imported/street.ink-39fa4f2b4ba2febb4de5f427a3814587.res"]
+
+[params]
+
+is_main_file=true
+compress=true

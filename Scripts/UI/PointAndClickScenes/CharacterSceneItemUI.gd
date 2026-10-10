@@ -2,6 +2,7 @@ class_name CharacterSceneItemUI
 extends SceneItemUI
 
 var _collision_ready := false
+var alive := true
 
 func _ready() -> void:
 	var source := get_parent() as AnimatedSprite2D
@@ -25,8 +26,25 @@ func sync_frame() -> void:
 		return
 	Area2DUtils.setup_collision_from_sprite(self, _area_2d)
 
+func press_item() -> void:
+	if !alive:
+		return
+	var equipped := _get_equipped_item()
+	if equipped != null and equipped.get_inventory_item() != null and equipped.get_inventory_item().use_on(self):
+		return
+	if _scene_item == null:
+		return
+	var press_result = _scene_item.press(equipped)
+	_scene_object_manager.process_press_result(press_result)
+	alive = false
+
 func can_interact() -> bool:
 	return get_effective_interaction_type() != INTERACTION_TYPE.NONE
+
+func get_effective_interaction_type() -> INTERACTION_TYPE:
+	if !alive:
+		return INTERACTION_TYPE.NONE
+	return super.get_effective_interaction_type()
 
 func _apply_current_frame() -> void:
 	var source := get_parent() as AnimatedSprite2D

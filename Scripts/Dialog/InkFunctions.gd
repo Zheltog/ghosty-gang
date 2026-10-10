@@ -7,6 +7,8 @@ func subscribe(target: Object) -> void:
 	if target == null:
 		return
 	var key := _class_key(target)
+	if key.is_empty() and target is Node:
+		key = StringName((target as Node).name)
 	if key.is_empty():
 		printerr("InkFunctions: cannot subscribe target without a class_name")
 		return

@@ -18,29 +18,29 @@ story = ExtResource("2_kfsii")
 script = ExtResource("5_windows")
 
 [node name="default" parent="DialogWindowManager" unique_id=2135543664 node_paths=PackedStringArray("controller") instance=ExtResource("3_lu0oi")]
-z_index = 3
+z_index = 7
 offset_top = -37.0
 offset_bottom = -37.0
 controller = NodePath("../..")
 
 [node name="player_phrase" parent="DialogWindowManager" unique_id=884120332 node_paths=PackedStringArray("controller") instance=ExtResource("6_phrase")]
-z_index = 3
+z_index = 7
 controller = NodePath("../..")
 
 [node name="thought" parent="DialogWindowManager" unique_id=884120333 node_paths=PackedStringArray("controller") instance=ExtResource("7_thought")]
-z_index = 3
+z_index = 7
 offset_top = -26.0
 offset_bottom = -26.0
 controller = NodePath("../..")
 
 [node name="four_options" parent="DialogWindowManager" unique_id=1314761597 node_paths=PackedStringArray("controller") instance=ExtResource("8_four")]
-z_index = 3
+z_index = 7
 controller = NodePath("../..")
 
 [node name="dossier" parent="DialogWindowManager" unique_id=25479130 node_paths=PackedStringArray("controller") instance=ExtResource("9_dossier")]
-z_index = 3
+z_index = 7
 controller = NodePath("../..")
 
 [node name="another_room_left" parent="DialogWindowManager" unique_id=1939350733 node_paths=PackedStringArray("controller") instance=ExtResource("10_left")]
-z_index = 3
+z_index = 7
 controller = NodePath("../..")
