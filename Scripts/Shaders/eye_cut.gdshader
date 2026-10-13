@@ -1,24 +1,33 @@
 shader_type canvas_item;
 
-uniform vec2 center_pixel_pos = vec2(300.0, 540.0);
-uniform vec2 center_scr_pixel_pos = vec2(300.0, 540.0);
-uniform float min_dist_influence = 1.0;
+uniform vec2 eye_center = vec2(300.0, 540.0);
+uniform vec2 needle_center = vec2(300.0, 540.0);
+uniform vec2 eye_mouse_offset = vec2(0.0);
+uniform float camera_dist = 10.0;
+
+uniform float eye_point_rad = 30.0;
+uniform float eye_line_width = 20.0;
 
 uniform sampler2D cellur_noise : repeat_enable;
-uniform sampler2D vignett_tex;
 uniform int pixel_size : hint_range(1, 64) = 2;
 
-uniform float speed : hint_range(0.0, 3.0, 0.01) = 0.5;
+// Left-side mask. The edge is a parabola through highest_side_point and
+// center_line_point, mirrored around the center-line point. smooth_coeff is
+// the width of the fade from covered to clear, in screen pixels.
+uniform float smooth_coeff : hint_range(0.0, 400.0) = 120.0;
+uniform vec2 highest_side_point = vec2(744.0, 0.0);
+uniform vec2 center_line_point = vec2(833.0, 540.0);
+
 uniform float time = 0.0;
 
 uniform float flow_depth : hint_range(0.1, 2.0, 0.01) = 0.6;
 uniform float color_shift : hint_range(0.0, 3.0, 0.01) = 1.2;
 uniform float swirl : hint_range(-2.0, 2.0, 0.01) = 0.2;
-uniform float glow : hint_range(0.0, 3.0, 0.01) = 1.0;
 uniform float density : hint_range(0.0, 16.0, 0.01) = 8.8;
 uniform float pain_coef : hint_range(0.0, 1.0, 0.1) = 0.5;
 uniform float alpha : hint_range(0.0, 1.0) = 0.0;
-
+uniform bool show_line = true;
+uniform float full_red_alpha : hint_range(0.0, 1.0) = 0.0;
 
 const float TWO_PI = 6.28318530718;
 
@@ -83,13 +92,10 @@ vec3 compute_deep_flow(vec2 uv, vec2 screen_px_size) {
 	vec3 base_col = palette(color_t, color_a, color_b, color_c, color_d);
 
 	float caustic = pow(clamp(f * 1.3, 0.0, 1.0), 3.0);
-	vec3 highlight_col = vec3(0.25, 0.85, 1.0) * caustic * glow;
+	vec3 highlight_col = vec3(0.25, 0.85, 1.0) * caustic;
 
 	vec3 final_col = mix(base_col, highlight_col, f * 0.6);
 	final_col += vec3(0.05, 0.12, 0.25) * length(q);
-
-	float glow_mask = smoothstep(0.35, 0.8, length(warp));
-	final_col += vec3(0.9, 0.45, 0.85) * glow_mask * glow * 0.6;
 
 	return base_col;
 }
@@ -109,32 +115,43 @@ float lineSDF(vec2 a, vec2 b, vec2 p, float r) {
 	return distanceToSegment(p,a,b) - r;
 }
 
-void fragment() {
-	const vec2 RES = vec2(1920, 1080.0);
-	vec2 desired_tex_size = RES / vec2(float(pixel_size));
+float left_paraboloid(vec2 px) {
+	float span = highest_side_point.y - center_line_point.y;
+	float t = span == 0.0 ? 0.0 : (px.y - center_line_point.y) / span;
+	float edge_x = mix(center_line_point.x, highest_side_point.x, t * t);
+	float half_w = max(smooth_coeff, 0.0001) * 0.5;
+	return 1.0 - smoothstep(edge_x - half_w, edge_x + half_w, px.x);
+}
 
-	vec2 normalized_uv = (floor(UV * desired_tex_size) + vec2(0.5)) / desired_tex_size;
-	vec2 resolution = RES;
-	vec2 uv = (normalized_uv * RES - center_pixel_pos) / resolution.y;
-	
+void fragment() {
+	const vec2 RES = vec2(1920.0, 1080.0);
+	vec2 desired_tex_size = RES / vec2(float(pixel_size));
+	vec2 screen_uv = SCREEN_UV;
+	vec2 frag_px = screen_uv * RES;
+
+	vec2 eye = eye_center - eye_mouse_offset * camera_dist;
+
+	float epicenter = cicrleSDF(eye, eye_point_rad, frag_px);
+	float nail = cicrleSDF(needle_center, eye_point_rad, frag_px);
+	float line = lineSDF(needle_center, eye, frag_px, eye_line_width);
+
+	vec2 middle = mix(eye, needle_center, 0.5);
+
+	vec2 normalized_uv = (floor(screen_uv * desired_tex_size) + vec2(0.5)) / desired_tex_size;
+	vec2 pixel_px = normalized_uv * RES;
+
+	vec2 uv = (pixel_px - middle) / RES.y;
+
 	vec3 col = compute_deep_flow(uv, 1.0 / RES);
-	
-	float vignette = texture(vignett_tex, normalized_uv).a;
-	
+
+	float vignette = left_paraboloid(pixel_px);
 	float in_countur = clamp(step(0.55, col.r) - step(0.6, col.r), 0.0, 1.0) * 1.5;
-	
-	vec2 diff = UV * RES - FRAGCOORD.xy;
-	vec2 center_screen_pos = center_pixel_pos - diff;
-	
-	float diff_intensity = length(center_pixel_pos - center_screen_pos) / 80.0;
-	
-	float epicenter = cicrleSDF(center_screen_pos, 40.0, FRAGCOORD.xy);
-	float nail = cicrleSDF(center_pixel_pos, 40.0, FRAGCOORD.xy);
-	float line = lineSDF(center_pixel_pos, center_screen_pos, FRAGCOORD.xy, 10.0);
-	
-	float diff_shape = smoothstep(0.0, 50.0, 3.0 - smin(smin(epicenter, nail, 50.0), line, 50.0));
-	
+
+	float diff_intensity = length(needle_center - eye) / 80.0;
+	float connector = show_line ? line : 1.0e4;
+	float diff_shape = smoothstep(0.0, 50.0, 3.0 - smin(smin(epicenter, nail, 50.0), connector, 50.0));
 	float pain = (col.b + in_countur + diff_shape * diff_intensity) * (pain_coef + diff_intensity * 0.05);
-	
-	COLOR = vec4(pain, 0.0, 0.0, vignette * alpha) + vec4(pain, 0.0, 0.0, pain * alpha) * 0.2;
+
+	vec4 base = vec4(pain, 0.0, 0.0, vignette * alpha) + vec4(pain, 0.0, 0.0, pain * alpha) * 0.2;
+	COLOR = mix(base, vec4(1.0, 0.0, 0.0, 1.0), clamp(full_red_alpha, 0.0, 1.0));
 }

@@ -3,7 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://mt1xmuy8xhd5" path="res://Scenes/PointAndClick/SceneUIDoor.tscn" id="2_door"]
 [ext_resource type="Shader" uid="uid://b00btmil63bpd" path="res://Scripts/Shaders/eye_cut.gdshader" id="9_ctaur"]
 [ext_resource type="Texture2D" uid="uid://dadq1xc3xcndr" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/MoveBack.png" id="10_a71pi"]
-[ext_resource type="Texture2D" uid="uid://d2vfnutsgwbv5" path="res://Assets/Sprites/ShaderTextures/vignett_tex.png" id="10_isovt"]
 [ext_resource type="Script" uid="uid://8p77bw84c7bp" path="res://Scripts/UI/PointAndClickScenes/Components/ParallaxComponent.gd" id="10_parobj"]
 [ext_resource type="Script" uid="uid://ddc2i4ykn2wn" path="res://Scripts/Effects/EyeCutEffect.gd" id="11_d3l0a"]
 [ext_resource type="Script" uid="uid://d37oapbkld1pk" path="res://Scripts/UI/PointAndClickScenes/SceneUIDoor.gd" id="11_door"]
@@ -27,9 +26,9 @@ seamless = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_osjfo"]
 shader = ExtResource("9_ctaur")
-shader_parameter/center_pixel_pos = Vector2(-200, 540)
+shader_parameter/eye_center = Vector2(-200, 540)
+shader_parameter/needle_center = Vector2(-200, 540)
 shader_parameter/cellur_noise = SubResource("NoiseTexture2D_0gpqo")
-shader_parameter/vignett_tex = ExtResource("10_isovt")
 shader_parameter/pixel_size = 4
 shader_parameter/speed = 0.0999999977648
 shader_parameter/time = -1.475

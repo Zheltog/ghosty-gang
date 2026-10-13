@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://wdrfwotljmn5"]
+
+[ext_resource type="Shader" uid="uid://cb2h1lxmcm7e" path="res://Scripts/Shaders/eye_released.gdshader" id="1_shader"]
+[ext_resource type="Script" uid="uid://cb2h06q5dmge" path="res://Scripts/Effects/EyeReleasedEffect.gd" id="2_script"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_released"]
+shader = ExtResource("1_shader")
+shader_parameter/eye_center = Vector2(960, 540)
+shader_parameter/eye_point_rad = 20.0
+shader_parameter/pulse_amount = 0.35
+shader_parameter/pulse = 0.0
+shader_parameter/pixel_size = 2
+shader_parameter/smooth_coeff = 120.0
+shader_parameter/highest_side_point = Vector2(744, 0)
+shader_parameter/center_line_point = Vector2(833, 540)
+shader_parameter/alpha = 1.0
+shader_parameter/full_red_alpha = 1.0
+
+[sub_resource type="Gradient" id="Gradient_black"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_black"]
+gradient = SubResource("Gradient_black")
+width = 1920
+height = 1080
+
+[node name="EyeReleased" type="TextureRect" unique_id=290073342]
+z_index = 6
+material = SubResource("ShaderMaterial_released")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_black")
+expand_mode = 1
+script = ExtResource("2_script")

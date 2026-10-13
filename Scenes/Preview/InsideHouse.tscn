@@ -25,7 +25,9 @@
 [ext_resource type="Texture2D" uid="uid://d2jphawspp6sk" path="res://Assets/Sprites/Characters/Engineer/Dron/sitting_taking_arm.png" id="27_xuvgt"]
 [ext_resource type="Shader" uid="uid://b00btmil63bpd" path="res://Scripts/Shaders/eye_cut.gdshader" id="35_amx12"]
 [ext_resource type="Script" uid="uid://ddc2i4ykn2wn" path="res://Scripts/Effects/EyeCutEffect.gd" id="36_0gpqo"]
-[ext_resource type="Texture2D" uid="uid://d2vfnutsgwbv5" path="res://Assets/Sprites/ShaderTextures/vignett_tex.png" id="36_55pqa"]
+[ext_resource type="Shader" uid="uid://cb2h1lxmcm7e" path="res://Scripts/Shaders/eye_released.gdshader" id="37_5x4uj"]
+[ext_resource type="Shader" uid="uid://j5wxgl4keu4c" path="res://Scripts/Shaders/blur.gdshader" id="38_55pqa"]
+[ext_resource type="Script" uid="uid://cb2h06q5dmge" path="res://Scripts/Effects/EyeReleasedEffect.gd" id="38_ak6oo"]
 [ext_resource type="Script" uid="uid://sv300tnhe327" path="res://Scripts/Scenes/BlackoutEffect.gd" id="blackout_script"]
 [ext_resource type="PackedScene" uid="uid://c8bathroom0a1" path="res://Scenes/Preview/Rooms/Bathroom.tscn" id="room_Bathroom"]
 [ext_resource type="PackedScene" uid="uid://s218cktv50w5" path="res://Scenes/Preview/Rooms/Bookshelf.tscn" id="room_Bookshelf"]
@@ -418,21 +420,57 @@ seamless = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_v8nni"]
 shader = ExtResource("35_amx12")
-shader_parameter/center_pixel_pos = Vector2(300, 540)
-shader_parameter/center_scr_pixel_pos = Vector2(300, 540)
-shader_parameter/min_dist_influence = 3.835
+shader_parameter/eye_center = Vector2(300, 540)
+shader_parameter/needle_center = Vector2(300, 540)
+shader_parameter/eye_mouse_offset = Vector2(0, 0)
+shader_parameter/camera_dist = 150.0
+shader_parameter/eye_point_rad = 20.0
+shader_parameter/eye_line_width = 5.0
 shader_parameter/cellur_noise = SubResource("NoiseTexture2D_0gpqo")
-shader_parameter/vignett_tex = ExtResource("36_55pqa")
 shader_parameter/pixel_size = 2
-shader_parameter/speed = 0.0999999977648
-shader_parameter/time = 26.37
-shader_parameter/flow_depth = 0.7599999867378
+shader_parameter/smooth_coeff = 120.0
+shader_parameter/highest_side_point = Vector2(744, 0)
+shader_parameter/center_line_point = Vector2(833, 540)
+shader_parameter/time = 0.0
+shader_parameter/flow_depth = 0.24999999813732
 shader_parameter/color_shift = 2.999999932944
-shader_parameter/swirl = 0.0999999977648
-shader_parameter/glow = 0.0
-shader_parameter/density = 0.38999999128272
+shader_parameter/swirl = -0.10000004246880012
+shader_parameter/density = 0.28999999351792
 shader_parameter/pain_coef = 0.0
 shader_parameter/alpha = 1.0
+shader_parameter/show_line = true
+shader_parameter/full_red_alpha = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rbe3r"]
+shader = ExtResource("37_5x4uj")
+shader_parameter/eye_center = Vector2(300, 540)
+shader_parameter/eye_point_rad = 20.0
+shader_parameter/pulse_amount = 0.35
+shader_parameter/pulse = 0.0
+shader_parameter/pixel_size = 2
+shader_parameter/smooth_coeff = 120.0
+shader_parameter/highest_side_point = Vector2(744, 0)
+shader_parameter/center_line_point = Vector2(833, 540)
+shader_parameter/alpha = 1.0
+shader_parameter/full_red_alpha = 0.0
+
+[sub_resource type="Gradient" id="Gradient_black"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_black"]
+gradient = SubResource("Gradient_black")
+width = 1920
+height = 1080
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_280bj"]
+shader = ExtResource("38_55pqa")
+shader_parameter/offset = 0.0
+
+[sub_resource type="Gradient" id="Gradient_0gpqo"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6i6mc"]
+gradient = SubResource("Gradient_0gpqo")
 
 [sub_resource type="GDScript" id="GDScript_states"]
 script/source = "extends SceneDialogManager
@@ -889,8 +927,14 @@ func _lock_inventory(scene: HouseScenePreview) -> void:
 		return
 	scene.scene_object_manager.inventory.set_locked(true)
 
+func cut_eye() -> void:
+	stab_effect.cut_eye()
+
 func stab() -> void:
 	stab_effect.stab()
+
+func move_needle() -> void:
+	stab_effect.move_needle()
 "
 
 [sub_resource type="GDScript" id="GDScript_bedding"]
@@ -1056,26 +1100,53 @@ script = ExtResource("blackout_script")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="BlackoutKeepDialog" unique_id=1896663827]
 libraries/ = SubResource("AnimationLibrary_blackout")
 
-[node name="EyeEffect" type="TextureRect" parent="." unique_id=167364654]
+[node name="EyeEffect" type="TextureRect" parent="." unique_id=167364654 node_paths=PackedStringArray("next_effect")]
 z_index = 6
 material = SubResource("ShaderMaterial_v8nni")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -108.0
-offset_top = -127.0
-offset_right = 2112.0
-offset_bottom = 1253.0
+offset_right = 1920.0
+offset_bottom = 1080.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 texture = SubResource("GradientTexture2D_blackout")
 expand_mode = 1
 script = ExtResource("36_0gpqo")
+next_effect = NodePath("../EyeReleased")
 
-[node name="ParallaxComponent" type="Node" parent="EyeEffect" unique_id=192285552]
-script = ExtResource("10_parobj")
-camera_distance = 50.0
+[node name="EyeReleased" type="TextureRect" parent="." unique_id=976367641]
+visible = false
+z_index = 6
+material = SubResource("ShaderMaterial_rbe3r")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_black")
+expand_mode = 1
+script = ExtResource("38_ak6oo")
+
+[node name="BlurEffect" type="TextureRect" parent="." unique_id=1078740864]
+visible = false
+z_index = 6
+material = SubResource("ShaderMaterial_280bj")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_6i6mc")
+expand_mode = 1
+script = ExtResource("36_0gpqo")
 
 [node name="SceneParallax" type="Node" parent="." unique_id=2145012303]
 script = ExtResource("9_parallax")
