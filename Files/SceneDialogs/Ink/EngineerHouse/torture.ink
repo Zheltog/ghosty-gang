@@ -1,5 +1,6 @@
 // Пытка в кладовке. Вход один: отравленный чай, удар во сне и оглушение после выстрела сюда не ветвятся.
 EXTERNAL godot_2(target_class, method, arg0, arg1)
+EXTERNAL godot_1(target_class, method, arg0)
 # story: torture
 # load: engineer_dead
 # save: engineer_dead
@@ -37,6 +38,7 @@ VAR engineer_dead = false
 Владислав цокает и упирает иглу в твоё глазное яблоко. Ты чувствуешь металлическое прикосновение. Пульс зашкаливает. # window:thought
 Последний шанс. # window:default # char:engineer # pose:stand # anim:suspicious # skippable:false
 Да я правду говорю! # response # skippable:false
+~ godot_1("SceneDialogManager", "process_event", "stab")
 Инженер вздыхает и нажимает на иглу. Ты чувствуешь давление в глазу, затем хруст. Красная вспышка боли застилает весь мир. # window:thought
 ААААААААА! СУКА! # response # skippable:false
 -> after_stab

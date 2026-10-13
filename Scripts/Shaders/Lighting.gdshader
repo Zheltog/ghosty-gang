@@ -37,7 +37,7 @@ void fragment() {
     color.rgb = mix(vec3(dot(vec3(1.0), color.rgb) * 0.33333), color.rgb, saturation);
 	
 	if (use_palette) {
-		int palette_size = textureSize(palette, 0).x;
+		int palette_size = textureSize(palette, 0).x + 1;
 		float closest_distance = 9999.0;
 		vec3 closest_color = vec3(0.0);
 
