@@ -15,6 +15,7 @@ const _slots := {
 }
 
 func _ready() -> void:
+	stack_lines = false
 	super._ready()
 	_assign_option_holder(_options_count, _options_path)
 	var holder: Node = _option_holders.get(_options_count)

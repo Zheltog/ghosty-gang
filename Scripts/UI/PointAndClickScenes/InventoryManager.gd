@@ -123,14 +123,20 @@ func _clear_equipped_item_ui() -> void:
 func notify_dialog_event(event: EVENT, item_id: InventoryItemGenerator.INVENTORY_ITEM) -> void:
 	if dialog_controller:
 		dialog_controller.try_inventory_choice(event, item_id)
-	if item_id != InventoryItemGenerator.INVENTORY_ITEM.GUN:
-		return
-	if event != EVENT.EQUIP and event != EVENT.UNEQUIP:
-		return
 	var house := HouseSceneBase.current_house_scene as HouseScenePreview
 	if house == null or house.scene_states == null:
 		return
-	house.scene_states.process_event("gun_drawn" if event == EVENT.EQUIP else "gun_holstered")
+	var prefix := ""
+	if event == EVENT.EQUIP:
+		prefix = "equip_"
+	elif event == EVENT.UNEQUIP:
+		prefix = "unequip_"
+	else:
+		return
+	var item_name = InventoryItemGenerator.INVENTORY_ITEM.find_key(item_id)
+	if item_name == null:
+		return
+	house.scene_states.process_event(prefix + str(item_name).to_lower())
 
 func update_hint() -> void:
 	if !equipped_item:

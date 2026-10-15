@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://b0hsmfhmj5kmy" path="res://Scripts/Dialog/TextBoxWithOptions.gd" id="1_ntt56"]
 [ext_resource type="PackedScene" uid="uid://chii51pu3s0yv" path="res://Scenes/Dialog/option_button.tscn" id="2_04rbt"]
 [ext_resource type="Texture2D" uid="uid://bd1t7aiqce5ul" path="res://Assets/Sprites/UI/Dialog/DialogWindow.png" id="2_ntt56"]
+[ext_resource type="PackedScene" uid="uid://cphr4s3b04rd1" path="res://Scenes/Dialog/phrase_board.tscn" id="3_board"]
 
 [node name="TextBoxWithOptions" type="Control" unique_id=1501866700]
 layout_mode = 3
@@ -43,6 +44,14 @@ mouse_filter = 2
 theme_override_colors/default_color = Color(0.8203659, 0.82036585, 0.8203658, 1)
 theme_override_font_sizes/normal_font_size = 40
 text = "???"
+visible = false
+
+[node name="PhraseBoard" parent="TextureRect" instance=ExtResource("3_board")]
+layout_mode = 1
+offset_left = 81.0
+offset_top = 92.0
+offset_right = 766.0
+offset_bottom = 531.0
 
 [node name="SingleOption" type="Control" parent="TextureRect" unique_id=1142005616]
 layout_mode = 1

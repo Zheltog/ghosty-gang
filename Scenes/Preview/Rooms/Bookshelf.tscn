@@ -51,22 +51,26 @@ visible = false
 position = Vector2(582, 117)
 script = ExtResource("9_1fc3o")
 scene_item_id = 12
+trigger_type = null
 intercation_type = 0
+interact_during_dialog = null
+hold_time = null
+remove_progress_on_release = null
 
 [node name="Area2D" type="Area2D" parent="Shelfs/Keyhole" unique_id=874107418]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Shelfs/Keyhole/Area2D" unique_id=1255627408]
 polygon = PackedVector2Array(-93, 43, -77, -89, -46, -90, -61, 45)
 
-[node name="ParallaxComponent" type="Node" parent="Shelfs/Keyhole" unique_id=1900112507]
-script = ExtResource("10_parobj")
-camera_distance = 3.0
-
 [node name="Books1" type="Sprite2D" parent="Shelfs" unique_id=598298150]
 position = Vector2(47, 117)
 script = ExtResource("9_1fc3o")
 scene_item_id = 2
+trigger_type = null
 intercation_type = 0
+interact_during_dialog = null
+hold_time = null
+remove_progress_on_release = null
 
 [node name="Area2D" type="Area2D" parent="Shelfs/Books1" unique_id=472896324]
 
@@ -74,15 +78,15 @@ intercation_type = 0
 position = Vector2(-775, -424)
 polygon = PackedVector2Array(712, 2, 716, 143, 22, 141, 0, 0)
 
-[node name="ParallaxComponent" type="Node" parent="Shelfs/Books1" unique_id=721947000]
-script = ExtResource("10_parobj")
-camera_distance = 3.0
-
 [node name="Books2" type="Sprite2D" parent="Shelfs" unique_id=14758560]
 position = Vector2(47, 117)
 script = ExtResource("9_1fc3o")
 scene_item_id = 3
+trigger_type = null
 intercation_type = 0
+interact_during_dialog = null
+hold_time = null
+remove_progress_on_release = null
 
 [node name="Area2D" type="Area2D" parent="Shelfs/Books2" unique_id=1523638626]
 
@@ -90,15 +94,15 @@ intercation_type = 0
 position = Vector2(-775, -424)
 polygon = PackedVector2Array(739, 160, 1428, 158, 1403, 320, 743, 319)
 
-[node name="ParallaxComponent" type="Node" parent="Shelfs/Books2" unique_id=62428462]
-script = ExtResource("10_parobj")
-camera_distance = 3.0
-
 [node name="Books3" type="Sprite2D" parent="Shelfs" unique_id=65752136]
 position = Vector2(47, 117)
 script = ExtResource("9_1fc3o")
 scene_item_id = 4
+trigger_type = null
 intercation_type = 0
+interact_during_dialog = null
+hold_time = null
+remove_progress_on_release = null
 
 [node name="Area2D" type="Area2D" parent="Shelfs/Books3" unique_id=765408651]
 
@@ -106,15 +110,15 @@ intercation_type = 0
 position = Vector2(-775, -424)
 polygon = PackedVector2Array(738, -3, 1454, -1, 1429, 148, 736, 153)
 
-[node name="ParallaxComponent" type="Node" parent="Shelfs/Books3" unique_id=2085286470]
-script = ExtResource("10_parobj")
-camera_distance = 3.0
-
 [node name="Books4" type="Sprite2D" parent="Shelfs" unique_id=644389273]
 position = Vector2(47, 117)
 script = ExtResource("9_1fc3o")
 scene_item_id = 5
+trigger_type = null
 intercation_type = 0
+interact_during_dialog = null
+hold_time = null
+remove_progress_on_release = null
 
 [node name="Area2D" type="Area2D" parent="Shelfs/Books4" unique_id=740529005]
 
@@ -122,15 +126,15 @@ intercation_type = 0
 position = Vector2(-1483, -417)
 polygon = PackedVector2Array(732, 148, 1422, 149, 1421, 312, 754, 314)
 
-[node name="ParallaxComponent" type="Node" parent="Shelfs/Books4" unique_id=764150302]
-script = ExtResource("10_parobj")
-camera_distance = 3.0
-
 [node name="Books6" type="Sprite2D" parent="Shelfs" unique_id=1526740641]
 position = Vector2(47, 117)
 script = ExtResource("9_1fc3o")
 scene_item_id = 7
+trigger_type = null
 intercation_type = 0
+interact_during_dialog = null
+hold_time = null
+remove_progress_on_release = null
 
 [node name="Area2D" type="Area2D" parent="Shelfs/Books6" unique_id=1843537781]
 
@@ -138,15 +142,15 @@ intercation_type = 0
 position = Vector2(-1464, -247)
 polygon = PackedVector2Array(741, 162, 1407, 158, 1404, 294, 759, 300)
 
-[node name="ParallaxComponent" type="Node" parent="Shelfs/Books6" unique_id=51021431]
-script = ExtResource("10_parobj")
-camera_distance = 3.0
-
 [node name="Books5" type="Sprite2D" parent="Shelfs" unique_id=700698209]
 position = Vector2(47, 117)
 script = ExtResource("9_1fc3o")
 scene_item_id = 6
+trigger_type = null
 intercation_type = 0
+interact_during_dialog = null
+hold_time = null
+remove_progress_on_release = null
 
 [node name="Area2D" type="Area2D" parent="Shelfs/Books5" unique_id=1873794396]
 
@@ -154,15 +158,15 @@ intercation_type = 0
 position = Vector2(-800, -250)
 polygon = PackedVector2Array(763, 161, 1425, 159, 1404, 294, 762, 297)
 
-[node name="ParallaxComponent" type="Node" parent="Shelfs/Books5" unique_id=299199059]
-script = ExtResource("10_parobj")
-camera_distance = 3.0
-
 [node name="Books7" type="Sprite2D" parent="Shelfs" unique_id=1708082333]
 position = Vector2(47, 117)
 script = ExtResource("9_1fc3o")
 scene_item_id = 8
+trigger_type = null
 intercation_type = 0
+interact_during_dialog = null
+hold_time = null
+remove_progress_on_release = null
 
 [node name="Area2D" type="Area2D" parent="Shelfs/Books7" unique_id=649726581]
 
@@ -170,25 +174,21 @@ intercation_type = 0
 position = Vector2(-1466, -102)
 polygon = PackedVector2Array(763, 161, 1408, 163, 1407, 313, 783, 313)
 
-[node name="ParallaxComponent" type="Node" parent="Shelfs/Books7" unique_id=907096448]
-script = ExtResource("10_parobj")
-camera_distance = 3.0
-
 [node name="Books8" type="Sprite2D" parent="Shelfs" unique_id=2017908192]
 position = Vector2(47, 117)
 script = ExtResource("9_1fc3o")
 scene_item_id = 9
+trigger_type = null
 intercation_type = 0
+interact_during_dialog = null
+hold_time = null
+remove_progress_on_release = null
 
 [node name="Area2D" type="Area2D" parent="Shelfs/Books8" unique_id=1420210211]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Shelfs/Books8/Area2D" unique_id=1595734545]
 position = Vector2(-822, -97)
 polygon = PackedVector2Array(786, 161, 1423, 166, 1407, 313, 783, 313)
-
-[node name="ParallaxComponent" type="Node" parent="Shelfs/Books8" unique_id=1227445765]
-script = ExtResource("10_parobj")
-camera_distance = 3.0
 
 [node name="ToLivingRoom" parent="." unique_id=1900112514 instance=ExtResource("2_door")]
 position = Vector2(80, 80)

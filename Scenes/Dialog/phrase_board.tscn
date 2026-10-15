@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://cphr4s3b04rd1"]
+
+[ext_resource type="Script" uid="uid://bph8k2n4q7wxs" path="res://Scripts/Dialog/DialogPhraseBoard.gd" id="1_script"]
+[ext_resource type="PackedScene" uid="uid://cphr4s3line01" path="res://Scenes/Dialog/dialog_phrase.tscn" id="3_phrase"]
+
+[node name="PhraseBoard" type="VBoxContainer" unique_id=206062651]
+custom_minimum_size = Vector2(693, 400)
+offset_right = 693.0
+offset_bottom = 400.0
+mouse_filter = 2
+theme_override_constants/separation = 12
+script = ExtResource("1_script")
+phrase_scene = ExtResource("3_phrase")
+
+[node name="History" type="ColorRect" parent="." unique_id=1743236777]
+clip_children = 1
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="Stack" type="VBoxContainer" parent="History" unique_id=640907990]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_override_constants/separation = 10

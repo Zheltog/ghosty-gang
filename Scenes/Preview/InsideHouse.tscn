@@ -488,17 +488,17 @@ var gun_drawn := false
 var _storage_hum := false
 
 func process_event(event: String) -> void:
-	if event == \"gun_drawn\":
-		set_gun_drawn(true)
-		return
-	if event == \"gun_holstered\":
-		set_gun_drawn(false)
-		return
 	if event == \"storage_opened\":
 		on_storage_opened()
 		return
 	if event == \"kitchen_blocked\":
 		_on_kitchen_blocked()
+		return
+	if event == \"equip_gun\":
+		_on_equip_gun()
+		return
+	if event == \"unequip_gun\":
+		_on_unequip_gun()
 		return
 	if event == \"silence_kitchen\":
 		_silence_kitchen()
@@ -554,6 +554,20 @@ func _on_kitchen_blocked() -> void:
 		printerr(\"SceneStates: no DialogController\")
 		return
 	dialog_controller.start_story(KITCHEN_BUSY)
+
+func _on_equip_gun() -> void:
+	set_gun_drawn(true)
+	if DialogController.is_dialog_active():
+		return
+	if flag(\"engineer_dead\"):
+		return
+	if dialog_controller == null:
+		printerr(\"SceneStates: no DialogController\")
+		return
+	dialog_controller.start_story(DialogPathConstants.GUN_EQUIP)
+
+func _on_unequip_gun() -> void:
+	set_gun_drawn(false)
 
 func _silence_kitchen() -> void:
 	if not CommonAudioProcessor.has_looped_sound(WATER_SOUND):
@@ -1046,7 +1060,6 @@ position = Vector2(-7991, -220)
 texture = ExtResource("19_amx12")
 
 [node name="Inventory" parent="." unique_id=1450084800 node_paths=PackedStringArray("dialog_controller") instance=ExtResource("3_inv")]
-visible = false
 z_index = 3
 anchors_preset = 15
 anchor_top = 0.0

@@ -34,21 +34,30 @@ func display(text: String, choices: Array) -> void:
 	if _state != null and not _state.window_name.is_empty():
 		_open(_state.window_name)
 		_current_window = _active_box
-	if _state != null and _state.thought:
-		_open(DialogState.thought_window)
-	elif _state != null and _state.response:
-		_open(DialogState.player_phrase_window)
 	elif _current_window != null and _active_box != _current_window:
 		_open(_current_window.resolved_window_name())
 	if _active_box == null:
 		printerr("DialogWindowManager: no dialog window available")
 		return
-	var instant := _state != null and _state.instant
-	var speaker := "" if _state == null else _state.speaker_name
-	var character_tag := ""
-	if _state != null and not _state.thought:
-		character_tag = _state.character_name
-	_active_box.show_box_instantly(text, choices, speaker, instant, character_tag)
+	_active_box.show_line(text, choices, _state)
+
+func reveal_options(options: Array) -> void:
+	if _active_box:
+		_active_box.show_reply_options(options)
+	if _controller:
+		_controller.start_option_timeout()
+
+func on_line_finished() -> void:
+	if _active_box == null or _state == null or _controller == null or _state.skippable:
+		return
+	if _active_box.has_options() or _state.react_wait:
+		return
+	_delay_id += 1
+	var wait_id := _delay_id
+	await get_tree().create_timer(_controller.response_continue_delay).timeout
+	if wait_id != _delay_id:
+		return
+	_controller.proceed()
 
 func reset() -> void:
 	_cancel_delay()
@@ -150,8 +159,6 @@ func _register_window(box: TextBoxWithOptions) -> void:
 	_windows[window_name] = box
 	if window_name == default_window_name:
 		_default_box = box
-	if not box.line_finished.is_connected(_on_line_finished):
-		box.line_finished.connect(_on_line_finished.bind(box))
 
 func _open(window_name: String) -> void:
 	var next_box: TextBoxWithOptions = _windows.get(window_name)
@@ -163,18 +170,6 @@ func _open(window_name: String) -> void:
 		_active_box.interrupt_printing()
 		_active_box.hide_box_instantly()
 	_active_box = next_box
-
-func _on_line_finished(box: TextBoxWithOptions) -> void:
-	if box != _active_box or _state == null or _controller == null or _state.skippable:
-		return
-	if box.has_options() or _state.react_wait:
-		return
-	_delay_id += 1
-	var wait_id := _delay_id
-	await get_tree().create_timer(_controller.response_continue_delay).timeout
-	if wait_id != _delay_id:
-		return
-	_controller.proceed()
 
 func _cancel_delay() -> void:
 	_delay_id += 1

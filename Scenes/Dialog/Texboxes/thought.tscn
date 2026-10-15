@@ -3,16 +3,13 @@
 [ext_resource type="Script" uid="uid://b0hsmfhmj5kmy" path="res://Scripts/Dialog/TextBoxWithOptions.gd" id="1_script"]
 [ext_resource type="PackedScene" uid="uid://chii51pu3s0yv" path="res://Scenes/Dialog/option_button.tscn" id="2_option"]
 [ext_resource type="Texture2D" uid="uid://bd1t7aiqce5ul" path="res://Assets/Sprites/UI/Dialog/DialogWindow.png" id="3_window"]
+[ext_resource type="PackedScene" uid="uid://cphr4s3b04rd1" path="res://Scenes/Dialog/phrase_board.tscn" id="4_board"]
 
 [node name="thought" type="Control" unique_id=1172956641]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 4.0
-offset_top = 2.0
-offset_right = 4.0
-offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -22,10 +19,10 @@ printing_speed = 40.0
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1282874240]
 layout_mode = 1
-offset_left = 32.0
-offset_top = 178.0
-offset_right = 872.0
-offset_bottom = 798.0
+offset_left = 1300.0
+offset_top = 179.00002
+offset_right = 2140.0
+offset_bottom = 799.0
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("3_window")
 
@@ -50,6 +47,15 @@ mouse_filter = 2
 theme_override_colors/default_color = Color(0.8203659, 0.82036585, 0.8203658, 1)
 theme_override_font_sizes/normal_font_size = 40
 text = "???"
+visible = false
+
+[node name="PhraseBoard" parent="TextureRect" instance=ExtResource("4_board")]
+layout_mode = 1
+offset_left = 73.0
+offset_top = 138.0
+offset_right = 766.0
+offset_bottom = 531.0
+show_history = false
 
 [node name="SingleOption" type="Control" parent="TextureRect" unique_id=735576277]
 layout_mode = 1

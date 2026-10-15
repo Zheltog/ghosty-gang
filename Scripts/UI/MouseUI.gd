@@ -22,7 +22,8 @@ enum MOUSE_ICON {
 const _HOTSPOT := Vector2(15, 15)
 
 func _ready() -> void:
-	pass
+	# Документация Viewport: без этого клик идёт в случайном порядке и не смотрит на z_index.
+	get_viewport().physics_object_picking_sort = true
 	# TODO: move somewhere else?
 	#set_mouse_icon(MOUSE_ICON.CURSOR)
 
