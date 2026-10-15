@@ -426,6 +426,8 @@ shader_parameter/eye_mouse_offset = Vector2(0, 0)
 shader_parameter/camera_dist = 150.0
 shader_parameter/eye_point_rad = 20.0
 shader_parameter/eye_line_width = 5.0
+shader_parameter/between_radius_scale = 0.45
+shader_parameter/between_alpha = 0.8
 shader_parameter/cellur_noise = SubResource("NoiseTexture2D_0gpqo")
 shader_parameter/pixel_size = 2
 shader_parameter/smooth_coeff = 120.0
@@ -445,14 +447,14 @@ shader_parameter/full_red_alpha = 0.0
 shader = ExtResource("37_5x4uj")
 shader_parameter/eye_center = Vector2(300, 540)
 shader_parameter/eye_point_rad = 20.0
-shader_parameter/pulse_amount = 0.35
-shader_parameter/pulse = 0.0
 shader_parameter/pixel_size = 2
 shader_parameter/smooth_coeff = 120.0
 shader_parameter/highest_side_point = Vector2(744, 0)
 shader_parameter/center_line_point = Vector2(833, 540)
 shader_parameter/alpha = 1.0
 shader_parameter/full_red_alpha = 0.0
+shader_parameter/blink = 0.0
+shader_parameter/abberation_vec = Vector2(20, 0)
 
 [sub_resource type="Gradient" id="Gradient_black"]
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
@@ -1100,7 +1102,8 @@ script = ExtResource("blackout_script")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="BlackoutKeepDialog" unique_id=1896663827]
 libraries/ = SubResource("AnimationLibrary_blackout")
 
-[node name="EyeEffect" type="TextureRect" parent="." unique_id=167364654 node_paths=PackedStringArray("next_effect")]
+[node name="EyeCutEffect" type="TextureRect" parent="." unique_id=167364654 node_paths=PackedStringArray("next_effect")]
+visible = false
 z_index = 6
 material = SubResource("ShaderMaterial_v8nni")
 anchors_preset = 15
@@ -1114,10 +1117,9 @@ mouse_filter = 2
 texture = SubResource("GradientTexture2D_blackout")
 expand_mode = 1
 script = ExtResource("36_0gpqo")
-next_effect = NodePath("../EyeReleased")
+next_effect = NodePath("../GhostEyeEffect")
 
-[node name="EyeReleased" type="TextureRect" parent="." unique_id=976367641]
-visible = false
+[node name="GhostEyeEffect" type="TextureRect" parent="." unique_id=976367641]
 z_index = 6
 material = SubResource("ShaderMaterial_rbe3r")
 anchors_preset = 15
@@ -1158,7 +1160,7 @@ z_index = 3
 script = SubResource("GDScript_states")
 dialog_controller = NodePath("../DialogController")
 timer = NodePath("../GameTimer")
-first_state = NodePath("Welcome/PassportTimer/TeaReady/KitchenWait/CouchTea/SpillTea/FetchRag/Interview/Torture")
+first_state = NodePath("Welcome")
 
 [node name="Welcome" type="Node" parent="SceneStates" unique_id=208105396 node_paths=PackedStringArray("next_options")]
 script = SubResource("GDScript_welcome")
@@ -1206,7 +1208,7 @@ blackout_keep_text = NodePath("../../../../../../../../../../BlackoutKeepDialog"
 [node name="Torture" type="Node" parent="SceneStates/Welcome/PassportTimer/TeaReady/KitchenWait/CouchTea/SpillTea/FetchRag/Interview" unique_id=2140173122 node_paths=PackedStringArray("blackout", "stab_effect", "engineer")]
 script = SubResource("GDScript_torture")
 blackout = NodePath("../../../../../../../../../../Blackout")
-stab_effect = NodePath("../../../../../../../../../../EyeEffect")
+stab_effect = NodePath("../../../../../../../../../../EyeCutEffect")
 engineer = NodePath("../../../../../../../../../../Characters/Engineer")
 
 [node name="Bedding" type="Node" parent="SceneStates/Welcome/PassportTimer/TeaReady/KitchenWait/CouchTea/SpillTea/FetchRag/Interview" unique_id=2039561647 node_paths=PackedStringArray("next_options")]
@@ -1225,7 +1227,7 @@ next_options = [NodePath("Torture"), NodePath("Street")]
 [node name="Torture" type="Node" parent="SceneStates/Welcome/PassportTimer/TeaReady/KitchenWait/CouchTea/SpillTea/FetchRag/Interview/Bedding/Dream/Wake" unique_id=1290171044 node_paths=PackedStringArray("blackout", "stab_effect", "engineer")]
 script = SubResource("GDScript_torture")
 blackout = NodePath("../../../../../../../../../../../../../Blackout")
-stab_effect = NodePath("../../../../../../../../../../../../../EyeEffect")
+stab_effect = NodePath("../../../../../../../../../../../../../EyeCutEffect")
 engineer = NodePath("../../../../../../../../../../../../../Characters/Engineer")
 
 [node name="Street" type="Node" parent="SceneStates/Welcome/PassportTimer/TeaReady/KitchenWait/CouchTea/SpillTea/FetchRag/Interview/Bedding/Dream/Wake" unique_id=1507918003 node_paths=PackedStringArray("blackout_keep_text")]
@@ -1247,7 +1249,7 @@ blackout_keep_text = NodePath("../../../../../../../../BlackoutKeepDialog")
 [node name="Torture" type="Node" parent="SceneStates/Welcome/PassportTimer/TeaReady/KitchenWait/CouchTea/Interview" unique_id=1003113537 node_paths=PackedStringArray("blackout", "stab_effect", "engineer")]
 script = SubResource("GDScript_torture")
 blackout = NodePath("../../../../../../../../Blackout")
-stab_effect = NodePath("../../../../../../../../EyeEffect")
+stab_effect = NodePath("../../../../../../../../EyeCutEffect")
 engineer = NodePath("../../../../../../../../Characters/Engineer")
 
 [node name="Bedding" type="Node" parent="SceneStates/Welcome/PassportTimer/TeaReady/KitchenWait/CouchTea/Interview" unique_id=509828763 node_paths=PackedStringArray("next_options")]
@@ -1266,7 +1268,7 @@ next_options = [NodePath("Torture"), NodePath("Street")]
 [node name="Torture" type="Node" parent="SceneStates/Welcome/PassportTimer/TeaReady/KitchenWait/CouchTea/Interview/Bedding/Dream/Wake" unique_id=238540501 node_paths=PackedStringArray("blackout", "stab_effect", "engineer")]
 script = SubResource("GDScript_torture")
 blackout = NodePath("../../../../../../../../../../../Blackout")
-stab_effect = NodePath("../../../../../../../../../../../EyeEffect")
+stab_effect = NodePath("../../../../../../../../../../../EyeCutEffect")
 engineer = NodePath("../../../../../../../../../../../Characters/Engineer")
 
 [node name="Street" type="Node" parent="SceneStates/Welcome/PassportTimer/TeaReady/KitchenWait/CouchTea/Interview/Bedding/Dream/Wake" unique_id=607823804 node_paths=PackedStringArray("blackout_keep_text")]

@@ -7,14 +7,13 @@
 shader = ExtResource("1_shader")
 shader_parameter/eye_center = Vector2(960, 540)
 shader_parameter/eye_point_rad = 20.0
-shader_parameter/pulse_amount = 0.35
-shader_parameter/pulse = 0.0
 shader_parameter/pixel_size = 2
 shader_parameter/smooth_coeff = 120.0
 shader_parameter/highest_side_point = Vector2(744, 0)
 shader_parameter/center_line_point = Vector2(833, 540)
 shader_parameter/alpha = 1.0
 shader_parameter/full_red_alpha = 1.0
+shader_parameter/blink = 0.0
 
 [sub_resource type="Gradient" id="Gradient_black"]
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)

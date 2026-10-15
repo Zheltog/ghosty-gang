@@ -7,6 +7,8 @@ uniform float camera_dist = 10.0;
 
 uniform float eye_point_rad = 30.0;
 uniform float eye_line_width = 20.0;
+uniform float between_radius_scale : hint_range(0.05, 1.0) = 0.45;
+uniform float between_alpha : hint_range(0.0, 1.0) = 0.8;
 
 uniform sampler2D cellur_noise : repeat_enable;
 uniform int pixel_size : hint_range(1, 64) = 2;
@@ -152,6 +154,14 @@ void fragment() {
 	float diff_shape = smoothstep(0.0, 50.0, 3.0 - smin(smin(epicenter, nail, 50.0), connector, 50.0));
 	float pain = (col.b + in_countur + diff_shape * diff_intensity) * (pain_coef + diff_intensity * 0.05);
 
-	vec4 base = vec4(pain, 0.0, 0.0, vignette * alpha) + vec4(pain, 0.0, 0.0, pain * alpha) * 0.2;
+	float cover_eye = cicrleSDF(eye, eye_point_rad * between_radius_scale, frag_px);
+	float cover_nail = cicrleSDF(needle_center, eye_point_rad * between_radius_scale, frag_px);
+	float cover_line = lineSDF(needle_center, eye, frag_px, eye_line_width * between_radius_scale);
+	float cover_connector = show_line ? cover_line : 1.0e4;
+	float between = smin(smin(cover_eye, cover_nail, 50.0), cover_connector, 50.0);
+	float between_mask = smoothstep(0.0, 50.0, 3.0 - between);
+	float cover = mix(1.0, between_alpha, between_mask);
+
+	vec4 base = vec4(pain, 0.0, 0.0, vignette * alpha * cover) + vec4(pain, 0.0, 0.0, pain * alpha * cover) * 0.2;
 	COLOR = mix(base, vec4(1.0, 0.0, 0.0, 1.0), clamp(full_red_alpha, 0.0, 1.0));
 }
