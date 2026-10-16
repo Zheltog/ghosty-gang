@@ -29,6 +29,7 @@
 [ext_resource type="Shader" uid="uid://j5wxgl4keu4c" path="res://Scripts/Shaders/blur.gdshader" id="38_55pqa"]
 [ext_resource type="Script" uid="uid://cb2h06q5dmge" path="res://Scripts/Effects/EyeReleasedEffect.gd" id="38_ak6oo"]
 [ext_resource type="Script" uid="uid://sv300tnhe327" path="res://Scripts/Scenes/BlackoutEffect.gd" id="blackout_script"]
+[ext_resource type="Material" uid="uid://br1nkg6tco5d0" path="res://Scripts/Shaders/outline_material.tres" id="outline_mat"]
 [ext_resource type="PackedScene" uid="uid://c8bathroom0a1" path="res://Scenes/Preview/Rooms/Bathroom.tscn" id="room_Bathroom"]
 [ext_resource type="PackedScene" uid="uid://s218cktv50w5" path="res://Scenes/Preview/Rooms/Bookshelf.tscn" id="room_Bookshelf"]
 [ext_resource type="PackedScene" uid="uid://c8exitstor0a1" path="res://Scenes/Preview/Rooms/ExitFromStorage.tscn" id="room_ExitFromStorage"]
@@ -1037,6 +1038,8 @@ camera_distance = 105.0
 modulate = Color(1, 1, 1, 0)
 z_index = 1
 z_as_relative = false
+material = ExtResource("outline_mat")
+instance_shader_parameters/enabled = false
 script = ExtResource("25_f7hr0")
 scene_item_id = 22
 interact_during_dialog = true

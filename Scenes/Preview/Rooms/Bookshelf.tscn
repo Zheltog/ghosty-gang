@@ -10,6 +10,18 @@
 [ext_resource type="Texture2D" uid="uid://fhx12i7wwmur" path="res://Assets/Sprites/Backgrounds/bookcase_1_normal.png" id="30_bg"]
 [ext_resource type="Script" uid="uid://3yscu2its1" path="res://Scenes/Test/Dron/DarknessEffect.gd" id="30_dark"]
 [ext_resource type="Material" uid="uid://cettvgv7o7kmc" path="res://Scripts/Shaders/darkness_material.tres" id="30_mat"]
+[ext_resource type="Material" uid="uid://q8n4woutline2" path="res://Scripts/Shaders/outline_material.tres" id="outline_mat"]
+[ext_resource type="Texture2D" uid="uid://cgo346ad38ms6" path="res://Assets/Sprites/SceneItems/Outlines/Bookshelf_Shelfs.png" id="outline_Bookshelf_Shelfs"]
+[ext_resource type="Texture2D" uid="uid://8t2tyjn4853u" path="res://Assets/Sprites/SceneItems/Outlines/Bookshelf_Shelfs_Keyhole.png" id="outline_Bookshelf_Shelfs_Keyhole"]
+[ext_resource type="Texture2D" uid="uid://c1aabd54wp8al" path="res://Assets/Sprites/SceneItems/Outlines/Bookshelf_Shelfs_Books1.png" id="outline_Bookshelf_Shelfs_Books1"]
+[ext_resource type="Texture2D" uid="uid://ca55r7nri5euk" path="res://Assets/Sprites/SceneItems/Outlines/Bookshelf_Shelfs_Books2.png" id="outline_Bookshelf_Shelfs_Books2"]
+[ext_resource type="Texture2D" uid="uid://c5aj346el1g85" path="res://Assets/Sprites/SceneItems/Outlines/Bookshelf_Shelfs_Books3.png" id="outline_Bookshelf_Shelfs_Books3"]
+[ext_resource type="Texture2D" uid="uid://etsom4wbk07n" path="res://Assets/Sprites/SceneItems/Outlines/Bookshelf_Shelfs_Books4.png" id="outline_Bookshelf_Shelfs_Books4"]
+[ext_resource type="Texture2D" uid="uid://lj436iobulcn" path="res://Assets/Sprites/SceneItems/Outlines/Bookshelf_Shelfs_Books6.png" id="outline_Bookshelf_Shelfs_Books6"]
+[ext_resource type="Texture2D" uid="uid://c2wbb4yj2qy2c" path="res://Assets/Sprites/SceneItems/Outlines/Bookshelf_Shelfs_Books5.png" id="outline_Bookshelf_Shelfs_Books5"]
+[ext_resource type="Texture2D" uid="uid://yr2r815bhisd" path="res://Assets/Sprites/SceneItems/Outlines/Bookshelf_Shelfs_Books7.png" id="outline_Bookshelf_Shelfs_Books7"]
+[ext_resource type="Texture2D" uid="uid://da6lp4gt2iily" path="res://Assets/Sprites/SceneItems/Outlines/Bookshelf_Shelfs_Books8.png" id="outline_Bookshelf_Shelfs_Books8"]
+[ext_resource type="Texture2D" uid="uid://pqm0277ooiyq" path="res://Assets/Sprites/SceneItems/Outlines/Bookshelf_ToStorage.png" id="outline_Bookshelf_ToStorage"]
 
 [node name="Bookshelf" type="Node2D" unique_id=1900112500]
 script = ExtResource("12_room")
@@ -27,6 +39,12 @@ script = ExtResource("10_parobj")
 camera_distance = 100.0
 
 [node name="Shelfs" type="Sprite2D" parent="." unique_id=1900112503]
+texture = ExtResource("outline_Bookshelf_Shelfs")
+offset = Vector2(-159.5000, 173.0000)
+texture_filter = 1
+instance_shader_parameters/fill_visible = false
+material = ExtResource("outline_mat")
+instance_shader_parameters/enabled = false
 position = Vector2(960, 500)
 script = ExtResource("13_shelf")
 scene_item_id = 15
@@ -47,6 +65,12 @@ polygon = PackedVector2Array(-760, -332, 746, -320, 602, 673, -608, 684)
 polygon = PackedVector2Array(-1065, -338, 159, -338, 134, 677, -1060, 684)
 
 [node name="Keyhole" type="Sprite2D" parent="Shelfs" unique_id=1900112506]
+texture = ExtResource("outline_Bookshelf_Shelfs_Keyhole")
+offset = Vector2(-69.5000, -22.5000)
+texture_filter = 1
+instance_shader_parameters/fill_visible = false
+material = ExtResource("outline_mat")
+instance_shader_parameters/enabled = false
 visible = false
 position = Vector2(582, 117)
 script = ExtResource("9_1fc3o")
@@ -63,6 +87,12 @@ remove_progress_on_release = null
 polygon = PackedVector2Array(-93, 43, -77, -89, -46, -90, -61, 45)
 
 [node name="Books1" type="Sprite2D" parent="Shelfs" unique_id=598298150]
+texture = ExtResource("outline_Bookshelf_Shelfs_Books1")
+offset = Vector2(-417.0000, -352.5000)
+texture_filter = 1
+instance_shader_parameters/fill_visible = false
+material = ExtResource("outline_mat")
+instance_shader_parameters/enabled = false
 position = Vector2(47, 117)
 script = ExtResource("9_1fc3o")
 scene_item_id = 2
@@ -79,6 +109,12 @@ position = Vector2(-775, -424)
 polygon = PackedVector2Array(712, 2, 716, 143, 22, 141, 0, 0)
 
 [node name="Books2" type="Sprite2D" parent="Shelfs" unique_id=14758560]
+texture = ExtResource("outline_Bookshelf_Shelfs_Books2")
+offset = Vector2(308.5000, -185.0000)
+texture_filter = 1
+instance_shader_parameters/fill_visible = false
+material = ExtResource("outline_mat")
+instance_shader_parameters/enabled = false
 position = Vector2(47, 117)
 script = ExtResource("9_1fc3o")
 scene_item_id = 3
@@ -95,6 +131,12 @@ position = Vector2(-775, -424)
 polygon = PackedVector2Array(739, 160, 1428, 158, 1403, 320, 743, 319)
 
 [node name="Books3" type="Sprite2D" parent="Shelfs" unique_id=65752136]
+texture = ExtResource("outline_Bookshelf_Shelfs_Books3")
+offset = Vector2(320.0000, -349.0000)
+texture_filter = 1
+instance_shader_parameters/fill_visible = false
+material = ExtResource("outline_mat")
+instance_shader_parameters/enabled = false
 position = Vector2(47, 117)
 script = ExtResource("9_1fc3o")
 scene_item_id = 4
@@ -111,6 +153,12 @@ position = Vector2(-775, -424)
 polygon = PackedVector2Array(738, -3, 1454, -1, 1429, 148, 736, 153)
 
 [node name="Books4" type="Sprite2D" parent="Shelfs" unique_id=644389273]
+texture = ExtResource("outline_Bookshelf_Shelfs_Books4")
+offset = Vector2(-406.0000, -186.0000)
+texture_filter = 1
+instance_shader_parameters/fill_visible = false
+material = ExtResource("outline_mat")
+instance_shader_parameters/enabled = false
 position = Vector2(47, 117)
 script = ExtResource("9_1fc3o")
 scene_item_id = 5
@@ -127,6 +175,12 @@ position = Vector2(-1483, -417)
 polygon = PackedVector2Array(732, 148, 1422, 149, 1421, 312, 754, 314)
 
 [node name="Books6" type="Sprite2D" parent="Shelfs" unique_id=1526740641]
+texture = ExtResource("outline_Bookshelf_Shelfs_Books6")
+offset = Vector2(-390.0000, -18.0000)
+texture_filter = 1
+instance_shader_parameters/fill_visible = false
+material = ExtResource("outline_mat")
+instance_shader_parameters/enabled = false
 position = Vector2(47, 117)
 script = ExtResource("9_1fc3o")
 scene_item_id = 7
@@ -143,6 +197,12 @@ position = Vector2(-1464, -247)
 polygon = PackedVector2Array(741, 162, 1407, 158, 1404, 294, 759, 300)
 
 [node name="Books5" type="Sprite2D" parent="Shelfs" unique_id=700698209]
+texture = ExtResource("outline_Bookshelf_Shelfs_Books5")
+offset = Vector2(293.5000, -22.0000)
+texture_filter = 1
+instance_shader_parameters/fill_visible = false
+material = ExtResource("outline_mat")
+instance_shader_parameters/enabled = false
 position = Vector2(47, 117)
 script = ExtResource("9_1fc3o")
 scene_item_id = 6
@@ -159,6 +219,12 @@ position = Vector2(-800, -250)
 polygon = PackedVector2Array(763, 161, 1425, 159, 1404, 294, 762, 297)
 
 [node name="Books7" type="Sprite2D" parent="Shelfs" unique_id=1708082333]
+texture = ExtResource("outline_Bookshelf_Shelfs_Books7")
+offset = Vector2(-380.5000, 135.0000)
+texture_filter = 1
+instance_shader_parameters/fill_visible = false
+material = ExtResource("outline_mat")
+instance_shader_parameters/enabled = false
 position = Vector2(47, 117)
 script = ExtResource("9_1fc3o")
 scene_item_id = 8
@@ -175,6 +241,12 @@ position = Vector2(-1466, -102)
 polygon = PackedVector2Array(763, 161, 1408, 163, 1407, 313, 783, 313)
 
 [node name="Books8" type="Sprite2D" parent="Shelfs" unique_id=2017908192]
+texture = ExtResource("outline_Bookshelf_Shelfs_Books8")
+offset = Vector2(281.0000, 140.0000)
+texture_filter = 1
+instance_shader_parameters/fill_visible = false
+material = ExtResource("outline_mat")
+instance_shader_parameters/enabled = false
 position = Vector2(47, 117)
 script = ExtResource("9_1fc3o")
 scene_item_id = 9
@@ -203,6 +275,12 @@ script = ExtResource("10_parobj")
 camera_distance = 100.0
 
 [node name="ToStorage" type="Sprite2D" parent="." unique_id=1904725459]
+texture = ExtResource("outline_Bookshelf_ToStorage")
+offset = Vector2(605.5000, 308.5000)
+texture_filter = 1
+instance_shader_parameters/fill_visible = false
+material = ExtResource("outline_mat")
+instance_shader_parameters/enabled = false
 visible = false
 position = Vector2(80, 80)
 scale = Vector2(2, 2)

@@ -23,6 +23,9 @@ enum INTERACTION_TYPE {
 @export var hold_time : float = 1.0
 @export var remove_progress_on_release : bool = true
 
+const OUTLINE_MATERIAL: ShaderMaterial = preload("res://Scripts/Shaders/outline_material.tres")
+const OUTLINE_ENABLED := "enabled"
+
 @onready var _area_2d: Area2D = $Area2D
 
 var _scene_item : SceneItemBase
@@ -35,10 +38,17 @@ func get_pickup_time() -> float:
 	return _scene_item.pickup_time
 
 func _ready() -> void:
+	_ensure_outline_material()
 	_init_scene_item()
 	Area2DUtils.setup_collision_from_sprite(self, _area_2d)
 	_area_2d.input_event.connect(_on_input_event)
 	release()
+
+func _ensure_outline_material() -> void:
+	material = OUTLINE_MATERIAL
+
+func set_outline_enabled(enabled: bool) -> void:
+	set_instance_shader_parameter(OUTLINE_ENABLED, enabled)
 
 func _init_scene_item() -> void:
 	if scene_item_id == SceneItemGenerator.SCENE_ITEM.NONE:

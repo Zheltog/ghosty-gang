@@ -12,6 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://dvnnea2fw2ndt" path="res://Scenes/PointAndClick/SceneItemUI.tscn" id="18_bl6rl"]
 [ext_resource type="Texture2D" uid="uid://8py760fqn1w5" path="res://Assets/Sprites/InventoryItems/tea.png" id="19_n3wxg"]
 [ext_resource type="Texture2D" uid="uid://ehlj4r5kofa7" path="res://Assets/Sprites/SceneItems/EngineerHouse/tea_empty_icon.png" id="20_empty"]
+[ext_resource type="Material" uid="uid://q8n4woutline2" path="res://Scripts/Shaders/outline_material.tres" id="outline_mat"]
+[ext_resource type="Texture2D" uid="uid://cgd7giams0kvf" path="res://Assets/Sprites/SceneItems/Outlines/KitchenCouch_ToLivingRoom.png" id="outline_KitchenCouch_ToLivingRoom"]
 
 [node name="KitchenCouch" type="Node2D" unique_id=1900112234]
 script = ExtResource("1_u8j1x")
@@ -29,6 +31,8 @@ script = ExtResource("5_n3wxg")
 camera_distance = 100.0
 
 [node name="ToKitchen" type="Sprite2D" parent="." unique_id=1422088193]
+material = ExtResource("outline_mat")
+instance_shader_parameters/enabled = false
 position = Vector2(951, 1003)
 rotation = 1.5707964
 texture = ExtResource("14_swiwo")
@@ -44,6 +48,12 @@ script = ExtResource("5_n3wxg")
 camera_distance = 100.0
 
 [node name="ToLivingRoom" type="Sprite2D" parent="." unique_id=139125228]
+texture = ExtResource("outline_KitchenCouch_ToLivingRoom")
+offset = Vector2(9.5000, -7.0000)
+texture_filter = 1
+instance_shader_parameters/fill_visible = false
+material = ExtResource("outline_mat")
+instance_shader_parameters/enabled = false
 position = Vector2(280, 520)
 script = ExtResource("15_muhom")
 target_room = "living_room"

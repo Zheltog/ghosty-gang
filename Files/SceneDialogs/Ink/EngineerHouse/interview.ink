@@ -27,6 +27,7 @@ INCLUDE gun_reaction.ink
 -> begin
 
 === begin ===
+# window:default
 # react_default:equip:rag:show_rag_given, equip:gun:gun_show_rag
 {gun_drawn:
 	-> armed
@@ -52,7 +53,7 @@ INCLUDE gun_reaction.ink
 # react_default:equip:gun:gun_back:back, action:drink:poison
 ~ godot_1("SceneDialogManager", "process_event", "reveal_tea")
 Ты вытираешь лужу со столика и садишься рядом. Крепкий чёрный чай пахнет восхитительно — старик добавил сушеные листья смородины и мяты. # thought
-Пейте. Вам сейчас согреться надо. # window:default # char:engineer # pose:sit # anim:normal # skippable:false
+Пейте. Вам сейчас согреться надо.  # char:engineer # pose:sit # anim:normal # skippable:false
 + [Пусть сперва остынет.]
 	Пусть сперва остынет. # response # skippable:false
 	Хозяин пожимает плечами. # thought # char:engineer # pose:sit # anim:normal
@@ -67,30 +68,30 @@ INCLUDE gun_reaction.ink
 Слова вдруг приходится выталкивать. Ты пытаешься поднять руку. Пальцы остаются на месте. # thought
 Владислав перестаёт улыбаться. # thought # char:engineer # pose:sit # anim:suspicious
 Что… # response # skippable:false
-Не пытайтесь встать. # window:default # char:engineer # pose:sit # anim:suspicious # skippable:false
+Не пытайтесь встать. # char:engineer # pose:sit # anim:suspicious # skippable:false
 Ты чувствуешь, как съезжаешь по спинке дивана. # thought
-Слышите меня? # window:default # char:engineer # pose:sit # anim:reach # skippable:false
+Слышите меня? # char:engineer # pose:sit # anim:reach # skippable:false
 Ты видишь его губы, но ответить не получается. # thought
 ~ engineer_poison = true
 -> END
 
 === refuse ===
-Вы меня за кого принимаете? # window:default # char:engineer # pose:sit # anim:suspicious # skippable:false
+Вы меня за кого принимаете? # char:engineer # pose:sit # anim:suspicious # skippable:false
 Я сказал, что не хочу. # response # skippable:false
-Понял. И к вещам моим это тоже отношения не имеет? # window:default # char:engineer # pose:sit # anim:suspicious # skippable:false
+Понял. И к вещам моим это тоже отношения не имеет? # char:engineer # pose:sit # anim:suspicious # skippable:false
 Он ставит собственную чашку на стол. # thought
-Извините. Не получится у нас сегодня с ночлегом. # window:default # char:engineer # pose:stand # anim:normal # skippable:false
+Извините. Не получится у нас сегодня с ночлегом. # char:engineer # pose:stand # anim:normal # skippable:false
 ~ engineer_kicked = true
 -> END
 
 === calm ===
 # react_default:equip:gun:gun_back:back
 Инженер берёт чайник и не спеша разливает его по чашкам. Он улыбается и мурлычет себе под нос. # thought # char:engineer # pose:stand # anim:tea
-Тонут во мгле пустынные сопки, # window:default # char:engineer # pose:stand # anim:tea # skippable:false
+Тонут во мгле пустынные сопки, # char:engineer # pose:stand # anim:tea # skippable:false
 тучей закрыт восток… # char:engineer # pose:stand # anim:tea # skippable:false
 Великолепный запах крепкого чая с травами разливается по комнате. # thought
 Со смородиной? То, что доктор прописал. # response # skippable:false
-И с мятой. Мон плезир. # window:default # char:engineer # pose:sit # anim:normal # skippable:false
+И с мятой. Мон плезир. # char:engineer # pose:sit # anim:normal # skippable:false
 -> cup
 
 === cup ===
@@ -102,9 +103,9 @@ INCLUDE gun_reaction.ink
 # react_default:equip:gun:gun_back:back
 {not menu_started:
 	~ menu_started = true
-	Итак. О чём вы хотели поговорить? # window:default # char:engineer # pose:sit # anim:normal # skippable:false # react:equip:photo:photo_if, equip:passport:passports_if, equip:glass_eye:eye_if, equip:gun:gun_menu
+	Итак. О чём вы хотели поговорить? # char:engineer # pose:sit # anim:normal # skippable:false # react:equip:photo:photo_if, equip:passport:passports_if, equip:glass_eye:eye_if, equip:gun:gun_menu
 - else:
-	Что вам ещё рассказать? # window:default # char:engineer # pose:sit # anim:normal # skippable:false # react:equip:photo:photo_if, equip:passport:passports_if, equip:glass_eye:eye_if, equip:gun:gun_menu
+	Что вам ещё рассказать? # char:engineer # pose:sit # anim:normal # skippable:false # react:equip:photo:photo_if, equip:passport:passports_if, equip:glass_eye:eye_if, equip:gun:gun_menu
 }
 * [О мальчике.]
 	-> boy_ask
@@ -120,7 +121,7 @@ INCLUDE gun_reaction.ink
 
 === boy_ask ===
 Я в ПГТ не просто так, как вы могли догадаться. Пропал мальчик. # response # skippable:false
-Неужели? # window:default # char:engineer # pose:sit # anim:suspicious # skippable:false
+Неужели? # char:engineer # pose:sit # anim:suspicious # skippable:false
 Покажите. # char:engineer # pose:sit # anim:reach # skippable:false
 + [Протянуть фото]
 	-> boy_photo
@@ -130,15 +131,15 @@ INCLUDE gun_reaction.ink
 
 === boy_shown ===
 Я в ПГТ не просто так, как вы могли догадаться. Пропал мальчик. # response # skippable:false
-Неужели? # window:default # char:engineer # pose:sit # anim:suspicious # skippable:false
+Неужели? # char:engineer # pose:sit # anim:suspicious # skippable:false
 -> boy_photo
 
 === boy_photo ===
 ~ boy_told = true
 Ты кладёшь перед Владиславом фотографию Жени. Он придвигает её к свету. # thought # char:engineer # pose:sit # anim:reach
-Видел несколько раз. Летом всё бегал с местным пареньком на пустыре. Говорят, к бабушке приезжал. # window:default # char:engineer # pose:sit # anim:normal # skippable:false
+Видел несколько раз. Летом всё бегал с местным пареньком на пустыре. Говорят, к бабушке приезжал. # char:engineer # pose:sit # anim:normal # skippable:false
 А позавчера? # response # skippable:false
-Да. Позавчера тоже видел. Из окна кухни. Он шёл от остановки в сторону Горной. # window:default # char:engineer # pose:sit # anim:normal # skippable:false
+Да. Позавчера тоже видел. Из окна кухни. Он шёл от остановки в сторону Горной. # char:engineer # pose:sit # anim:normal # skippable:false
 Во сколько? # response # skippable:false
 В половине восьмого. Вечера, конечно. # char:engineer # pose:sit # anim:normal # skippable:false
 -> boy_more
@@ -146,18 +147,18 @@ INCLUDE gun_reaction.ink
 === boy_more ===
 * [Почему так точно?]
 	Почему так точно? # response # skippable:false
-	Вязал на кухне. Поглядывал на часы: пора было ужинать. Потом увидел его в окне. В это время по нашей улице почти никто уже не ходит. # window:default # char:engineer # pose:sit # anim:normal # skippable:false
+	Вязал на кухне. Поглядывал на часы: пора было ужинать. Потом увидел его в окне. В это время по нашей улице почти никто уже не ходит. # char:engineer # pose:sit # anim:normal # skippable:false
 	Часы исправные? # response # skippable:false
 	Да. Я же не перестаю быть инженером, когда выхожу на пенсию. # char:engineer # pose:sit # anim:normal # skippable:false
 	-> boy_more
 * [Во что он был одет?]
 	Во что он был одет? # response # skippable:false
-	Синяя куртка. Шапка белая с красным. Ещё рюкзак — как школьный. Больше ничего не заметил. # window:default # char:engineer # pose:sit # anim:normal # skippable:false
+	Синяя куртка. Шапка белая с красным. Ещё рюкзак — как школьный. Больше ничего не заметил. # char:engineer # pose:sit # anim:normal # skippable:false
 	Пока всё сходится. # thought
 	-> boy_more
 * [Он был один?]
 	Он был один? # response # skippable:false
-	Когда проходил мимо моего окна — один. Кто его встретил дальше, я не знаю. # window:default # char:engineer # pose:sit # anim:normal # skippable:false
+	Когда проходил мимо моего окна — один. Кто его встретил дальше, я не знаю. # char:engineer # pose:sit # anim:normal # skippable:false
 	Вы не выходили? # response # skippable:false
 	Нет. Я был дома. # char:engineer # pose:sit # anim:normal # skippable:false
 	-> boy_more
@@ -165,12 +166,12 @@ INCLUDE gun_reaction.ink
 	-> menu
 
 === lab ===
-Это имеет отношение к мальчику или вам просто интересно? # window:default # char:engineer # pose:sit # anim:suspicious # timeout:8 # skippable:false
+Это имеет отношение к мальчику или вам просто интересно? # char:engineer # pose:sit # anim:suspicious # timeout:8 # skippable:false
 + [Промолчать.]
 	-> lab_short
 + [Если не хотите, оставим.]
 	Если не хотите, оставим. # response # skippable:false
-	Спасибо. Очень любезно с вашей стороны. # window:default # char:engineer # pose:sit # anim:normal # skippable:false
+	Спасибо. Очень любезно с вашей стороны. # char:engineer # pose:sit # anim:normal # skippable:false
 	-> menu
 + [У вас столько книг. Я впечатлён.]
 	У вас столько книг. Я впечатлён. # response # skippable:false
@@ -181,34 +182,34 @@ INCLUDE gun_reaction.ink
 	-> lab_story
 
 === lab_short ===
-Работал в лаборатории. Теперь на пенсии. Думаю, этого достаточно. # window:default # char:engineer # pose:sit # anim:normal # skippable:false
+Работал в лаборатории. Теперь на пенсии. Думаю, этого достаточно. # char:engineer # pose:sit # anim:normal # skippable:false
 -> menu
 
 === lab_story ===
-Ну что ж. Мы работали у Бориса Николаевича Морозова. Вы, конечно, о нём слышали? # window:default # char:engineer # pose:sit # anim:normal # skippable:false
+Ну что ж. Мы работали у Бориса Николаевича Морозова. Вы, конечно, о нём слышали? # char:engineer # pose:sit # anim:normal # skippable:false
 + [Разумеется.]
 	~ suspicion += 1
 	Разумеется. # response # skippable:false
-	Да? Сейчас его редко вспоминают. # window:default # char:engineer # pose:sit # anim:suspicious # skippable:false
+	Да? Сейчас его редко вспоминают. # char:engineer # pose:sit # anim:suspicious # skippable:false
 	Он смотрит внимательнее, словно ждёт, что ты продолжишь. # window:thought # skippable:false
 	-> lab_work
 + [Если честно, нет.]
 	Если честно, нет. # response # skippable:false
-	В своё время его считали гением. Потом перестали. В науке это, знаете, бывает быстрее, чем успевают убрать портреты со стен. # window:default # char:engineer # pose:sit # anim:normal # skippable:false
+	В своё время его считали гением. Потом перестали. В науке это, знаете, бывает быстрее, чем успевают убрать портреты со стен. # char:engineer # pose:sit # anim:normal # skippable:false
 	-> lab_work
 
 === lab_work ===
-Исследовали связь между некоторыми процессами в мозге и показаниями приборов. Я занимался аппаратурой. Были физиологи, были физики. Должны были научиться понимать друг друга. # window:default # char:engineer # pose:sit # anim:normal # skippable:false
+Исследовали связь между некоторыми процессами в мозге и показаниями приборов. Я занимался аппаратурой. Были физиологи, были физики. Должны были научиться понимать друг друга. # char:engineer # pose:sit # anim:normal # skippable:false
 Получилось? # response # skippable:false
-Не вполне. # window:default # char:engineer # pose:sit # anim:suspicious # skippable:false
+Не вполне. # char:engineer # pose:sit # anim:suspicious # skippable:false
 Владислав смотрит на фотографию. # thought # char:engineer # pose:sit # anim:normal
-Проект закрыли. Людей разослали. Аппаратуру разобрали. Вот и вся история. # window:default # char:engineer # pose:sit # anim:normal # skippable:false
+Проект закрыли. Людей разослали. Аппаратуру разобрали. Вот и вся история. # char:engineer # pose:sit # anim:normal # skippable:false
 -> lab_books
 
 === lab_books ===
 * [Поэтому у вас книги по нейрофизиологии?]
 	Поэтому у вас книги по нейрофизиологии? # response # skippable:false
-	Разумеется. Когда прибор показывает что-то странное, хорошо бы знать, на что именно вы его направили. Хоть немного. # window:default # char:engineer # pose:sit # anim:normal # skippable:false
+	Разумеется. Когда прибор показывает что-то странное, хорошо бы знать, на что именно вы его направили. Хоть немного. # char:engineer # pose:sit # anim:normal # skippable:false
 	-> lab_books
 * [А майя? Тоже для работы?]
 	А майя? Тоже для работы? # response # skippable:false
@@ -221,25 +222,25 @@ INCLUDE gun_reaction.ink
 {suspicion <= 1:
 	-> maya_long
 }
-Личное увлечение. В жизни должно быть что-нибудь, кроме работы. # window:default # char:engineer # pose:sit # anim:normal # skippable:false
+Личное увлечение. В жизни должно быть что-нибудь, кроме работы. # char:engineer # pose:sit # anim:normal # skippable:false
 -> menu
 
 === maya_long ===
-Сначала личное. Потом оказалось, что и там можно найти кое-что полезное. # window:default # char:engineer # pose:sit # anim:reach # skippable:false
+Сначала личное. Потом оказалось, что и там можно найти кое-что полезное. # char:engineer # pose:sit # anim:reach # skippable:false
 Он проводит пальцем по краю стола. # thought # char:engineer # pose:sit # anim:reach
-Люди, с которыми работали наши физиологи, иногда описывали похожие вещи. Очень похожие. Хотя друг друга не знали. # window:default # char:engineer # pose:sit # anim:suspicious # skippable:false
+Люди, с которыми работали наши физиологи, иногда описывали похожие вещи. Очень похожие. Хотя друг друга не знали. # char:engineer # pose:sit # anim:suspicious # skippable:false
 Какие вещи? # response # skippable:false
-Фигуры. Лица. Иногда умерших родственников. Можно сказать — галлюцинации. Я начал читать, как такие переживания описывали раньше. Сходство оказалось неприятным. # window:default # char:engineer # pose:sit # anim:suspicious # skippable:false
+Фигуры. Лица. Иногда умерших родственников. Можно сказать — галлюцинации. Я начал читать, как такие переживания описывали раньше. Сходство оказалось неприятным. # char:engineer # pose:sit # anim:suspicious # skippable:false
 Неприятным? # response # skippable:false
 У любого совпадения должен быть предел. # char:engineer # pose:sit # anim:normal # skippable:false
 * [Когда это с ними происходило?]
 	Когда это с ними происходило? # response # skippable:false
-	Сильный стресс. Гипноз. Действие некоторых веществ. Переохлаждение тоже. # window:default # char:engineer # pose:sit # anim:suspicious # skippable:false
+	Сильный стресс. Гипноз. Действие некоторых веществ. Переохлаждение тоже. # char:engineer # pose:sit # anim:suspicious # skippable:false
 	На последнем слове он смотрит на твои руки. # thought # char:engineer # pose:sit # anim:suspicious
 	-> maya_close
 * [Вы верите в призраков?]
 	Вы верите в призраков? # response # skippable:false
-	Я предпочитаю сначала описать явление. Назвать всегда успеем. # window:default # char:engineer # pose:sit # anim:normal # skippable:false
+	Я предпочитаю сначала описать явление. Назвать всегда успеем. # char:engineer # pose:sit # anim:normal # skippable:false
 	А объяснить? # response # skippable:false
 	Вот с этим хуже. # char:engineer # pose:sit # anim:suspicious # skippable:false
 	-> maya_close
@@ -248,7 +249,7 @@ INCLUDE gun_reaction.ink
 	-> maya_close
 
 === maya_close ===
-Впрочем, оставим. Вам мальчика искать, а я вам голову забиваю. # window:default # char:engineer # pose:sit # anim:normal # skippable:false
+Впрочем, оставим. Вам мальчика искать, а я вам голову забиваю. # char:engineer # pose:sit # anim:normal # skippable:false
 -> menu
 
 === passports ===
@@ -259,9 +260,9 @@ INCLUDE gun_reaction.ink
 ~ suspicion += 3
 В вашей кладовке несколько паспортов. С вашей фотографией. На разные имена. # response # skippable:false
 Владислав перестаёт поправлять салфетку. # thought # char:engineer # pose:sit # anim:scared
-Вижу, вы всё-таки успели покопаться в моих вещах. # window:default # char:engineer # pose:sit # anim:scared # skippable:false
+Вижу, вы всё-таки успели покопаться в моих вещах. # char:engineer # pose:sit # anim:scared # skippable:false
 Я могу услышать объяснение? # response # skippable:false
-Несколько выданы партией. Конспиративные, если угодно. Но государственные. # window:default # char:engineer # pose:sit # anim:suspicious # skippable:false
+Несколько выданы партией. Конспиративные, если угодно. Но государственные. # char:engineer # pose:sit # anim:suspicious # skippable:false
 Это как? # response # skippable:false
 Когда проект закрыли, нас попросили сменить имена. Работу, место жительства. Научная история закончилась, секретность осталась. # char:engineer # pose:sit # anim:normal # skippable:false
 А остальные? # response # skippable:false
@@ -282,18 +283,18 @@ INCLUDE gun_reaction.ink
 === passport_more ===
 * [Кто вы на самом деле?]
 	Кто вы на самом деле? # response # skippable:false
-	Владислав Игоревич Хаит. Так меня зовут здесь. Так я вам представился. # window:default # char:engineer # pose:sit # anim:normal # skippable:false
+	Владислав Игоревич Хаит. Так меня зовут здесь. Так я вам представился. # char:engineer # pose:sit # anim:normal # skippable:false
 	А раньше? # response # skippable:false
 	Я уже рассказал больше, чем собирался. Пожалуйста. # char:engineer # pose:sit # anim:suspicious # skippable:false
 	-> passport_more
 * [Вы сюда переехали после закрытия лаборатории?]
 	Вы сюда переехали после закрытия лаборатории? # response # skippable:false
-	Да. Мне дали адрес и документы. Я приехал. Другого места у меня теперь нет. # window:default # char:engineer # pose:sit # anim:normal # skippable:false
+	Да. Мне дали адрес и документы. Я приехал. Другого места у меня теперь нет. # char:engineer # pose:sit # anim:normal # skippable:false
 	-> passport_more
 + [Я ищу мальчика. Ваше прошлое меня не интересует.]
 	Я ищу мальчика. Ваше прошлое меня не интересует. # response # skippable:false
 	Владислав медленно кивает. # thought # char:engineer # pose:sit # anim:normal
-	Тогда давайте о мальчике. # window:default # char:engineer # pose:sit # anim:normal # skippable:false
+	Тогда давайте о мальчике. # char:engineer # pose:sit # anim:normal # skippable:false
 	-> menu
 
 === eye ===
@@ -302,9 +303,9 @@ INCLUDE gun_reaction.ink
 ~ godot_1("SceneDialogManager", "process_event", "reveal_glass_eye")
 Ты кладёшь глаз на стол. Владислав забирает его раньше, чем тот успевает докатиться до чашки. # thought
 ~ godot_1("SceneDialogManager", "process_event", "hide_glass_eye")
-Моё. Давно искал. Спасибо. # window:default # char:engineer # pose:sit # anim:reach # skippable:false
+Моё. Давно искал. Спасибо. # char:engineer # pose:sit # anim:reach # skippable:false
 Запасной? # response # skippable:false
-Старый. Новый мне тоже не вполне нравится. # window:default # char:engineer # pose:sit # anim:suspicious # skippable:false
+Старый. Новый мне тоже не вполне нравится. # char:engineer # pose:sit # anim:suspicious # skippable:false
 Он убирает глаз в карман. Тебе хочется рассмотреть его лицо внимательнее, но он уже отвернулся. # thought
 ~ has_glass_eye = false
 -> menu

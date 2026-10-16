@@ -60,6 +60,10 @@ func _set_hovered_items(hovered : Array[SceneItemUI]) -> void:
 	var hovered_top : SceneItemUI = null
 	if not hovered.is_empty():
 		hovered_top = hovered[0]
+	if previous_top != null and previous_top != hovered_top:
+		previous_top.set_outline_enabled(false)
+	if hovered_top != null and hovered_top != previous_top:
+		hovered_top.set_outline_enabled(true)
 	_highlighted_items = hovered
 	var equipped: InventoryItemUI = null
 	if inventory != null and is_instance_valid(inventory.equipped_item):

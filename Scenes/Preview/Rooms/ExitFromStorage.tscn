@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://cyisfyc7w6di0" path="res://Assets/Sprites/Backgrounds/exit_from_storage_dark.png" id="60_efs_bg"]
 [ext_resource type="Script" uid="uid://3yscu2its1" path="res://Scenes/Test/Dron/DarknessEffect.gd" id="60_efs_dark"]
 [ext_resource type="Material" uid="uid://cettvgv7o7kmc" path="res://Scripts/Shaders/darkness_material.tres" id="60_efs_mat"]
+[ext_resource type="Material" uid="uid://q8n4woutline2" path="res://Scripts/Shaders/outline_material.tres" id="outline_mat"]
+[ext_resource type="Texture2D" uid="uid://y1yg1oq4po6c" path="res://Assets/Sprites/SceneItems/Outlines/ExitFromStorage_ToLivingRoomToExit.png" id="outline_ExitFromStorage_ToLivingRoomToExit"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_w6tnk"]
 noise_type = 2
@@ -201,6 +203,12 @@ script = ExtResource("10_parobj")
 camera_distance = 100.0
 
 [node name="ToLivingRoomToExit" type="Sprite2D" parent="." unique_id=-1094967284]
+texture = ExtResource("outline_ExitFromStorage_ToLivingRoomToExit")
+offset = Vector2(0.0000, 0.0000)
+texture_filter = 1
+instance_shader_parameters/fill_visible = false
+material = ExtResource("outline_mat")
+instance_shader_parameters/enabled = false
 position = Vector2(929, 616)
 script = ExtResource("11_door")
 target_room = "living_room_to_exit"

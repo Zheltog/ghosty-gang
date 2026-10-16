@@ -15,6 +15,8 @@
 [ext_resource type="Texture2D" uid="uid://csag4s2sp1hen" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/Kitchen/Kneeting.png" id="81_k_kneet"]
 [ext_resource type="Texture2D" uid="uid://clq0i68aqcyim" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/Kitchen/Fridge.png" id="82_k_fridge"]
 [ext_resource type="Texture2D" uid="uid://dw8l1n4trcpk3" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/Kitchen/Plate.png" id="83_k_plate"]
+[ext_resource type="Material" uid="uid://q8n4woutline2" path="res://Scripts/Shaders/outline_material.tres" id="outline_mat"]
+[ext_resource type="Texture2D" uid="uid://wgobfwa6syu" path="res://Assets/Sprites/SceneItems/Outlines/Kitchen_ToCouch.png" id="outline_Kitchen_ToCouch"]
 
 [node name="Kitchen" type="Node2D" unique_id=1900112234]
 script = ExtResource("12_room")
@@ -119,6 +121,12 @@ script = ExtResource("10_parobj")
 camera_distance = 100.0
 
 [node name="ToCouch" type="Sprite2D" parent="." unique_id=139125228]
+texture = ExtResource("outline_Kitchen_ToCouch")
+offset = Vector2(-17.0000, 77.0000)
+texture_filter = 1
+instance_shader_parameters/fill_visible = false
+material = ExtResource("outline_mat")
+instance_shader_parameters/enabled = false
 position = Vector2(1553, 693)
 rotation = -1.5707964
 script = ExtResource("15_tf3lf")

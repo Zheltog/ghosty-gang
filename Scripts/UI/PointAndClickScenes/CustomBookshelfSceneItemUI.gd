@@ -18,10 +18,14 @@ const LIVING_OPEN_BACKGROUND := preload("res://Assets/Sprites/Backgrounds/hall_1
 const LIVING_CLOSED_LIGHT_INDEX := 12
 const LIVING_OPEN_LIGHT_INDEX := 0
 
+const MOVED_OUTLINE_PATH := "res://Assets/Sprites/SceneItems/Outlines/Bookshelf_Shelfs_moved.png"
+
 var _closed_background: Texture2D
 var _closed_light_index := 4
+var _rest_outline: Texture2D
 
 func _ready() -> void:
+	_rest_outline = texture
 	scene_item_id = SceneItemGenerator.SCENE_ITEM.NONE
 	super._ready()
 	InkFunctions.subscribe(self)
@@ -113,6 +117,17 @@ func _use_moved_area(moved: bool) -> void:
 	if not after.input_event.is_connected(_on_input_event):
 		after.input_event.connect(_on_input_event)
 	_set_area_enabled(after, moved)
+	_apply_moved_outline(moved)
+
+func _apply_moved_outline(moved: bool) -> void:
+	if _rest_outline == null:
+		return
+	if not moved:
+		texture = _rest_outline
+		return
+	var moved_outline := load(MOVED_OUTLINE_PATH) as Texture2D
+	if moved_outline != null:
+		texture = moved_outline
 
 func _disable_books() -> void:
 	for child in get_children():

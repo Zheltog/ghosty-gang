@@ -2,8 +2,11 @@
 
 [ext_resource type="Script" uid="uid://cjwqo45k5xnx0" path="res://Scripts/UI/PointAndClickScenes/SceneItemUI.gd" id="1_imc02"]
 [ext_resource type="Texture2D" uid="uid://cpnwqr6ih3ec" path="res://Assets/Sprites/InventoryItems/bottle.png" id="2_imc02"]
+[ext_resource type="Material" uid="uid://q8n4woutline2" path="res://Scripts/Shaders/outline_material.tres" id="outline_mat"]
 
 [node name="SceneItemUi" type="Sprite2D" unique_id=598298150]
+material = ExtResource("outline_mat")
+instance_shader_parameters/enabled = false
 texture = ExtResource("2_imc02")
 script = ExtResource("1_imc02")
 

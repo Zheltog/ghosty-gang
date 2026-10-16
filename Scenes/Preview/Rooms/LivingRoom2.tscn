@@ -8,6 +8,9 @@
 [ext_resource type="Texture2D" path="res://Assets/Sprites/Backgrounds/hall_2_normal.png" id="50_bg"]
 [ext_resource type="Script" uid="uid://3yscu2its1" path="res://Scenes/Test/Dron/DarknessEffect.gd" id="50_dark"]
 [ext_resource type="Material" uid="uid://cettvgv7o7kmc" path="res://Scripts/Shaders/darkness_material.tres" id="50_mat"]
+[ext_resource type="Material" uid="uid://q8n4woutline2" path="res://Scripts/Shaders/outline_material.tres" id="outline_mat"]
+[ext_resource type="Texture2D" uid="uid://cg1b71mujp71i" path="res://Assets/Sprites/SceneItems/Outlines/LivingRoom2_Bed.png" id="outline_LivingRoom2_Bed"]
+[ext_resource type="Texture2D" uid="uid://3rcddsanop3c" path="res://Assets/Sprites/SceneItems/Outlines/LivingRoom2_ToPreroom.png" id="outline_LivingRoom2_ToPreroom"]
 
 [node name="LivingRoom2" type="Node2D"]
 script = ExtResource("12_room")
@@ -25,6 +28,12 @@ script = ExtResource("10_parobj")
 camera_distance = 100.0
 
 [node name="Bed" type="Sprite2D" parent="."]
+texture = ExtResource("outline_LivingRoom2_Bed")
+offset = Vector2(-10.0000, -80.0000)
+texture_filter = 1
+instance_shader_parameters/fill_visible = false
+material = ExtResource("outline_mat")
+instance_shader_parameters/enabled = false
 position = Vector2(420, 620)
 script = ExtResource("20_door")
 target_room = "under_bed"
@@ -41,6 +50,12 @@ script = ExtResource("10_parobj")
 camera_distance = 100.0
 
 [node name="ToPreroom" type="Sprite2D" parent="."]
+texture = ExtResource("outline_LivingRoom2_ToPreroom")
+offset = Vector2(10.0000, -25.0000)
+texture_filter = 1
+instance_shader_parameters/fill_visible = false
+material = ExtResource("outline_mat")
+instance_shader_parameters/enabled = false
 position = Vector2(1020, 480)
 script = ExtResource("20_door")
 target_room = "preroom"

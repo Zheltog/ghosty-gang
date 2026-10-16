@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://ct24630qdy5qa" path="res://Scripts/Characters/SceneCharacter.gd" id="11_character"]
 [ext_resource type="Script" uid="uid://8p77bw84c7bp" path="res://Scripts/UI/PointAndClickScenes/Components/ParallaxComponent.gd" id="12_parallax"]
 [ext_resource type="Script" uid="uid://cpcmmpjnyoy7g" path="res://Scripts/UI/PointAndClickScenes/CharacterSceneItemUI.gd" id="13_item"]
+[ext_resource type="Material" uid="uid://q8n4woutline2" path="res://Scripts/Shaders/outline_material.tres" id="outline_mat"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_normal"]
 atlas = ExtResource("9_normal")
@@ -218,6 +219,8 @@ script = ExtResource("12_parallax")
 camera_distance = 105.0
 
 [node name="SceneItemUI" type="Sprite2D" parent="."]
+material = ExtResource("outline_mat")
+instance_shader_parameters/enabled = false
 modulate = Color(1, 1, 1, 0)
 z_index = 1
 z_as_relative = false
