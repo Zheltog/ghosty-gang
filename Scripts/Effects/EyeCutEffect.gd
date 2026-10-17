@@ -45,16 +45,11 @@ func stab() -> void:
 		return
 	_sequence_running = true
 	_material.set_shader_parameter("alpha", 1.0)
-	_material.set_shader_parameter("show_line", true)
-	_material.set_shader_parameter("full_red_alpha", 0.0)
-	await _raise_needle()
-	if crack_hold > 0.0:
-		await get_tree().create_timer(crack_hold).timeout
-	_material.set_shader_parameter("show_line", false)
-	_play_sound(break_sound)
-	await get_tree().create_timer(0.2).timeout
 	await _tween_shader("full_red_alpha", 0.0, 1.0, red_rise_time)
-	_release_eye()
+	await get_tree().create_timer(0.3).timeout
+	_material.set_shader_parameter("show_line", true)
+	await _tween_shader("full_red_alpha", 1.0, 0.0, red_rise_time)
+	await _raise_needle()
 
 func _process(delta: float) -> void:
 	update_mouse_speed(delta)

@@ -46,6 +46,8 @@ func set_blink(amount: float) -> void:
 
 func begin_from_red_peak(_flow_time: float = 0.0) -> void:
 	visible = true
+	set_blink(1.0)
+	_material.set_shader_parameter("alpha", 1.0)
 	_set_red(1.0)
 	var tween := create_tween()
 	if hold_time > 0.0:

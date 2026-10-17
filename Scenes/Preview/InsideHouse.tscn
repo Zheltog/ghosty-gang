@@ -13,13 +13,13 @@
 [ext_resource type="Texture2D" uid="uid://c1mqcjylh6imp" path="res://Assets/Sprites/Characters/Engineer/Dron/sitting_sus.png" id="15_mv3vy"]
 [ext_resource type="Texture2D" uid="uid://yusbqae1gdbk" path="res://Assets/Sprites/Characters/Engineer/Dron/hasle near wardrobe.png" id="16_cxod2"]
 [ext_resource type="Texture2D" uid="uid://dba88ntoitw1a" path="res://Assets/Sprites/ShaderTextures/aap-64-1x.png" id="16_k46gi"]
-[ext_resource type="Texture2D" uid="uid://b5wkmnen5dera" path="res://Assets/Sprites/Characters/Engineer/Dron/standing_snore mimimi.png" id="18_k46gi"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/Characters/Engineer/Dron/standing_snore mimimi.png" id="18_k46gi"]
 [ext_resource type="Texture2D" uid="uid://2lcyocqmdhh6" path="res://Assets/Sprites/Characters/Engineer/Dron/sitting_AH.png" id="18_xjebt"]
 [ext_resource type="Texture2D" uid="uid://3qyvl8dwched" path="res://Assets/Sprites/Characters/Engineer/Dron/raw/standing_noemal.png" id="19_amx12"]
 [ext_resource type="Texture2D" uid="uid://25u3ny2aflx6" path="res://Assets/Sprites/Characters/Engineer/Dron/standing_sus.png" id="19_f7hr0"]
 [ext_resource type="Texture2D" uid="uid://ccxjsbk8n5yq6" path="res://Assets/Sprites/Characters/Engineer/Dron/standing_AH.png" id="19_standah"]
 [ext_resource type="Texture2D" uid="uid://daj36qgjxnh3h" path="res://Assets/Sprites/Characters/Engineer/Dron/standing_normal.png" id="20_xjebt"]
-[ext_resource type="Texture2D" uid="uid://bs0r1at2veu34" path="res://Assets/Sprites/Characters/Engineer/Dron/close_scary.png" id="22_1hnut"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/Characters/Engineer/Dron/close_scary.png" id="22_1hnut"]
 [ext_resource type="Script" uid="uid://cn7artycc2xk4" path="res://Scripts/Characters/SceneCharacterEngineer.gd" id="24_xuvgt"]
 [ext_resource type="Script" uid="uid://cpcmmpjnyoy7g" path="res://Scripts/UI/PointAndClickScenes/CharacterSceneItemUI.gd" id="25_f7hr0"]
 [ext_resource type="Texture2D" uid="uid://d2jphawspp6sk" path="res://Assets/Sprites/Characters/Engineer/Dron/sitting_taking_arm.png" id="27_xuvgt"]
@@ -51,9 +51,9 @@ shader_parameter/dithering_strength = 1.0
 shader_parameter/dithering = false
 shader_parameter/dithering_size = 16
 shader_parameter/pixel_size = 12
-shader_parameter/brightness = 0.802000038095
-shader_parameter/contrast = 1.498000071155
-shader_parameter/saturation = 1.0950000520125
+shader_parameter/brightness = 1.0000000475
+shader_parameter/contrast = 1.0000000475
+shader_parameter/saturation = 1.0000000475
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i1vas"]
 atlas = ExtResource("20_xjebt")
@@ -62,10 +62,6 @@ region = Rect2(0, 0, 274, 694)
 [sub_resource type="AtlasTexture" id="AtlasTexture_re16o"]
 atlas = ExtResource("18_k46gi")
 region = Rect2(0, 0, 3064, 1528)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_55pqa"]
-atlas = ExtResource("19_amx12")
-region = Rect2(0, 0, 1976, 5815)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xuvgt"]
 atlas = ExtResource("13_k7bhf")
@@ -147,14 +143,6 @@ animations = [{
 }],
 "loop": 1,
 "name": &"lay_dead",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_55pqa")
-}],
-"loop": 1,
-"name": &"new_animation",
 "speed": 5.0
 }, {
 "frames": [{
@@ -1024,7 +1012,7 @@ material = SubResource("ShaderMaterial_55pqa")
 position = Vector2(-6372, -269.5)
 scale = Vector2(0.65, 0.65)
 sprite_frames = SubResource("SpriteFrames_280bj")
-animation = &"new_animation"
+animation = &"lay_dead"
 script = ExtResource("24_xuvgt")
 scene_object_manager = NodePath("../../SceneObjectManager")
 sprite = NodePath(".")
@@ -1136,6 +1124,7 @@ script = ExtResource("36_0gpqo")
 next_effect = NodePath("../GhostEyeEffect")
 
 [node name="GhostEyeEffect" type="TextureRect" parent="." unique_id=976367641]
+visible = false
 z_index = 6
 material = SubResource("ShaderMaterial_rbe3r")
 anchors_preset = 15
@@ -1176,7 +1165,7 @@ z_index = 3
 script = SubResource("GDScript_states")
 dialog_controller = NodePath("../DialogController")
 timer = NodePath("../GameTimer")
-first_state = NodePath("Welcome")
+first_state = NodePath("Welcome/PassportTimer/TeaReady/KitchenWait/CouchTea/SpillTea/FetchRag/Interview/Bedding/Dream/Wake/Torture")
 
 [node name="Welcome" type="Node" parent="SceneStates" unique_id=208105396 node_paths=PackedStringArray("next_options")]
 script = SubResource("GDScript_welcome")

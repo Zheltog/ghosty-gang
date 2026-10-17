@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://rg3hxxu0hid5"
-path="res://.godot/imported/standing_я пидорас.png-f23d93a2ad3055ae635cae5842a6875a.ctex"
+uid="uid://h84aao7sr0ia"
+path="res://.godot/imported/standing_steel chair.png-1eabe538904dcb8c6206fb3a2b048499.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Characters/Engineer/Dron/standing_я пидорас.png"
-dest_files=["res://.godot/imported/standing_я пидорас.png-f23d93a2ad3055ae635cae5842a6875a.ctex"]
+source_file="res://Assets/Sprites/Characters/Engineer/Dron/raw/standing_steel chair.png"
+dest_files=["res://.godot/imported/standing_steel chair.png-1eabe538904dcb8c6206fb3a2b048499.ctex"]
 
 [params]
 

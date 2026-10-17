@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bs0r1at2veu34"
-path="res://.godot/imported/close_scary.png-412ae2ef9c43ac39cde09a615f4e7446.ctex"
+uid="uid://dowghagpi58s7"
+path="res://.godot/imported/standing_snore mimimi.png-d0b1413f9f38fce46c8ae0e95fbd97b1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Characters/Engineer/Dron/close_scary.png"
-dest_files=["res://.godot/imported/close_scary.png-412ae2ef9c43ac39cde09a615f4e7446.ctex"]
+source_file="res://Assets/Sprites/Characters/Engineer/Dron/raw/standing_snore mimimi.png"
+dest_files=["res://.godot/imported/standing_snore mimimi.png-d0b1413f9f38fce46c8ae0e95fbd97b1.ctex"]
 
 [params]
 
