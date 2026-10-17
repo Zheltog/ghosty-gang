@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ktquvlvtry4r"
-path="res://.godot/imported/standing_chair_attack.png-b699e980b058d6be2d89fd5901dfb129.ctex"
+uid="uid://osmnwn2t2h8m"
+path="res://.godot/imported/hall_under bed_flashlight_notpx.png-55eb518551461489acc444a535341310.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Characters/Engineer/Dron/standing_chair_attack.png"
-dest_files=["res://.godot/imported/standing_chair_attack.png-b699e980b058d6be2d89fd5901dfb129.ctex"]
+source_file="res://Assets/Sprites/Backgrounds/hall_under bed_flashlight_notpx.png"
+dest_files=["res://.godot/imported/hall_under bed_flashlight_notpx.png-55eb518551461489acc444a535341310.ctex"]
 
 [params]
 
