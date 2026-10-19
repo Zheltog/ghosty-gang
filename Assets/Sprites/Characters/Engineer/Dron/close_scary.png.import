@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1fxruju1wjr5"
-path="res://.godot/imported/standing_chair attack.png-82c1b01cd68f813f8d82d0839159b527.ctex"
+uid="uid://bs0r1at2veu34"
+path="res://.godot/imported/close_scary.png-412ae2ef9c43ac39cde09a615f4e7446.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Characters/Engineer/Dron/standing_chair attack.png"
-dest_files=["res://.godot/imported/standing_chair attack.png-82c1b01cd68f813f8d82d0839159b527.ctex"]
+source_file="res://Assets/Sprites/Characters/Engineer/Dron/close_scary.png"
+dest_files=["res://.godot/imported/close_scary.png-412ae2ef9c43ac39cde09a615f4e7446.ctex"]
 
 [params]
 
