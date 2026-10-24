@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://osmnwn2t2h8m"
-path="res://.godot/imported/hall_under bed_flashlight_notpx.png-55eb518551461489acc444a535341310.ctex"
+uid="uid://ch6x8ibtpe0s5"
+path="res://.godot/imported/hall_under bed_flashlight.png-62d15690341c1be85d4f53b699d5f21c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Backgrounds/hall_under bed_flashlight_notpx.png"
-dest_files=["res://.godot/imported/hall_under bed_flashlight_notpx.png-55eb518551461489acc444a535341310.ctex"]
+source_file="res://Assets/Sprites/Backgrounds/hall_under bed_flashlight.png"
+dest_files=["res://.godot/imported/hall_under bed_flashlight.png-62d15690341c1be85d4f53b699d5f21c.ctex"]
 
 [params]
 
