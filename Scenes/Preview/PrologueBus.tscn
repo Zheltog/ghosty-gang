@@ -1,10 +1,11 @@
 [gd_scene format=3 uid="uid://20w50p3wwqvr"]
 
-[ext_resource type="Script" path="res://Scripts/Preview/PrologueBus.gd" id="1_backdrop"]
+[ext_resource type="Script" uid="uid://c4ygukgvlo0rc" path="res://Scripts/Preview/PrologueBus.gd" id="1_backdrop"]
+[ext_resource type="Texture2D" uid="uid://505mw88t4cna" path="res://Assets/Sprites/Backgrounds/bus.png" id="2_5ag83"]
 [ext_resource type="PackedScene" uid="uid://b3fjaokxpivbe" path="res://Scenes/Dialog/dialog_controller.tscn" id="2_dialog"]
-[ext_resource type="PackedScene" uid="uid://kvbvxu0vbc8y" path="res://Scenes/Timer/timer.tscn" id="timer_scene"]
 [ext_resource type="PackedScene" path="res://Scenes/Characters/EngineerCopy.tscn" id="3_character"]
 [ext_resource type="Script" uid="uid://ct24630qdy5qa" path="res://Scripts/Characters/SceneCharacter.gd" id="4_none"]
+[ext_resource type="PackedScene" uid="uid://kvbvxu0vbc8y" path="res://Scenes/Timer/timer.tscn" id="timer_scene"]
 
 [node name="PrologueBus" type="Node2D" unique_id=278593236]
 script = ExtResource("1_backdrop")
@@ -14,27 +15,16 @@ next_scene = 9
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1801389035]
 layer = -1
 
-[node name="Background" type="ColorRect" parent="CanvasLayer" unique_id=2044341682]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0.07, 0.09, 0.14, 1)
+[node name="Background" type="TextureRect" parent="CanvasLayer" unique_id=483523779]
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("2_5ag83")
+expand_mode = 1
 
-[node name="Title" type="Label" parent="CanvasLayer" unique_id=1124557284]
-offset_left = 80.0
-offset_top = 48.0
-offset_right = 800.0
-offset_bottom = 100.0
-theme_override_font_sizes/font_size = 32
-text = "Автобус в Белую Вязь"
-
-[node name="FadeLayer" type="CanvasLayer" parent="."]
+[node name="FadeLayer" type="CanvasLayer" parent="." unique_id=743118492]
 layer = 100
 
-[node name="Fade" type="ColorRect" parent="FadeLayer"]
+[node name="Fade" type="ColorRect" parent="FadeLayer" unique_id=438441041]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -55,7 +45,7 @@ modulate = Color(1, 0.88, 0.72, 1)
 position = Vector2(760, 800)
 character_name = "scout"
 
-[node name="Driver" type="Node2D" parent="."]
+[node name="Driver" type="Node2D" parent="." unique_id=974222570]
 script = ExtResource("4_none")
 character_name = "driver"
 
@@ -67,19 +57,19 @@ character_name = "none"
 story = null
 timer = NodePath("../GameTimer")
 
-[node name="GameTimer" parent="." instance=ExtResource("timer_scene")]
+[node name="GameTimer" parent="." unique_id=1678527390 instance=ExtResource("timer_scene")]
 z_index = 3
 
-[node name="CharacterPositions" type="Node2D" parent="."]
+[node name="CharacterPositions" type="Node2D" parent="." unique_id=1786840891]
 
-[node name="default" type="Marker2D" parent="CharacterPositions"]
+[node name="default" type="Marker2D" parent="CharacterPositions" unique_id=445348876]
 position = Vector2(960, 540)
 scale = Vector2(0.15, 0.15)
 
-[node name="dossier_default" type="Marker2D" parent="CharacterPositions"]
+[node name="dossier_default" type="Marker2D" parent="CharacterPositions" unique_id=1207521103]
 position = Vector2(480, 780)
 scale = Vector2(0.15, 0.15)
 
-[node name="scout_default" type="Marker2D" parent="CharacterPositions"]
+[node name="scout_default" type="Marker2D" parent="CharacterPositions" unique_id=1137611071]
 position = Vector2(760, 800)
 scale = Vector2(0.15, 0.15)
