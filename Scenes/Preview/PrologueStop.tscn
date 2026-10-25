@@ -1,11 +1,26 @@
 [gd_scene format=3 uid="uid://brsk5k7urckec"]
 
 [ext_resource type="Script" uid="uid://bqwek4t4c7lev" path="res://Scripts/Preview/PrologueStop.gd" id="1_backdrop"]
+[ext_resource type="Shader" uid="uid://bijlg1a40xars" path="res://Scripts/Shaders/bg_pxlization.gdshader" id="2_6l4fn"]
 [ext_resource type="PackedScene" uid="uid://b3fjaokxpivbe" path="res://Scenes/Dialog/dialog_controller.tscn" id="2_dialog"]
 [ext_resource type="Texture2D" uid="uid://b0s1sm133wgpw" path="res://Assets/Sprites/Backgrounds/bus_stop.png" id="2_ge8ql"]
 [ext_resource type="PackedScene" path="res://Scenes/Characters/EngineerCopy.tscn" id="3_character"]
+[ext_resource type="Texture2D" uid="uid://dba88ntoitw1a" path="res://Assets/Sprites/ShaderTextures/aap-64-1x.png" id="3_qv6wi"]
 [ext_resource type="Script" uid="uid://ct24630qdy5qa" path="res://Scripts/Characters/SceneCharacter.gd" id="4_none"]
+[ext_resource type="Script" uid="uid://8p77bw84c7bp" path="res://Scripts/UI/PointAndClickScenes/Components/ParallaxComponent.gd" id="5_kp7du"]
 [ext_resource type="PackedScene" uid="uid://kvbvxu0vbc8y" path="res://Scenes/Timer/timer.tscn" id="timer_scene"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nr3px"]
+shader = ExtResource("2_6l4fn")
+shader_parameter/palette = ExtResource("3_qv6wi")
+shader_parameter/use_palette = true
+shader_parameter/dithering_strength = 0.999999977648
+shader_parameter/dithering = false
+shader_parameter/dithering_size = 16
+shader_parameter/pixel_size = 12
+shader_parameter/brightness = 1.0
+shader_parameter/contrast = 1.0
+shader_parameter/saturation = 1.0
 
 [node name="PrologueStop" type="Node2D" unique_id=588160547]
 script = ExtResource("1_backdrop")
@@ -16,11 +31,14 @@ fade_in_before_story = true
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=795048558]
 layer = -1
 
-[node name="Background" type="TextureRect" parent="CanvasLayer" unique_id=16086236]
-offset_right = 1920.0
-offset_bottom = 1080.0
+[node name="Background" type="Sprite2D" parent="CanvasLayer" unique_id=1298160224]
+material = SubResource("ShaderMaterial_nr3px")
+position = Vector2(960, 540)
 texture = ExtResource("2_ge8ql")
-expand_mode = 1
+
+[node name="ParallaxComponent" type="Node" parent="CanvasLayer/Background" unique_id=1894251541]
+script = ExtResource("5_kp7du")
+metadata/_custom_type_script = "uid://8p77bw84c7bp"
 
 [node name="FadeLayer" type="CanvasLayer" parent="." unique_id=1046582294]
 layer = 100
