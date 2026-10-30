@@ -57,20 +57,20 @@ VAR seen_semyon = false
 	-> END
 
 === zhenya ===
-Женя Куликов. 9 лет. # window:default # char:dossier # skippable:false
+Пропавший мальчик. Женя Куликов. 9 лет. # window:default # char:dossier # skippable:false
 По словам отца, после ссоры убежал из дома. # char:dossier # skippable:false
-Это случилось ровно два дня назад. Предположительно отправился к бабушке в Белую Вязь. # char:dossier # skippable:false
-Мобильный оператор косвенно это подтверждает: последний раз сигнал телефона появлялся на полпути к поселку. # char:dossier # skippable:false
-Связь и правда говно. # response # char:detective # skippable:false
-Стал бы я бумажки перебирать если б ловило. # response # char:detective # skippable:false
+Это случилось ровно два дня назад. Одна из версий - он отправился к бабушке в Белую Вязь. # char:dossier # skippable:false
+Мобильный оператор косвенно это подтверждает: последний раз сигнал телефона появлялся в районе автовокзала. # char:dossier # skippable:false
+Связь в дороге и правда говно. # response # char:detective # skippable:false
+Стал бы я бумажки перебирать, если б ловило. # response # char:detective # skippable:false
 Ну спасибо. # char:dossier # skippable:false
 -> dossier_menu
 
 === stepan ===
-Отец мальчика. Степан Куликов. Бизнесмен. Твой наниматель. # window:default # char:dossier # skippable:false
-Опирается на факты и логику, подмечает ценные детали. # char:dossier # skippable:false
-Сильно важничает, но в общем с ним приятно иметь дело. # response # char:detective # skippable:false
-Мой основной контакт. # response # char:detective # skippable:false
+Отец мальчика. Степан Куликов. Бизнесмен. Твой наниматель. Серьезный
+человек. # window:default # char:dossier # skippable:false
+Серьезный, это точно. Я работал с ним в девяностые. # response # char:detective # skippable:false
+Сейчас отец занят поисками в городе. Камеры, полиция, ЧОПы. Весь город на ушах. # char:dossier # skippable:false
 -> dossier_menu
 
 === emma ===
@@ -82,7 +82,7 @@ VAR seen_semyon = false
 
 === lyudmila ===
 Бабушка мальчика. Людмила Игоревна Куликова. Пенсионерка. Бывшая чиновница. # window:default # char:dossier # skippable:false
-Приехала в город только на следующий день. Она была в отъезде. # char:dossier # skippable:false
+Приехала в поселок только на следующий день. Она была в отъезде. # char:dossier # skippable:false
 Мальчик вряд ли мог об этом знать. # char:dossier # skippable:false
 М-да. Местные менты в курсе? # response # char:detective # skippable:false
 Ближайший полицейский участок в Красинске. # char:dossier # skippable:false
@@ -90,6 +90,10 @@ VAR seen_semyon = false
 Так я уже не мент. Давненько. # response # char:detective # skippable:false
 Сойдешь. # char:dossier # skippable:false
 Надо же с чего-то начинать. # response # char:detective # skippable:false
+А что с бабушкой? Она в поселке? # response # char:detective # skippable:false
+Увы. Людмилу Игоревну, бабушку, хватил удар после новости о пропаже любимого внука. Сейчас она в красинской областной больницы. С ней мать мальчика, Эмма Куликова. # char:dossier # skippable:false
+Беда не приходит одна. Но, по крайней мере, у нас есть один контакт в поселке, так? # response # char:detective # skippable:false
+Один есть. Семён Гало. # char:dossier # skippable:false
 -> dossier_menu
 
 === vadim ===
@@ -104,6 +108,6 @@ VAR seen_semyon = false
 Судя по табелю с автовокзала именно он вёз Женю в поселок. # char:dossier # skippable:false
 А сейчас он где? # response # char:detective # skippable:false
 По словам второго водителя — в гостинице. Поругался с женой. # char:dossier # skippable:false
-// В поселке вряд ли есть вторая гостиница. # response # char:detective # skippable:false
-// Значит, мы с ним совсем скоро пересечемся. # response # char:detective # skippable:false
+В поселке вряд ли есть вторая гостиница. # response # char:detective # skippable:false
+Значит, мы с ним совсем скоро пересечемся. # response # char:detective # skippable:false
 -> dossier_menu

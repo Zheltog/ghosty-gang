@@ -12,7 +12,7 @@ func _ready() -> void:
 
 func _on_play_pressed() -> void:
 	SaveManager.reset_runtime()
-	SceneLoader.change_scene(SceneLoader.SCENE.STARTING_CUTSCENE_1)
+	SceneLoader.change_scene(SceneLoader.SCENE.PROLOGUE_BUS)
 
 func _add_continue_button() -> void:
 	var button := TextureButton.new()
