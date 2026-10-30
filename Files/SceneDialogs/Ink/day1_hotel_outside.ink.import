@@ -1,0 +1,17 @@
+[remap]
+
+importer="ink"
+importer_version=2
+type="Resource"
+uid="uid://bkipqr71flolx"
+path="res://.godot/imported/day1_hotel_outside.ink-e993f8aaca8d24674edad596dcde7ec4.res"
+
+[deps]
+
+source_file="res://Files/SceneDialogs/Ink/day1_hotel_outside.ink"
+dest_files=["res://.godot/imported/day1_hotel_outside.ink-e993f8aaca8d24674edad596dcde7ec4.res"]
+
+[params]
+
+is_main_file=true
+compress=true

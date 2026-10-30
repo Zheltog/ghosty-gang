@@ -11,6 +11,7 @@ enum SCENE {
 	CUTSCENE_BOY_DEATH,
 	PROLOGUE_BUS,
 	PROLOGUE_STOP,
+	HOTEL_OUTSIDE,
 	HOTEL_LOBBY,
 	HOTEL_FLOOR,
 	HOTEL_ROOM,
@@ -33,6 +34,7 @@ var _inside_house: PackedScene = preload("res://Scenes/Preview/InsideHouse.tscn"
 var _cutscene_boy_death: PackedScene = preload("res://Scenes/Preview/CutsceneBoyDeath.tscn")
 var _prologue_bus: PackedScene = preload("res://Scenes/Preview/PrologueBus.tscn")
 var _prologue_stop: PackedScene = preload("res://Scenes/Preview/PrologueStop.tscn")
+var _hotel_outside: PackedScene = preload("res://Scenes/Preview/HotelOutside.tscn")
 var _hotel_lobby: PackedScene = preload("res://Scenes/Preview/HotelLobby.tscn")
 var _hotel_floor: PackedScene = preload("res://Scenes/Preview/HotelFloor.tscn")
 var _hotel_room: PackedScene = preload("res://Scenes/Preview/HotelRoom.tscn")
@@ -90,6 +92,8 @@ func entry_scene_for_day(day_number: int) -> SCENE:
 
 func scene_from_exit(exit_name: String) -> SCENE:
 	match exit_name:
+		"hotel_outside":
+			return SCENE.HOTEL_OUTSIDE
 		"hotel_lobby":
 			return SCENE.HOTEL_LOBBY
 		"hotel_floor":
@@ -155,6 +159,8 @@ func change_scene(scene: SCENE) -> void:
 			packed = _prologue_bus
 		SCENE.PROLOGUE_STOP:
 			packed = _prologue_stop
+		SCENE.HOTEL_OUTSIDE:
+			packed = _hotel_outside
 		SCENE.HOTEL_LOBBY:
 			packed = _hotel_lobby
 		SCENE.HOTEL_FLOOR:

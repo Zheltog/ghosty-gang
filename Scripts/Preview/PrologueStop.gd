@@ -4,6 +4,7 @@ const ENGINE_SOUND := "res://Assets/Audio/Sounds/bus_engine.mp3"
 const ENGINE_FADE_SECONDS := 2.0
 
 func _ready() -> void:
+	next_scene = SceneLoader.SCENE.HOTEL_OUTSIDE
 	_fade_out_engine()
 	super._ready()
 

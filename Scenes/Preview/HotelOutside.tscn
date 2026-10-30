@@ -1,0 +1,155 @@
+[gd_scene format=3 uid="uid://c1v04autyntfw"]
+
+[ext_resource type="Shader" uid="uid://bijlg1a40xars" path="res://Scripts/Shaders/bg_pxlization.gdshader" id="1_6bkwr"]
+[ext_resource type="Script" uid="uid://dip5o5vas7khn" path="res://Scripts/Preview/DialogBackdrop.gd" id="1_txmu8"]
+[ext_resource type="Texture2D" uid="uid://dba88ntoitw1a" path="res://Assets/Sprites/ShaderTextures/aap-64-1x.png" id="2_txmu8"]
+[ext_resource type="Script" uid="uid://8p77bw84c7bp" path="res://Scripts/UI/PointAndClickScenes/Components/ParallaxComponent.gd" id="4_eyhwa"]
+[ext_resource type="Texture2D" uid="uid://djmn2j6utd1dc" path="res://Assets/Sprites/Backgrounds/creepy_1.png" id="4_txmu8"]
+[ext_resource type="PackedScene" path="res://Scenes/Characters/EngineerCopy.tscn" id="5_31e8u"]
+[ext_resource type="Script" uid="uid://ct24630qdy5qa" path="res://Scripts/Characters/SceneCharacter.gd" id="6_wcygo"]
+[ext_resource type="PackedScene" uid="uid://b3fjaokxpivbe" path="res://Scenes/Dialog/dialog_controller.tscn" id="7_cvqfi"]
+[ext_resource type="PackedScene" uid="uid://kvbvxu0vbc8y" path="res://Scenes/Timer/timer.tscn" id="8_qybsp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4t356"]
+shader = ExtResource("1_6bkwr")
+shader_parameter/palette = ExtResource("2_txmu8")
+shader_parameter/use_palette = true
+shader_parameter/dithering_strength = 0.999999977648
+shader_parameter/dithering = false
+shader_parameter/dithering_size = 16
+shader_parameter/pixel_size = 6
+shader_parameter/brightness = 1.0
+shader_parameter/contrast = 1.0
+shader_parameter/saturation = 1.0
+
+[node name="HotelOutside" type="Node2D" unique_id=63272526]
+script = ExtResource("1_txmu8")
+story_path = "uid://bkipqr71flolx"
+next_scene = 11
+fade_in_before_story = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=687324363]
+layer = -1
+
+[node name="Background" type="Sprite2D" parent="CanvasLayer" unique_id=1652470395]
+material = SubResource("ShaderMaterial_4t356")
+position = Vector2(960, 540)
+texture = ExtResource("4_txmu8")
+
+[node name="ParallaxComponent" type="Node" parent="CanvasLayer/Background" unique_id=677970777]
+script = ExtResource("4_eyhwa")
+metadata/_custom_type_script = "uid://8p77bw84c7bp"
+
+[node name="FadeLayer" type="CanvasLayer" parent="." unique_id=1011993716]
+layer = 100
+
+[node name="Fade" type="ColorRect" parent="FadeLayer" unique_id=1184904234]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Dossier" parent="." unique_id=1083273193 instance=ExtResource("5_31e8u")]
+visible = false
+modulate = Color(0.75, 0.85, 1, 1)
+position = Vector2(480, 780)
+character_name = "dossier"
+
+[node name="Scout" parent="." unique_id=894948121 instance=ExtResource("5_31e8u")]
+visible = false
+modulate = Color(1, 0.88, 0.72, 1)
+position = Vector2(760, 800)
+character_name = "scout"
+
+[node name="Engineer" parent="." unique_id=1586061519 instance=ExtResource("5_31e8u")]
+visible = false
+modulate = Color(0.75, 0.8, 0.88, 1)
+position = Vector2(1180, 800)
+
+[node name="None" type="Node2D" parent="." unique_id=355520996]
+script = ExtResource("6_wcygo")
+character_name = "none"
+
+[node name="DialogController" parent="." unique_id=158973333 node_paths=PackedStringArray("timer") instance=ExtResource("7_cvqfi")]
+story = null
+timer = NodePath("")
+
+[node name="GameTimer" parent="." unique_id=2126109467 instance=ExtResource("8_qybsp")]
+z_index = 3
+
+[node name="CharacterPositions" type="Node2D" parent="." unique_id=861510462]
+
+[node name="default" type="Marker2D" parent="CharacterPositions" unique_id=873597866]
+position = Vector2(960, 540)
+scale = Vector2(0.15, 0.15)
+
+[node name="dossier_default" type="Marker2D" parent="CharacterPositions" unique_id=1777616822]
+position = Vector2(480, 780)
+scale = Vector2(0.15, 0.15)
+
+[node name="scout_default" type="Marker2D" parent="CharacterPositions" unique_id=407188554]
+position = Vector2(760, 800)
+scale = Vector2(0.15, 0.15)
+
+[node name="scout_teasing" type="Marker2D" parent="CharacterPositions" unique_id=2079371233]
+position = Vector2(760, 800)
+scale = Vector2(0.15, 0.15)
+
+[node name="scout_laugh" type="Marker2D" parent="CharacterPositions" unique_id=57019886]
+position = Vector2(760, 800)
+scale = Vector2(0.15, 0.15)
+
+[node name="scout_impressed" type="Marker2D" parent="CharacterPositions" unique_id=807915331]
+position = Vector2(760, 800)
+scale = Vector2(0.15, 0.15)
+
+[node name="scout_nod" type="Marker2D" parent="CharacterPositions" unique_id=1024792810]
+position = Vector2(760, 800)
+scale = Vector2(0.15, 0.15)
+
+[node name="scout_stern" type="Marker2D" parent="CharacterPositions" unique_id=980192731]
+position = Vector2(760, 800)
+scale = Vector2(0.15, 0.15)
+
+[node name="scout_blank" type="Marker2D" parent="CharacterPositions" unique_id=433973774]
+position = Vector2(760, 800)
+scale = Vector2(0.15, 0.15)
+
+[node name="scout_defiant" type="Marker2D" parent="CharacterPositions" unique_id=2119462818]
+position = Vector2(760, 800)
+scale = Vector2(0.15, 0.15)
+
+[node name="scout_mocking" type="Marker2D" parent="CharacterPositions" unique_id=827276964]
+position = Vector2(760, 800)
+scale = Vector2(0.15, 0.15)
+
+[node name="scout_escape" type="Marker2D" parent="CharacterPositions" unique_id=1153335196]
+position = Vector2(760, 800)
+scale = Vector2(0.15, 0.15)
+
+[node name="scout_serious" type="Marker2D" parent="CharacterPositions" unique_id=1530342676]
+position = Vector2(760, 800)
+scale = Vector2(0.15, 0.15)
+
+[node name="scout_frantic" type="Marker2D" parent="CharacterPositions" unique_id=1953220463]
+position = Vector2(760, 800)
+scale = Vector2(0.15, 0.15)
+
+[node name="scout_smug" type="Marker2D" parent="CharacterPositions" unique_id=1562784493]
+position = Vector2(760, 800)
+scale = Vector2(0.15, 0.15)
+
+[node name="scout_shiver" type="Marker2D" parent="CharacterPositions" unique_id=1385939368]
+position = Vector2(760, 800)
+scale = Vector2(0.15, 0.15)
+
+[node name="engineer_default" type="Marker2D" parent="CharacterPositions" unique_id=1375491601]
+position = Vector2(1180, 800)
+
+[node name="engineer_stand_default" type="Marker2D" parent="CharacterPositions" unique_id=1874948524]
+position = Vector2(1180, 800)
+
+[node name="engineer_stand_smiling" type="Marker2D" parent="CharacterPositions" unique_id=542133808]
+position = Vector2(1180, 800)

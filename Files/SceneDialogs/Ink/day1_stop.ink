@@ -131,8 +131,4 @@ VAR detective_alias = ""
 Пришли. Может, дашь полтос все-таки? # char:scout # skippable:false
 Бери, заслужил. # response # char:detective # skippable:false
 А если про пацана с фотки чего вспомнишь — заходи на огонек. # response # char:detective # skippable:false
-Разведчик выхватывает полтинник и убегает, не попрощавшись. # thought
-Брррррррррр! # char:scout # anim:shiver # skippable:false
-Он скрывается в тумане, издавая звуки снегохода. # thought # away:scout
-Ты с усилием открываешь дверь гостиницы и заходишь внутрь. # thought
 -> END

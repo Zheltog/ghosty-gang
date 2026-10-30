@@ -25,7 +25,6 @@ shader_parameter/saturation = 1.0
 [node name="PrologueStop" type="Node2D" unique_id=588160547]
 script = ExtResource("1_backdrop")
 story_path = "res://Files/SceneDialogs/Ink/day1_stop.ink"
-next_scene = 10
 fade_in_before_story = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=795048558]
