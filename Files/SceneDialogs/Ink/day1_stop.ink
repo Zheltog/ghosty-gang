@@ -96,10 +96,10 @@ VAR detective_alias = ""
 -> END
 
 === serious ===
-Раз серьезное… # window:default # char:scout # anim:serious # skippable:fals
-Раз серьезное, то мне нужно посоветоваться со своими контактами. # window:default # char:scout # anim:serious # skippable:fals
+Раз серьезное… # window:default # char:scout # anim:serious # skippable:false
+Раз серьезное, то мне нужно посоветоваться со своими контактами. # window:default # char:scout # anim:serious # skippable:false
 Что за контакты такие? # response # char:detective # skippable:false
-Я своих не сдаю. # window:default # char:scout # anim:serious # skippable:fals
+Я своих не сдаю. # window:default # char:scout # anim:serious # skippable:false
 Замороченный какой. Тьфу ты. # response # char:detective # skippable:false
 -> walk
 
