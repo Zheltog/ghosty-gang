@@ -48,5 +48,8 @@
 Ну ладно. Я побежал. Вы, Сергей, найдите меня попозже. # char:engineer # skippable:false
 Найду. Еще раз спасибо. # response # char:detective # skippable:false
 И тебе, пацан, спасибо, что довел. # response # char:detective # skippable:false
-Брррррррррр! # char:scout # skippable:false
+Разведчик выхватывает полтинник и убегает, не попрощавшись. # thought
+Брррррррррр! # char:scout # anim:shiver # skippable:false
+Он скрывается в тумане, издавая звуки снегохода. # thought # away:scout
+Ты с усилием открываешь дверь гостиницы и заходишь внутрь. # thought
 -> END
