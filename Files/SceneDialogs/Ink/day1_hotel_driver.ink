@@ -17,31 +17,31 @@ VAR exit = ""
 }
 Из-за двери номера 204 доносится телевизор. # window:default # thought
 После второго стука звук пропадает. # thought
-Чего? # char:driver # anim:gruff # skippable:false
+Чего? # char:driver # skippable:false
 Семён Гало? # response # char:detective # skippable:false
 Ну. # char:driver # skippable:false
 Можно с вами поговорить? # response # char:detective # skippable:false
-Дверь открывается. Водитель в одной майке. # thought
+Дверь открывается. Водитель смотрит на тебя недобро. # thought # char:driver # anim:arms_akimbo_gloomy
 За его спиной смятая постель и закрытые шторы. В комнате пахнет перегаром и табаком. # thought
 Чего пришел? Заплачено за номер. # char:driver # skippable:false
-Я не из гостиницы. Мальчика ищу. # response # char:detective # skippable:false
+Я не из гостиницы. Детектив я. Мальчика ищу. # response # char:detective # skippable:false
 Возможно, вы его сюда привезли. # response # char:detective # skippable:false
-Семён молча уходит в глубь комнаты. # thought
-Он стучит по корпусу телевизора. После каждого удара в воздух поднимается облачко пыли. # thought
-Не включается никак, зараза. # char:driver # anim:sullen # skippable:false
+Семён молча уходит в глубь комнаты. # thought # char:driver # anim:bb
+Он стучит по корпусу телевизора. После каждого удара в воздух поднимается облачко пыли. # thought # char:driver # anim:tv_punch
+Не включается никак, зараза. # char:driver # skippable:false
 Ты достаёшь фотографию мальчика и протягиваешь её водителю. # thought
-Куришь? # char:driver # skippable:false
+Куришь? # char:driver # anim:do_u_smoke # skippable:false
 Не курю. # response # char:detective # skippable:false
-Тогда потом. # char:driver # skippable:false
+Тогда потом. # char:driver # anim:bb # skippable:false
 Он начинает закрывать дверь. # thought # char:driver
 Подождите. Мне только узнать, был он в автобусе или нет. # response # char:detective # skippable:false
 Я сказал — потом. # char:driver # skippable:false
 Когда потом? # response # char:detective # skippable:false
 Семён отпускает ручку и возвращается в комнату. Ты остаёшься на пороге. # thought # char:driver
-Он берёт со стола пачку, заглядывает внутрь и бросает обратно. # thought # char:driver
-Как покурю. # char:driver # skippable:false
+Он берёт со стола пачку, заглядывает внутрь и бросает обратно. # thought # anim:pack_check # char:driver
+Как покурю. # char:driver # anim:do_u_smoke # skippable:false
 Ваш сменщик сказал, вы здесь остановились. С женой поругались. # response # char:detective # skippable:false
-Семён садится на край кровати. # thought # char:driver # anim:tired
+Семён садится на край кровати. # thought # char:driver # anim:hands_crossed_neutral
 Развелись мы. # char:driver # skippable:false
 Он сказал — поругались. # response # char:detective # skippable:false
 Я ему так и сказал. # char:driver # skippable:false
@@ -63,7 +63,7 @@ VAR exit = ""
 {room_return == "hotel_driver":
 	Больше тут делать нечего. # window:default # thought
 - else:
-	Хозяйке не надо говорить. Она опять начнёт. # window:default # char:driver # skippable:false
+	Хозяйке не надо говорить. Она опять начнёт. # window:default # char:driver # anim:pointing # skippable:false
 }
 + [Пойти к себе в номер.]
 	~ room_return = "hotel_driver"
