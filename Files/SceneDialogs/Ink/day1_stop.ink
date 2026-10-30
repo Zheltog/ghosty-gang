@@ -39,7 +39,7 @@ VAR detective_alias = ""
 * [Сыщик.]
 	Сыщик. # response # char:detective # skippable:false
 	~ detective_alias = "scout"
-	-> after_name
+	-> not_bad_reaction
 * [Серега.]
 	Серега. # response # char:detective # skippable:false
 	~ detective_alias = "serega"
@@ -48,6 +48,11 @@ VAR detective_alias = ""
 	Сергей Степанович. # response # char:detective # skippable:false
 	~ detective_alias = "sergey"
 	-> after_name
+
+=== not_bad_reaction ===
+// anim?
+Старается не подавать вида, но он явно впечатлен. # thought
+-> after_name
 
 === after_name ===
 А ты чего на остановке стоял? Ждал кого-то? # response # char:detective # skippable:false
@@ -91,7 +96,11 @@ VAR detective_alias = ""
 -> END
 
 === serious ===
-Раз серьезное… # window:default # char:scout # anim:serious # skippable:false
+Раз серьезное… # window:default # char:scout # anim:serious # skippable:fals
+Раз серьезное, то мне нужно посоветоваться со своими контактами. # window:default # char:scout # anim:serious # skippable:fals
+Что за контакты такие? # response # char:detective # skippable:false
+Я своих не сдаю. # window:default # char:scout # anim:serious # skippable:fals
+Замороченный какой. Тьфу ты. # response # char:detective # skippable:false
 -> walk
 
 === cuffs ===
