@@ -44,21 +44,21 @@ VAR exit = ""
 Ну так. Рассказывал о бабке своей. Ну, в поселке которая у нас. # char:driver # skippable:false
 К ней ехал. # char:driver # skippable:false
 Знаешь ее? # response # char:detective # skippable:false
-Да он ни имени, ни должности не назвал. # char:driver # anim:shrug # skippable:false
+Да он ни имени, ни должности не назвал. # char:driver # anim:smokin_idk # skippable:false
 Бабушка, как все бабушки. Блины, мол, жарит. Рассаду выращивает. # char:driver # skippable:false
 В телефоне своем постоянно путает что-то. # char:driver # skippable:false
 Людмила Игоревна Куликова. Раньше чиновница была. # response # char:detective # skippable:false
-Куликова? # char:driver # anim:frown # skippable:false
+Куликова? # char:driver # anim:smokin_sittin_gloomy # skippable:false
 Не помню такую. # char:driver # skippable:false
 Ладно. А мальчик еще говорил что-то? # response # char:detective # skippable:false
-Планы строил. Что с мамой летом на Майорку полетят. Мажор, что ли? # char:driver # skippable:false
+Планы строил. Что с мамой летом на Майорку полетят. Мажор, что ли? # char:driver # skippable:false # anim:smokin_sittin_neutral
 Типа того. А как с автобуса сошел? # response # char:detective # skippable:false
 Встречал его кто-нибудь? # response # char:detective # skippable:false
 Нет. Пустая остановка была. # char:driver # skippable:false
 И ты его отпустил так просто? # response # char:detective # skippable:false
-А что я? У меня маршрут. # char:driver # skippable:false
+А что я? У меня маршрут. # char:driver # skippable:false # anim:smokin_idk
 Понятно. # response # char:detective # skippable:false
-А что с мальком-то? # char:driver # skippable:false
+А что с мальком-то? # char:driver # skippable:false # anim:smokin_sittin_neutral
 Пропал. Ты последний его видел. # response # char:detective # skippable:false
 Последний? Ё-маё… До бабки что ли не дошел? # char:driver # anim:shocked # skippable:false
 Она не в Вязи тогда была. # response # char:detective # skippable:false

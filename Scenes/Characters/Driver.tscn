@@ -27,7 +27,9 @@
 [ext_resource type="Texture2D" uid="uid://byea725ss52c1" path="res://Assets/Sprites/Characters/Driver/driver_smokin_sad_sittin.png" id="21_5r3dp"]
 [ext_resource type="Texture2D" uid="uid://omejicmx5pa2" path="res://Assets/Sprites/Characters/Driver/driver_cig_on_ear_far_2.png" id="22_02kaf"]
 [ext_resource type="Texture2D" uid="uid://7rc83bph2hul" path="res://Assets/Sprites/Characters/Driver/driver_smokin_arrogant_standin_close.png" id="22_a3yjg"]
-[ext_resource type="Texture2D" uid="uid://cn5s6o7yjt4cr" path="res://Assets/Sprites/Characters/Driver/driver_smokin_neutral_sittin_close.png" id="22_i7fee"]
+[ext_resource type="Texture2D" uid="uid://csn7p0df5fllg" path="res://Assets/Sprites/Characters/Driver/driver_smokin_idk_sittin.png" id="23_sbgko"]
+[ext_resource type="Texture2D" uid="uid://bdup5kfbi7jnn" path="res://Assets/Sprites/Characters/Driver/driver_smokin_gloomy_sittin.png" id="24_5wu64"]
+[ext_resource type="Texture2D" uid="uid://cf143iuwatp6l" path="res://Assets/Sprites/Characters/Driver/driver_smokin_neutral_sittin_far.png" id="25_oxt4v"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dfkks"]
 shader = ExtResource("1_ncrqh")
@@ -175,7 +177,23 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("22_i7fee")
+"texture": ExtResource("23_sbgko")
+}],
+"loop": 0,
+"name": &"smokin_idk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("24_5wu64")
+}],
+"loop": 0,
+"name": &"smokin_sittin_gloomy",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("25_oxt4v")
 }],
 "loop": 0,
 "name": &"smokin_sittin_neutral",
@@ -213,7 +231,7 @@ animations = [{
 material = SubResource("ShaderMaterial_dfkks")
 scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_engineer")
-animation = &"sad"
+animation = &"smokin_idk"
 script = ExtResource("5_ojjug")
 sprite = NodePath(".")
 character_name = "driver"
