@@ -127,8 +127,4 @@ VAR detective_alias = ""
 Значит, когда Женя приехал, видимость была получше. # thought
 Это хорошо. # thought
 Остальной путь мы проделали молча. # thought
-Вскоре показалась неоновая вывеска «ВИКТОРИЯ», а следом и само коренастое двухэтажное здание. # thought
-Пришли. Может, дашь полтос все-таки? # char:scout # skippable:false
-Бери, заслужил. # response # char:detective # skippable:false
-А если про пацана с фотки чего вспомнишь — заходи на огонек. # response # char:detective # skippable:false
 -> END
