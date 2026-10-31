@@ -67,8 +67,7 @@ VAR seen_semyon = false
 -> dossier_menu
 
 === stepan ===
-Отец мальчика. Степан Куликов. Бизнесмен. Твой наниматель. Серьезный
-человек. # window:default # char:dossier # skippable:false
+Отец мальчика. Степан Куликов. Бизнесмен. Твой наниматель. Серьезный человек. # window:default # char:dossier # skippable:false
 Серьезный, это точно. Я работал с ним в девяностые. # response # char:detective # skippable:false
 Сейчас отец занят поисками в городе. Камеры, полиция, ЧОПы. Весь город на ушах. # char:dossier # skippable:false
 -> dossier_menu
