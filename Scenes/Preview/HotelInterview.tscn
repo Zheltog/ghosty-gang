@@ -1,20 +1,20 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://l71b58bralot"]
 
-[ext_resource type="Script" path="res://Scripts/Preview/DialogBackdrop.gd" id="1_backdrop"]
+[ext_resource type="Script" uid="uid://dip5o5vas7khn" path="res://Scripts/Preview/DialogBackdrop.gd" id="1_backdrop"]
 [ext_resource type="PackedScene" uid="uid://b3fjaokxpivbe" path="res://Scenes/Dialog/dialog_controller.tscn" id="2_dialog"]
-[ext_resource type="PackedScene" uid="uid://kvbvxu0vbc8y" path="res://Scenes/Timer/timer.tscn" id="timer_scene"]
-[ext_resource type="PackedScene" path="res://Scenes/Characters/EngineerCopy.tscn" id="3_character"]
+[ext_resource type="PackedScene" uid="uid://fyymqb6keepe" path="res://Scenes/Characters/Driver.tscn" id="3_character"]
 [ext_resource type="Script" uid="uid://ct24630qdy5qa" path="res://Scripts/Characters/SceneCharacter.gd" id="4_none"]
+[ext_resource type="PackedScene" uid="uid://kvbvxu0vbc8y" path="res://Scenes/Timer/timer.tscn" id="timer_scene"]
 
-[node name="HotelInterview" type="Node2D"]
+[node name="HotelInterview" type="Node2D" unique_id=145187648]
 script = ExtResource("1_backdrop")
 story_path = "res://Files/SceneDialogs/Ink/day1_hotel_interview.ink"
 next_scene = 4
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=995795768]
 layer = -1
 
-[node name="Background" type="ColorRect" parent="CanvasLayer"]
+[node name="Background" type="ColorRect" parent="CanvasLayer" unique_id=668464770]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -23,84 +23,82 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0.16, 0.13, 0.1, 1)
 
-[node name="Title" type="Label" parent="CanvasLayer"]
+[node name="Title" type="Label" parent="CanvasLayer" unique_id=217940165]
 offset_left = 80.0
 offset_top = 48.0
 offset_right = 900.0
 offset_bottom = 100.0
-mouse_filter = 2
 theme_override_font_sizes/font_size = 32
 text = "Номер 204"
 
-[node name="Landlady" parent="." instance=ExtResource("3_character")]
+[node name="Landlady" parent="." unique_id=2138113299 instance=ExtResource("3_character")]
 visible = false
 modulate = Color(0.86, 0.7, 0.74, 1)
 position = Vector2(420, 800)
 character_name = "landlady"
 
-[node name="Driver" parent="." instance=ExtResource("3_character")]
-visible = false
+[node name="Driver" parent="." unique_id=1258478613 instance=ExtResource("3_character")]
 modulate = Color(0.62, 0.7, 0.58, 1)
 position = Vector2(1180, 800)
-character_name = "driver"
+animation = &"idle"
 
-[node name="None" type="Node2D" parent="."]
+[node name="None" type="Node2D" parent="." unique_id=1111408589]
 script = ExtResource("4_none")
 character_name = "none"
 
-[node name="DialogController" parent="." node_paths=PackedStringArray("timer") instance=ExtResource("2_dialog")]
+[node name="DialogController" parent="." unique_id=639466453 node_paths=PackedStringArray("timer") instance=ExtResource("2_dialog")]
 story = null
 timer = NodePath("../GameTimer")
 
-[node name="GameTimer" parent="." instance=ExtResource("timer_scene")]
+[node name="GameTimer" parent="." unique_id=2023006030 instance=ExtResource("timer_scene")]
 z_index = 3
 
-[node name="CharacterPositions" type="Node2D" parent="."]
+[node name="CharacterPositions" type="Node2D" parent="." unique_id=1744851300]
 
-[node name="default" type="Marker2D" parent="CharacterPositions"]
+[node name="default" type="Marker2D" parent="CharacterPositions" unique_id=596543624]
 position = Vector2(960, 540)
 scale = Vector2(0.15, 0.15)
 
-[node name="landlady_default" type="Marker2D" parent="CharacterPositions"]
+[node name="landlady_default" type="Marker2D" parent="CharacterPositions" unique_id=406425579]
 position = Vector2(420, 800)
 scale = Vector2(0.15, 0.15)
 
-[node name="landlady_angry" type="Marker2D" parent="CharacterPositions"]
+[node name="landlady_angry" type="Marker2D" parent="CharacterPositions" unique_id=1202305234]
 position = Vector2(420, 800)
 scale = Vector2(0.15, 0.15)
 
-[node name="driver_default" type="Marker2D" parent="CharacterPositions"]
+[node name="driver_default" type="Marker2D" parent="CharacterPositions" unique_id=1879125411]
 position = Vector2(1180, 800)
 scale = Vector2(0.15, 0.15)
 
-[node name="driver_angry" type="Marker2D" parent="CharacterPositions"]
+[node name="driver_angry" type="Marker2D" parent="CharacterPositions" unique_id=1551191104]
 position = Vector2(1180, 800)
 scale = Vector2(0.15, 0.15)
 
-[node name="driver_gruff" type="Marker2D" parent="CharacterPositions"]
+[node name="driver_gruff" type="Marker2D" parent="CharacterPositions" unique_id=331333111]
 position = Vector2(1180, 800)
 scale = Vector2(0.15, 0.15)
 
-[node name="driver_pleased" type="Marker2D" parent="CharacterPositions"]
+[node name="driver_pleased" type="Marker2D" parent="CharacterPositions" unique_id=1000117591]
 position = Vector2(1180, 800)
 scale = Vector2(0.15, 0.15)
 
-[node name="driver_shrug" type="Marker2D" parent="CharacterPositions"]
+[node name="driver_shrug" type="Marker2D" parent="CharacterPositions" unique_id=2032274310]
 position = Vector2(1180, 800)
 scale = Vector2(0.15, 0.15)
 
-[node name="driver_frown" type="Marker2D" parent="CharacterPositions"]
+[node name="driver_frown" type="Marker2D" parent="CharacterPositions" unique_id=848657990]
 position = Vector2(1180, 800)
 scale = Vector2(0.15, 0.15)
 
-[node name="driver_shocked" type="Marker2D" parent="CharacterPositions"]
+[node name="driver_shocked" type="Marker2D" parent="CharacterPositions" unique_id=562374122]
 position = Vector2(1180, 800)
 scale = Vector2(0.15, 0.15)
 
-[node name="driver_downcast" type="Marker2D" parent="CharacterPositions"]
+[node name="driver_downcast" type="Marker2D" parent="CharacterPositions" unique_id=1243833796]
 position = Vector2(1180, 800)
 scale = Vector2(0.15, 0.15)
 
-[node name="driver_wary" type="Marker2D" parent="CharacterPositions"]
+[node name="driver_wary" type="Marker2D" parent="CharacterPositions" unique_id=39061404]
 position = Vector2(1180, 800)
 scale = Vector2(0.15, 0.15)

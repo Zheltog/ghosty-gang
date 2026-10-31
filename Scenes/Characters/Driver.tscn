@@ -5,8 +5,10 @@
 [ext_resource type="Texture2D" uid="uid://12de7dw7k8ai" path="res://Assets/Sprites/Characters/Engineer/Shounen A/boy a_casual_nervous.png" id="2_swt88"]
 [ext_resource type="Texture2D" uid="uid://wmxkfh73uv2u" path="res://Assets/Sprites/Characters/Engineer/Shounen A/boy a_casual_happy.png" id="3_ncrqh"]
 [ext_resource type="Texture2D" uid="uid://474ah4mwdg0i" path="res://Assets/Sprites/Characters/Driver/driver_arms_akimbo_gloomy_far_1.png" id="3_plmer"]
+[ext_resource type="Texture2D" uid="uid://gxeoqhuvkevy" path="res://Assets/Sprites/Characters/Driver/driver_angry_far.png" id="3_ykbtt"]
 [ext_resource type="Texture2D" uid="uid://ehx7vfgv2l4i" path="res://Assets/Sprites/Characters/Driver/driver_arms_akimbo_gloomy_far_2.png" id="4_ojjug"]
 [ext_resource type="Texture2D" uid="uid://dv7o25ojskrjp" path="res://Assets/Sprites/Characters/Engineer/Shounen A/boy a_casual_shocked.png" id="4_plmer"]
+[ext_resource type="Texture2D" uid="uid://ctk2pdgrm3kmt" path="res://Assets/Sprites/Characters/Driver/driver_angry_close.png" id="4_ubxf6"]
 [ext_resource type="Texture2D" uid="uid://m4m5b22l4sl" path="res://Assets/Sprites/Characters/Driver/driver_arms_akimbo_gloomy_close.png" id="5_i6lud"]
 [ext_resource type="Script" uid="uid://ct24630qdy5qa" path="res://Scripts/Characters/SceneCharacter.gd" id="5_ojjug"]
 [ext_resource type="Texture2D" uid="uid://c0pavnrpvus5m" path="res://Assets/Sprites/Characters/Driver/driver_far_fist_up.png" id="5_p7cqo"]
@@ -14,10 +16,17 @@
 [ext_resource type="Texture2D" uid="uid://be8klpya80tdq" path="res://Assets/Sprites/Characters/Driver/driver_bb_far.png" id="6_u154m"]
 [ext_resource type="Texture2D" uid="uid://c424d2pawho5u" path="res://Assets/Sprites/Characters/Driver/driver_do_u_smoke_far.png" id="7_4yjnf"]
 [ext_resource type="Texture2D" uid="uid://6nyc0lfb4c4h" path="res://Assets/Sprites/Characters/Driver/driver_do_u_smoke_close.png" id="8_2yhl8"]
+[ext_resource type="Texture2D" uid="uid://dlum1aa6s3ua1" path="res://Assets/Sprites/Characters/Driver/driver_cig_on_ear_close_1.png" id="9_rmhsy"]
 [ext_resource type="Texture2D" uid="uid://c1ms72ax43rfs" path="res://Assets/Sprites/Characters/Driver/driver_hands_crossed_neutral_close.png" id="9_ymrw2"]
+[ext_resource type="Texture2D" uid="uid://cfwv3dkfkjg0s" path="res://Assets/Sprites/Characters/Driver/driver_cig_on_ear_close_2.png" id="10_02kaf"]
 [ext_resource type="Texture2D" uid="uid://b3jtid7it786j" path="res://Assets/Sprites/Characters/Driver/driver_pointing_close.png" id="10_2yhl8"]
 [ext_resource type="Texture2D" uid="uid://dbaarrh2t38dq" path="res://Assets/Sprites/Characters/Driver/driver_pack_check_far.png" id="10_wg8j3"]
+[ext_resource type="Texture2D" uid="uid://hbjkwipdqdd3" path="res://Assets/Sprites/Characters/Driver/driver_cig_fire_far.png" id="11_0sf5q"]
 [ext_resource type="Texture2D" uid="uid://bf2vlj1yo3001" path="res://Assets/Sprites/Characters/Driver/driver_pack_throwing_far.png" id="11_ymrw2"]
+[ext_resource type="Texture2D" uid="uid://dbrgdd4nx634y" path="res://Assets/Sprites/Characters/Driver/driver_cig_fire_close.png" id="12_f30u4"]
+[ext_resource type="Texture2D" uid="uid://omejicmx5pa2" path="res://Assets/Sprites/Characters/Driver/driver_cig_on_ear_far_2.png" id="22_02kaf"]
+[ext_resource type="Texture2D" uid="uid://7rc83bph2hul" path="res://Assets/Sprites/Characters/Driver/driver_smokin_arrogant_standin_close.png" id="22_a3yjg"]
+[ext_resource type="Texture2D" uid="uid://cn5s6o7yjt4cr" path="res://Assets/Sprites/Characters/Driver/driver_smokin_neutral_sittin_close.png" id="22_i7fee"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dfkks"]
 shader = ExtResource("1_ncrqh")
@@ -33,6 +42,17 @@ shader_parameter/saturation = 1.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_engineer"]
 animations = [{
+"frames": [{
+"duration": 2.0,
+"texture": ExtResource("3_ykbtt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ubxf6")
+}],
+"loop": 0,
+"name": &"angry",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 2.0,
 "texture": ExtResource("3_plmer")
@@ -53,6 +73,28 @@ animations = [{
 }],
 "loop": 0,
 "name": &"bb",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 2.0,
+"texture": ExtResource("9_rmhsy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_02kaf")
+}],
+"loop": 0,
+"name": &"cig_ear",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 2.0,
+"texture": ExtResource("11_0sf5q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_f30u4")
+}],
+"loop": 0,
+"name": &"cig_fire",
 "speed": 5.0
 }, {
 "frames": [{
@@ -123,6 +165,22 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
+"duration": 1.0,
+"texture": ExtResource("22_i7fee")
+}],
+"loop": 0,
+"name": &"smokin_sittin_neutral",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("22_a3yjg")
+}],
+"loop": 0,
+"name": &"smokin_standin_arrogant",
+"speed": 5.0
+}, {
+"frames": [{
 "duration": 2.0,
 "texture": ExtResource("5_p7cqo")
 }, {
@@ -132,13 +190,21 @@ animations = [{
 "loop": 1,
 "name": &"tv_punch",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("22_02kaf")
+}],
+"loop": 0,
+"name": &"welcome",
+"speed": 5.0
 }]
 
 [node name="Driver" type="AnimatedSprite2D" unique_id=1247078071 node_paths=PackedStringArray("sprite")]
 material = SubResource("ShaderMaterial_dfkks")
 scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_engineer")
-animation = &"hands_crossed_neutral"
+animation = &"idle"
 script = ExtResource("5_ojjug")
 sprite = NodePath(".")
 character_name = "driver"

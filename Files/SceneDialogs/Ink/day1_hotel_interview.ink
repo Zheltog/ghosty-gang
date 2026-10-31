@@ -13,23 +13,24 @@ VAR exit = ""
 
 === give_cigarette ===
 {from_theft:
+    // TODO: мб, отдельная микросцена в коридоре, потому что тут у нас фон уже - номер водителя
 	Ты поднимаешься по лестнице навстречу хозяйке. # window:default # thought
 	Хамло! Псих! # char:landlady # anim:angry # skippable:false
 	У двери тебя встречает водитель. # thought # char:driver # away:landlady
 	Стерва! Нет бы мастера вызвать, технику починить. # char:driver # anim:angry # skippable:false
 	Надо на честного мужика гнать. # char:driver # skippable:false
 - else:
-	У двери тебя встречает водитель. # window:default # thought # char:driver
+	У двери тебя встречает водитель. # window:default # thought # char:driver # anim:hands_crossed_neutral
 }
 Держи свою сигарету. # response # char:detective # skippable:false
-Водитель хватает сигарету из твоих рук и ловко заправляет ее за ухо. # thought # char:driver
-Проходь. Садись. # char:driver # skippable:false
+Водитель хватает сигарету из твоих рук и ловко заправляет ее за ухо. # thought # char:driver # anim:cig_ear
+Проходь. Садись. # char:driver # skippable:false # anim:welcome
 Ты проходишь в номер и садишься на кровать. # thought
 Водитель закрывает дверь за твоей спиной на щеколду. # thought # char:driver
-Он наклоняется к груде одежды в углу, достает зажигалку и закуривает. # thought # char:driver
+Он наклоняется к груде одежды в углу, достает зажигалку и закуривает. # thought # char:driver # anim:cig_fire
 Окно?.. # response # char:detective # skippable:false
-Дурак, что ли? Застудимся. # char:driver # anim:gruff # skippable:false
-Он устраивается рядом и сладко затягивается. Вы сидите молча, пока он докуривает. # thought # char:driver
+Дурак, что ли? Застудимся. # char:driver # anim:smokin_standin_arrogant # skippable:false
+Он устраивается рядом и сладко затягивается. Вы сидите молча, пока он докуривает. # thought # char:driver # anim:smokin_sittin_neutral
 Вдруг телевизор включается сам собой. # thought
 На экране неровная картинка отечественного сериала. # thought # char:driver # anim:pleased
 Лучшего момента для вопросов может и не быть. # thought
