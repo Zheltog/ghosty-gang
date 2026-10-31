@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://hbjkwipdqdd3" path="res://Assets/Sprites/Characters/Driver/driver_cig_fire_far.png" id="11_0sf5q"]
 [ext_resource type="Texture2D" uid="uid://bf2vlj1yo3001" path="res://Assets/Sprites/Characters/Driver/driver_pack_throwing_far.png" id="11_ymrw2"]
 [ext_resource type="Texture2D" uid="uid://dbrgdd4nx634y" path="res://Assets/Sprites/Characters/Driver/driver_cig_fire_close.png" id="12_f30u4"]
+[ext_resource type="Texture2D" uid="uid://byea725ss52c1" path="res://Assets/Sprites/Characters/Driver/driver_smokin_sad_sittin.png" id="21_5r3dp"]
 [ext_resource type="Texture2D" uid="uid://omejicmx5pa2" path="res://Assets/Sprites/Characters/Driver/driver_cig_on_ear_far_2.png" id="22_02kaf"]
 [ext_resource type="Texture2D" uid="uid://7rc83bph2hul" path="res://Assets/Sprites/Characters/Driver/driver_smokin_arrogant_standin_close.png" id="22_a3yjg"]
 [ext_resource type="Texture2D" uid="uid://cn5s6o7yjt4cr" path="res://Assets/Sprites/Characters/Driver/driver_smokin_neutral_sittin_close.png" id="22_i7fee"]
@@ -158,6 +159,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("21_5r3dp")
+}],
+"loop": 0,
+"name": &"sad",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("4_plmer")
 }],
 "loop": 1,
@@ -204,7 +213,7 @@ animations = [{
 material = SubResource("ShaderMaterial_dfkks")
 scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_engineer")
-animation = &"idle"
+animation = &"sad"
 script = ExtResource("5_ojjug")
 sprite = NodePath(".")
 character_name = "driver"

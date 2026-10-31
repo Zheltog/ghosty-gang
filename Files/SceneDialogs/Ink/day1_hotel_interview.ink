@@ -45,7 +45,7 @@ VAR exit = ""
 К ней ехал. # char:driver # skippable:false
 Знаешь ее? # response # char:detective # skippable:false
 Да он ни имени, ни должности не назвал. # char:driver # anim:shrug # skippable:false
-Бабушка как все бабушки. Блины, мол, жарит. Рассаду выращивает. # char:driver # skippable:false
+Бабушка, как все бабушки. Блины, мол, жарит. Рассаду выращивает. # char:driver # skippable:false
 В телефоне своем постоянно путает что-то. # char:driver # skippable:false
 Людмила Игоревна Куликова. Раньше чиновница была. # response # char:detective # skippable:false
 Куликова? # char:driver # anim:frown # skippable:false
@@ -62,14 +62,23 @@ VAR exit = ""
 Пропал. Ты последний его видел. # response # char:detective # skippable:false
 Последний? Ё-маё… До бабки что ли не дошел? # char:driver # anim:shocked # skippable:false
 Она не в Вязи тогда была. # response # char:detective # skippable:false
-Узнаешь что-то — звони мне. # response # char:detective # skippable:false
+Водитель сник. # thought # char:driver # anim:sad
+Узнаешь что-то — иди ко мне. # response # char:detective # skippable:false
+
+// не по сценарию - от
+// Узнаешь что-то — звони мне. # response # char:detective # skippable:false
 А у тебя ловит? # char:driver # anim:downcast # skippable:false
 Вообще-то нет. Думал, из-за бури. # response # char:detective # skippable:false
 Тут только один оператор ловит нормально. Поищи симку, жить легче будет. # char:driver # skippable:false
 ~ knows_sim = true
 Учту. # response # char:detective # skippable:false
+// не по сценарию - до
+
 Удачи в поисках. Найдётся пацан. Вязь маленькая, не заблудишься. # char:driver # skippable:false
 Уж надеюсь. # response # char:detective # skippable:false
+
+// дальше не по сценарию
+
 Начальник. А ты к Шнейдеру ходил уже? # char:driver # anim:wary # skippable:false
 Он тут что ли до сих пор? # response # char:detective # anim:wince # skippable:false
 А куда он денется? Без него тут ни один вопрос не решается. # char:driver # skippable:false
