@@ -2,12 +2,9 @@
 
 [ext_resource type="Shader" uid="uid://cm8wep5d84yo1" path="res://Scripts/Shaders/char_pxlization.gdshader" id="1_ncrqh"]
 [ext_resource type="Texture2D" uid="uid://dba88ntoitw1a" path="res://Assets/Sprites/ShaderTextures/aap-64-1x.png" id="2_plmer"]
-[ext_resource type="Texture2D" uid="uid://12de7dw7k8ai" path="res://Assets/Sprites/Characters/Engineer/Shounen A/boy a_casual_nervous.png" id="2_swt88"]
-[ext_resource type="Texture2D" uid="uid://wmxkfh73uv2u" path="res://Assets/Sprites/Characters/Engineer/Shounen A/boy a_casual_happy.png" id="3_ncrqh"]
 [ext_resource type="Texture2D" uid="uid://474ah4mwdg0i" path="res://Assets/Sprites/Characters/Driver/driver_arms_akimbo_gloomy_far_1.png" id="3_plmer"]
 [ext_resource type="Texture2D" uid="uid://gxeoqhuvkevy" path="res://Assets/Sprites/Characters/Driver/driver_angry_far.png" id="3_ykbtt"]
 [ext_resource type="Texture2D" uid="uid://ehx7vfgv2l4i" path="res://Assets/Sprites/Characters/Driver/driver_arms_akimbo_gloomy_far_2.png" id="4_ojjug"]
-[ext_resource type="Texture2D" uid="uid://dv7o25ojskrjp" path="res://Assets/Sprites/Characters/Engineer/Shounen A/boy a_casual_shocked.png" id="4_plmer"]
 [ext_resource type="Texture2D" uid="uid://ctk2pdgrm3kmt" path="res://Assets/Sprites/Characters/Driver/driver_angry_close.png" id="4_ubxf6"]
 [ext_resource type="Texture2D" uid="uid://m4m5b22l4sl" path="res://Assets/Sprites/Characters/Driver/driver_arms_akimbo_gloomy_close.png" id="5_i6lud"]
 [ext_resource type="Script" uid="uid://ct24630qdy5qa" path="res://Scripts/Characters/SceneCharacter.gd" id="5_ojjug"]
@@ -24,12 +21,17 @@
 [ext_resource type="Texture2D" uid="uid://hbjkwipdqdd3" path="res://Assets/Sprites/Characters/Driver/driver_cig_fire_far.png" id="11_0sf5q"]
 [ext_resource type="Texture2D" uid="uid://bf2vlj1yo3001" path="res://Assets/Sprites/Characters/Driver/driver_pack_throwing_far.png" id="11_ymrw2"]
 [ext_resource type="Texture2D" uid="uid://dbrgdd4nx634y" path="res://Assets/Sprites/Characters/Driver/driver_cig_fire_close.png" id="12_f30u4"]
+[ext_resource type="Texture2D" uid="uid://delgguq4h8b1s" path="res://Assets/Sprites/Characters/Driver/driver_smokin_finger_sittin.png" id="15_syoxo"]
 [ext_resource type="Texture2D" uid="uid://byea725ss52c1" path="res://Assets/Sprites/Characters/Driver/driver_smokin_sad_sittin.png" id="21_5r3dp"]
 [ext_resource type="Texture2D" uid="uid://omejicmx5pa2" path="res://Assets/Sprites/Characters/Driver/driver_cig_on_ear_far_2.png" id="22_02kaf"]
 [ext_resource type="Texture2D" uid="uid://7rc83bph2hul" path="res://Assets/Sprites/Characters/Driver/driver_smokin_arrogant_standin_close.png" id="22_a3yjg"]
 [ext_resource type="Texture2D" uid="uid://csn7p0df5fllg" path="res://Assets/Sprites/Characters/Driver/driver_smokin_idk_sittin.png" id="23_sbgko"]
 [ext_resource type="Texture2D" uid="uid://bdup5kfbi7jnn" path="res://Assets/Sprites/Characters/Driver/driver_smokin_gloomy_sittin.png" id="24_5wu64"]
+[ext_resource type="Texture2D" uid="uid://cukd1c78kica1" path="res://Assets/Sprites/Characters/Driver/driver_smokin_front_sittin.png" id="24_oxt4v"]
+[ext_resource type="Texture2D" uid="uid://cwm6vwgpw0xwh" path="res://Assets/Sprites/Characters/Driver/driver_smokin_paper_lookin_sittin.png" id="24_syoxo"]
 [ext_resource type="Texture2D" uid="uid://cf143iuwatp6l" path="res://Assets/Sprites/Characters/Driver/driver_smokin_neutral_sittin_far.png" id="25_oxt4v"]
+[ext_resource type="Texture2D" uid="uid://17qrhgg2ocbm" path="res://Assets/Sprites/Characters/Driver/driver_smokin_paper_giving_sittin.png" id="25_syoxo"]
+[ext_resource type="Texture2D" uid="uid://bx36sw43xx4k3" path="res://Assets/Sprites/Characters/Driver/driver_smokin_hands_crossed_neutral_standing_far.png" id="27_5wu64"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dfkks"]
 shader = ExtResource("1_ncrqh")
@@ -125,14 +127,6 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_swt88")
-}],
-"loop": 1,
-"name": &"nervous",
-"speed": 5.0
-}, {
-"frames": [{
 "duration": 3.0,
 "texture": ExtResource("10_wg8j3")
 }, {
@@ -153,34 +147,18 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_ncrqh")
-}],
-"loop": 1,
-"name": &"relaxed",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("21_5r3dp")
+"texture": ExtResource("15_syoxo")
 }],
 "loop": 0,
-"name": &"sad",
+"name": &"smokin_sittin_finger",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_plmer")
-}],
-"loop": 1,
-"name": &"shocked",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("23_sbgko")
+"texture": ExtResource("24_oxt4v")
 }],
 "loop": 0,
-"name": &"smokin_idk",
+"name": &"smokin_sittin_front",
 "speed": 5.0
 }, {
 "frames": [{
@@ -193,10 +171,37 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("23_sbgko")
+}],
+"loop": 0,
+"name": &"smokin_sittin_idk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("25_oxt4v")
 }],
 "loop": 0,
 "name": &"smokin_sittin_neutral",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 3.0,
+"texture": ExtResource("24_syoxo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_syoxo")
+}],
+"loop": 0,
+"name": &"smokin_sittin_paper",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("21_5r3dp")
+}],
+"loop": 0,
+"name": &"smokin_sittin_sad",
 "speed": 5.0
 }, {
 "frames": [{
@@ -205,6 +210,14 @@ animations = [{
 }],
 "loop": 0,
 "name": &"smokin_standin_arrogant",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("27_5wu64")
+}],
+"loop": 0,
+"name": &"smokin_standing_hands_crossed_neutral",
 "speed": 5.0
 }, {
 "frames": [{
@@ -231,7 +244,7 @@ animations = [{
 material = SubResource("ShaderMaterial_dfkks")
 scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_engineer")
-animation = &"smokin_idk"
+animation = &"idle"
 script = ExtResource("5_ojjug")
 sprite = NodePath(".")
 character_name = "driver"
