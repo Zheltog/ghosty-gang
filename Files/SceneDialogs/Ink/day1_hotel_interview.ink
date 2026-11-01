@@ -79,7 +79,7 @@ VAR exit = ""
 
 // доп
 
-Водитель встаёт, чтобы закрыть за тобой в дверь, но останавливается на полпути. # thought # char:driver # anim:smokin_standing_hands_crossed_neutral
+Водитель встаёт, чтобы закрыть за тобой в дверь, но останавливается на полпути. # thought # char:driver # anim:smokin_standin_hands_crossed_neutral
 Начальник. Садись обратно. Расскажу кой-что важное. # char:driver # skippable:false # skippable:false
 В его голосе проскакивает что-то странное. # thought
 Ты вздыхаешь и идешь к кровати. # thought

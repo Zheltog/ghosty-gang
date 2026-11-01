@@ -44,10 +44,11 @@ VAR exit = ""
 Семён садится на край кровати. # thought # char:driver # anim:hands_crossed_neutral
 Развелись мы. # char:driver # skippable:false
 Он сказал — поругались. # response # char:detective # skippable:false
-Я ему так и сказал. # char:driver # skippable:false
+Я ему так и сказал. # char:driver # anim:face_rubbin # skippable:false
+Он долго трёт лицо ладонями. # thought
 Я вас не задержу. Посмотрите фотографию. # response # char:detective # skippable:false
 Ты протягиваешь её. # thought
-Не могу я сейчас. # char:driver # skippable:false
+Не могу я сейчас. # char:driver # anim:hands_crossed_neutral # skippable:false
 Ребёнок пропал, Семён. # response # char:detective # skippable:false
 Слышал я. # char:driver # skippable:false
 Принеси сигарет. Покурю, голову соберу. Тогда спрашивай. # char:driver # skippable:false
@@ -63,7 +64,7 @@ VAR exit = ""
 {room_return == "hotel_driver":
 	Больше тут делать нечего. # window:default # thought
 - else:
-	Хозяйке не надо говорить. Она опять начнёт. # window:default # char:driver # anim:pointing # skippable:false
+	Хозяйке не надо говорить. Она опять начнёт. # window:default # char:driver # anim:pointin # skippable:false
 }
 + [Пойти к себе в номер.]
 	~ room_return = "hotel_driver"
