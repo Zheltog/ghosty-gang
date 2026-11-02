@@ -1,9 +1,10 @@
 // День 1. Первая дорога к дому Инженера в сопровождении Заводчанина.
 
-# load: has_cigarette_pack
-# save: has_cigarette_pack
+# load: has_cigarette_pack, factory_worker_introduced
+# save: has_cigarette_pack, factory_worker_introduced
 
-VAR has_cigarette_pack = true
+VAR has_cigarette_pack = false
+VAR factory_worker_introduced = false
 
 -> street
 
@@ -46,6 +47,7 @@ VAR has_cigarette_pack = true
 == accepting_last ==
 Ну ладно, давай сюда.  # char:factory_worker # skippable:false
 Меня кстати Серёгой звать. Не замёрзнем – сочтёмся!  # char:factory_worker # skippable:false
+~ factory_worker_introduced = true
 -> main
 
 == main ==

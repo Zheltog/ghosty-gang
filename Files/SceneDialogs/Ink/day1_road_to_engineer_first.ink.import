@@ -13,5 +13,5 @@ dest_files=["res://.godot/imported/day1_road_to_engineer_first.ink-215d8076fb5ff
 
 [params]
 
-is_main_file=false
+is_main_file=true
 compress=true

@@ -24,6 +24,8 @@ shader_parameter/saturation = 1.0
 
 [node name="RoadToEngineerFirst" type="Node2D" unique_id=433180461]
 script = ExtResource("1_2lrmr")
+story_path = "uid://yuksbd67gt4m"
+fade_in_before_story = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1614781070]
 layer = -1

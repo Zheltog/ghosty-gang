@@ -9,6 +9,7 @@
 [node name="HotelInterview" type="Node2D" unique_id=145187648]
 script = ExtResource("1_backdrop")
 story_path = "res://Files/SceneDialogs/Ink/day1_hotel_interview.ink"
+next_scene = 17
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=995795768]
 layer = -1

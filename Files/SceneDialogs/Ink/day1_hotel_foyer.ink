@@ -19,10 +19,6 @@ VAR exit = ""
 Хозяйка сидит за стойкой. # window:default # thought # char:landlady # anim:bored
 * [Спросить про сигареты.]
 	-> ask_smokes
-+ [Дойти до магазина.]
-	~ hotel_phase = 2
-	~ exit = "shop"
-	-> END
 
 === ask_smokes ===
 Сигареты нет у вас? # response # char:detective # skippable:false
@@ -41,6 +37,10 @@ VAR exit = ""
 	Мужчина. Вы меня слышите вообще? Не дам. # window:default # char:landlady # anim:sharp # skippable:false
 	Она снова утыкается в журнал. # thought # char:landlady
 	-> pressure
+* [Ладно. Где у вас магазин ближайший?]
+    Хозяйка закатывает глаза. # thought # char:landlady
+    На звезде на гвозде поищите. # window:default # char:landlady # skippable:false
+    -> pressure
 * [Слышали? Он там телевизор ломает.]
 	Слышали? Он там телевизор ломает. # response # char:detective # skippable:false
 	-> lie
@@ -65,24 +65,11 @@ VAR exit = ""
 	Ты убираешь пачку в карман. # thought
 	~ has_cigarette_pack = true
 	-> upstairs_shout
-* [Не трогать пачку.]
-	-> left_pack
 
 === upstairs_shout ===
-Ну? Где сломал? Показывай! # window:default # char:driver # skippable:false
+Ну? Где сломал? Показывай! # window:default # char:landlady # skippable:false
 Чего показывать-то?.. # char:driver # skippable:false
 * [Подняться к водителю.]
 	~ from_theft = true
 	~ exit = "hotel_interview"
-	-> END
-+ [Пойти на улицу.]
-	~ hotel_phase = 2
-	~ exit = "map"
-	-> END
-
-=== left_pack ===
-Ты отходишь от стойки. Пачка остаётся рядом с раскрытым журналом. # window:default # thought
-+ [Пойти на улицу.]
-	~ hotel_phase = 2
-	~ exit = "map"
 	-> END

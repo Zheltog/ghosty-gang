@@ -21,6 +21,9 @@ static func display_name(character_tag: String) -> String:
 			if bool(InkVariableStore.get_value("saw_passports", false)):
 				return "Владислав?"
 			return "Владислав"
+		"factory_worker":
+			return "Серёга" if bool(InkVariableStore.get_value("factory_worker_introduced", false)) \
+				else "Заводчанин"
 		"worker":
 			return "Рабочий"
 		"voice":
