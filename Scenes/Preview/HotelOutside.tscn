@@ -51,12 +51,6 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Dossier" parent="." unique_id=1083273193 instance=ExtResource("5_31e8u")]
-visible = false
-modulate = Color(0.75, 0.85, 1, 1)
-position = Vector2(480, 780)
-character_name = "dossier"
-
 [node name="Scout" parent="." unique_id=894948121 instance=ExtResource("5_31e8u")]
 visible = false
 modulate = Color(1, 0.88, 0.72, 1)
@@ -72,9 +66,8 @@ position = Vector2(1180, 800)
 script = ExtResource("6_wcygo")
 character_name = "none"
 
-[node name="DialogController" parent="." unique_id=158973333 node_paths=PackedStringArray("timer") instance=ExtResource("7_cvqfi")]
+[node name="DialogController" parent="." unique_id=158973333 instance=ExtResource("7_cvqfi")]
 story = null
-timer = NodePath("")
 
 [node name="GameTimer" parent="." unique_id=2126109467 instance=ExtResource("8_qybsp")]
 z_index = 3

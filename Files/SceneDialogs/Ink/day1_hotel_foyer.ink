@@ -1,11 +1,14 @@
 // День 1. Фойе снова. Сигареты у хозяйки или уход в магазин.
 // Водитель наверху: голос есть, на сцене его нет.
 
+// TODO: актуализировать!
+
 # story: hotel_foyer
-# load: has_cigarette, hotel_phase, from_theft
-# save: has_cigarette, hotel_phase, from_theft, exit
+# load: has_cigarette, has_cigarette_pack, hotel_phase, from_theft
+# save: has_cigarette, has_cigarette_pack, hotel_phase, from_theft, exit
 
 VAR has_cigarette = false
+VAR has_cigarette_pack = false
 VAR hotel_phase = 0
 VAR from_theft = false
 VAR exit = ""
@@ -60,7 +63,7 @@ VAR exit = ""
 	-> upstairs_shout
 * [Забрать всю пачку.]
 	Ты убираешь пачку в карман. # thought
-	~ has_cigarette = true
+	~ has_cigarette_pack = true
 	-> upstairs_shout
 * [Не трогать пачку.]
 	-> left_pack

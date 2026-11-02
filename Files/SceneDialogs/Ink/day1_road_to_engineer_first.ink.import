@@ -1,0 +1,17 @@
+[remap]
+
+importer="ink"
+importer_version=2
+type="Resource"
+uid="uid://yuksbd67gt4m"
+path="res://.godot/imported/day1_road_to_engineer_first.ink-215d8076fb5ff9f2ee7b0a5c99f8b5c1.res"
+
+[deps]
+
+source_file="res://Files/SceneDialogs/Ink/day1_road_to_engineer_first.ink"
+dest_files=["res://.godot/imported/day1_road_to_engineer_first.ink-215d8076fb5ff9f2ee7b0a5c99f8b5c1.res"]
+
+[params]
+
+is_main_file=false
+compress=true

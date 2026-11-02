@@ -9,7 +9,6 @@
 [node name="HotelInterview" type="Node2D" unique_id=145187648]
 script = ExtResource("1_backdrop")
 story_path = "res://Files/SceneDialogs/Ink/day1_hotel_interview.ink"
-next_scene = 4
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=995795768]
 layer = -1
@@ -40,7 +39,6 @@ character_name = "landlady"
 [node name="Driver" parent="." unique_id=1258478613 instance=ExtResource("3_character")]
 modulate = Color(0.62, 0.7, 0.58, 1)
 position = Vector2(1180, 800)
-animation = &"idle"
 
 [node name="None" type="Node2D" parent="." unique_id=1111408589]
 script = ExtResource("4_none")

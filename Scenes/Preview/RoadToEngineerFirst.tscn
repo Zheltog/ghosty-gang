@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://dxql23t2dydrj"]
+
+[ext_resource type="Script" uid="uid://dip5o5vas7khn" path="res://Scripts/Preview/DialogBackdrop.gd" id="1_2lrmr"]
+[ext_resource type="Shader" uid="uid://bijlg1a40xars" path="res://Scripts/Shaders/bg_pxlization.gdshader" id="2_vebpq"]
+[ext_resource type="Texture2D" uid="uid://dba88ntoitw1a" path="res://Assets/Sprites/ShaderTextures/aap-64-1x.png" id="3_fn2pk"]
+[ext_resource type="Texture2D" uid="uid://djmn2j6utd1dc" path="res://Assets/Sprites/Backgrounds/creepy_1.png" id="4_vbg63"]
+[ext_resource type="Script" uid="uid://8p77bw84c7bp" path="res://Scripts/UI/PointAndClickScenes/Components/ParallaxComponent.gd" id="5_k8j33"]
+[ext_resource type="PackedScene" uid="uid://cwcorhw3onuif" path="res://Scenes/Characters/FactoryWorker.tscn" id="6_co87o"]
+[ext_resource type="Script" uid="uid://ct24630qdy5qa" path="res://Scripts/Characters/SceneCharacter.gd" id="7_knatq"]
+[ext_resource type="PackedScene" uid="uid://b3fjaokxpivbe" path="res://Scenes/Dialog/dialog_controller.tscn" id="8_ysoy5"]
+[ext_resource type="PackedScene" uid="uid://kvbvxu0vbc8y" path="res://Scenes/Timer/timer.tscn" id="9_yy2np"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cp2gl"]
+shader = ExtResource("2_vebpq")
+shader_parameter/palette = ExtResource("3_fn2pk")
+shader_parameter/use_palette = true
+shader_parameter/dithering_strength = 0.999999977648
+shader_parameter/dithering = false
+shader_parameter/dithering_size = 16
+shader_parameter/pixel_size = 6
+shader_parameter/brightness = 1.0
+shader_parameter/contrast = 1.0
+shader_parameter/saturation = 1.0
+
+[node name="RoadToEngineerFirst" type="Node2D" unique_id=433180461]
+script = ExtResource("1_2lrmr")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1614781070]
+layer = -1
+
+[node name="Background" type="Sprite2D" parent="CanvasLayer" unique_id=1508008541]
+material = SubResource("ShaderMaterial_cp2gl")
+position = Vector2(960, 540)
+texture = ExtResource("4_vbg63")
+
+[node name="ParallaxComponent" type="Node" parent="CanvasLayer/Background" unique_id=104318770]
+script = ExtResource("5_k8j33")
+metadata/_custom_type_script = "uid://8p77bw84c7bp"
+
+[node name="FadeLayer" type="CanvasLayer" parent="." unique_id=37173918]
+layer = 100
+
+[node name="Fade" type="ColorRect" parent="FadeLayer" unique_id=1068774596]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="FactoryWorker" parent="." unique_id=324048862 instance=ExtResource("6_co87o")]
+position = Vector2(960, 540)
+
+[node name="None" type="Node2D" parent="." unique_id=520763414]
+script = ExtResource("7_knatq")
+character_name = "none"
+
+[node name="DialogController" parent="." unique_id=158973333 instance=ExtResource("8_ysoy5")]
+story = null
+
+[node name="GameTimer" parent="." unique_id=2126109467 instance=ExtResource("9_yy2np")]
+z_index = 3
+
+[node name="CharacterPositions" type="Node2D" parent="." unique_id=486456512]
+
+[node name="default" type="Marker2D" parent="CharacterPositions" unique_id=1152132858]
+position = Vector2(960, 540)
+scale = Vector2(0.15, 0.15)

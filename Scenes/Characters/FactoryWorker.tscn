@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://cwcorhw3onuif"]
+
+[ext_resource type="Texture2D" uid="uid://co73471gdoapx" path="res://Assets/Sprites/Characters/Driver/driver_hands_crossed_neutral_far.png" id="1_6crgs"]
+[ext_resource type="Shader" uid="uid://cm8wep5d84yo1" path="res://Scripts/Shaders/char_pxlization.gdshader" id="1_ngbuc"]
+[ext_resource type="Script" uid="uid://ct24630qdy5qa" path="res://Scripts/Characters/SceneCharacter.gd" id="1_vnw2x"]
+[ext_resource type="Texture2D" uid="uid://dba88ntoitw1a" path="res://Assets/Sprites/ShaderTextures/aap-64-1x.png" id="2_5g8yk"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ngbuc"]
+shader = ExtResource("1_ngbuc")
+shader_parameter/palette = ExtResource("2_5g8yk")
+shader_parameter/use_palette = true
+shader_parameter/dithering_strength = 0.0
+shader_parameter/dithering = false
+shader_parameter/dithering_size = 2
+shader_parameter/pixel_size = 2
+shader_parameter/brightness = 1.0
+shader_parameter/contrast = 1.0
+shader_parameter/saturation = 1.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w1mxr"]
+animations = [{
+"frames": [],
+"loop": 0,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_6crgs")
+}],
+"loop": 0,
+"name": &"test",
+"speed": 5.0
+}]
+
+[node name="FactoryWorker" type="AnimatedSprite2D" unique_id=324048862 node_paths=PackedStringArray("sprite")]
+material = SubResource("ShaderMaterial_ngbuc")
+scale = Vector2(0.25, 0.25)
+sprite_frames = SubResource("SpriteFrames_w1mxr")
+animation = &"test"
+script = ExtResource("1_vnw2x")
+sprite = NodePath(".")
+character_name = "factory_worker"
