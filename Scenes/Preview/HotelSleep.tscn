@@ -9,7 +9,7 @@
 [node name="HotelSleep" type="Node2D" unique_id=169057214]
 script = ExtResource("1_backdrop")
 story_path = "res://Files/SceneDialogs/Ink/day1_hotel_sleep.ink"
-next_scene = 21
+next_scene = 22
 day_number = 2
 fade_in_before_story = true
 
