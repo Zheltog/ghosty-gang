@@ -9,6 +9,7 @@
 [node name="HotelReturn" type="Node2D" unique_id=370023860]
 script = ExtResource("1_rddtd")
 story_path = "uid://c445r5uy6uxf"
+next_scene = 20
 fade_in_before_story = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=78135002]
@@ -41,9 +42,8 @@ character_name = "landlady"
 script = ExtResource("3_xswrp")
 character_name = "none"
 
-[node name="DialogController" parent="." unique_id=158973333 node_paths=PackedStringArray("timer") instance=ExtResource("4_m5klv")]
+[node name="DialogController" parent="." unique_id=158973333 instance=ExtResource("4_m5klv")]
 story = null
-timer = NodePath("")
 
 [node name="GameTimer" parent="." unique_id=2126109467 instance=ExtResource("5_yofjj")]
 z_index = 3
