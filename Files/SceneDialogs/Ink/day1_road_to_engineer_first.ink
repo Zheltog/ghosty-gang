@@ -1,6 +1,9 @@
 // День 1. Первая дорога к дому Инженера в сопровождении Заводчанина.
 // Персонажи: detective, factory_worker.
 // Мысли и ремарки — # thought, их говорит none.
+// Дальше: day1_engineer_house_outside.ink
+
+// TODO: уточнить позы/эмоции.
 
 # load: has_cigarette_pack, factory_worker_introduced
 # save: has_cigarette_pack, factory_worker_introduced

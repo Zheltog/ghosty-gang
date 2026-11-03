@@ -1,0 +1,17 @@
+[remap]
+
+importer="ink"
+importer_version=2
+type="Resource"
+uid="uid://c445r5uy6uxf"
+path="res://.godot/imported/day1_hotel_return.ink-a47626fb827dc5cd1df7f5992ff3b797.res"
+
+[deps]
+
+source_file="res://Files/SceneDialogs/Ink/day1_hotel_return.ink"
+dest_files=["res://.godot/imported/day1_hotel_return.ink-a47626fb827dc5cd1df7f5992ff3b797.res"]
+
+[params]
+
+is_main_file=true
+compress=true

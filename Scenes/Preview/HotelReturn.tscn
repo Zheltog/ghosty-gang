@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://ba7o52bfy7gc8"]
+
+[ext_resource type="Script" uid="uid://dip5o5vas7khn" path="res://Scripts/Preview/DialogBackdrop.gd" id="1_rddtd"]
+[ext_resource type="PackedScene" uid="uid://jkb5071xoqx6" path="res://Scenes/Characters/EngineerCopy.tscn" id="2_vt7md"]
+[ext_resource type="Script" uid="uid://ct24630qdy5qa" path="res://Scripts/Characters/SceneCharacter.gd" id="3_xswrp"]
+[ext_resource type="PackedScene" uid="uid://b3fjaokxpivbe" path="res://Scenes/Dialog/dialog_controller.tscn" id="4_m5klv"]
+[ext_resource type="PackedScene" uid="uid://kvbvxu0vbc8y" path="res://Scenes/Timer/timer.tscn" id="5_yofjj"]
+
+[node name="HotelReturn" type="Node2D" unique_id=370023860]
+script = ExtResource("1_rddtd")
+story_path = "uid://c445r5uy6uxf"
+fade_in_before_story = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=78135002]
+layer = -1
+
+[node name="Background" type="ColorRect" parent="CanvasLayer" unique_id=1003800523]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.24, 0.16, 0.12, 1)
+
+[node name="Title" type="Label" parent="CanvasLayer" unique_id=1119491990]
+offset_left = 80.0
+offset_top = 48.0
+offset_right = 900.0
+offset_bottom = 100.0
+theme_override_font_sizes/font_size = 32
+text = "Гостиница «Виктория»"
+
+[node name="Landlady" parent="." unique_id=88728569 instance=ExtResource("2_vt7md")]
+visible = false
+modulate = Color(0.86, 0.7, 0.74, 1)
+position = Vector2(520, 800)
+character_name = "landlady"
+
+[node name="None" type="Node2D" parent="." unique_id=1020780096]
+script = ExtResource("3_xswrp")
+character_name = "none"
+
+[node name="DialogController" parent="." unique_id=158973333 node_paths=PackedStringArray("timer") instance=ExtResource("4_m5klv")]
+story = null
+timer = NodePath("")
+
+[node name="GameTimer" parent="." unique_id=2126109467 instance=ExtResource("5_yofjj")]
+z_index = 3
+
+[node name="CharacterPositions" type="Node2D" parent="." unique_id=1753753494]
+
+[node name="default" type="Marker2D" parent="CharacterPositions" unique_id=930512125]
+position = Vector2(960, 540)
+scale = Vector2(0.15, 0.15)
+
+[node name="landlady_default" type="Marker2D" parent="CharacterPositions" unique_id=596246965]
+position = Vector2(520, 800)
+scale = Vector2(0.15, 0.15)
+
+[node name="landlady_hostile" type="Marker2D" parent="CharacterPositions" unique_id=629971995]
+position = Vector2(520, 800)
+scale = Vector2(0.15, 0.15)
+
+[node name="landlady_annoyed" type="Marker2D" parent="CharacterPositions" unique_id=1714933208]
+position = Vector2(520, 800)
+scale = Vector2(0.15, 0.15)
+
+[node name="landlady_eye_roll" type="Marker2D" parent="CharacterPositions" unique_id=1845184215]
+position = Vector2(520, 800)
+scale = Vector2(0.15, 0.15)

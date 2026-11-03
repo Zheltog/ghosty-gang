@@ -1,6 +1,7 @@
 // День 1. Первое прибытие к дому Инженера.
 // Персонажи: detective.
 // Мысли и ремарки — # thought, их говорит none.
+// Дальше: TBD
 
 # story: engineer_house_outside
 
