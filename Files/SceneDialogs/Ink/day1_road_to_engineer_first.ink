@@ -1,7 +1,11 @@
 // День 1. Первая дорога к дому Инженера в сопровождении Заводчанина.
+// Персонажи: detective, factory_worker.
+// Мысли и ремарки — # thought, их говорит none.
 
 # load: has_cigarette_pack, factory_worker_introduced
 # save: has_cigarette_pack, factory_worker_introduced
+
+# story: road_to_engineer_first
 
 VAR has_cigarette_pack = false
 VAR factory_worker_introduced = false

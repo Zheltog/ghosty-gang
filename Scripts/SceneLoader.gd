@@ -19,6 +19,7 @@ enum SCENE {
 	HOTEL_FOYER,
 	HOTEL_INTERVIEW, # TODO: set next scene
 	ROAD_TO_ENGINEER_FIRST,
+	ENGINEER_HOUSE_OUTSIDE,
 	DAY1_SHOP,
 	HOTEL_SLEEP,
 	NIGHT_FIRE,
@@ -43,6 +44,7 @@ var _hotel_driver: PackedScene = preload("res://Scenes/Preview/HotelDriver.tscn"
 var _hotel_foyer: PackedScene = preload("res://Scenes/Preview/HotelFoyer.tscn")
 var _hotel_interview: PackedScene = preload("res://Scenes/Preview/HotelInterview.tscn")
 var _road_to_engineer_first: PackedScene = preload("res://Scenes/Preview/RoadToEngineerFirst.tscn")
+var _engineer_house_outside: PackedScene = preload("res://Scenes/Preview/EngineerHouseOutside.tscn")
 var _day1_shop: PackedScene = preload("res://Scenes/Preview/Day1Shop.tscn")
 var _hotel_sleep: PackedScene = preload("res://Scenes/Preview/HotelSleep.tscn")
 var _night_fire: PackedScene = preload("res://Scenes/Preview/NightFire.tscn")
@@ -120,6 +122,8 @@ func scene_from_exit(exit_name: String) -> SCENE:
 			return SCENE.ENGINEER_ROAD
 		"road_to_engineer_first":
 			return SCENE.ROAD_TO_ENGINEER_FIRST
+		"engineer_house_outside":
+			return SCENE.ENGINEER_HOUSE_OUTSIDE
 		"map":
 			return SCENE.MAP
 		_:
@@ -179,6 +183,8 @@ func change_scene(scene: SCENE) -> void:
 			packed = _hotel_interview
 		SCENE.ROAD_TO_ENGINEER_FIRST:
 			packed = _road_to_engineer_first
+		SCENE.ENGINEER_HOUSE_OUTSIDE:
+			packed = _engineer_house_outside
 		SCENE.DAY1_SHOP:
 			packed = _day1_shop
 		SCENE.HOTEL_SLEEP:
