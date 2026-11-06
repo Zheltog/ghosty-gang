@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://d3coyeaw5ye5s"]
+
+[ext_resource type="Script" uid="uid://bgebmjt4oem53" path="res://Scripts/Room/RoomBase.gd" id="1_caike"]
+[ext_resource type="Texture2D" uid="uid://vu8gpff3gcs" path="res://Assets/Sprites/Backgrounds/creepy_0.png" id="2_foi24"]
+[ext_resource type="Script" uid="uid://8p77bw84c7bp" path="res://Scripts/UI/PointAndClickScenes/Components/ParallaxComponent.gd" id="3_wl1if"]
+
+[node name="Wasteland" type="Node2D" unique_id=1219065441]
+script = ExtResource("1_caike")
+room_name = "wasteland"
+
+[node name="Background" type="Sprite2D" parent="." unique_id=1301810334]
+position = Vector2(960, 540)
+texture = ExtResource("2_foi24")
+
+[node name="ParallaxComponent" type="Node" parent="Background" unique_id=597929273]
+script = ExtResource("3_wl1if")
+camera_distance = 100.0
