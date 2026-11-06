@@ -8,7 +8,7 @@ static func display_name(character_tag: String) -> String:
 		"detective":
 			return ""
 		"driver":
-			return "Водитель"
+			return "Водитель" # TODO: introduced?
 		"scout":
 			if bool(StateManager.get_state("scout_introduced", false)):
 				return "Разведчик"
@@ -24,7 +24,10 @@ static func display_name(character_tag: String) -> String:
 		"factory_worker":
 			return "Серёга" if bool(InkVariableStore.get_value("factory_worker_introduced", false)) \
 				else "Заводчанин"
-		"worker":
+		"driver_daughter":
+			return "Алёна" if bool(InkVariableStore.get_value("driver_daughter_introduced", false)) \
+				else "Девочка"
+		"worker": # TODO: remove
 			return "Рабочий"
 		"voice":
 			return "Голос"

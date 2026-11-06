@@ -1,0 +1,633 @@
+[gd_scene format=3 uid="uid://cl6avbka8tvfv"]
+
+[ext_resource type="Script" uid="uid://hxpyimo1g65h" path="res://Scripts/Scenes/RoadToZakharScenePreview.gd" id="1_klbl6"]
+[ext_resource type="PackedScene" uid="uid://d3coyeaw5ye5s" path="res://Scenes/Preview/Rooms/RoadToZakhar/Wasteland.tscn" id="2_s77r8"]
+[ext_resource type="Script" uid="uid://bytkgf4aqq3ro" path="res://Scripts/UI/PointAndClickScenes/SceneObjectsManager.gd" id="2_ufa8r"]
+[ext_resource type="PackedScene" uid="uid://nbpttowmmslr" path="res://Scenes/Preview/Rooms/RoadToZakhar/Street1.tscn" id="3_4p6mq"]
+[ext_resource type="PackedScene" uid="uid://lqfwcugilore" path="res://Scenes/Preview/Rooms/RoadToZakhar/RandomHouse.tscn" id="4_swtrb"]
+[ext_resource type="PackedScene" uid="uid://dsv4n0kgxor25" path="res://Scenes/Preview/Rooms/RoadToZakhar/Street2.tscn" id="5_dbs14"]
+[ext_resource type="PackedScene" uid="uid://cufey532tak8m" path="res://Scenes/Preview/Rooms/RoadToZakhar/Street3.tscn" id="6_xyd57"]
+[ext_resource type="PackedScene" uid="uid://bvskrwd66jca1" path="res://Scenes/Preview/Rooms/RoadToZakhar/Girl.tscn" id="7_3o868"]
+[ext_resource type="Script" uid="uid://8p77bw84c7bp" path="res://Scripts/UI/PointAndClickScenes/Components/ParallaxComponent.gd" id="17_4sxl5"]
+[ext_resource type="PackedScene" uid="uid://17fxcbcv4a1n" path="res://Scenes/PointAndClick/InventoryUI/Inventory.tscn" id="22_adkuu"]
+[ext_resource type="PackedScene" uid="uid://b3fjaokxpivbe" path="res://Scenes/Dialog/dialog_controller.tscn" id="23_076kp"]
+[ext_resource type="Script" uid="uid://sv300tnhe327" path="res://Scripts/Scenes/BlackoutEffect.gd" id="24_q4phi"]
+[ext_resource type="Shader" uid="uid://b00btmil63bpd" path="res://Scripts/Shaders/eye_cut.gdshader" id="25_l6upy"]
+[ext_resource type="Script" uid="uid://ddc2i4ykn2wn" path="res://Scripts/Effects/EyeCutEffect.gd" id="26_q1da7"]
+[ext_resource type="Shader" uid="uid://cb2h1lxmcm7e" path="res://Scripts/Shaders/eye_released.gdshader" id="27_4i2d8"]
+[ext_resource type="Script" uid="uid://cb2h06q5dmge" path="res://Scripts/Effects/EyeReleasedEffect.gd" id="28_vrafb"]
+[ext_resource type="Shader" uid="uid://j5wxgl4keu4c" path="res://Scripts/Shaders/blur.gdshader" id="29_2ko4f"]
+[ext_resource type="Script" uid="uid://b036r1bbtl2ug" path="res://Scripts/UI/PointAndClickScenes/SceneParallaxController.gd" id="30_pkhyj"]
+[ext_resource type="PackedScene" uid="uid://kvbvxu0vbc8y" path="res://Scenes/Timer/timer.tscn" id="31_geuv8"]
+
+[sub_resource type="Gradient" id="Gradient_blackout"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yuqn6"]
+gradient = SubResource("Gradient_blackout")
+width = 1920
+height = 1080
+
+[sub_resource type="Animation" id="Animation_0gpqo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/speed")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0999999977648]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:material:shader_parameter/swirl")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0999999977648]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:material:shader_parameter/pain_coef")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:material:shader_parameter/alpha")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_blackout"]
+resource_name = "blackout"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_amx12"]
+resource_name = "first_stab"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/speed")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.19999999),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0999999977648, 1.999999955296]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/swirl")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.13333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0999999977648, 1.499999966472]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:material:shader_parameter/pain_coef")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.19999999),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.10000000149012]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:material:shader_parameter/alpha")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.19999999),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_280ws"]
+_data = {
+&"RESET": SubResource("Animation_0gpqo"),
+&"blackout": SubResource("Animation_blackout"),
+&"first_stab": SubResource("Animation_amx12")
+}
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_826rm"]
+noise_type = 2
+seed = 3
+frequency = 0.001
+fractal_type = 0
+cellular_jitter = 0.01
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0gpqo"]
+width = 15360
+height = 8640
+noise = SubResource("FastNoiseLite_826rm")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_53mqq"]
+shader = ExtResource("25_l6upy")
+shader_parameter/eye_center = Vector2(300, 540)
+shader_parameter/needle_center = Vector2(300, 540)
+shader_parameter/eye_mouse_offset = Vector2(0, 0)
+shader_parameter/camera_dist = 150.0
+shader_parameter/eye_point_rad = 20.0
+shader_parameter/eye_line_width = 5.0
+shader_parameter/between_radius_scale = 0.45
+shader_parameter/between_alpha = 0.8
+shader_parameter/cellur_noise = SubResource("NoiseTexture2D_0gpqo")
+shader_parameter/pixel_size = 2
+shader_parameter/smooth_coeff = 120.0
+shader_parameter/highest_side_point = Vector2(744, 0)
+shader_parameter/center_line_point = Vector2(833, 540)
+shader_parameter/time = 0.0
+shader_parameter/flow_depth = 0.24999999813732
+shader_parameter/color_shift = 2.999999932944
+shader_parameter/swirl = -0.10000004246880012
+shader_parameter/density = 0.28999999351792
+shader_parameter/pain_coef = 0.0
+shader_parameter/alpha = 1.0
+shader_parameter/show_line = true
+shader_parameter/full_red_alpha = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k3ps1"]
+shader = ExtResource("27_4i2d8")
+shader_parameter/eye_center = Vector2(300, 540)
+shader_parameter/eye_point_rad = 20.0
+shader_parameter/pixel_size = 2
+shader_parameter/smooth_coeff = 120.0
+shader_parameter/highest_side_point = Vector2(744, 0)
+shader_parameter/center_line_point = Vector2(833, 540)
+shader_parameter/alpha = 1.0
+shader_parameter/full_red_alpha = 0.0
+shader_parameter/blink = 0.0
+shader_parameter/abberation_vec = Vector2(20, 0)
+
+[sub_resource type="Gradient" id="Gradient_black"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_l5u3p"]
+gradient = SubResource("Gradient_black")
+width = 1920
+height = 1080
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rvond"]
+shader = ExtResource("29_2ko4f")
+shader_parameter/offset = 0.0
+
+[sub_resource type="Gradient" id="Gradient_0gpqo"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_m4hps"]
+gradient = SubResource("Gradient_0gpqo")
+
+[sub_resource type="GDScript" id="GDScript_j35rs"]
+script/source = "extends SceneDialogManager
+
+const HUM_MUSIC := \"res://Assets/Audio/Music/hum.wav\"
+const WATER_SOUND := \"res://Assets/Audio/Sounds/water_kitchen.mp3\"
+const STORAGE_HUM_FADE_SECONDS := 8.0
+const KITCHEN_BUSY := \"res://Files/SceneDialogs/Ink/kitchen_busy.ink\"
+@onready var blackout: BlackoutEffect = $\"../Blackout\"
+@onready var blackout_keep_dialog: BlackoutEffect = $\"../BlackoutKeepDialog\"
+
+var gun_drawn := false
+var _storage_hum := false
+
+func process_event(event: String) -> void:
+	if event == \"storage_opened\":
+		on_storage_opened()
+		return
+	if event == \"kitchen_blocked\":
+		_on_kitchen_blocked()
+		return
+	if event == \"equip_gun\":
+		_on_equip_gun()
+		return
+	if event == \"unequip_gun\":
+		_on_unequip_gun()
+		return
+	if event == \"silence_kitchen\":
+		_silence_kitchen()
+		return
+	if event == \"reveal_rag\":
+		_reveal_room_child(\"bathroom\", \"Rag\")
+		return
+	if event == \"reveal_tea\":
+		_reveal_room_child(\"kitchen_couch\", \"Tea\")
+		return
+	if event == \"reveal_empty_tea\":
+		_reveal_room_child(\"kitchen_couch\", \"EmptyTea\")
+		return
+	if event == \"mark_glass_eye\":
+		mark_glass_eye()
+		return
+	if event == \"story_storage_fire_finished\":
+		game_over()
+	super.process_event(event)
+
+func game_over() -> void:
+	blackout.effect_blackout()
+
+func set_gun_drawn(drawn: bool) -> void:
+	if gun_drawn == drawn:
+		return
+	gun_drawn = drawn
+	InkVariableStore.set_value(\"gun_drawn\", drawn)
+	if drawn:
+		CommonAudioProcessor.transition_music(HUM_MUSIC)
+	elif not _storage_hum:
+		CommonAudioProcessor.transition_music(SceneLoader.DAY_MUSIC)
+
+func on_storage_opened() -> void:
+	if _storage_hum:
+		return
+	_storage_hum = true
+	CommonAudioProcessor.transition_music(HUM_MUSIC, STORAGE_HUM_FADE_SECONDS)
+
+func mark_glass_eye() -> void:
+	InkVariableStore.set_value(\"has_glass_eye\", true)
+
+func mark_passports_seen() -> void:
+	InkVariableStore.set_value(\"saw_passports\", true)
+
+func store_gun_drawn() -> void:
+	InkVariableStore.set_value(\"gun_drawn\", gun_drawn)
+
+func _on_kitchen_blocked() -> void:
+	if DialogController.is_dialog_active():
+		return
+	if dialog_controller == null:
+		printerr(\"SceneStates: no DialogController\")
+		return
+	dialog_controller.start_story(KITCHEN_BUSY)
+
+func _on_equip_gun() -> void:
+	set_gun_drawn(true)
+	if DialogController.is_dialog_active():
+		return
+	if flag(\"engineer_dead\"):
+		return
+	if dialog_controller == null:
+		printerr(\"SceneStates: no DialogController\")
+		return
+	dialog_controller.start_story(DialogPathConstants.GUN_EQUIP)
+
+func _on_unequip_gun() -> void:
+	set_gun_drawn(false)
+
+func _silence_kitchen() -> void:
+	if not CommonAudioProcessor.has_looped_sound(WATER_SOUND):
+		return
+	var command := AudioSoundLoopedCoomand.new()
+	command.instant = true
+	command.resource_name = WATER_SOUND
+	command.post_action = AudioConstants.STOP
+	CommonAudioProcessor.process_sound_looped(command)
+
+func _reveal_room_child(room_name: String, child_name: String) -> void:
+	var scene := HouseSceneBase.current_house_scene as HouseScenePreview
+	if scene == null:
+		printerr(\"SceneStates: no house scene\")
+		return
+	scene.set_room_child_visible(room_name, child_name, true)
+
+func suspicion() -> int:
+	return int(InkVariableStore.get_value(\"suspicion\", 0))
+
+func store_arrival_flags() -> void:
+	var shelf_open := bool(StateManager.get_state(CustomBookshelfSceneItemUI.STATE_OPEN, false))
+	InkVariableStore.set_value(\"closet_open\", shelf_open)
+
+func engineer() -> SceneCharacter:
+	var scene := HouseSceneBase.current_house_scene as HouseScenePreview
+	if scene == null:
+		return null
+	var character := scene.find_character(\"engineer\")
+	if character:
+		return character
+	return scene.get_node_or_null(\"Characters/Engineer\") as SceneCharacter
+
+func show_engineer(location: String, emotion: String = \"\") -> void:
+	var character := engineer()
+	if character == null:
+		printerr(\"SceneStates: no engineer\")
+		return
+	var root := character.get_parent()
+	if root:
+		root.visible = true
+	if not emotion.is_empty():
+		character.set_emotion(emotion)
+	character.set_location(location)
+"
+
+[sub_resource type="GDScript" id="GDScript_wm53h"]
+script/source = "extends SceneDialogState
+
+func activate() -> void:
+	super.activate()
+	play(DialogPathConstants.ROAD_TO_ZAKHAR_WASTELAND)
+	print(\"wasteland done\")
+
+func process_event(event: String) -> void:
+	if event == \"room_street_1\":
+		activate_next(0)
+"
+
+[sub_resource type="GDScript" id="GDScript_h8ddq"]
+script/source = "extends SceneDialogState
+
+func activate() -> void:
+	super.activate()
+	# TODO: кал
+	await get_tree().create_timer(1).timeout
+	play(DialogPathConstants.ROAD_TO_ZAKHAR_STREET_1)
+	print(\"street_1 done\")
+
+func process_event(event: String) -> void:
+	if event == \"room_random_house\":
+		activate_next(0)
+"
+
+[sub_resource type="GDScript" id="GDScript_2ncxo"]
+script/source = "extends SceneDialogState
+
+func activate() -> void:
+	super.activate()
+	# TODO: кал
+	await get_tree().create_timer(1).timeout
+	play(DialogPathConstants.ROAD_TO_ZAKHAR_RANDOM_HOUSE)
+	print(\"random_house done\")
+
+func process_event(event: String) -> void:
+	if event == \"room_street_2\":
+		activate_next(0)
+"
+
+[sub_resource type="GDScript" id="GDScript_iyokh"]
+script/source = "extends SceneDialogState
+
+func activate() -> void:
+	super.activate()
+	# TODO: кал
+	await get_tree().create_timer(1).timeout
+	play(DialogPathConstants.ROAD_TO_ZAKHAR_STREET_2)
+	print(\"street_2 done\")
+
+func process_event(event: String) -> void:
+	if event == \"room_street_3\":
+		activate_next(0)
+"
+
+[sub_resource type="GDScript" id="GDScript_n2yyr"]
+script/source = "extends SceneDialogState
+
+func activate() -> void:
+	super.activate()
+	# TODO: кал
+	await get_tree().create_timer(1).timeout
+	play(DialogPathConstants.ROAD_TO_ZAKHAR_STREET_3)
+	print(\"street_3 done\")
+
+func process_event(event: String) -> void:
+	if event == \"room_girl\":
+		activate_next(0)
+"
+
+[sub_resource type="GDScript" id="GDScript_tqmps"]
+script/source = "extends SceneDialogState
+
+func activate() -> void:
+	super.activate()
+	# TODO: кал
+	await get_tree().create_timer(1).timeout
+	play(DialogPathConstants.ROAD_TO_ZAKHAR_GIRL_1)
+	print(\"girl_1 done\")
+
+func process_event(event: String) -> void:
+	if event == \"girl_2\":
+		activate_next(0)
+"
+
+[sub_resource type="GDScript" id="GDScript_4p6mq"]
+script/source = "extends SceneDialogState
+
+func activate() -> void:
+	super.activate()
+	# TODO: кал
+	await get_tree().create_timer(1).timeout
+	play(DialogPathConstants.ROAD_TO_ZAKHAR_GIRL_2)
+	print(\"girl_2 done\")
+
+func process_event(event: String) -> void:
+	# TODO
+	pass
+"
+
+[node name="RoadToZakhar" type="Node2D" unique_id=212067372 node_paths=PackedStringArray("scene_states")]
+script = ExtResource("1_klbl6")
+scene_states = NodePath("SceneStates")
+init_room = "wasteland"
+room_scenes = Array[PackedScene]([ExtResource("2_s77r8"), ExtResource("3_4p6mq"), ExtResource("4_swtrb"), ExtResource("5_dbs14"), ExtResource("6_xyd57"), ExtResource("7_3o868")])
+
+[node name="Rooms" type="Node2D" parent="." unique_id=1642067119]
+
+[node name="SceneObjectManager" type="Node2D" parent="." unique_id=1877289425 node_paths=PackedStringArray("inventory")]
+script = ExtResource("2_ufa8r")
+inventory = NodePath("../Inventory")
+
+[node name="Characters" type="Node2D" parent="." unique_id=1927461298]
+
+[node name="Inventory" parent="." unique_id=1617643402 instance=ExtResource("22_adkuu")]
+z_index = 3
+anchors_preset = 15
+anchor_top = 0.0
+anchor_right = 1.0
+offset_top = 1080.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DialogController" parent="." unique_id=158973333 instance=ExtResource("23_076kp")]
+position = Vector2(-73, 370)
+story = null
+
+[node name="ParallaxComponent" type="Node" parent="DialogController" unique_id=19293721]
+script = ExtResource("17_4sxl5")
+camera_distance = 50.0
+
+[node name="Blackout" type="TextureRect" parent="." unique_id=440049297]
+modulate = Color(1, 1, 1, 0)
+z_index = 8
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_yuqn6")
+expand_mode = 1
+script = ExtResource("24_q4phi")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Blackout" unique_id=413297644]
+libraries/ = SubResource("AnimationLibrary_280ws")
+
+[node name="BlackoutKeepDialog" type="TextureRect" parent="." unique_id=515986306]
+modulate = Color(1, 1, 1, 0)
+z_index = 6
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_yuqn6")
+expand_mode = 1
+script = ExtResource("24_q4phi")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BlackoutKeepDialog" unique_id=1623973399]
+libraries/ = SubResource("AnimationLibrary_280ws")
+
+[node name="EyeCutEffect" type="TextureRect" parent="." unique_id=74013714]
+visible = false
+z_index = 6
+material = SubResource("ShaderMaterial_53mqq")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_yuqn6")
+expand_mode = 1
+script = ExtResource("26_q1da7")
+
+[node name="GhostEyeEffect" type="TextureRect" parent="." unique_id=268775351]
+visible = false
+z_index = 6
+material = SubResource("ShaderMaterial_k3ps1")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_l5u3p")
+expand_mode = 1
+script = ExtResource("28_vrafb")
+
+[node name="BlurEffect" type="TextureRect" parent="." unique_id=525828492]
+visible = false
+z_index = 6
+material = SubResource("ShaderMaterial_rvond")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_m4hps")
+expand_mode = 1
+script = ExtResource("26_q1da7")
+
+[node name="SceneParallax" type="Node" parent="." unique_id=1968029899]
+script = ExtResource("30_pkhyj")
+
+[node name="GameTimer" parent="." unique_id=2126109467 instance=ExtResource("31_geuv8")]
+z_index = 3
+
+[node name="SceneStates" type="Node" parent="." unique_id=1857681573 node_paths=PackedStringArray("dialog_controller", "timer", "first_state")]
+script = SubResource("GDScript_j35rs")
+dialog_controller = NodePath("../DialogController")
+timer = NodePath("../GameTimer")
+first_state = NodePath("Wasteland/Street1/RandomHouse/Street2/Street3/Girl1")
+
+[node name="Wasteland" type="Node" parent="SceneStates" unique_id=1874648803 node_paths=PackedStringArray("next_options")]
+script = SubResource("GDScript_wm53h")
+next_options = [NodePath("Street1")]
+
+[node name="Street1" type="Node" parent="SceneStates/Wasteland" unique_id=1555869815 node_paths=PackedStringArray("next_options")]
+script = SubResource("GDScript_h8ddq")
+next_options = [NodePath("RandomHouse")]
+
+[node name="RandomHouse" type="Node" parent="SceneStates/Wasteland/Street1" unique_id=1546941589 node_paths=PackedStringArray("next_options")]
+script = SubResource("GDScript_2ncxo")
+next_options = [NodePath("Street2")]
+
+[node name="Street2" type="Node" parent="SceneStates/Wasteland/Street1/RandomHouse" unique_id=1660383145 node_paths=PackedStringArray("next_options")]
+script = SubResource("GDScript_iyokh")
+next_options = [NodePath("Street3")]
+
+[node name="Street3" type="Node" parent="SceneStates/Wasteland/Street1/RandomHouse/Street2" unique_id=437397858 node_paths=PackedStringArray("next_options")]
+script = SubResource("GDScript_n2yyr")
+next_options = [NodePath("Girl1")]
+
+[node name="Girl1" type="Node" parent="SceneStates/Wasteland/Street1/RandomHouse/Street2/Street3" unique_id=1017560121 node_paths=PackedStringArray("next_options")]
+script = SubResource("GDScript_tqmps")
+next_options = [NodePath("Girl2")]
+
+[node name="Girl2" type="Node" parent="SceneStates/Wasteland/Street1/RandomHouse/Street2/Street3/Girl1" unique_id=1240450529]
+script = SubResource("GDScript_4p6mq")
