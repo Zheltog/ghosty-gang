@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://dsv4n0kgxor25"]
+
+[ext_resource type="Script" uid="uid://bgebmjt4oem53" path="res://Scripts/Room/RoomBase.gd" id="1_jipc3"]
+[ext_resource type="Texture2D" uid="uid://vu8gpff3gcs" path="res://Assets/Sprites/Backgrounds/creepy_0.png" id="2_44kdc"]
+[ext_resource type="Shader" uid="uid://bijlg1a40xars" path="res://Scripts/Shaders/bg_pxlization.gdshader" id="2_mcnvx"]
+[ext_resource type="Texture2D" uid="uid://dba88ntoitw1a" path="res://Assets/Sprites/ShaderTextures/aap-64-1x.png" id="3_2gf6b"]
+[ext_resource type="Script" uid="uid://8p77bw84c7bp" path="res://Scripts/UI/PointAndClickScenes/Components/ParallaxComponent.gd" id="3_mcnvx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dmsuh"]
+shader = ExtResource("2_mcnvx")
+shader_parameter/palette = ExtResource("3_2gf6b")
+shader_parameter/use_palette = true
+shader_parameter/dithering_strength = 0.0
+shader_parameter/dithering = false
+shader_parameter/dithering_size = 2
+shader_parameter/pixel_size = 6
+shader_parameter/brightness = 1.0
+shader_parameter/contrast = 1.0
+shader_parameter/saturation = 1.0
+
+[node name="Street2" type="Node2D" unique_id=1554746737]
+script = ExtResource("1_jipc3")
+room_name = "street_2"
+
+[node name="Background" type="Sprite2D" parent="." unique_id=1180471024]
+material = SubResource("ShaderMaterial_dmsuh")
+position = Vector2(960, 540)
+texture = ExtResource("2_44kdc")
+
+[node name="ParallaxComponent" type="Node" parent="Background" unique_id=5209960]
+script = ExtResource("3_mcnvx")
+camera_distance = 100.0

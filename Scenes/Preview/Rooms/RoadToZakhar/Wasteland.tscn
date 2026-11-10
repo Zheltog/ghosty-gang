@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://d3coyeaw5ye5s"]
+
+[ext_resource type="Script" uid="uid://bgebmjt4oem53" path="res://Scripts/Room/RoomBase.gd" id="1_caike"]
+[ext_resource type="Texture2D" uid="uid://vu8gpff3gcs" path="res://Assets/Sprites/Backgrounds/creepy_0.png" id="2_foi24"]
+[ext_resource type="Shader" uid="uid://bijlg1a40xars" path="res://Scripts/Shaders/bg_pxlization.gdshader" id="2_yvi11"]
+[ext_resource type="Texture2D" uid="uid://dba88ntoitw1a" path="res://Assets/Sprites/ShaderTextures/aap-64-1x.png" id="3_cweko"]
+[ext_resource type="Script" uid="uid://8p77bw84c7bp" path="res://Scripts/UI/PointAndClickScenes/Components/ParallaxComponent.gd" id="3_wl1if"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4cogn"]
+shader = ExtResource("2_yvi11")
+shader_parameter/palette = ExtResource("3_cweko")
+shader_parameter/use_palette = true
+shader_parameter/dithering_strength = 0.0
+shader_parameter/dithering = false
+shader_parameter/dithering_size = 2
+shader_parameter/pixel_size = 6
+shader_parameter/brightness = 1.0
+shader_parameter/contrast = 1.0
+shader_parameter/saturation = 1.0
+
+[node name="Wasteland" type="Node2D" unique_id=1219065441]
+script = ExtResource("1_caike")
+room_name = "wasteland"
+
+[node name="Background" type="Sprite2D" parent="." unique_id=1301810334]
+material = SubResource("ShaderMaterial_4cogn")
+position = Vector2(960, 540)
+texture = ExtResource("2_foi24")
+
+[node name="ParallaxComponent" type="Node" parent="Background" unique_id=597929273]
+script = ExtResource("3_wl1if")
+camera_distance = 100.0

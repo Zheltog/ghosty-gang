@@ -1,0 +1,17 @@
+[remap]
+
+importer="ink"
+importer_version=2
+type="Resource"
+uid="uid://we4im1j0ehr6"
+path="res://.godot/imported/road_to_zakhar_street_3.ink-6be59fe0f8146e2afdee098c80b8e6ea.res"
+
+[deps]
+
+source_file="res://Files/SceneDialogs/Ink/RoadToZakhar/road_to_zakhar_street_3.ink"
+dest_files=["res://.godot/imported/road_to_zakhar_street_3.ink-6be59fe0f8146e2afdee098c80b8e6ea.res"]
+
+[params]
+
+is_main_file=true
+compress=true
