@@ -15,6 +15,7 @@ var _reactions := DialogReactions.new()
 var _current_choices: Array = []
 var _story_path: String = ""
 var _story_finished := false
+var _presenting_locked := false
 static var dialog_active := false
 static var world_locked := true
 
@@ -116,10 +117,12 @@ func _clear_choice_timer() -> void:
 	timer.reset()
 
 func _present_line() -> void:
-	if story == null:
+	if story == null or _presenting_locked:
 		return
 	_clear_choice_timer()
+	_presenting_locked = true
 	var advanced := _advance_to_line()
+	_presenting_locked = false
 	_current_choices = _read_choices()
 	var visible_choices := _visible_choices(_current_choices)
 	if advanced:

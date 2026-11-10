@@ -8,12 +8,6 @@ EXTERNAL godot_1(target_class, method, arg)
 -> wasteland
 
 === wasteland ===
-Мороз обжигает рану, и ты поначалу закрываешь ее ладонью, но постепенно боль ослабевает. # thought
-На такой погоде и пакет со льдом ни к чему. # thought
-В голове туман. # thought
-Мысли короткие и громкие: # thought
-Найти помощь. # thought
-Выбраться из поселка. # thought
 Но поблизости, как назло, никого нет. # thought 
 ~ godot_1("RoadToZakharScenePreview", "load_room", "street_1")
 -> END
