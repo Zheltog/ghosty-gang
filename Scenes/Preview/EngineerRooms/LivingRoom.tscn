@@ -1,0 +1,161 @@
+[gd_scene format=3 uid="uid://c8livroom0a1b"]
+
+[ext_resource type="Script" uid="uid://bgebmjt4oem53" path="res://Scripts/Room/RoomBase.gd" id="1_ntvm2"]
+[ext_resource type="Material" uid="uid://ckxbhw6pumol4" path="res://Assets/Material/bg_pixelization.tres" id="2_h3cuv"]
+[ext_resource type="Texture2D" uid="uid://b0py2yj1806ru" path="res://Assets/Sprites/Backgrounds/hall_1_normal.png" id="3_o4xl0"]
+[ext_resource type="Script" uid="uid://3yscu2its1" path="res://Scenes/Test/Dron/DarknessEffect.gd" id="4_oajoo"]
+[ext_resource type="Script" uid="uid://8p77bw84c7bp" path="res://Scripts/UI/PointAndClickScenes/Components/ParallaxComponent.gd" id="5_ldbp5"]
+[ext_resource type="Material" uid="uid://br1nkg6tco5d0" path="res://Assets/Material/outline_material.tres" id="6_sskle"]
+[ext_resource type="Texture2D" uid="uid://civ2aqp08jo68" path="res://Assets/Sprites/SceneItems/Outlines/LivingRoom_ToBookshelf.png" id="7_g5ilm"]
+[ext_resource type="Script" uid="uid://d37oapbkld1pk" path="res://Scripts/UI/PointAndClickScenes/SceneUIDoor.gd" id="8_q58hc"]
+[ext_resource type="Texture2D" uid="uid://dvwlhwkaepph0" path="res://Assets/Sprites/SceneItems/Outlines/LivingRoom_ToKitchen.png" id="9_ij34y"]
+[ext_resource type="Texture2D" uid="uid://d3xm1qiyrx3jx" path="res://Assets/Sprites/SceneItems/Outlines/LivingRoom_ToUnderBed.png" id="10_v74xe"]
+[ext_resource type="PackedScene" uid="uid://mt1xmuy8xhd5" path="res://Scenes/PointAndClick/SceneUIDoor.tscn" id="11_aogjm"]
+[ext_resource type="Texture2D" uid="uid://dadq1xc3xcndr" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/MoveBack.png" id="12_ljpsp"]
+[ext_resource type="Texture2D" uid="uid://co8o3ss2524v8" path="res://Assets/Sprites/SceneItems/Outlines/LivingRoom_Tumba.png" id="13_3r4oi"]
+[ext_resource type="Script" uid="uid://cjwqo45k5xnx0" path="res://Scripts/UI/PointAndClickScenes/SceneItemUI.gd" id="14_4i8tj"]
+
+[node name="LivingRoom" type="Node2D" unique_id=1900112235]
+script = ExtResource("1_ntvm2")
+room_name = "living_room"
+
+[node name="Background" type="Sprite2D" parent="." unique_id=2145012301]
+material = ExtResource("2_h3cuv")
+instance_shader_parameters/lighted_index = 7
+position = Vector2(960, 540)
+texture = ExtResource("3_o4xl0")
+script = ExtResource("4_oajoo")
+
+[node name="ParallaxComponent" type="Node" parent="Background" unique_id=2145012302]
+script = ExtResource("5_ldbp5")
+camera_distance = 100.0
+
+[node name="ToBookshelf" type="Sprite2D" parent="." unique_id=-1294967293]
+texture_filter = 1
+material = ExtResource("6_sskle")
+instance_shader_parameters/enabled = false
+instance_shader_parameters/fill_visible = false
+position = Vector2(1526, 474)
+texture = ExtResource("7_g5ilm")
+offset = Vector2(-375, -6.5)
+script = ExtResource("8_q58hc")
+target_room = "bookshelf"
+scene_item_id = 21
+intercation_type = 0
+
+[node name="Area2D" type="Area2D" parent="ToBookshelf" unique_id=874107418]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ToBookshelf/Area2D" unique_id=1352041128]
+polygon = PackedVector2Array(-221, -153, -241, 110, -503, 155, -526, 137, -522, -162, -497, -168)
+
+[node name="ParallaxComponent" type="Node" parent="ToBookshelf" unique_id=-1294967292]
+script = ExtResource("5_ldbp5")
+camera_distance = 100.0
+
+[node name="ToKitchen" type="Sprite2D" parent="." unique_id=1422088194]
+texture_filter = 1
+material = ExtResource("6_sskle")
+instance_shader_parameters/enabled = false
+instance_shader_parameters/fill_visible = false
+position = Vector2(826, 478)
+texture = ExtResource("9_ij34y")
+offset = Vector2(-113, 17.5)
+script = ExtResource("8_q58hc")
+target_room = "kitchen"
+scene_item_id = 21
+intercation_type = 0
+
+[node name="Area2D" type="Area2D" parent="ToKitchen" unique_id=891129043]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ToKitchen/Area2D" unique_id=563413442]
+polygon = PackedVector2Array(-30, 165, -40, -146, -196, -149, -171, 184)
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="ParallaxComponent" type="Node" parent="ToKitchen" unique_id=2145012307]
+script = ExtResource("5_ldbp5")
+camera_distance = 100.0
+
+[node name="ToUnderBed" type="Sprite2D" parent="." unique_id=-1294967275]
+texture_filter = 1
+material = ExtResource("6_sskle")
+instance_shader_parameters/enabled = false
+instance_shader_parameters/fill_visible = false
+position = Vector2(1624, 1108)
+texture = ExtResource("10_v74xe")
+offset = Vector2(115, -320)
+script = ExtResource("8_q58hc")
+target_room = "under_bed"
+scene_item_id = 21
+intercation_type = 0
+
+[node name="Area2D" type="Area2D" parent="ToUnderBed" unique_id=829779427]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ToUnderBed/Area2D" unique_id=2015330451]
+polygon = PackedVector2Array(-125, -219, -163, -229, -132, -417, -118, -422, -89, -410, -89, -393, -63, -384, 184, -466, 213, -575, 399, -537, 396, -34, -111, -286)
+
+[node name="ParallaxComponent" type="Node" parent="ToUnderBed" unique_id=-1294967274]
+script = ExtResource("5_ldbp5")
+camera_distance = 100.0
+
+[node name="ToLivingRoomToExit" parent="." unique_id=2015736750 instance=ExtResource("11_aogjm")]
+position = Vector2(268, 270)
+texture = ExtResource("12_ljpsp")
+target_room = "living_room_to_exit"
+scene_item_id = 21
+intercation_type = 0
+
+[node name="ParallaxComponent" type="Node" parent="ToLivingRoomToExit" unique_id=426732625]
+script = ExtResource("5_ldbp5")
+camera_distance = 100.0
+
+[node name="ToPreroom" parent="." unique_id=1167534544 instance=ExtResource("11_aogjm")]
+position = Vector2(985, 1026)
+rotation = -1.5707964
+texture = ExtResource("12_ljpsp")
+target_room = "preroom"
+scene_item_id = 21
+intercation_type = 0
+
+[node name="ParallaxComponent" type="Node" parent="ToPreroom" unique_id=1059769946]
+script = ExtResource("5_ldbp5")
+camera_distance = 100.0
+
+[node name="CharacterPositions" type="Node2D" parent="." unique_id=1196062906]
+
+[node name="default" type="Marker2D" parent="CharacterPositions" unique_id=1568120115]
+position = Vector2(924, 557)
+scale = Vector2(0.15, 0.15)
+
+[node name="lay_dead" type="Marker2D" parent="CharacterPositions" unique_id=845893054]
+position = Vector2(1034, 790)
+scale = Vector2(0.2, 0.2)
+
+[node name="engineer_stand_back" type="Marker2D" parent="CharacterPositions" unique_id=86477806]
+position = Vector2(1206, 517)
+scale = Vector2(0.4, 0.4)
+
+[node name="engineer_stand_tea" type="Marker2D" parent="CharacterPositions" unique_id=1643850696]
+position = Vector2(765, 513)
+scale = Vector2(0.08, 0.08)
+
+[node name="Tumba" type="Sprite2D" parent="." unique_id=412354703]
+texture_filter = 1
+material = ExtResource("6_sskle")
+instance_shader_parameters/enabled = false
+instance_shader_parameters/fill_visible = false
+position = Vector2(1622, 648)
+texture = ExtResource("13_3r4oi")
+offset = Vector2(45, -3)
+script = ExtResource("14_4i8tj")
+scene_item_id = 11
+intercation_type = 0
+
+[node name="ParallaxComponent" type="Node" parent="Tumba" unique_id=1480807976]
+script = ExtResource("5_ldbp5")
+camera_distance = 100.0
+
+[node name="Area2D" type="Area2D" parent="Tumba" unique_id=1236996655]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Tumba/Area2D" unique_id=1268969725]
+polygon = PackedVector2Array(-48, 53, -18, 63, 121, 18, 138, -43, 30, -69, -28, -47)

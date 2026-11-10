@@ -6,6 +6,6 @@ func _init() -> void:
 	pickable = false
 	ink_story_view = "res://Files/SceneDialogs/Ink/keyhole.ink"
 	interaction_type = SceneItemUI.INTERACTION_TYPE.LOOK
-	interaction_overload[InventoryItemGenerator.INVENTORY_ITEM.KEY_BOOKSHELF] = {"interaction_type": SceneItemUI.INTERACTION_TYPE.TAKE, "ink_story_view": "res://Files/SceneDialogs/Ink/keyhole_unlock.ink"}
+	interaction_overload[InventoryItemGenerator.INVENTORY_ITEM.KEY_BOOKSHELF] = {"interaction_type": SceneItemUI.INTERACTION_TYPE.KEY, "ink_story_view": "res://Files/SceneDialogs/Ink/keyhole_unlock.ink"}
 
 # SKIP GENERATION

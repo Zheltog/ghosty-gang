@@ -1,0 +1,165 @@
+[gd_scene format=3 uid="uid://c8storage00a1"]
+
+[ext_resource type="Script" uid="uid://bgebmjt4oem53" path="res://Scripts/Room/RoomBase.gd" id="1_qtqxp"]
+[ext_resource type="Material" uid="uid://ckxbhw6pumol4" path="res://Assets/Material/bg_pixelization.tres" id="2_bgpix"]
+[ext_resource type="Material" uid="uid://cettvgv7o7kmc" path="res://Assets/Material/darkness_material.tres" id="2_4h4dh"]
+[ext_resource type="Texture2D" uid="uid://de3p3kuu483v4" path="res://Assets/Sprites/Backgrounds/storage_normal.png" id="3_mv80i"]
+[ext_resource type="Script" uid="uid://3yscu2its1" path="res://Scenes/Test/Dron/DarknessEffect.gd" id="4_tn7j2"]
+[ext_resource type="Script" uid="uid://8p77bw84c7bp" path="res://Scripts/UI/PointAndClickScenes/Components/ParallaxComponent.gd" id="5_76ue4"]
+[ext_resource type="PackedScene" uid="uid://mt1xmuy8xhd5" path="res://Scenes/PointAndClick/SceneUIDoor.tscn" id="6_ywwly"]
+[ext_resource type="Texture2D" uid="uid://dadq1xc3xcndr" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/MoveBack.png" id="7_a10on"]
+[ext_resource type="Texture2D" uid="uid://dyc2vkwumy8vh" path="res://Assets/Sprites/SceneItems/EngineerHouse/passport_dark.png" id="8_sj3t8"]
+[ext_resource type="Script" uid="uid://d3n5tan6phw67" path="res://Scripts/UI/PointAndClickScenes/CustomSceneItemUIInDarkness.gd" id="9_f2u8l"]
+[ext_resource type="Texture2D" uid="uid://bkm4i26uvf7r6" path="res://Assets/Sprites/SceneItems/EngineerHouse/gun_dark.png" id="10_jvvr4"]
+
+[node name="Storage" type="Node2D" unique_id=2005596028]
+script = ExtResource("1_qtqxp")
+room_name = "storage"
+
+[node name="Background" type="Sprite2D" parent="." unique_id=1597905437]
+material = ExtResource("2_bgpix")
+instance_shader_parameters/lighted_index = 13
+position = Vector2(960, 540)
+texture = ExtResource("3_mv80i")
+script = ExtResource("4_tn7j2")
+
+[node name="ParallaxComponent" type="Node" parent="Background" unique_id=1493908703]
+script = ExtResource("5_76ue4")
+camera_distance = 100.0
+
+[node name="ToExitFromStorage" parent="." unique_id=-794967289 instance=ExtResource("6_ywwly")]
+position = Vector2(109, 781)
+scale = Vector2(2, 2)
+texture = ExtResource("7_a10on")
+target_room = "exit_from_storage"
+scene_item_id = 6
+intercation_type = 0
+
+[node name="ParallaxComponent" type="Node" parent="ToExitFromStorage" unique_id=-794967288]
+script = ExtResource("5_76ue4")
+camera_distance = 100.0
+
+[node name="ToLivingRoom" parent="." unique_id=1637236262 instance=ExtResource("6_ywwly")]
+position = Vector2(944, 978)
+rotation = -1.5707964
+scale = Vector2(2, 2)
+texture = ExtResource("7_a10on")
+target_room = "bookshelf"
+scene_item_id = 21
+intercation_type = 0
+
+[node name="ParallaxComponent" type="Node" parent="ToLivingRoom" unique_id=366923515]
+script = ExtResource("5_76ue4")
+camera_distance = 100.0
+
+[node name="Character" type="AnimatedSprite2D" parent="." unique_id=231084293]
+position = Vector2(960, 540)
+
+[node name="Passport" type="Sprite2D" parent="." unique_id=412838733]
+material = ExtResource("2_4h4dh")
+instance_shader_parameters/lighted_index = 8
+position = Vector2(1226, 598)
+texture = ExtResource("8_sj3t8")
+script = ExtResource("9_f2u8l")
+intercation_type = 0
+metadata/_custom_type_script = "uid://cjwqo45k5xnx0"
+
+[node name="Area2D" type="Area2D" parent="Passport" unique_id=577383606]
+
+[node name="ParallaxComponent" type="Node" parent="Passport" unique_id=1696883358]
+script = ExtResource("5_76ue4")
+camera_distance = 100.0
+
+[node name="Gun" type="Sprite2D" parent="." unique_id=786481879]
+material = ExtResource("2_4h4dh")
+instance_shader_parameters/lighted_index = 7
+position = Vector2(1135, 843)
+texture = ExtResource("10_jvvr4")
+script = ExtResource("9_f2u8l")
+scene_item_id = 14
+intercation_type = 1
+metadata/_custom_type_script = "uid://cjwqo45k5xnx0"
+
+[node name="Area2D" type="Area2D" parent="Gun" unique_id=144310572]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gun/Area2D" unique_id=626482482]
+position = Vector2(2, 0)
+rotation = 0.14569734
+
+[node name="ParallaxComponent" type="Node" parent="Gun" unique_id=1898102586]
+script = ExtResource("5_76ue4")
+camera_distance = 100.0
+
+[node name="CharacterPositions" type="Node2D" parent="." unique_id=1853101449]
+
+[node name="default" type="Marker2D" parent="CharacterPositions" unique_id=1046564858]
+position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
+
+[node name="engineer_default" type="Marker2D" parent="CharacterPositions" unique_id=1174614894]
+position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
+
+[node name="engineer_attack_chair" type="Marker2D" parent="CharacterPositions" unique_id=890984979]
+position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
+
+[node name="engineer_close" type="Marker2D" parent="CharacterPositions" unique_id=1047724697]
+position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
+
+[node name="engineer_close_needle" type="Marker2D" parent="CharacterPositions" unique_id=293065066]
+position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
+
+[node name="engineer_lay_shot" type="Marker2D" parent="CharacterPositions" unique_id=1208693099]
+position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
+
+[node name="engineer_sit_normal" type="Marker2D" parent="CharacterPositions" unique_id=2130803303]
+position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
+
+[node name="engineer_sit_reach" type="Marker2D" parent="CharacterPositions" unique_id=1378807639]
+position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
+
+[node name="engineer_sit_shocked" type="Marker2D" parent="CharacterPositions" unique_id=1541769475]
+position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
+
+[node name="engineer_sit_shot" type="Marker2D" parent="CharacterPositions" unique_id=615656141]
+position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
+
+[node name="engineer_sit_suspicious" type="Marker2D" parent="CharacterPositions" unique_id=1500667082]
+position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
+
+[node name="engineer_stand_back" type="Marker2D" parent="CharacterPositions" unique_id=1914038322]
+position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
+
+[node name="engineer_stand_default" type="Marker2D" parent="CharacterPositions" unique_id=355021915]
+position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
+
+[node name="engineer_stand_scared" type="Marker2D" parent="CharacterPositions" unique_id=304410850]
+position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
+
+[node name="engineer_stand_shot" type="Marker2D" parent="CharacterPositions" unique_id=779165089]
+position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
+
+[node name="engineer_stand_smiling" type="Marker2D" parent="CharacterPositions" unique_id=1272731358]
+position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
+
+[node name="engineer_stand_suspicious" type="Marker2D" parent="CharacterPositions" unique_id=1264502391]
+position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)
+
+[node name="engineer_stand_tea" type="Marker2D" parent="CharacterPositions" unique_id=1766642265]
+position = Vector2(803, 383)
+scale = Vector2(0.15, 0.15)

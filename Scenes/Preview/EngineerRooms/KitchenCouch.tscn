@@ -1,0 +1,153 @@
+[gd_scene format=3 uid="uid://dqxonlmtlnied"]
+
+[ext_resource type="Script" uid="uid://bgebmjt4oem53" path="res://Scripts/Room/RoomBase.gd" id="1_u8j1x"]
+[ext_resource type="Material" uid="uid://cettvgv7o7kmc" path="res://Assets/Material/darkness_material.tres" id="2_71slc"]
+[ext_resource type="Material" uid="uid://ckxbhw6pumol4" path="res://Assets/Material/bg_pixelization.tres" id="2_bgpix"]
+[ext_resource type="Texture2D" uid="uid://cr26vxrodghv4" path="res://Assets/Sprites/Backgrounds/kitchen_sitting_normal.png" id="3_u8j1x"]
+[ext_resource type="Script" uid="uid://3yscu2its1" path="res://Scenes/Test/Dron/DarknessEffect.gd" id="4_bl6rl"]
+[ext_resource type="Script" uid="uid://8p77bw84c7bp" path="res://Scripts/UI/PointAndClickScenes/Components/ParallaxComponent.gd" id="5_n3wxg"]
+[ext_resource type="Texture2D" uid="uid://dm8rpbpys1eaf" path="res://Assets/Sprites/EquipedInventoryItems/glass_eye.png" id="12_oqwtk"]
+[ext_resource type="Texture2D" uid="uid://dadq1xc3xcndr" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/MoveBack.png" id="14_swiwo"]
+[ext_resource type="Script" uid="uid://d37oapbkld1pk" path="res://Scripts/UI/PointAndClickScenes/SceneUIDoor.gd" id="15_muhom"]
+[ext_resource type="Texture2D" uid="uid://cdssuxsiadf10" path="res://Assets/Sprites/SceneItems/EngineerHouse/kitchen_sitting_table_normal.png" id="17_qbynd"]
+[ext_resource type="PackedScene" uid="uid://dvnnea2fw2ndt" path="res://Scenes/PointAndClick/SceneItemUI.tscn" id="18_bl6rl"]
+[ext_resource type="Texture2D" uid="uid://cw3udwf0kwm8d" path="res://Assets/Sprites/InventoryItems/tea.png" id="19_n3wxg"]
+[ext_resource type="Texture2D" uid="uid://ehlj4r5kofa7" path="res://Assets/Sprites/SceneItems/EngineerHouse/tea_empty_icon.png" id="20_empty"]
+[ext_resource type="Texture2D" uid="uid://cgd7giams0kvf" path="res://Assets/Sprites/SceneItems/Outlines/KitchenCouch_ToLivingRoom.png" id="outline_KitchenCouch_ToLivingRoom"]
+[ext_resource type="Material" uid="uid://br1nkg6tco5d0" path="res://Assets/Material/outline_material.tres" id="outline_mat"]
+
+[node name="KitchenCouch" type="Node2D" unique_id=1900112234]
+script = ExtResource("1_u8j1x")
+room_name = "kitchen_couch"
+
+[node name="Background" type="Sprite2D" parent="." unique_id=2145012310]
+material = ExtResource("2_bgpix")
+instance_shader_parameters/lighted_index = 11
+position = Vector2(960, 540)
+texture = ExtResource("3_u8j1x")
+script = ExtResource("4_bl6rl")
+
+[node name="ParallaxComponent" type="Node" parent="Background" unique_id=2145012311]
+script = ExtResource("5_n3wxg")
+camera_distance = 100.0
+
+[node name="ToKitchen" type="Sprite2D" parent="." unique_id=1422088193]
+material = ExtResource("outline_mat")
+instance_shader_parameters/enabled = false
+position = Vector2(951, 1003)
+rotation = 1.5707964
+texture = ExtResource("14_swiwo")
+script = ExtResource("15_muhom")
+target_room = "kitchen"
+scene_item_id = 21
+intercation_type = 0
+
+[node name="Area2D" type="Area2D" parent="ToKitchen" unique_id=874107418]
+
+[node name="ParallaxComponent" type="Node" parent="ToKitchen" unique_id=2145012306]
+script = ExtResource("5_n3wxg")
+camera_distance = 100.0
+
+[node name="ToLivingRoom" type="Sprite2D" parent="." unique_id=139125228]
+texture_filter = 1
+material = ExtResource("outline_mat")
+instance_shader_parameters/enabled = false
+instance_shader_parameters/fill_visible = false
+position = Vector2(280, 520)
+texture = ExtResource("outline_KitchenCouch_ToLivingRoom")
+offset = Vector2(9.5, -7)
+script = ExtResource("15_muhom")
+target_room = "living_room"
+scene_item_id = 21
+intercation_type = 0
+
+[node name="Area2D" type="Area2D" parent="ToLivingRoom" unique_id=393573391]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ToLivingRoom/Area2D" unique_id=1554636578]
+polygon = PackedVector2Array(-145, -386, 136, -284, 164, 258, -78, 372)
+
+[node name="ParallaxComponent" type="Node" parent="ToLivingRoom" unique_id=460022309]
+script = ExtResource("5_n3wxg")
+camera_distance = 100.0
+
+[node name="CharacterPositions" type="Node2D" parent="." unique_id=603826549]
+
+[node name="default" type="Marker2D" parent="CharacterPositions" unique_id=1668231852]
+position = Vector2(916, 611.00006)
+scale = Vector2(0.9, 0.9)
+
+[node name="engineer_lay_dead" type="Marker2D" parent="CharacterPositions" unique_id=1235206975]
+position = Vector2(2601, -978)
+
+[node name="engineer_stand_scared" type="Marker2D" parent="CharacterPositions" unique_id=1049608247]
+position = Vector2(690, 544)
+scale = Vector2(0.3, 0.3)
+
+[node name="engineer_stand_normal" type="Marker2D" parent="CharacterPositions" unique_id=180781689]
+position = Vector2(690, 544)
+scale = Vector2(0.3, 0.3)
+
+[node name="engineer_stand_shot" type="Marker2D" parent="CharacterPositions" unique_id=789926856]
+position = Vector2(690, 544)
+scale = Vector2(0.3, 0.3)
+
+[node name="engineer_stand_chair" type="Marker2D" parent="CharacterPositions" unique_id=561167399]
+position = Vector2(690, 544)
+scale = Vector2(0.3, 0.3)
+
+[node name="engineer_stand_smiling" type="Marker2D" parent="CharacterPositions" unique_id=204728349]
+position = Vector2(690, 544)
+scale = Vector2(0.3, 0.3)
+
+[node name="engineer_stand_suspicious" type="Marker2D" parent="CharacterPositions" unique_id=466749143]
+position = Vector2(690, 544)
+scale = Vector2(0.3, 0.3)
+
+[node name="engineer_stand_tea" type="Marker2D" parent="CharacterPositions" unique_id=1019729049]
+position = Vector2(690, 544)
+scale = Vector2(0.3, 0.3)
+
+[node name="Table" type="Sprite2D" parent="." unique_id=2053642484]
+z_index = 2
+material = ExtResource("2_71slc")
+instance_shader_parameters/lighted_index = 11
+position = Vector2(959, 540)
+texture = ExtResource("17_qbynd")
+
+[node name="ParallaxComponent" type="Node" parent="Table" unique_id=120697409]
+script = ExtResource("5_n3wxg")
+camera_distance = 100.0
+
+[node name="Tea" parent="." unique_id=598298150 instance=ExtResource("18_bl6rl")]
+visible = false
+z_index = 2
+position = Vector2(573, 929)
+texture = ExtResource("19_n3wxg")
+scene_item_id = 17
+intercation_type = 1
+interact_during_dialog = true
+
+[node name="ParallaxComponent" type="Node" parent="Tea" unique_id=1472747300]
+script = ExtResource("5_n3wxg")
+camera_distance = 100.0
+
+[node name="EmptyTea" type="Sprite2D" parent="." unique_id=598298151]
+visible = false
+z_index = 2
+position = Vector2(573, 929)
+texture = ExtResource("20_empty")
+
+[node name="ParallaxComponent" type="Node" parent="EmptyTea" unique_id=1472747301]
+script = ExtResource("5_n3wxg")
+camera_distance = 100.0
+
+[node name="GlassEye" type="Sprite2D" parent="." unique_id=1946154003]
+visible = false
+z_index = 2
+position = Vector2(768, 914)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("12_oqwtk")
+
+[node name="ParallaxComponent" type="Node" parent="GlassEye" unique_id=847769909]
+script = ExtResource("5_n3wxg")
+camera_distance = 100.0

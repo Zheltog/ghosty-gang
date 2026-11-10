@@ -9,7 +9,7 @@ radius = 41.95
 script = ExtResource("1_h5vwa")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1905027742]
-scale = Vector2(0.4, 0.4)
+scale = Vector2(0.24, 0.24)
 
 [node name="Area2D" type="Area2D" parent="." unique_id=137682298]
 

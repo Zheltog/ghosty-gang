@@ -1,20 +1,22 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://dxao6dswgewmu"]
 
-[ext_resource type="Script" path="res://Scripts/Preview/DialogBackdrop.gd" id="1_backdrop"]
+[ext_resource type="Script" uid="uid://dip5o5vas7khn" path="res://Scripts/Preview/DialogBackdrop.gd" id="1_backdrop"]
 [ext_resource type="PackedScene" uid="uid://b3fjaokxpivbe" path="res://Scenes/Dialog/dialog_controller.tscn" id="2_dialog"]
-[ext_resource type="PackedScene" uid="uid://kvbvxu0vbc8y" path="res://Scenes/Timer/timer.tscn" id="timer_scene"]
 [ext_resource type="PackedScene" path="res://Scenes/Characters/EngineerCopy.tscn" id="3_character"]
 [ext_resource type="Script" uid="uid://ct24630qdy5qa" path="res://Scripts/Characters/SceneCharacter.gd" id="4_none"]
+[ext_resource type="PackedScene" uid="uid://17fxcbcv4a1n" path="res://Scenes/PointAndClick/InventoryUI/Inventory.tscn" id="6_rhcf3"]
+[ext_resource type="Script" uid="uid://b036r1bbtl2ug" path="res://Scripts/UI/PointAndClickScenes/SceneParallaxController.gd" id="7_58wtq"]
+[ext_resource type="PackedScene" uid="uid://kvbvxu0vbc8y" path="res://Scenes/Timer/timer.tscn" id="timer_scene"]
 
-[node name="HotelFoyer" type="Node2D"]
+[node name="HotelFoyer" type="Node2D" unique_id=1383276518]
 script = ExtResource("1_backdrop")
 story_path = "res://Files/SceneDialogs/Ink/day1_hotel_foyer.ink"
 next_scene = 4
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=931404038]
 layer = -1
 
-[node name="Background" type="ColorRect" parent="CanvasLayer"]
+[node name="Background" type="ColorRect" parent="CanvasLayer" unique_id=358583017]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -23,62 +25,75 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0.24, 0.16, 0.12, 1)
 
-[node name="Title" type="Label" parent="CanvasLayer"]
+[node name="Title" type="Label" parent="CanvasLayer" unique_id=96668756]
 offset_left = 80.0
 offset_top = 48.0
 offset_right = 900.0
 offset_bottom = 100.0
-mouse_filter = 2
 theme_override_font_sizes/font_size = 32
 text = "Фойе"
 
-[node name="Landlady" parent="." instance=ExtResource("3_character")]
+[node name="Landlady" parent="." unique_id=1313104971 instance=ExtResource("3_character")]
 visible = false
 modulate = Color(0.86, 0.7, 0.74, 1)
 position = Vector2(520, 800)
 character_name = "landlady"
 
-[node name="Driver" type="Node2D" parent="."]
+[node name="Driver" type="Node2D" parent="." unique_id=660235527]
 script = ExtResource("4_none")
 character_name = "driver"
 
-[node name="None" type="Node2D" parent="."]
+[node name="None" type="Node2D" parent="." unique_id=377503224]
 script = ExtResource("4_none")
 character_name = "none"
 
-[node name="DialogController" parent="." node_paths=PackedStringArray("timer") instance=ExtResource("2_dialog")]
+[node name="DialogController" parent="." unique_id=1026446029 node_paths=PackedStringArray("timer") instance=ExtResource("2_dialog")]
 story = null
 timer = NodePath("../GameTimer")
 
-[node name="GameTimer" parent="." instance=ExtResource("timer_scene")]
+[node name="GameTimer" parent="." unique_id=759990732 instance=ExtResource("timer_scene")]
 z_index = 3
 
-[node name="CharacterPositions" type="Node2D" parent="."]
+[node name="CharacterPositions" type="Node2D" parent="." unique_id=218917757]
 
-[node name="default" type="Marker2D" parent="CharacterPositions"]
+[node name="default" type="Marker2D" parent="CharacterPositions" unique_id=1523240545]
 position = Vector2(960, 540)
 scale = Vector2(0.15, 0.15)
 
-[node name="landlady_default" type="Marker2D" parent="CharacterPositions"]
+[node name="landlady_default" type="Marker2D" parent="CharacterPositions" unique_id=419552759]
 position = Vector2(520, 800)
 scale = Vector2(0.15, 0.15)
 
-[node name="landlady_bored" type="Marker2D" parent="CharacterPositions"]
+[node name="landlady_bored" type="Marker2D" parent="CharacterPositions" unique_id=1835266470]
 position = Vector2(520, 800)
 scale = Vector2(0.15, 0.15)
 
-[node name="landlady_sharp" type="Marker2D" parent="CharacterPositions"]
+[node name="landlady_sharp" type="Marker2D" parent="CharacterPositions" unique_id=1350388927]
 position = Vector2(520, 800)
 scale = Vector2(0.15, 0.15)
 
-[node name="landlady_alert" type="Marker2D" parent="CharacterPositions"]
+[node name="landlady_alert" type="Marker2D" parent="CharacterPositions" unique_id=1351802266]
 position = Vector2(520, 800)
 scale = Vector2(0.15, 0.15)
 
-[node name="landlady_angry" type="Marker2D" parent="CharacterPositions"]
+[node name="landlady_angry" type="Marker2D" parent="CharacterPositions" unique_id=842092533]
 position = Vector2(520, 800)
 scale = Vector2(0.15, 0.15)
 
-[node name="driver_default" type="Marker2D" parent="CharacterPositions"]
+[node name="driver_default" type="Marker2D" parent="CharacterPositions" unique_id=2144991032]
 position = Vector2(1180, 800)
 scale = Vector2(0.15, 0.15)
+
+[node name="Inventory" parent="." unique_id=1617643402 node_paths=PackedStringArray("dialog_controller") instance=ExtResource("6_rhcf3")]
+z_index = 3
+anchors_preset = 15
+anchor_top = 0.0
+anchor_right = 1.0
+offset_top = 1080.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+dialog_controller = NodePath("../DialogController")
+
+[node name="SceneParallax" type="Node" parent="." unique_id=378138579]
+script = ExtResource("7_58wtq")

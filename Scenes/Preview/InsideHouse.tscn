@@ -6,108 +6,50 @@
 [ext_resource type="PackedScene" uid="uid://b3fjaokxpivbe" path="res://Scenes/Dialog/dialog_controller.tscn" id="4_dialog"]
 [ext_resource type="Script" uid="uid://b036r1bbtl2ug" path="res://Scripts/UI/PointAndClickScenes/SceneParallaxController.gd" id="9_parallax"]
 [ext_resource type="Script" uid="uid://8p77bw84c7bp" path="res://Scripts/UI/PointAndClickScenes/Components/ParallaxComponent.gd" id="10_parobj"]
-[ext_resource type="Texture2D" uid="uid://ktquvlvtry4r" path="res://Assets/Sprites/Characters/Engineer/Dron/standing_chair_attack.png" id="12_k7bhf"]
-[ext_resource type="Texture2D" uid="uid://cp3i304md3py6" path="res://Assets/Sprites/Characters/Engineer/Dron/sitting_normal.png" id="13_k7bhf"]
-[ext_resource type="Shader" uid="uid://cxkjoa2kouvt2" path="res://Scripts/Shaders/Lighting.gdshader" id="14_5iv33"]
-[ext_resource type="Texture2D" uid="uid://ct8jrj8g00yg8" path="res://Assets/Sprites/Characters/Engineer/Dron/sitting_taking_body.png" id="14_xjebt"]
-[ext_resource type="Texture2D" uid="uid://c1mqcjylh6imp" path="res://Assets/Sprites/Characters/Engineer/Dron/sitting_sus.png" id="15_mv3vy"]
-[ext_resource type="Texture2D" uid="uid://yusbqae1gdbk" path="res://Assets/Sprites/Characters/Engineer/Dron/hasle near wardrobe.png" id="16_cxod2"]
-[ext_resource type="Texture2D" uid="uid://dba88ntoitw1a" path="res://Assets/Sprites/ShaderTextures/aap-64-1x.png" id="16_k46gi"]
-[ext_resource type="Texture2D" path="res://Assets/Sprites/Characters/Engineer/Dron/standing_snore mimimi.png" id="18_k46gi"]
-[ext_resource type="Texture2D" uid="uid://2lcyocqmdhh6" path="res://Assets/Sprites/Characters/Engineer/Dron/sitting_AH.png" id="18_xjebt"]
-[ext_resource type="Texture2D" uid="uid://3qyvl8dwched" path="res://Assets/Sprites/Characters/Engineer/Dron/raw/standing_noemal.png" id="19_amx12"]
-[ext_resource type="Texture2D" uid="uid://25u3ny2aflx6" path="res://Assets/Sprites/Characters/Engineer/Dron/standing_sus.png" id="19_f7hr0"]
-[ext_resource type="Texture2D" uid="uid://ccxjsbk8n5yq6" path="res://Assets/Sprites/Characters/Engineer/Dron/standing_AH.png" id="19_standah"]
-[ext_resource type="Texture2D" uid="uid://daj36qgjxnh3h" path="res://Assets/Sprites/Characters/Engineer/Dron/standing_normal.png" id="20_xjebt"]
-[ext_resource type="Texture2D" path="res://Assets/Sprites/Characters/Engineer/Dron/close_scary.png" id="22_1hnut"]
+[ext_resource type="Material" uid="uid://ct326y3e1yo6o" path="res://Assets/Material/character_pixelization.tres" id="14_amx12"]
+[ext_resource type="Texture2D" uid="uid://g0c7rckna51q" path="res://Assets/Sprites/Characters/Engineer/Dron/raw/lay_dead.png" id="17_ak6oo"]
+[ext_resource type="Texture2D" uid="uid://chpknomtl7efu" path="res://Assets/Sprites/Characters/Engineer/Dron/raw/standing_back.png" id="18_k46gi"]
+[ext_resource type="Texture2D" uid="uid://duif74nvasmpb" path="res://Assets/Sprites/Characters/Engineer/Dron/raw/sitting_normal.png" id="18_re16o"]
+[ext_resource type="Texture2D" uid="uid://bfwwt00r4sikx" path="res://Assets/Sprites/Characters/Engineer/Dron/raw/sitting_taking_body.png" id="19_0gpqo"]
+[ext_resource type="Texture2D" uid="uid://c8qjfjvcqp43b" path="res://Assets/Sprites/Characters/Engineer/Dron/raw/sitting_scared.png" id="19_55pqa"]
+[ext_resource type="Texture2D" uid="uid://3qyvl8dwched" path="res://Assets/Sprites/Characters/Engineer/Dron/raw/standing_normal.png" id="19_amx12"]
+[ext_resource type="Texture2D" uid="uid://805irvop2tbp" path="res://Assets/Sprites/Characters/Engineer/Dron/raw/sitting_sus.png" id="20_55pqa"]
+[ext_resource type="Texture2D" uid="uid://3nd3ai38q4o7" path="res://Assets/Sprites/Characters/Engineer/Dron/close_scary.png" id="22_1hnut"]
+[ext_resource type="Texture2D" uid="uid://fgvwwkcjmcwp" path="res://Assets/Sprites/Characters/Engineer/Dron/raw/standing_chair.png" id="23_ak6oo"]
 [ext_resource type="Script" uid="uid://cn7artycc2xk4" path="res://Scripts/Characters/SceneCharacterEngineer.gd" id="24_xuvgt"]
 [ext_resource type="Script" uid="uid://cpcmmpjnyoy7g" path="res://Scripts/UI/PointAndClickScenes/CharacterSceneItemUI.gd" id="25_f7hr0"]
-[ext_resource type="Texture2D" uid="uid://d2jphawspp6sk" path="res://Assets/Sprites/Characters/Engineer/Dron/sitting_taking_arm.png" id="27_xuvgt"]
+[ext_resource type="Texture2D" uid="uid://gxvpuovbv6ux" path="res://Assets/Sprites/Characters/Engineer/Dron/raw/standing_sus.png" id="26_ak6oo"]
+[ext_resource type="Texture2D" uid="uid://dy16qtsshugt" path="res://Assets/Sprites/Characters/Engineer/Dron/raw/standing_scared.png" id="26_rbe3r"]
+[ext_resource type="Texture2D" uid="uid://cdmsabuy6khej" path="res://Assets/Sprites/Characters/Engineer/Dron/raw/sitting_taking_arm.png" id="29_0gpqo"]
 [ext_resource type="Shader" uid="uid://b00btmil63bpd" path="res://Scripts/Shaders/eye_cut.gdshader" id="35_amx12"]
 [ext_resource type="Script" uid="uid://ddc2i4ykn2wn" path="res://Scripts/Effects/EyeCutEffect.gd" id="36_0gpqo"]
 [ext_resource type="Shader" uid="uid://cb2h1lxmcm7e" path="res://Scripts/Shaders/eye_released.gdshader" id="37_5x4uj"]
 [ext_resource type="Shader" uid="uid://j5wxgl4keu4c" path="res://Scripts/Shaders/blur.gdshader" id="38_55pqa"]
 [ext_resource type="Script" uid="uid://cb2h06q5dmge" path="res://Scripts/Effects/EyeReleasedEffect.gd" id="38_ak6oo"]
 [ext_resource type="Script" uid="uid://sv300tnhe327" path="res://Scripts/Scenes/BlackoutEffect.gd" id="blackout_script"]
-[ext_resource type="Material" uid="uid://br1nkg6tco5d0" path="res://Scripts/Shaders/outline_material.tres" id="outline_mat"]
-[ext_resource type="PackedScene" uid="uid://c8bathroom0a1" path="res://Scenes/Preview/Rooms/Bathroom.tscn" id="room_Bathroom"]
-[ext_resource type="PackedScene" uid="uid://s218cktv50w5" path="res://Scenes/Preview/Rooms/Bookshelf.tscn" id="room_Bookshelf"]
-[ext_resource type="PackedScene" uid="uid://c8exitstor0a1" path="res://Scenes/Preview/Rooms/ExitFromStorage.tscn" id="room_ExitFromStorage"]
-[ext_resource type="PackedScene" uid="uid://c8kitchen00a1" path="res://Scenes/Preview/Rooms/Kitchen.tscn" id="room_Kitchen"]
-[ext_resource type="PackedScene" uid="uid://dqxonlmtlnied" path="res://Scenes/Preview/Rooms/KitchenCouch.tscn" id="room_KitchenCouch"]
-[ext_resource type="PackedScene" uid="uid://c8livroom0a1b" path="res://Scenes/Preview/Rooms/LivingRoom.tscn" id="room_LivingRoom"]
-[ext_resource type="PackedScene" uid="uid://c8livroom2a01" path="res://Scenes/Preview/Rooms/LivingRoom2.tscn" id="room_LivingRoom2"]
-[ext_resource type="PackedScene" uid="uid://c8livexit0a1b" path="res://Scenes/Preview/Rooms/LivingRoomToExit.tscn" id="room_LivingRoomToExit"]
-[ext_resource type="PackedScene" uid="uid://c8preroom00a1" path="res://Scenes/Preview/Rooms/Preroom.tscn" id="room_Preroom"]
-[ext_resource type="PackedScene" uid="uid://c8storage00a1" path="res://Scenes/Preview/Rooms/Storage.tscn" id="room_Storage"]
-[ext_resource type="PackedScene" uid="uid://c8underbed0a1" path="res://Scenes/Preview/Rooms/UnderBed.tscn" id="room_UnderBed"]
+[ext_resource type="Material" uid="uid://br1nkg6tco5d0" path="res://Assets/Material/outline_material.tres" id="outline_mat"]
+[ext_resource type="PackedScene" uid="uid://c8bathroom0a1" path="res://Scenes/Preview/EngineerRooms/Bathroom.tscn" id="room_Bathroom"]
+[ext_resource type="PackedScene" uid="uid://s218cktv50w5" path="res://Scenes/Preview/EngineerRooms/Bookshelf.tscn" id="room_Bookshelf"]
+[ext_resource type="PackedScene" uid="uid://c8exitstor0a1" path="res://Scenes/Preview/EngineerRooms/ExitFromStorage.tscn" id="room_ExitFromStorage"]
+[ext_resource type="PackedScene" uid="uid://c8kitchen00a1" path="res://Scenes/Preview/EngineerRooms/Kitchen.tscn" id="room_Kitchen"]
+[ext_resource type="PackedScene" uid="uid://dqxonlmtlnied" path="res://Scenes/Preview/EngineerRooms/KitchenCouch.tscn" id="room_KitchenCouch"]
+[ext_resource type="PackedScene" uid="uid://c8livroom0a1b" path="res://Scenes/Preview/EngineerRooms/LivingRoom.tscn" id="room_LivingRoom"]
+[ext_resource type="PackedScene" uid="uid://c8livroom2a01" path="res://Scenes/Preview/EngineerRooms/LivingRoom2.tscn" id="room_LivingRoom2"]
+[ext_resource type="PackedScene" uid="uid://c8livexit0a1b" path="res://Scenes/Preview/EngineerRooms/LivingRoomToExit.tscn" id="room_LivingRoomToExit"]
+[ext_resource type="PackedScene" uid="uid://c8preroom00a1" path="res://Scenes/Preview/EngineerRooms/Preroom.tscn" id="room_Preroom"]
+[ext_resource type="PackedScene" uid="uid://c8storage00a1" path="res://Scenes/Preview/EngineerRooms/Storage.tscn" id="room_Storage"]
+[ext_resource type="PackedScene" uid="uid://c8underbed0a1" path="res://Scenes/Preview/EngineerRooms/UnderBed.tscn" id="room_UnderBed"]
 [ext_resource type="PackedScene" uid="uid://kvbvxu0vbc8y" path="res://Scenes/Timer/timer.tscn" id="timer_scene"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_55pqa"]
-shader = ExtResource("14_5iv33")
-shader_parameter/palette = ExtResource("16_k46gi")
-shader_parameter/use_palette = true
-shader_parameter/dithering_strength = 1.0
-shader_parameter/dithering = false
-shader_parameter/dithering_size = 16
-shader_parameter/pixel_size = 12
-shader_parameter/brightness = 1.0000000475
-shader_parameter/contrast = 1.0000000475
-shader_parameter/saturation = 1.0000000475
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_i1vas"]
-atlas = ExtResource("20_xjebt")
-region = Rect2(0, 0, 274, 694)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_re16o"]
-atlas = ExtResource("18_k46gi")
-region = Rect2(0, 0, 3064, 1528)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xuvgt"]
-atlas = ExtResource("13_k7bhf")
-region = Rect2(0, 0, 2120, 1280)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1hnut"]
-atlas = ExtResource("14_xjebt")
-region = Rect2(0, 0, 2120, 1280)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_k46gi"]
-atlas = ExtResource("18_xjebt")
-region = Rect2(0, 0, 2120, 1280)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5iv33"]
-atlas = ExtResource("15_mv3vy")
-region = Rect2(0, 0, 2120, 1280)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qllj4"]
-atlas = ExtResource("16_cxod2")
-region = Rect2(0, 0, 179, 316)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cxod2"]
-atlas = ExtResource("12_k7bhf")
-region = Rect2(0, 0, 274, 694)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0gpqo"]
 atlas = ExtResource("22_1hnut")
 region = Rect2(0, 0, 4064, 3048)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_f7hr0"]
-atlas = ExtResource("19_standah")
-region = Rect2(0, 0, 274, 694)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kul73"]
-atlas = ExtResource("19_f7hr0")
-region = Rect2(0, 0, 274, 694)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mv3vy"]
-atlas = ExtResource("20_xjebt")
-region = Rect2(0, 0, 274, 694)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_280bj"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_i1vas")
+"texture": ExtResource("19_amx12")
 }],
 "loop": 1,
 "name": &"kitchen_couch_from_kitchen_sit_normal",
@@ -115,7 +57,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_i1vas")
+"texture": ExtResource("19_amx12")
 }],
 "loop": 1,
 "name": &"kitchen_couch_from_kitchen_sit_reach",
@@ -123,7 +65,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_i1vas")
+"texture": ExtResource("19_amx12")
 }],
 "loop": 1,
 "name": &"kitchen_couch_from_kitchen_sit_scared",
@@ -131,7 +73,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_i1vas")
+"texture": ExtResource("19_amx12")
 }],
 "loop": 1,
 "name": &"kitchen_couch_from_kitchen_sit_suspicious",
@@ -139,7 +81,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_re16o")
+"texture": ExtResource("17_ak6oo")
 }],
 "loop": 1,
 "name": &"lay_dead",
@@ -147,7 +89,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_xuvgt")
+"texture": ExtResource("18_re16o")
 }],
 "loop": 1,
 "name": &"sit_normal",
@@ -155,7 +97,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_1hnut")
+"texture": ExtResource("19_0gpqo")
 }],
 "loop": 1,
 "name": &"sit_reach",
@@ -163,7 +105,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_k46gi")
+"texture": ExtResource("19_55pqa")
 }],
 "loop": 1,
 "name": &"sit_scared",
@@ -171,7 +113,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5iv33")
+"texture": ExtResource("20_55pqa")
 }],
 "loop": 1,
 "name": &"sit_suspicious",
@@ -179,7 +121,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_qllj4")
+"texture": ExtResource("18_k46gi")
 }],
 "loop": 1,
 "name": &"stand_back",
@@ -187,7 +129,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_cxod2")
+"texture": ExtResource("23_ak6oo")
 }],
 "loop": 1,
 "name": &"stand_chair",
@@ -203,7 +145,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_i1vas")
+"texture": ExtResource("19_amx12")
 }],
 "loop": 1,
 "name": &"stand_normal",
@@ -211,7 +153,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_f7hr0")
+"texture": ExtResource("26_rbe3r")
 }],
 "loop": 1,
 "name": &"stand_scared",
@@ -219,7 +161,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_kul73")
+"texture": ExtResource("26_ak6oo")
 }],
 "loop": 1,
 "name": &"stand_suspicious",
@@ -227,22 +169,18 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_mv3vy")
+"texture": ExtResource("19_amx12")
 }],
 "loop": 1,
 "name": &"stand_tea",
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_amx12"]
-atlas = ExtResource("27_xuvgt")
-region = Rect2(0, 0, 2120, 1280)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_v8nni"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_amx12")
+"texture": ExtResource("29_0gpqo")
 }],
 "loop": 1,
 "name": &"default",
@@ -666,8 +604,8 @@ const KEY_TURN_SOUND := \"res://Assets/Audio/Sounds/key_turning.mp3\"
 const FIRE_DELAY := 8.0
 const GAMEOVER_DELAY := 20.0
 const EXIT_CLOSED_BACKGROUND := preload(\"res://Assets/Sprites/Backgrounds/exit_from_storage_dark_closed.png\")
-const EXIT_CLOSED_LIGHT_INDEX := 15
-const EXIT_CLOSED_B_LIGHT_INDEX := 16
+const EXIT_CLOSED_LIGHT_INDEX := 3
+const EXIT_CLOSED_B_LIGHT_INDEX := 4
 
 func activate() -> void:
 	super.activate()
@@ -881,7 +819,7 @@ script/source = "extends SceneDialogState
 
 const TORTURE_MUSIC := \"res://Assets/Audio/Music/FUCK.mp3\"
 const EXIT_CLOSED_BACKGROUND := preload(\"res://Assets/Sprites/Backgrounds/exit_from_storage_dark.png\")
-const EXIT_CLOSED_LIGHT_INDEX := 15
+const EXIT_CLOSED_LIGHT_INDEX := 3
 
 @export var blackout: BlackoutEffect
 @export var stab_effect: EyeCutEffect
@@ -1008,11 +946,9 @@ inventory = NodePath("../Inventory")
 [node name="Characters" type="Node2D" parent="." unique_id=1949332713]
 
 [node name="Engineer" type="AnimatedSprite2D" parent="Characters" unique_id=718858753 node_paths=PackedStringArray("scene_object_manager", "sprite")]
-material = SubResource("ShaderMaterial_55pqa")
-position = Vector2(-6372, -269.5)
-scale = Vector2(0.65, 0.65)
+material = ExtResource("14_amx12")
 sprite_frames = SubResource("SpriteFrames_280bj")
-animation = &"lay_dead"
+animation = &"stand_normal"
 script = ExtResource("24_xuvgt")
 scene_object_manager = NodePath("../../SceneObjectManager")
 sprite = NodePath(".")
@@ -1039,16 +975,8 @@ metadata/_custom_type_script = "uid://cjwqo45k5xnx0"
 visible = false
 z_index = 3
 z_as_relative = false
+material = ExtResource("14_amx12")
 sprite_frames = SubResource("SpriteFrames_v8nni")
-
-[node name="StandingDead" type="Sprite2D" parent="Characters" unique_id=1553235192]
-position = Vector2(-5034, -154)
-scale = Vector2(4, 4)
-texture = ExtResource("20_xjebt")
-
-[node name="StandingDead2" type="Sprite2D" parent="Characters" unique_id=1677971959]
-position = Vector2(-7991, -220)
-texture = ExtResource("19_amx12")
 
 [node name="Inventory" parent="." unique_id=1450084800 node_paths=PackedStringArray("dialog_controller") instance=ExtResource("3_inv")]
 z_index = 3
@@ -1165,7 +1093,7 @@ z_index = 3
 script = SubResource("GDScript_states")
 dialog_controller = NodePath("../DialogController")
 timer = NodePath("../GameTimer")
-first_state = NodePath("Welcome/PassportTimer/TeaReady/KitchenWait/CouchTea/SpillTea/FetchRag/Interview/Bedding/Dream/Wake/Torture")
+first_state = NodePath("Welcome")
 
 [node name="Welcome" type="Node" parent="SceneStates" unique_id=208105396 node_paths=PackedStringArray("next_options")]
 script = SubResource("GDScript_welcome")

@@ -12,6 +12,16 @@ uniform float brightness : hint_range(0.0,8.0) = 1.0;
 uniform float contrast : hint_range(0.0,8.0) = 1.0;
 uniform float saturation : hint_range(0.0,8.0) = 1.0;
 
+uniform vec2 mouse_pos;
+uniform bool light_on;
+uniform float light_dist = 200.0;
+// 0 bookcase_1, 1 bookcase_1_removed_closed, 2 bookcase_1_removed_open,
+// 3 exit_from_storage_closed, 4 exit_from_storage_closed_b, 5 exit_from_storage,
+// 6 hall_1b, 7 hall_1, 8 hall_3, 9 under_bed, 10 kitchen, 11 kitchen_sitting,
+// 12 bookcase_2, 13 storage, 14 hall_2
+uniform sampler2D lighted_textures[15] : source_color, filter_linear, repeat_disable;
+instance uniform int lighted_index = 0;
+
 float color_distance(vec3 a, vec3 b) {
 	vec3 norm = vec3(0.6, 0.2, 0.11);
 	vec3 diff = (a - b);
@@ -31,7 +41,13 @@ void fragment() {
 	
 	vec2 normalized_uv = (floor(UV * desired_tex_size) + vec2(0.5)) / desired_tex_size;
 	vec4 color = texture(TEXTURE, normalized_uv);
-	
+
+	if (light_on) {
+		vec4 lit_color = texture(lighted_textures[lighted_index], normalized_uv);
+		float shade = clamp(distance(VERTEX, mouse_pos) / light_dist, 0.0, 1.0);
+		color = mix(lit_color, color, shade);
+	}
+
 	color.rgb = mix(vec3(0.0), color.rgb, brightness);
     color.rgb = mix(vec3(0.5), color.rgb, contrast);
     color.rgb = mix(vec3(dot(vec3(1.0), color.rgb) * 0.33333), color.rgb, saturation);

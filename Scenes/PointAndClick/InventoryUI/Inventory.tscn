@@ -80,10 +80,10 @@ offset_right = 1920.0
 texture = ExtResource("3_gnvtc")
 
 [node name="ItemPlacer" type="Node2D" parent="InventoryHolder/InventoryBackground" unique_id=1773686217]
-position = Vector2(72, 923)
+position = Vector2(72, 964)
 script = ExtResource("2_qdcv2")
 num_columns = 12
-step_x = 100.0
+step_x = 110.0
 step_y = 100.0
 
 [node name="ShowButton" type="TextureButton" parent="InventoryHolder" unique_id=519884309]

@@ -9,6 +9,8 @@
 [ext_resource type="Script" uid="uid://ct24630qdy5qa" path="res://Scripts/Characters/SceneCharacter.gd" id="7_knatq"]
 [ext_resource type="PackedScene" uid="uid://b3fjaokxpivbe" path="res://Scenes/Dialog/dialog_controller.tscn" id="8_ysoy5"]
 [ext_resource type="PackedScene" uid="uid://kvbvxu0vbc8y" path="res://Scenes/Timer/timer.tscn" id="9_yy2np"]
+[ext_resource type="PackedScene" uid="uid://17fxcbcv4a1n" path="res://Scenes/PointAndClick/InventoryUI/Inventory.tscn" id="10_fn2pk"]
+[ext_resource type="Script" uid="uid://b036r1bbtl2ug" path="res://Scripts/UI/PointAndClickScenes/SceneParallaxController.gd" id="11_vbg63"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cp2gl"]
 shader = ExtResource("2_vebpq")
@@ -69,3 +71,17 @@ z_index = 3
 [node name="default" type="Marker2D" parent="CharacterPositions" unique_id=1152132858]
 position = Vector2(960, 540)
 scale = Vector2(0.15, 0.15)
+
+[node name="Inventory" parent="." unique_id=1617643402 node_paths=PackedStringArray("dialog_controller") instance=ExtResource("10_fn2pk")]
+z_index = 3
+anchors_preset = 15
+anchor_top = 0.0
+anchor_right = 1.0
+offset_top = 1080.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+dialog_controller = NodePath("../DialogController")
+
+[node name="SceneParallax" type="Node" parent="." unique_id=56969062]
+script = ExtResource("11_vbg63")

@@ -1,0 +1,70 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scenes/Test/EngineerRooms/engineer_rooms_debug.gd" id="1_debug"]
+[ext_resource type="Script" path="res://Scripts/UI/PointAndClickScenes/SceneObjectsManager.gd" id="2_manager"]
+[ext_resource type="Script" path="res://Scripts/Characters/SceneCharacterEngineer.gd" id="3_engineer"]
+[ext_resource type="Script" path="res://Scripts/UI/PointAndClickScenes/Components/ParallaxComponent.gd" id="4_parallax"]
+[ext_resource type="Script" path="res://Scripts/UI/PointAndClickScenes/SceneParallaxController.gd" id="5_parallax_root"]
+[ext_resource type="PackedScene" path="res://Scenes/PointAndClick/InventoryUI/Inventory.tscn" id="6_inventory"]
+[ext_resource type="PackedScene" path="res://Scenes/Dialog/dialog_controller.tscn" id="7_dialog"]
+[ext_resource type="PackedScene" path="res://Scenes/Timer/timer.tscn" id="8_timer"]
+[ext_resource type="PackedScene" path="res://Scenes/Preview/EngineerRooms/Preroom.tscn" id="room_preroom"]
+[ext_resource type="PackedScene" path="res://Scenes/Preview/EngineerRooms/LivingRoom.tscn" id="room_living"]
+[ext_resource type="PackedScene" path="res://Scenes/Preview/EngineerRooms/LivingRoom2.tscn" id="room_living2"]
+[ext_resource type="PackedScene" path="res://Scenes/Preview/EngineerRooms/LivingRoomToExit.tscn" id="room_exit"]
+[ext_resource type="PackedScene" path="res://Scenes/Preview/EngineerRooms/UnderBed.tscn" id="room_bed"]
+[ext_resource type="PackedScene" path="res://Scenes/Preview/EngineerRooms/Kitchen.tscn" id="room_kitchen"]
+[ext_resource type="PackedScene" path="res://Scenes/Preview/EngineerRooms/KitchenCouch.tscn" id="room_couch"]
+[ext_resource type="PackedScene" path="res://Scenes/Preview/EngineerRooms/Bathroom.tscn" id="room_bathroom"]
+[ext_resource type="PackedScene" path="res://Scenes/Preview/EngineerRooms/Bookshelf.tscn" id="room_bookshelf"]
+[ext_resource type="PackedScene" path="res://Scenes/Preview/EngineerRooms/Storage.tscn" id="room_storage"]
+[ext_resource type="PackedScene" path="res://Scenes/Preview/EngineerRooms/ExitFromStorage.tscn" id="room_storage_exit"]
+
+[node name="EngineerRoomsDebug" type="Node2D" node_paths=PackedStringArray("characters")]
+script = ExtResource("1_debug")
+characters = [NodePath("Characters/Engineer")]
+room_scenes = Array[PackedScene]([ExtResource("room_preroom"), ExtResource("room_living"), ExtResource("room_living2"), ExtResource("room_exit"), ExtResource("room_bed"), ExtResource("room_kitchen"), ExtResource("room_couch"), ExtResource("room_bathroom"), ExtResource("room_bookshelf"), ExtResource("room_storage"), ExtResource("room_storage_exit")])
+
+[node name="Rooms" type="Node2D" parent="."]
+
+[node name="SceneObjectManager" type="Node2D" parent="." node_paths=PackedStringArray("inventory")]
+script = ExtResource("2_manager")
+inventory = NodePath("../Inventory")
+
+[node name="Characters" type="Node2D" parent="."]
+
+[node name="Engineer" type="AnimatedSprite2D" parent="Characters" node_paths=PackedStringArray("scene_object_manager", "sprite")]
+visible = false
+script = ExtResource("3_engineer")
+scene_object_manager = NodePath("../../SceneObjectManager")
+sprite = NodePath(".")
+character_name = "engineer"
+
+[node name="ParallaxComponent" type="Node" parent="Characters/Engineer"]
+script = ExtResource("4_parallax")
+camera_distance = 105.0
+
+[node name="Hand" type="AnimatedSprite2D" parent="Characters/Engineer"]
+visible = false
+z_index = 3
+
+[node name="Inventory" parent="." instance=ExtResource("6_inventory")]
+z_index = 3
+anchors_preset = 15
+anchor_top = 0.0
+anchor_right = 1.0
+offset_top = 1080.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+dialog_controller = NodePath("../DialogController")
+
+[node name="DialogController" parent="." instance=ExtResource("7_dialog")]
+position = Vector2(-73, 370)
+story = null
+timer = NodePath("../GameTimer")
+
+[node name="GameTimer" parent="." instance=ExtResource("8_timer")]
+
+[node name="SceneParallax" type="Node" parent="."]
+script = ExtResource("5_parallax_root")

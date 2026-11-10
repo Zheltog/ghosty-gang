@@ -10,18 +10,18 @@ const SHELF_MOVE_SOUND := "res://Assets/Audio/Sounds/shelf_move.mp3"
 const MOVED_BACKGROUND := preload("res://Assets/Sprites/Backgrounds/bookcase_2_normal.png")
 const REMOVED_CLOSED_BACKGROUND := preload("res://Assets/Sprites/Backgrounds/bookcase_1_removed_book_closed.png")
 const REMOVED_OPEN_BACKGROUND := preload("res://Assets/Sprites/Backgrounds/bookcase_1_removed_book_open.png")
-const MOVED_LIGHT_INDEX := 5
-const REMOVED_CLOSED_LIGHT_INDEX := 17
-const REMOVED_OPEN_LIGHT_INDEX := 18
+const MOVED_LIGHT_INDEX := 12
+const REMOVED_CLOSED_LIGHT_INDEX := 1
+const REMOVED_OPEN_LIGHT_INDEX := 2
 const LIVING_CLOSED_BACKGROUND := preload("res://Assets/Sprites/Backgrounds/hall_1_normal.png")
 const LIVING_OPEN_BACKGROUND := preload("res://Assets/Sprites/Backgrounds/hall_1b_normal.png")
-const LIVING_CLOSED_LIGHT_INDEX := 12
-const LIVING_OPEN_LIGHT_INDEX := 0
+const LIVING_CLOSED_LIGHT_INDEX := 7
+const LIVING_OPEN_LIGHT_INDEX := 6
 
 const MOVED_OUTLINE_PATH := "res://Assets/Sprites/SceneItems/Outlines/Bookshelf_Shelfs_moved.png"
 
 var _closed_background: Texture2D
-var _closed_light_index := 4
+var _closed_light_index := 0
 var _rest_outline: Texture2D
 
 func _ready() -> void:

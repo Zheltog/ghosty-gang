@@ -5,7 +5,6 @@ var _collision_ready := false
 var alive := true
 
 func _ready() -> void:
-	_ensure_outline_material()
 	var source := get_parent() as AnimatedSprite2D
 	if source != null:
 		source.frame_changed.connect(sync_frame)

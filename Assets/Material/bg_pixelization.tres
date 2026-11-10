@@ -1,0 +1,35 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://ckxbhw6pumol4"]
+
+[ext_resource type="Shader" uid="uid://bijlg1a40xars" path="res://Scripts/Shaders/bg_pxlization.gdshader" id="1_8uip5"]
+[ext_resource type="Texture2D" uid="uid://byppud0ds4uyh" path="res://Assets/Sprites/Backgrounds/bookcase_1_flashlight.png" id="2_7mrfr"]
+[ext_resource type="Texture2D" uid="uid://bkct7vtb42xp2" path="res://Assets/Sprites/Backgrounds/bookcase_1_removed_book_closed_flashlight.png" id="3_hyaxv"]
+[ext_resource type="Texture2D" uid="uid://bhn58ch01piyc" path="res://Assets/Sprites/Backgrounds/bookcase_1_removed_book_open_flashlight.png" id="4_tkn34"]
+[ext_resource type="Texture2D" uid="uid://7v8dopk13m75" path="res://Assets/Sprites/Backgrounds/exit_from_storage_closed.png" id="5_lssbd"]
+[ext_resource type="Texture2D" uid="uid://cmu06fqvtur2b" path="res://Assets/Sprites/Backgrounds/exit_from_storage_closed_B.png" id="6_mjf6v"]
+[ext_resource type="Texture2D" uid="uid://bm85ovyv65jfl" path="res://Assets/Sprites/Backgrounds/exit_from_storage_flashlight.png" id="7_qgxjb"]
+[ext_resource type="Texture2D" uid="uid://djhwv4m3p0sqf" path="res://Assets/Sprites/Backgrounds/hall_1b_flashlight.png" id="8_3blt3"]
+[ext_resource type="Texture2D" uid="uid://c3epciqmuty3w" path="res://Assets/Sprites/Backgrounds/hall_1_flashlight.png" id="9_uheha"]
+[ext_resource type="Texture2D" uid="uid://dqhrerdeiffhr" path="res://Assets/Sprites/Backgrounds/hall_3_flashlight.png" id="10_spowa"]
+[ext_resource type="Texture2D" uid="uid://bfoltd4lyekxt" path="res://Assets/Sprites/Backgrounds/hall_under bed_flashlight_without eye.png" id="11_lssbd"]
+[ext_resource type="Texture2D" uid="uid://d560srdx2n2p" path="res://Assets/Sprites/Backgrounds/kitchen_flashlight.png" id="12_5nwp6"]
+[ext_resource type="Texture2D" uid="uid://c1d3f15qehoqv" path="res://Assets/Sprites/Backgrounds/kitchen_sitting_flashlight.png" id="13_4say6"]
+[ext_resource type="Texture2D" uid="uid://dsoxdcw85gqwg" path="res://Assets/Sprites/Backgrounds/bookcase_2_flashlight.png" id="14_book2"]
+[ext_resource type="Texture2D" uid="uid://cdu876x3pnbl1" path="res://Assets/Sprites/Backgrounds/storage_flashlight.png" id="15_stor"]
+[ext_resource type="Texture2D" uid="uid://bmh63gnwoyrpx" path="res://Assets/Sprites/Backgrounds/hall_2_flashlight.png" id="16_hall2"]
+[ext_resource type="Texture2D" uid="uid://dba88ntoitw1a" path="res://Assets/Sprites/ShaderTextures/aap-64-1x.png" id="17_mjf6v"]
+
+[resource]
+shader = ExtResource("1_8uip5")
+shader_parameter/palette = ExtResource("17_mjf6v")
+shader_parameter/use_palette = true
+shader_parameter/dithering_strength = 0.0
+shader_parameter/dithering = false
+shader_parameter/dithering_size = 4
+shader_parameter/pixel_size = 4
+shader_parameter/brightness = 1.0
+shader_parameter/contrast = 1.0
+shader_parameter/saturation = 1.0
+shader_parameter/mouse_pos = Vector2(0, 0)
+shader_parameter/light_on = false
+shader_parameter/light_dist = 200.0
+shader_parameter/lighted_textures = Array[Texture2D]([ExtResource("2_7mrfr"), ExtResource("3_hyaxv"), ExtResource("4_tkn34"), ExtResource("5_lssbd"), ExtResource("6_mjf6v"), ExtResource("7_qgxjb"), ExtResource("8_3blt3"), ExtResource("9_uheha"), ExtResource("10_spowa"), ExtResource("11_lssbd"), ExtResource("12_5nwp6"), ExtResource("13_4say6"), ExtResource("14_book2"), ExtResource("15_stor"), ExtResource("16_hall2")])

@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://bly07nnpsthlo"]
 
 [ext_resource type="Script" uid="uid://b0hsmfhmj5kmy" path="res://Scripts/Dialog/TextBoxWithOptions.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://b0w15taudhhno" path="res://Assets/Sprites/UI/Dialog/dialog_new_medium.png" id="2_4vgg8"]
 [ext_resource type="PackedScene" uid="uid://chii51pu3s0yv" path="res://Scenes/Dialog/option_button.tscn" id="2_option"]
-[ext_resource type="Texture2D" uid="uid://bd1t7aiqce5ul" path="res://Assets/Sprites/UI/Dialog/DialogWindow.png" id="3_window"]
 [ext_resource type="PackedScene" uid="uid://cphr4s3b04rd1" path="res://Scenes/Dialog/phrase_board.tscn" id="4_board"]
 
 [node name="default" type="Control" unique_id=865306679]
@@ -19,33 +19,12 @@ printing_speed = 40.0
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=330517121]
 layout_mode = 1
-offset_left = 1300.0
-offset_top = 179.00002
-offset_right = 2140.0
+offset_left = 1305.0
+offset_top = 179.0
+offset_right = 2145.0
 offset_bottom = 799.0
 scale = Vector2(0.7, 0.7)
-texture = ExtResource("3_window")
-
-[node name="CharacterName" type="Label" parent="TextureRect" unique_id=922803514]
-visible = false
-layout_mode = 1
-offset_left = 72.0
-offset_top = 83.0
-offset_right = 733.0
-offset_bottom = 139.0
-theme_override_colors/font_color = Color(0.93, 0.88, 0.78, 1)
-theme_override_font_sizes/font_size = 36
-
-[node name="RichTextLabel" type="RichTextLabel" parent="TextureRect" unique_id=959310620]
-visible = false
-layout_mode = 1
-offset_left = 73.0
-offset_top = 138.0
-offset_right = 766.0
-offset_bottom = 531.0
-mouse_filter = 2
-theme_override_colors/default_color = Color(0.8203659, 0.82036585, 0.8203658, 1)
-theme_override_font_sizes/normal_font_size = 40
+texture = ExtResource("2_4vgg8")
 
 [node name="PhraseBoard" parent="TextureRect" unique_id=2028395152 instance=ExtResource("4_board")]
 custom_minimum_size = Vector2(0, 0)
@@ -64,10 +43,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -195.0
-offset_top = 54.0
-offset_right = -155.0
-offset_bottom = 94.0
+offset_left = -194.28572
+offset_top = 122.85718
+offset_right = -154.2857
+offset_bottom = 162.85718
 grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2
@@ -93,10 +72,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -195.0
-offset_top = 54.0
-offset_right = -155.0
-offset_bottom = 94.0
+offset_left = -194.28572
+offset_top = 122.85718
+offset_right = -154.2857
+offset_bottom = 162.85718
 grow_horizontal = 2
 grow_vertical = 0
 
@@ -136,10 +115,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -195.0
-offset_top = 54.0
-offset_right = -155.0
-offset_bottom = 94.0
+offset_left = -194.28572
+offset_top = 122.85718
+offset_right = -154.2857
+offset_bottom = 162.85718
 grow_horizontal = 2
 grow_vertical = 0
 
@@ -194,10 +173,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -195.0
-offset_top = 54.0
-offset_right = -155.0
-offset_bottom = 94.0
+offset_left = -194.28572
+offset_top = 122.85718
+offset_right = -154.2857
+offset_bottom = 162.85718
 grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2

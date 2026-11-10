@@ -1,0 +1,16 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://ct326y3e1yo6o"]
+
+[ext_resource type="Shader" uid="uid://cxkjoa2kouvt2" path="res://Scripts/Shaders/Lighting.gdshader" id="1_j2b77"]
+[ext_resource type="Texture2D" uid="uid://dba88ntoitw1a" path="res://Assets/Sprites/ShaderTextures/aap-64-1x.png" id="2_1qha2"]
+
+[resource]
+shader = ExtResource("1_j2b77")
+shader_parameter/palette = ExtResource("2_1qha2")
+shader_parameter/use_palette = true
+shader_parameter/dithering_strength = 1.0
+shader_parameter/dithering = false
+shader_parameter/dithering_size = 16
+shader_parameter/pixel_size = 4
+shader_parameter/brightness = 1.0000000475
+shader_parameter/contrast = 1.0000000475
+shader_parameter/saturation = 1.0000000475
