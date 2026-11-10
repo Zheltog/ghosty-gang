@@ -392,8 +392,6 @@ script/source = "extends SceneDialogState
 
 func activate() -> void:
 	super.activate()
-	# TODO: кал
-	#await get_tree().create_timer(1).timeout
 	play(DialogPathConstants.ROAD_TO_ZAKHAR_STREET_1)
 	print(\"street_1 done\")
 
@@ -407,8 +405,6 @@ script/source = "extends SceneDialogState
 
 func activate() -> void:
 	super.activate()
-	# TODO: кал
-	await get_tree().create_timer(1).timeout
 	play(DialogPathConstants.ROAD_TO_ZAKHAR_RANDOM_HOUSE)
 	print(\"random_house done\")
 
@@ -422,8 +418,6 @@ script/source = "extends SceneDialogState
 
 func activate() -> void:
 	super.activate()
-	# TODO: кал
-	await get_tree().create_timer(1).timeout
 	play(DialogPathConstants.ROAD_TO_ZAKHAR_STREET_2)
 	print(\"street_2 done\")
 
@@ -437,8 +431,6 @@ script/source = "extends SceneDialogState
 
 func activate() -> void:
 	super.activate()
-	# TODO: кал
-	await get_tree().create_timer(1).timeout
 	play(DialogPathConstants.ROAD_TO_ZAKHAR_STREET_3)
 	print(\"street_3 done\")
 
@@ -452,8 +444,6 @@ script/source = "extends SceneDialogState
 
 func activate() -> void:
 	super.activate()
-	# TODO: кал
-	await get_tree().create_timer(1).timeout
 	play(DialogPathConstants.ROAD_TO_ZAKHAR_GIRL_1)
 	print(\"girl_1 done\")
 
@@ -467,8 +457,6 @@ script/source = "extends SceneDialogState
 
 func activate() -> void:
 	super.activate()
-	# TODO: кал
-	await get_tree().create_timer(1).timeout
 	play(DialogPathConstants.ROAD_TO_ZAKHAR_GIRL_2)
 	print(\"girl_2 done\")
 
