@@ -361,12 +361,24 @@ def collect_edits():
 	return edits_by_scene
 
 
+def existing_ext_id(text, texture_path):
+	needle = f'path="{texture_path}"'
+	for line in text.splitlines():
+		if line.startswith("[ext_resource") and needle in line:
+			match = re.search(r'id="([^"]+)"', line)
+			if match:
+				return match.group(1)
+	return None
+
+
 def patch_scene(fs_path, edits):
 	text = open(fs_path, encoding="utf-8").read()
 	newline = "\n"
 	for edit in edits:
-		if f'path="{edit["texture_path"]}"' not in text:
-			ext_line = f'[ext_resource type="Texture2D" path="{edit["texture_path"]}" id="{edit["ext_id"]}"]'
+		ext_id = existing_ext_id(text, edit["texture_path"])
+		if ext_id is None:
+			ext_id = edit["ext_id"]
+			ext_line = f'[ext_resource type="Texture2D" path="{edit["texture_path"]}" id="{ext_id}"]'
 			lines = text.splitlines()
 			insert_at = 1
 			for index, line in enumerate(lines):
@@ -374,6 +386,7 @@ def patch_scene(fs_path, edits):
 					insert_at = index + 1
 			lines.insert(insert_at, ext_line)
 			text = newline.join(lines) + (newline if text.endswith(newline) else "")
+		edit = {**edit, "ext_id": ext_id}
 		text = patch_node(text, edit)
 	with open(fs_path, "w", encoding="utf-8", newline="\n") as handle:
 		handle.write(text)

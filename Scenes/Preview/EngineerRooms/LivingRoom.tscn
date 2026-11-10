@@ -12,8 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://dadq1xc3xcndr" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/MoveBack.png" id="12_ljpsp"]
 [ext_resource type="Texture2D" uid="uid://co8o3ss2524v8" path="res://Assets/Sprites/SceneItems/Outlines/LivingRoom_Tumba.png" id="13_3r4oi"]
 [ext_resource type="Script" uid="uid://cjwqo45k5xnx0" path="res://Scripts/UI/PointAndClickScenes/SceneItemUI.gd" id="14_4i8tj"]
-[ext_resource type="Texture2D" path="res://Assets/Sprites/SceneItems/Outlines/LivingRoom_ToBookshelfOpen.png" id="outline_LivingRoom_ToBookshelfOpen"]
-[ext_resource type="Texture2D" path="res://Assets/Sprites/SceneItems/Outlines/LivingRoom_ToKitchen.png" id="outline_LivingRoom_ToKitchen"]
+[ext_resource type="Texture2D" uid="uid://biydasps1tld8" path="res://Assets/Sprites/SceneItems/Outlines/LivingRoom_ToBookshelfOpen.png" id="outline_LivingRoom_ToBookshelfOpen"]
+[ext_resource type="Texture2D" uid="uid://dvwlhwkaepph0" path="res://Assets/Sprites/SceneItems/Outlines/LivingRoom_ToKitchen.png" id="outline_LivingRoom_ToKitchen"]
 
 [node name="LivingRoom" type="Node2D" unique_id=1900112235]
 script = ExtResource("1_ntvm2")
@@ -30,13 +30,13 @@ script = ExtResource("5_ldbp5")
 camera_distance = 100.0
 
 [node name="ToBookshelf" type="Sprite2D" parent="." unique_id=-1294967293]
-texture = ExtResource("outline_LivingRoom_ToBookshelf")
-offset = Vector2(-373.5000, -6.5000)
 texture_filter = 1
-instance_shader_parameters/fill_visible = false
 material = ExtResource("6_sskle")
 instance_shader_parameters/enabled = false
+instance_shader_parameters/fill_visible = false
 position = Vector2(1526, 474)
+texture = ExtResource("7_g5ilm")
+offset = Vector2(-373.5, -6.5)
 script = ExtResource("8_q58hc")
 target_room = "bookshelf"
 scene_item_id = 21
@@ -52,14 +52,14 @@ script = ExtResource("5_ldbp5")
 camera_distance = 100.0
 
 [node name="ToBookshelfOpen" type="Sprite2D" parent="." unique_id=1260024512]
-texture = ExtResource("outline_LivingRoom_ToBookshelfOpen")
-offset = Vector2(-488.0000, 1.5000)
-texture_filter = 1
-instance_shader_parameters/fill_visible = false
 visible = false
+texture_filter = 1
 material = ExtResource("6_sskle")
 instance_shader_parameters/enabled = false
+instance_shader_parameters/fill_visible = false
 position = Vector2(1526, 474)
+texture = ExtResource("outline_LivingRoom_ToBookshelfOpen")
+offset = Vector2(-488, 1.5)
 script = ExtResource("8_q58hc")
 target_room = "bookshelf"
 scene_item_id = 21
@@ -76,13 +76,13 @@ script = ExtResource("5_ldbp5")
 camera_distance = 100.0
 
 [node name="ToKitchen" type="Sprite2D" parent="." unique_id=1422088194]
-texture = ExtResource("outline_LivingRoom_ToKitchen")
-offset = Vector2(-112.0000, 17.0000)
 texture_filter = 1
-instance_shader_parameters/fill_visible = false
 material = ExtResource("6_sskle")
 instance_shader_parameters/enabled = false
+instance_shader_parameters/fill_visible = false
 position = Vector2(826, 478)
+texture = ExtResource("outline_LivingRoom_ToKitchen")
+offset = Vector2(-112, 17)
 script = ExtResource("8_q58hc")
 target_room = "kitchen"
 scene_item_id = 21
@@ -100,13 +100,13 @@ script = ExtResource("5_ldbp5")
 camera_distance = 100.0
 
 [node name="ToUnderBed" type="Sprite2D" parent="." unique_id=-1294967275]
-texture = ExtResource("outline_LivingRoom_ToUnderBed")
-offset = Vector2(118.0000, -304.5000)
 texture_filter = 1
-instance_shader_parameters/fill_visible = false
 material = ExtResource("6_sskle")
 instance_shader_parameters/enabled = false
+instance_shader_parameters/fill_visible = false
 position = Vector2(1624, 1108)
+texture = ExtResource("10_v74xe")
+offset = Vector2(118, -304.5)
 script = ExtResource("8_q58hc")
 target_room = "under_bed"
 scene_item_id = 21
@@ -163,13 +163,13 @@ position = Vector2(765, 513)
 scale = Vector2(0.08, 0.08)
 
 [node name="Tumba" type="Sprite2D" parent="." unique_id=412354703]
-texture = ExtResource("outline_LivingRoom_Tumba")
-offset = Vector2(45.0000, -3.0000)
 texture_filter = 1
-instance_shader_parameters/fill_visible = false
 material = ExtResource("6_sskle")
 instance_shader_parameters/enabled = false
+instance_shader_parameters/fill_visible = false
 position = Vector2(1622, 648)
+texture = ExtResource("13_3r4oi")
+offset = Vector2(45, -3)
 script = ExtResource("14_4i8tj")
 scene_item_id = 11
 intercation_type = 0
