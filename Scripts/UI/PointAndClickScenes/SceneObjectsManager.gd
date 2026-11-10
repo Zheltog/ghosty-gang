@@ -7,6 +7,8 @@ extends Node2D
 func _ready() -> void:
 	InkFunctions.subscribe(self)
 	collect_scene_items()
+	if inventory != null:
+		inventory.hover_changed.connect(update_hover)
 
 func collect_scene_items() -> void:
 	scene_items.clear()
@@ -28,8 +30,6 @@ func item_pressed(item : SceneItemUI) -> void:
 
 # [0] — самый верхний спрайт под курсором (видимость, z_index, затем порядок в дереве).
 var _highlighted_items : Array[SceneItemUI]
-var _last_equipped_item : InventoryItemUI
-var _last_light_on := false
 
 func _sync_hovered_items() -> void:
 	var hovered : Array[SceneItemUI] = []
@@ -65,15 +65,12 @@ func _set_hovered_items(hovered : Array[SceneItemUI]) -> void:
 	if hovered_top != null and hovered_top != previous_top:
 		hovered_top.set_outline_enabled(true)
 	_highlighted_items = hovered
-	var equipped: InventoryItemUI = null
-	if inventory != null and is_instance_valid(inventory.equipped_item):
-		equipped = inventory.equipped_item
 	var highlight_changed := previous_top != hovered_top or (had_highlight and previous_top == null)
-	var light_on := InventoryItemFlashlight.light_on
-	if highlight_changed or equipped != _last_equipped_item or light_on != _last_light_on:
-		_last_equipped_item = equipped
-		_last_light_on = light_on
-		update_mouse_cursor()
+	if highlight_changed:
+		update_hover()
+
+func update_hover() -> void:
+	update_mouse_cursor()
 
 func process_press_result(result : SceneItemPressResult) -> void:
 	match result.type:

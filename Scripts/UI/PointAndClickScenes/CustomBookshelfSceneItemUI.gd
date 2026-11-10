@@ -5,20 +5,18 @@ const STATE_KEY_TURNED := "key_turned"
 const STATE_OPEN := "bookshelf_open"
 const STATE_LOCKED := "bookshelf_locked"
 const STATE_BOOK_REMOVED := "bookshelf_book_removed"
-const KEY_TURN_SOUND := "res://Assets/Audio/Sounds/key_turning.mp3"
-const SHELF_MOVE_SOUND := "res://Assets/Audio/Sounds/shelf_move.mp3"
-const MOVED_BACKGROUND := preload("res://Assets/Sprites/Backgrounds/bookcase_2_normal.png")
-const REMOVED_CLOSED_BACKGROUND := preload("res://Assets/Sprites/Backgrounds/bookcase_1_removed_book_closed.png")
-const REMOVED_OPEN_BACKGROUND := preload("res://Assets/Sprites/Backgrounds/bookcase_1_removed_book_open.png")
-const MOVED_LIGHT_INDEX := 12
-const REMOVED_CLOSED_LIGHT_INDEX := 1
-const REMOVED_OPEN_LIGHT_INDEX := 2
-const LIVING_CLOSED_BACKGROUND := preload("res://Assets/Sprites/Backgrounds/hall_1_normal.png")
-const LIVING_OPEN_BACKGROUND := preload("res://Assets/Sprites/Backgrounds/hall_1b_normal.png")
-const LIVING_CLOSED_LIGHT_INDEX := 7
-const LIVING_OPEN_LIGHT_INDEX := 6
-
-const MOVED_OUTLINE_PATH := "res://Assets/Sprites/SceneItems/Outlines/Bookshelf_Shelfs_moved.png"
+const _SHELF_TEX: Array[Texture2D] = [
+	preload("res://Assets/Sprites/Backgrounds/bookcase_1_removed_book_closed.png"),
+	preload("res://Assets/Sprites/Backgrounds/bookcase_2_normal.png"),
+	preload("res://Assets/Sprites/Backgrounds/bookcase_1_removed_book_open.png"),
+]
+const _SHELF_LIGHT := [1, 12, 2]
+const _LIVING_TEX: Array[Texture2D] = [
+	preload("res://Assets/Sprites/Backgrounds/hall_1_normal.png"),
+	preload("res://Assets/Sprites/Backgrounds/hall_1b_normal.png"),
+]
+const _LIVING_LIGHT := [7, 6]
+const _MOVED_OUTLINE := "res://Assets/Sprites/SceneItems/Outlines/Bookshelf_Shelfs_moved.png"
 
 var _closed_background: Texture2D
 var _closed_light_index := 0
@@ -30,84 +28,76 @@ func _ready() -> void:
 	super._ready()
 	InkFunctions.subscribe(self)
 	var background := _background()
-	if background != null:
+	if background:
 		_closed_background = background.texture
 		var index: Variant = background.get_instance_shader_parameter("lighted_index")
 		if index != null:
 			_closed_light_index = int(index)
-	var open := bool(StateManager.get_state(STATE_OPEN, false))
-	_apply_open(open)
-	if bool(StateManager.get_state(STATE_BOOK_REMOVED, false)):
+	_apply_open(_flag(STATE_OPEN))
+	if _flag(STATE_BOOK_REMOVED):
 		_show_keyhole()
-	if open or bool(StateManager.get_state(STATE_KEY_TURNED, false)):
+	if _flag(STATE_OPEN) or _flag(STATE_KEY_TURNED):
 		_disable_books()
 
 func on_book_removed() -> void:
 	StateManager.set_state(STATE_BOOK_REMOVED, true)
 	_show_keyhole()
-	_show_background(bool(StateManager.get_state(STATE_OPEN, false)))
+	_show_background(_flag(STATE_OPEN))
 
 func turn_key() -> void:
 	StateManager.set_state(STATE_KEY_TURNED, true)
 	_remove_keyhole()
 	_disable_books()
-	_play_sound(KEY_TURN_SOUND)
+	_play("res://Assets/Audio/Sounds/key_turning.mp3")
 
 func open_shelf() -> void:
-	if _is_locked():
-		return
-	StateManager.set_state(STATE_OPEN, true)
-	_apply_open(true)
-	_disable_books()
-	_play_sound(SHELF_MOVE_SOUND)
-	_start_storage_hum()
+	if not _flag(STATE_LOCKED):
+		_set_open(true)
 
 func close_shelf() -> void:
-	StateManager.set_state(STATE_OPEN, false)
-	_apply_open(false)
-	_play_sound(SHELF_MOVE_SOUND)
+	_set_open(false)
 
 func lock_closed() -> void:
 	StateManager.set_state(STATE_LOCKED, true)
 	close_shelf()
 
-func _start_storage_hum() -> void:
-	var house := HouseSceneBase.current_house_scene as HouseScenePreview
-	if house == null or house.scene_states == null:
-		return
-	house.scene_states.process_event("storage_opened")
-
-func _play_sound(resource_name: String) -> void:
-	var command := AudioSoundCommand.new()
-	command.instant = true
-	command.resource_name = resource_name
-	CommonAudioProcessor.process_sound(command)
-
 func press_item() -> void:
-	if _is_locked():
+	if _flag(STATE_LOCKED) or not _flag(STATE_KEY_TURNED):
 		return
-	if not bool(StateManager.get_state(STATE_KEY_TURNED, false)):
-		return
-	var open := not bool(StateManager.get_state(STATE_OPEN, false))
+	_set_open(not _flag(STATE_OPEN))
+
+func get_effective_interaction_type() -> INTERACTION_TYPE:
+	if _flag(STATE_LOCKED) or not _flag(STATE_KEY_TURNED):
+		return INTERACTION_TYPE.NONE
+	return INTERACTION_TYPE.TAKE
+
+func _set_open(open: bool) -> void:
 	StateManager.set_state(STATE_OPEN, open)
 	_apply_open(open)
-	_play_sound(SHELF_MOVE_SOUND)
+	_play("res://Assets/Audio/Sounds/shelf_move.mp3")
 	if open:
-		_start_storage_hum()
+		_disable_books()
+		_hum()
 
 func _apply_open(open: bool) -> void:
 	_show_background(open)
 	_use_moved_area(open)
 	_set_storage_path(open)
-	_update_living_room_background(open)
+	_update_living_room(open)
 
-func get_effective_interaction_type() -> INTERACTION_TYPE:
-	if _is_locked() or not bool(StateManager.get_state(STATE_KEY_TURNED, false)):
-		return INTERACTION_TYPE.NONE
-	return INTERACTION_TYPE.TAKE
+func _flag(key: String) -> bool:
+	return bool(StateManager.get_state(key, false))
 
-func _is_locked() -> bool:
-	return bool(StateManager.get_state(STATE_LOCKED, false))
+func _play(path: String) -> void:
+	var command := AudioSoundCommand.new()
+	command.instant = true
+	command.resource_name = path
+	CommonAudioProcessor.process_sound(command)
+
+func _hum() -> void:
+	var house := HouseSceneBase.current_house_scene as HouseScenePreview
+	if house and house.scene_states:
+		house.scene_states.process_event("storage_opened")
 
 func _use_moved_area(moved: bool) -> void:
 	var after := get_node_or_null("Area2DAfterMove") as Area2D
@@ -117,17 +107,8 @@ func _use_moved_area(moved: bool) -> void:
 	if not after.input_event.is_connected(_on_input_event):
 		after.input_event.connect(_on_input_event)
 	_set_area_enabled(after, moved)
-	_apply_moved_outline(moved)
-
-func _apply_moved_outline(moved: bool) -> void:
-	if _rest_outline == null:
-		return
-	if not moved:
-		texture = _rest_outline
-		return
-	var moved_outline := load(MOVED_OUTLINE_PATH) as Texture2D
-	if moved_outline != null:
-		texture = moved_outline
+	if _rest_outline:
+		texture = load(_MOVED_OUTLINE) if moved else _rest_outline
 
 func _disable_books() -> void:
 	for child in get_children():
@@ -147,14 +128,12 @@ func _set_area_enabled(area: Area2D, enabled: bool) -> void:
 
 func _set_storage_path(open: bool) -> void:
 	var room := get_parent()
-	if room == null:
-		return
-	var path := room.get_node_or_null("ToStorage")
+	var path := room.get_node_or_null("ToStorage") if room else null
 	if path:
 		path.visible = open
 
 func _show_keyhole() -> void:
-	if bool(StateManager.get_state(STATE_KEY_TURNED, false)):
+	if _flag(STATE_KEY_TURNED):
 		return
 	var keyhole := get_node_or_null("Keyhole")
 	if keyhole:
@@ -162,55 +141,35 @@ func _show_keyhole() -> void:
 
 func _remove_keyhole() -> void:
 	var keyhole := get_node_or_null("Keyhole")
-	if keyhole == null:
-		return
-	keyhole.hide()
-	keyhole.queue_free()
-
-func _book_removed() -> bool:
-	return bool(StateManager.get_state(STATE_BOOK_REMOVED, false))
+	if keyhole:
+		keyhole.hide()
+		keyhole.queue_free()
 
 func _show_background(open: bool) -> void:
 	var background := _background()
 	if background == null:
 		return
-	var removed := _book_removed()
-	if open and removed:
-		background.texture = REMOVED_OPEN_BACKGROUND
-		background.set_instance_shader_parameter("lighted_index", REMOVED_OPEN_LIGHT_INDEX)
-	elif open:
-		background.texture = MOVED_BACKGROUND
-		background.set_instance_shader_parameter("lighted_index", MOVED_LIGHT_INDEX)
-	elif removed:
-		background.texture = REMOVED_CLOSED_BACKGROUND
-		background.set_instance_shader_parameter("lighted_index", REMOVED_CLOSED_LIGHT_INDEX)
-	else:
-		background.texture = _closed_background
-		background.set_instance_shader_parameter("lighted_index", _closed_light_index)
+	var removed := _flag(STATE_BOOK_REMOVED)
+	if not open and not removed:
+		_paint(background, _closed_background, _closed_light_index)
+		return
+	var slot := (2 if removed else 1) if open else 0
+	_paint(background, _SHELF_TEX[slot], int(_SHELF_LIGHT[slot]))
+
+func _update_living_room(open: bool) -> void:
+	var house := HouseSceneBase.current_house_scene as HouseScenePreview
+	if house == null:
+		return
+	var background := house.room_child("living_room", "Background") as Sprite2D
+	if background:
+		_paint(background, _LIVING_TEX[int(open)], int(_LIVING_LIGHT[int(open)]))
+	house.set_room_child_visible("living_room", "ToBookshelf", not open)
+	house.set_room_child_visible("living_room", "ToBookshelfOpen", open)
+
+func _paint(sprite: Sprite2D, tex: Texture2D, index: int) -> void:
+	sprite.texture = tex
+	sprite.set_instance_shader_parameter("lighted_index", index)
 
 func _background() -> Sprite2D:
 	var room := get_parent()
-	if room == null:
-		return null
-	return room.get_node_or_null("Background") as Sprite2D
-
-func _update_living_room_background(open: bool) -> void:
-	var house := HouseSceneBase.current_house_scene
-	if house == null:
-		return
-	var rooms := house.get_node_or_null(HouseSceneBase.ROOMS_NODE_NAME)
-	if rooms == null:
-		return
-	for child in rooms.get_children():
-		if not child is RoomBase or (child as RoomBase).room_name != "living_room":
-			continue
-		var background := child.get_node_or_null("Background") as Sprite2D
-		if background == null:
-			return
-		if open:
-			background.texture = LIVING_OPEN_BACKGROUND
-			background.set_instance_shader_parameter("lighted_index", LIVING_OPEN_LIGHT_INDEX)
-		else:
-			background.texture = LIVING_CLOSED_BACKGROUND
-			background.set_instance_shader_parameter("lighted_index", LIVING_CLOSED_LIGHT_INDEX)
-		return
+	return room.get_node_or_null("Background") as Sprite2D if room else null

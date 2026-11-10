@@ -3,7 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://mt1xmuy8xhd5" path="res://Scenes/PointAndClick/SceneUIDoor.tscn" id="2_door"]
 [ext_resource type="PackedScene" uid="uid://dvnnea2fw2ndt" path="res://Scenes/PointAndClick/SceneItemUI.tscn" id="2_item"]
 [ext_resource type="Texture2D" uid="uid://dl3f2wd2mursa" path="res://Assets/Sprites/Backgrounds/kitchen_normal.png" id="6_kitchen"]
-[ext_resource type="Script" uid="uid://3yscu2its1" path="res://Scenes/Test/Dron/DarknessEffect.gd" id="6_kitchen_dark"]
 [ext_resource type="Material" uid="uid://ckxbhw6pumol4" path="res://Assets/Material/bg_pixelization.tres" id="6_kitchen_mat"]
 [ext_resource type="Texture2D" uid="uid://dkg4fyroraf2x" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/Carpet.png" id="9_fifyc"]
 [ext_resource type="Texture2D" uid="uid://b2ch0uh0m1hly" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/Chair.png" id="10_dg8yx"]
@@ -27,7 +26,6 @@ material = ExtResource("6_kitchen_mat")
 instance_shader_parameters/lighted_index = 10
 position = Vector2(960, 540)
 texture = ExtResource("6_kitchen")
-script = ExtResource("6_kitchen_dark")
 
 [node name="ParallaxComponent" type="Node" parent="Background" unique_id=2145012311]
 script = ExtResource("10_parobj")
@@ -89,7 +87,6 @@ camera_distance = 122.0
 
 [node name="Bottle" parent="." unique_id=1800578913 instance=ExtResource("2_item")]
 position = Vector2(1059, 909)
-texture = null
 scene_item_id = 20
 trigger_type = 0
 intercation_type = 1
@@ -100,7 +97,6 @@ camera_distance = 110.0
 
 [node name="Pepper" parent="." unique_id=598298150 instance=ExtResource("2_item")]
 position = Vector2(1562, 818)
-texture = null
 scene_item_id = 2
 intercation_type = 0
 
@@ -121,14 +117,14 @@ script = ExtResource("10_parobj")
 camera_distance = 100.0
 
 [node name="ToCouch" type="Sprite2D" parent="." unique_id=139125228]
+texture = ExtResource("outline_Kitchen_ToCouch")
+offset = Vector2(-17.0000, 77.0000)
 texture_filter = 1
+instance_shader_parameters/fill_visible = false
 material = ExtResource("outline_mat")
 instance_shader_parameters/enabled = false
-instance_shader_parameters/fill_visible = false
 position = Vector2(1553, 693)
 rotation = -1.5707964
-texture = ExtResource("outline_Kitchen_ToCouch")
-offset = Vector2(-17, 77)
 script = ExtResource("15_tf3lf")
 target_room = "kitchen_couch"
 scene_item_id = 21

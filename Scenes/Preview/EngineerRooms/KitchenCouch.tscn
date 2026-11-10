@@ -4,7 +4,6 @@
 [ext_resource type="Material" uid="uid://cettvgv7o7kmc" path="res://Assets/Material/darkness_material.tres" id="2_71slc"]
 [ext_resource type="Material" uid="uid://ckxbhw6pumol4" path="res://Assets/Material/bg_pixelization.tres" id="2_bgpix"]
 [ext_resource type="Texture2D" uid="uid://cr26vxrodghv4" path="res://Assets/Sprites/Backgrounds/kitchen_sitting_normal.png" id="3_u8j1x"]
-[ext_resource type="Script" uid="uid://3yscu2its1" path="res://Scenes/Test/Dron/DarknessEffect.gd" id="4_bl6rl"]
 [ext_resource type="Script" uid="uid://8p77bw84c7bp" path="res://Scripts/UI/PointAndClickScenes/Components/ParallaxComponent.gd" id="5_n3wxg"]
 [ext_resource type="Texture2D" uid="uid://dm8rpbpys1eaf" path="res://Assets/Sprites/EquipedInventoryItems/glass_eye.png" id="12_oqwtk"]
 [ext_resource type="Texture2D" uid="uid://dadq1xc3xcndr" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/MoveBack.png" id="14_swiwo"]
@@ -25,7 +24,6 @@ material = ExtResource("2_bgpix")
 instance_shader_parameters/lighted_index = 11
 position = Vector2(960, 540)
 texture = ExtResource("3_u8j1x")
-script = ExtResource("4_bl6rl")
 
 [node name="ParallaxComponent" type="Node" parent="Background" unique_id=2145012311]
 script = ExtResource("5_n3wxg")
@@ -49,13 +47,13 @@ script = ExtResource("5_n3wxg")
 camera_distance = 100.0
 
 [node name="ToLivingRoom" type="Sprite2D" parent="." unique_id=139125228]
+texture = ExtResource("outline_KitchenCouch_ToLivingRoom")
+offset = Vector2(9.5000, -7.0000)
 texture_filter = 1
+instance_shader_parameters/fill_visible = false
 material = ExtResource("outline_mat")
 instance_shader_parameters/enabled = false
-instance_shader_parameters/fill_visible = false
 position = Vector2(280, 520)
-texture = ExtResource("outline_KitchenCouch_ToLivingRoom")
-offset = Vector2(9.5, -7)
 script = ExtResource("15_muhom")
 target_room = "living_room"
 scene_item_id = 21

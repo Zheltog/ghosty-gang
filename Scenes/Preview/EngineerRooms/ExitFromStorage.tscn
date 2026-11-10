@@ -8,7 +8,6 @@
 [ext_resource type="Script" uid="uid://d37oapbkld1pk" path="res://Scripts/UI/PointAndClickScenes/SceneUIDoor.gd" id="11_door"]
 [ext_resource type="Script" uid="uid://bgebmjt4oem53" path="res://Scripts/Room/RoomBase.gd" id="12_room"]
 [ext_resource type="Texture2D" uid="uid://cyisfyc7w6di0" path="res://Assets/Sprites/Backgrounds/exit_from_storage_dark.png" id="60_efs_bg"]
-[ext_resource type="Script" uid="uid://3yscu2its1" path="res://Scenes/Test/Dron/DarknessEffect.gd" id="60_efs_dark"]
 [ext_resource type="Material" uid="uid://ckxbhw6pumol4" path="res://Assets/Material/bg_pixelization.tres" id="60_efs_mat"]
 [ext_resource type="Texture2D" uid="uid://y1yg1oq4po6c" path="res://Assets/Sprites/SceneItems/Outlines/ExitFromStorage_ToLivingRoomToExit.png" id="outline_ExitFromStorage_ToLivingRoomToExit"]
 [ext_resource type="Material" uid="uid://br1nkg6tco5d0" path="res://Assets/Material/outline_material.tres" id="outline_mat"]
@@ -205,19 +204,19 @@ material = ExtResource("60_efs_mat")
 instance_shader_parameters/lighted_index = 5
 position = Vector2(960, 540)
 texture = ExtResource("60_efs_bg")
-script = ExtResource("60_efs_dark")
 
 [node name="ParallaxComponent" type="Node" parent="Background" unique_id=-1094967293]
 script = ExtResource("10_parobj")
 camera_distance = 100.0
 
 [node name="ToLivingRoomToExit" type="Sprite2D" parent="." unique_id=-1094967284]
+texture = ExtResource("outline_ExitFromStorage_ToLivingRoomToExit")
+offset = Vector2(0.0000, 0.0000)
 texture_filter = 1
+instance_shader_parameters/fill_visible = false
 material = ExtResource("outline_mat")
 instance_shader_parameters/enabled = false
-instance_shader_parameters/fill_visible = false
 position = Vector2(929, 616)
-texture = ExtResource("outline_ExitFromStorage_ToLivingRoomToExit")
 script = ExtResource("11_door")
 target_room = "living_room_to_exit"
 

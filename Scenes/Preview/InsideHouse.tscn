@@ -26,6 +26,9 @@
 [ext_resource type="Shader" uid="uid://cb2h1lxmcm7e" path="res://Scripts/Shaders/eye_released.gdshader" id="37_5x4uj"]
 [ext_resource type="Shader" uid="uid://j5wxgl4keu4c" path="res://Scripts/Shaders/blur.gdshader" id="38_55pqa"]
 [ext_resource type="Script" uid="uid://cb2h06q5dmge" path="res://Scripts/Effects/EyeReleasedEffect.gd" id="38_ak6oo"]
+[ext_resource type="Script" uid="uid://3yscu2its1" path="res://Scenes/Test/Dron/DarknessEffect.gd" id="41_rbe3r"]
+[ext_resource type="Material" uid="uid://ckxbhw6pumol4" path="res://Assets/Material/bg_pixelization.tres" id="42_wxces"]
+[ext_resource type="Material" uid="uid://cettvgv7o7kmc" path="res://Assets/Material/darkness_material.tres" id="43_tiw0u"]
 [ext_resource type="Script" uid="uid://sv300tnhe327" path="res://Scripts/Scenes/BlackoutEffect.gd" id="blackout_script"]
 [ext_resource type="Material" uid="uid://br1nkg6tco5d0" path="res://Assets/Material/outline_material.tres" id="outline_mat"]
 [ext_resource type="PackedScene" uid="uid://c8bathroom0a1" path="res://Scenes/Preview/EngineerRooms/Bathroom.tscn" id="room_Bathroom"]
@@ -1207,3 +1210,7 @@ engineer = NodePath("../../../../../../../../../../../Characters/Engineer")
 [node name="Street" type="Node" parent="SceneStates/Welcome/PassportTimer/TeaReady/KitchenWait/CouchTea/Interview/Bedding/Dream/Wake" unique_id=607823804 node_paths=PackedStringArray("blackout_keep_text")]
 script = SubResource("GDScript_street")
 blackout_keep_text = NodePath("../../../../../../../../../../../BlackoutKeepDialog")
+
+[node name="FlashlightEffectSetter" type="Node2D" parent="." unique_id=45381011]
+script = ExtResource("41_rbe3r")
+materials = Array[ShaderMaterial]([ExtResource("43_tiw0u"), ExtResource("42_wxces")])

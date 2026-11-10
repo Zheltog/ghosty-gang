@@ -1,54 +1,57 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://cb5nb5f5acyp5"]
 
-[ext_resource type="Script" path="res://Scenes/Test/EngineerRooms/engineer_rooms_debug.gd" id="1_debug"]
-[ext_resource type="Script" path="res://Scripts/UI/PointAndClickScenes/SceneObjectsManager.gd" id="2_manager"]
-[ext_resource type="Script" path="res://Scripts/Characters/SceneCharacterEngineer.gd" id="3_engineer"]
-[ext_resource type="Script" path="res://Scripts/UI/PointAndClickScenes/Components/ParallaxComponent.gd" id="4_parallax"]
-[ext_resource type="Script" path="res://Scripts/UI/PointAndClickScenes/SceneParallaxController.gd" id="5_parallax_root"]
-[ext_resource type="PackedScene" path="res://Scenes/PointAndClick/InventoryUI/Inventory.tscn" id="6_inventory"]
-[ext_resource type="PackedScene" path="res://Scenes/Dialog/dialog_controller.tscn" id="7_dialog"]
-[ext_resource type="PackedScene" path="res://Scenes/Timer/timer.tscn" id="8_timer"]
-[ext_resource type="PackedScene" path="res://Scenes/Preview/EngineerRooms/Preroom.tscn" id="room_preroom"]
-[ext_resource type="PackedScene" path="res://Scenes/Preview/EngineerRooms/LivingRoom.tscn" id="room_living"]
-[ext_resource type="PackedScene" path="res://Scenes/Preview/EngineerRooms/LivingRoom2.tscn" id="room_living2"]
-[ext_resource type="PackedScene" path="res://Scenes/Preview/EngineerRooms/LivingRoomToExit.tscn" id="room_exit"]
-[ext_resource type="PackedScene" path="res://Scenes/Preview/EngineerRooms/UnderBed.tscn" id="room_bed"]
-[ext_resource type="PackedScene" path="res://Scenes/Preview/EngineerRooms/Kitchen.tscn" id="room_kitchen"]
-[ext_resource type="PackedScene" path="res://Scenes/Preview/EngineerRooms/KitchenCouch.tscn" id="room_couch"]
-[ext_resource type="PackedScene" path="res://Scenes/Preview/EngineerRooms/Bathroom.tscn" id="room_bathroom"]
-[ext_resource type="PackedScene" path="res://Scenes/Preview/EngineerRooms/Bookshelf.tscn" id="room_bookshelf"]
-[ext_resource type="PackedScene" path="res://Scenes/Preview/EngineerRooms/Storage.tscn" id="room_storage"]
-[ext_resource type="PackedScene" path="res://Scenes/Preview/EngineerRooms/ExitFromStorage.tscn" id="room_storage_exit"]
+[ext_resource type="Script" uid="uid://c1s2sucrkceki" path="res://Scenes/Test/EngineerRooms/engineer_rooms_debug.gd" id="1_debug"]
+[ext_resource type="Script" uid="uid://bytkgf4aqq3ro" path="res://Scripts/UI/PointAndClickScenes/SceneObjectsManager.gd" id="2_manager"]
+[ext_resource type="Script" uid="uid://cn7artycc2xk4" path="res://Scripts/Characters/SceneCharacterEngineer.gd" id="3_engineer"]
+[ext_resource type="Script" uid="uid://8p77bw84c7bp" path="res://Scripts/UI/PointAndClickScenes/Components/ParallaxComponent.gd" id="4_parallax"]
+[ext_resource type="Script" uid="uid://b036r1bbtl2ug" path="res://Scripts/UI/PointAndClickScenes/SceneParallaxController.gd" id="5_parallax_root"]
+[ext_resource type="PackedScene" uid="uid://17fxcbcv4a1n" path="res://Scenes/PointAndClick/InventoryUI/Inventory.tscn" id="6_inventory"]
+[ext_resource type="PackedScene" uid="uid://b3fjaokxpivbe" path="res://Scenes/Dialog/dialog_controller.tscn" id="7_dialog"]
+[ext_resource type="PackedScene" uid="uid://kvbvxu0vbc8y" path="res://Scenes/Timer/timer.tscn" id="8_timer"]
+[ext_resource type="Script" uid="uid://3yscu2its1" path="res://Scenes/Test/Dron/DarknessEffect.gd" id="20_5ghw8"]
+[ext_resource type="Material" uid="uid://ckxbhw6pumol4" path="res://Assets/Material/bg_pixelization.tres" id="21_iisvf"]
+[ext_resource type="Material" uid="uid://cettvgv7o7kmc" path="res://Assets/Material/darkness_material.tres" id="22_55nda"]
+[ext_resource type="PackedScene" uid="uid://c8bathroom0a1" path="res://Scenes/Preview/EngineerRooms/Bathroom.tscn" id="room_bathroom"]
+[ext_resource type="PackedScene" uid="uid://c8underbed0a1" path="res://Scenes/Preview/EngineerRooms/UnderBed.tscn" id="room_bed"]
+[ext_resource type="PackedScene" uid="uid://s218cktv50w5" path="res://Scenes/Preview/EngineerRooms/Bookshelf.tscn" id="room_bookshelf"]
+[ext_resource type="PackedScene" uid="uid://dqxonlmtlnied" path="res://Scenes/Preview/EngineerRooms/KitchenCouch.tscn" id="room_couch"]
+[ext_resource type="PackedScene" uid="uid://c8livexit0a1b" path="res://Scenes/Preview/EngineerRooms/LivingRoomToExit.tscn" id="room_exit"]
+[ext_resource type="PackedScene" uid="uid://c8kitchen00a1" path="res://Scenes/Preview/EngineerRooms/Kitchen.tscn" id="room_kitchen"]
+[ext_resource type="PackedScene" uid="uid://c8livroom0a1b" path="res://Scenes/Preview/EngineerRooms/LivingRoom.tscn" id="room_living"]
+[ext_resource type="PackedScene" uid="uid://c8livroom2a01" path="res://Scenes/Preview/EngineerRooms/LivingRoom2.tscn" id="room_living2"]
+[ext_resource type="PackedScene" uid="uid://c8preroom00a1" path="res://Scenes/Preview/EngineerRooms/Preroom.tscn" id="room_preroom"]
+[ext_resource type="PackedScene" uid="uid://c8storage00a1" path="res://Scenes/Preview/EngineerRooms/Storage.tscn" id="room_storage"]
+[ext_resource type="PackedScene" uid="uid://c8exitstor0a1" path="res://Scenes/Preview/EngineerRooms/ExitFromStorage.tscn" id="room_storage_exit"]
 
-[node name="EngineerRoomsDebug" type="Node2D" node_paths=PackedStringArray("characters")]
+[node name="EngineerRoomsDebug" type="Node2D" unique_id=1200546351 node_paths=PackedStringArray("characters")]
 script = ExtResource("1_debug")
 characters = [NodePath("Characters/Engineer")]
 room_scenes = Array[PackedScene]([ExtResource("room_preroom"), ExtResource("room_living"), ExtResource("room_living2"), ExtResource("room_exit"), ExtResource("room_bed"), ExtResource("room_kitchen"), ExtResource("room_couch"), ExtResource("room_bathroom"), ExtResource("room_bookshelf"), ExtResource("room_storage"), ExtResource("room_storage_exit")])
 
-[node name="Rooms" type="Node2D" parent="."]
+[node name="Rooms" type="Node2D" parent="." unique_id=742836626]
 
-[node name="SceneObjectManager" type="Node2D" parent="." node_paths=PackedStringArray("inventory")]
+[node name="SceneObjectManager" type="Node2D" parent="." unique_id=955373549 node_paths=PackedStringArray("inventory")]
 script = ExtResource("2_manager")
 inventory = NodePath("../Inventory")
 
-[node name="Characters" type="Node2D" parent="."]
+[node name="Characters" type="Node2D" parent="." unique_id=1836180580]
 
-[node name="Engineer" type="AnimatedSprite2D" parent="Characters" node_paths=PackedStringArray("scene_object_manager", "sprite")]
+[node name="Engineer" type="AnimatedSprite2D" parent="Characters" unique_id=520550235 node_paths=PackedStringArray("scene_object_manager", "sprite")]
 visible = false
 script = ExtResource("3_engineer")
 scene_object_manager = NodePath("../../SceneObjectManager")
 sprite = NodePath(".")
 character_name = "engineer"
 
-[node name="ParallaxComponent" type="Node" parent="Characters/Engineer"]
+[node name="ParallaxComponent" type="Node" parent="Characters/Engineer" unique_id=811865548]
 script = ExtResource("4_parallax")
 camera_distance = 105.0
 
-[node name="Hand" type="AnimatedSprite2D" parent="Characters/Engineer"]
+[node name="Hand" type="AnimatedSprite2D" parent="Characters/Engineer" unique_id=1365917881]
 visible = false
 z_index = 3
 
-[node name="Inventory" parent="." instance=ExtResource("6_inventory")]
+[node name="Inventory" parent="." unique_id=312478018 instance=ExtResource("6_inventory")]
 z_index = 3
 anchors_preset = 15
 anchor_top = 0.0
@@ -57,14 +60,17 @@ offset_top = 1080.0
 offset_bottom = 1080.0
 grow_horizontal = 2
 grow_vertical = 2
-dialog_controller = NodePath("../DialogController")
 
-[node name="DialogController" parent="." instance=ExtResource("7_dialog")]
+[node name="DialogController" parent="." unique_id=268646981 instance=ExtResource("7_dialog")]
 position = Vector2(-73, 370)
 story = null
 timer = NodePath("../GameTimer")
 
-[node name="GameTimer" parent="." instance=ExtResource("8_timer")]
+[node name="GameTimer" parent="." unique_id=1424045151 instance=ExtResource("8_timer")]
 
-[node name="SceneParallax" type="Node" parent="."]
+[node name="SceneParallax" type="Node" parent="." unique_id=430965218]
 script = ExtResource("5_parallax_root")
+
+[node name="FlashlightEffectSetter" type="Node2D" parent="." unique_id=1408224055]
+script = ExtResource("20_5ghw8")
+materials = Array[ShaderMaterial]([ExtResource("21_iisvf"), ExtResource("22_55nda")])

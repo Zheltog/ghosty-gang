@@ -1,17 +1,13 @@
 class_name DarknessEffect
-extends Sprite2D
+extends Node2D
 
-var _material: ShaderMaterial
+@export var materials: Array[ShaderMaterial]
 var _inventory: Inventory
 
-func _ready() -> void:
-	_material = material as ShaderMaterial
-
 func _process(_delta: float) -> void:
-	if _material == null:
-		return
-	_material.set_shader_parameter("mouse_pos", get_global_mouse_position())
-	_material.set_shader_parameter("light_on", _flashlight_lit())
+	for mat in materials:
+		mat.set_shader_parameter("mouse_pos", get_global_mouse_position())
+		mat.set_shader_parameter("light_on", _flashlight_lit())
 
 func _flashlight_lit() -> bool:
 	if not InventoryItemFlashlight.light_on:

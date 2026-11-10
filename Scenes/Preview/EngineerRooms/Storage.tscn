@@ -1,10 +1,9 @@
 [gd_scene format=3 uid="uid://c8storage00a1"]
 
 [ext_resource type="Script" uid="uid://bgebmjt4oem53" path="res://Scripts/Room/RoomBase.gd" id="1_qtqxp"]
-[ext_resource type="Material" uid="uid://ckxbhw6pumol4" path="res://Assets/Material/bg_pixelization.tres" id="2_bgpix"]
 [ext_resource type="Material" uid="uid://cettvgv7o7kmc" path="res://Assets/Material/darkness_material.tres" id="2_4h4dh"]
+[ext_resource type="Material" uid="uid://ckxbhw6pumol4" path="res://Assets/Material/bg_pixelization.tres" id="2_bgpix"]
 [ext_resource type="Texture2D" uid="uid://de3p3kuu483v4" path="res://Assets/Sprites/Backgrounds/storage_normal.png" id="3_mv80i"]
-[ext_resource type="Script" uid="uid://3yscu2its1" path="res://Scenes/Test/Dron/DarknessEffect.gd" id="4_tn7j2"]
 [ext_resource type="Script" uid="uid://8p77bw84c7bp" path="res://Scripts/UI/PointAndClickScenes/Components/ParallaxComponent.gd" id="5_76ue4"]
 [ext_resource type="PackedScene" uid="uid://mt1xmuy8xhd5" path="res://Scenes/PointAndClick/SceneUIDoor.tscn" id="6_ywwly"]
 [ext_resource type="Texture2D" uid="uid://dadq1xc3xcndr" path="res://Assets/Sprites/Test/PreviewScenes/Rooms/MoveBack.png" id="7_a10on"]
@@ -21,7 +20,6 @@ material = ExtResource("2_bgpix")
 instance_shader_parameters/lighted_index = 13
 position = Vector2(960, 540)
 texture = ExtResource("3_mv80i")
-script = ExtResource("4_tn7j2")
 
 [node name="ParallaxComponent" type="Node" parent="Background" unique_id=1493908703]
 script = ExtResource("5_76ue4")
@@ -57,7 +55,7 @@ position = Vector2(960, 540)
 
 [node name="Passport" type="Sprite2D" parent="." unique_id=412838733]
 material = ExtResource("2_4h4dh")
-instance_shader_parameters/lighted_index = 8
+instance_shader_parameters/lighted_index = 1
 position = Vector2(1226, 598)
 texture = ExtResource("8_sj3t8")
 script = ExtResource("9_f2u8l")
@@ -72,7 +70,7 @@ camera_distance = 100.0
 
 [node name="Gun" type="Sprite2D" parent="." unique_id=786481879]
 material = ExtResource("2_4h4dh")
-instance_shader_parameters/lighted_index = 7
+instance_shader_parameters/lighted_index = 0
 position = Vector2(1135, 843)
 texture = ExtResource("10_jvvr4")
 script = ExtResource("9_f2u8l")

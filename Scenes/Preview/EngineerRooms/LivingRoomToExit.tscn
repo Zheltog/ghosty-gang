@@ -7,12 +7,11 @@
 [ext_resource type="Script" uid="uid://bgebmjt4oem53" path="res://Scripts/Room/RoomBase.gd" id="12_room"]
 [ext_resource type="Script" uid="uid://d37oapbkld1pk" path="res://Scripts/UI/PointAndClickScenes/SceneUIDoor.gd" id="20_8cn5p"]
 [ext_resource type="Texture2D" uid="uid://c18axsixxn7qx" path="res://Assets/Sprites/Backgrounds/hall_3_normal.png" id="50_lte_bg"]
-[ext_resource type="Script" uid="uid://3yscu2its1" path="res://Scenes/Test/Dron/DarknessEffect.gd" id="50_lte_dark"]
 [ext_resource type="Material" uid="uid://ckxbhw6pumol4" path="res://Assets/Material/bg_pixelization.tres" id="50_lte_mat"]
-[ext_resource type="Texture2D" uid="uid://b6lhm8wcasg8y" path="res://Assets/Sprites/SceneItems/Outlines/LivingRoomToExit_Bed.png" id="outline_LivingRoomToExit_Bed"]
 [ext_resource type="Texture2D" uid="uid://fbf27u8r434f" path="res://Assets/Sprites/SceneItems/Outlines/LivingRoomToExit_ToPreroom.png" id="outline_LivingRoomToExit_ToPreroom"]
-[ext_resource type="Texture2D" uid="uid://8r3w3o26wsmu" path="res://Assets/Sprites/SceneItems/Outlines/LivingRoomToExit_Tumba.png" id="outline_LivingRoomToExit_Tumba"]
 [ext_resource type="Material" uid="uid://br1nkg6tco5d0" path="res://Assets/Material/outline_material.tres" id="outline_mat"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/SceneItems/Outlines/LivingRoomToExit_Bed.png" id="outline_LivingRoomToExit_Bed"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/SceneItems/Outlines/LivingRoomToExit_Tumba.png" id="outline_LivingRoomToExit_Tumba"]
 
 [node name="LivingRoomToExit" type="Node2D" unique_id=-1194967295]
 script = ExtResource("12_room")
@@ -23,20 +22,19 @@ material = ExtResource("50_lte_mat")
 instance_shader_parameters/lighted_index = 8
 position = Vector2(964, 537)
 texture = ExtResource("50_lte_bg")
-script = ExtResource("50_lte_dark")
 
 [node name="ParallaxComponent" type="Node" parent="Background" unique_id=-1194967293]
 script = ExtResource("10_parobj")
 camera_distance = 100.0
 
 [node name="Bed" type="Sprite2D" parent="." unique_id=-1194967290]
+texture = ExtResource("outline_LivingRoomToExit_Bed")
+offset = Vector2(323.0000, -122.5000)
 texture_filter = 1
+instance_shader_parameters/fill_visible = false
 material = ExtResource("outline_mat")
 instance_shader_parameters/enabled = false
-instance_shader_parameters/fill_visible = false
 position = Vector2(283, 715)
-texture = ExtResource("outline_LivingRoomToExit_Bed")
-offset = Vector2(304, -118)
 script = ExtResource("20_8cn5p")
 target_room = "under_bed"
 scene_item_id = 21
@@ -45,27 +43,27 @@ intercation_type = 0
 [node name="Area2D" type="Area2D" parent="Bed" unique_id=674466857]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Bed/Area2D" unique_id=1318797564]
-polygon = PackedVector2Array(496, 16, 607, -80, 605, -191, 589, -191, 561, -162, 288, -185, 251, -258, 39, -221, 47, -138, 97, -133, 113, -65)
+polygon = PackedVector2Array(498, 13, 607, -80, 606, -193, 590, -193, 561, -162, 288, -185, 251, -258, 39, -221, 47, -138, 97, -133, 113, -65)
 
 [node name="ParallaxComponent" type="Node" parent="Bed" unique_id=-1194967289]
 script = ExtResource("10_parobj")
 camera_distance = 100.0
 
 [node name="Tumba" type="Sprite2D" parent="." unique_id=-1194967284]
+texture = ExtResource("outline_LivingRoomToExit_Tumba")
+offset = Vector2(300.5000, -305.0000)
 texture_filter = 1
+instance_shader_parameters/fill_visible = false
 material = ExtResource("outline_mat")
 instance_shader_parameters/enabled = false
-instance_shader_parameters/fill_visible = false
 position = Vector2(3, 958)
-texture = ExtResource("outline_LivingRoomToExit_Tumba")
-offset = Vector2(263.5, -292.5)
 script = ExtResource("8_gnoqc")
 scene_item_id = 11
 intercation_type = 0
 
 [node name="ParallaxComponent" type="Node" parent="Tumba" unique_id=-1194967283]
 script = ExtResource("10_parobj")
-camera_distance = 120.0
+camera_distance = 100.0
 
 [node name="Area2D" type="Area2D" parent="Tumba" unique_id=1865161662]
 
@@ -74,13 +72,13 @@ position = Vector2(27, -10)
 polygon = PackedVector2Array(278, -218, 374, -255, 350, -366, 293, -372, 173, -347, 195, -234)
 
 [node name="ToPreroom" type="Sprite2D" parent="." unique_id=-1194967282]
+texture = ExtResource("outline_LivingRoomToExit_ToPreroom")
+offset = Vector2(76.0000, -75.5000)
 texture_filter = 1
+instance_shader_parameters/fill_visible = false
 material = ExtResource("outline_mat")
 instance_shader_parameters/enabled = false
-instance_shader_parameters/fill_visible = false
 position = Vector2(1166, 558)
-texture = ExtResource("outline_LivingRoomToExit_ToPreroom")
-offset = Vector2(74, -69)
 script = ExtResource("20_8cn5p")
 target_room = "preroom"
 scene_item_id = 21
@@ -106,9 +104,6 @@ intercation_type = 0
 [node name="ParallaxComponent" type="Node" parent="ToLivingRoom" unique_id=1069572054]
 script = ExtResource("10_parobj")
 camera_distance = 100.0
-
-[node name="Character" type="AnimatedSprite2D" parent="." unique_id=891095198]
-position = Vector2(960, 540)
 
 [node name="CharacterPositions" type="Node2D" parent="." unique_id=32284585]
 

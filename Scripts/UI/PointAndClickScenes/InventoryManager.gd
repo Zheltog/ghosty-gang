@@ -1,6 +1,8 @@
 class_name Inventory
 extends Control
 
+signal hover_changed
+
 enum EVENT {
 	PICKUP,
 	EQUIP,
@@ -54,6 +56,7 @@ func unequip_item() -> void:
 	equipped_item = null
 	notify_dialog_event(EVENT.UNEQUIP, item_id)
 	update_hint()
+	hover_changed.emit()
 
 func close() -> void:
 	if inventory_holder:
@@ -113,6 +116,7 @@ func equip_item(item_ui : InventoryItemUI) -> void:
 	equipped_item = item_ui
 	notify_dialog_event(EVENT.EQUIP, item_ui.inventory_item_id)
 	update_hint()
+	hover_changed.emit()
 
 func _clear_equipped_item_ui() -> void:
 	if _equipped_item_ui == null:

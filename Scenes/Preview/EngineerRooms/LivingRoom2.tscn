@@ -6,28 +6,26 @@
 [ext_resource type="Script" uid="uid://bgebmjt4oem53" path="res://Scripts/Room/RoomBase.gd" id="12_room"]
 [ext_resource type="Script" uid="uid://d37oapbkld1pk" path="res://Scripts/UI/PointAndClickScenes/SceneUIDoor.gd" id="20_door"]
 [ext_resource type="Texture2D" uid="uid://7hapquvxowa3" path="res://Assets/Sprites/Backgrounds/hall_2_normal.png" id="50_bg"]
-[ext_resource type="Script" uid="uid://3yscu2its1" path="res://Scenes/Test/Dron/DarknessEffect.gd" id="50_dark"]
 [ext_resource type="Material" uid="uid://ckxbhw6pumol4" path="res://Assets/Material/bg_pixelization.tres" id="50_mat"]
-[ext_resource type="Material" uid="uid://br1nkg6tco5d0" path="res://Assets/Material/outline_material.tres" id="outline_mat"]
 [ext_resource type="Texture2D" uid="uid://cg1b71mujp71i" path="res://Assets/Sprites/SceneItems/Outlines/LivingRoom2_Bed.png" id="outline_LivingRoom2_Bed"]
 [ext_resource type="Texture2D" uid="uid://3rcddsanop3c" path="res://Assets/Sprites/SceneItems/Outlines/LivingRoom2_ToPreroom.png" id="outline_LivingRoom2_ToPreroom"]
+[ext_resource type="Material" uid="uid://br1nkg6tco5d0" path="res://Assets/Material/outline_material.tres" id="outline_mat"]
 
-[node name="LivingRoom2" type="Node2D"]
+[node name="LivingRoom2" type="Node2D" unique_id=163372159]
 script = ExtResource("12_room")
 room_name = "living_room_2"
 
-[node name="Background" type="Sprite2D" parent="."]
+[node name="Background" type="Sprite2D" parent="." unique_id=659820767]
 material = ExtResource("50_mat")
 instance_shader_parameters/lighted_index = 14
 position = Vector2(960, 540)
 texture = ExtResource("50_bg")
-script = ExtResource("50_dark")
 
-[node name="ParallaxComponent" type="Node" parent="Background"]
+[node name="ParallaxComponent" type="Node" parent="Background" unique_id=1634606367]
 script = ExtResource("10_parobj")
 camera_distance = 100.0
 
-[node name="Bed" type="Sprite2D" parent="."]
+[node name="Bed" type="Sprite2D" parent="." unique_id=1691661122]
 texture = ExtResource("outline_LivingRoom2_Bed")
 offset = Vector2(-10.0000, -80.0000)
 texture_filter = 1
@@ -40,16 +38,16 @@ target_room = "under_bed"
 scene_item_id = 21
 intercation_type = 0
 
-[node name="Area2D" type="Area2D" parent="Bed"]
+[node name="Area2D" type="Area2D" parent="Bed" unique_id=2128926275]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Bed/Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Bed/Area2D" unique_id=1022446488]
 polygon = PackedVector2Array(-280, 80, 260, 40, 300, -180, -40, -240, -320, -40)
 
-[node name="ParallaxComponent" type="Node" parent="Bed"]
+[node name="ParallaxComponent" type="Node" parent="Bed" unique_id=1907814888]
 script = ExtResource("10_parobj")
 camera_distance = 100.0
 
-[node name="ToPreroom" type="Sprite2D" parent="."]
+[node name="ToPreroom" type="Sprite2D" parent="." unique_id=1317430807]
 texture = ExtResource("outline_LivingRoom2_ToPreroom")
 offset = Vector2(10.0000, -25.0000)
 texture_filter = 1
@@ -62,16 +60,16 @@ target_room = "preroom"
 scene_item_id = 21
 intercation_type = 0
 
-[node name="Area2D" type="Area2D" parent="ToPreroom"]
+[node name="Area2D" type="Area2D" parent="ToPreroom" unique_id=1299683634]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ToPreroom/Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ToPreroom/Area2D" unique_id=673923033]
 polygon = PackedVector2Array(-70, 160, -40, -220, 90, -220, 70, 170)
 
-[node name="ParallaxComponent" type="Node" parent="ToPreroom"]
+[node name="ParallaxComponent" type="Node" parent="ToPreroom" unique_id=1156265131]
 script = ExtResource("10_parobj")
 camera_distance = 100.0
 
-[node name="ToLivingRoomToExit" parent="." instance=ExtResource("2_door")]
+[node name="ToLivingRoomToExit" parent="." unique_id=1121941278 instance=ExtResource("2_door")]
 position = Vector2(1840, 80)
 scale = Vector2(2, 2)
 texture = ExtResource("10_a71pi")
@@ -79,11 +77,11 @@ target_room = "living_room_to_exit"
 scene_item_id = 21
 intercation_type = 0
 
-[node name="ParallaxComponent" type="Node" parent="ToLivingRoomToExit"]
+[node name="ParallaxComponent" type="Node" parent="ToLivingRoomToExit" unique_id=1680256640]
 script = ExtResource("10_parobj")
 camera_distance = 100.0
 
-[node name="ToLivingRoom" parent="." instance=ExtResource("2_door")]
+[node name="ToLivingRoom" parent="." unique_id=706968064 instance=ExtResource("2_door")]
 position = Vector2(80, 80)
 scale = Vector2(2, 2)
 texture = ExtResource("10_a71pi")
@@ -91,15 +89,15 @@ target_room = "living_room"
 scene_item_id = 21
 intercation_type = 0
 
-[node name="ParallaxComponent" type="Node" parent="ToLivingRoom"]
+[node name="ParallaxComponent" type="Node" parent="ToLivingRoom" unique_id=1112615622]
 script = ExtResource("10_parobj")
 camera_distance = 100.0
 
-[node name="Character" type="AnimatedSprite2D" parent="."]
+[node name="Character" type="AnimatedSprite2D" parent="." unique_id=1441297429]
 position = Vector2(960, 540)
 
-[node name="CharacterPositions" type="Node2D" parent="."]
+[node name="CharacterPositions" type="Node2D" parent="." unique_id=1154288873]
 
-[node name="default" type="Marker2D" parent="CharacterPositions"]
+[node name="default" type="Marker2D" parent="CharacterPositions" unique_id=1956892312]
 position = Vector2(803, 383)
 scale = Vector2(0.15, 0.15)
